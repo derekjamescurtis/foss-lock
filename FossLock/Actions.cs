@@ -15,7 +15,6 @@ namespace FossLock
 	/// </summary>
 	internal static class Actions
 	{
-
 		// logging for this class
         private static NLog.Logger logger = NLog.LogManager.GetLogger("FossLock.Actions");
 
