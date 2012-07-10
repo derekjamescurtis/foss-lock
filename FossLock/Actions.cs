@@ -31,6 +31,7 @@ namespace FossLock
             DirectoryInfo appDataDirInfo = new DirectoryInfo(appDataPath);
 
 
+
             // try to get info for %appdata%\FossLock
             var fosslockAppDataDirInfo = appDataDirInfo.GetDirectories("FossLock").FirstOrDefault();
 

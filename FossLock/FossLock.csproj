@@ -86,6 +86,10 @@
         <Policies>
           <DotNetNamingPolicy DirectoryNamespaceAssociation="Hierarchical" ResourceNamePolicy="MSBuild" />
           <TextStylePolicy FileWidth="120" TabsToSpaces="False" inheritsSet="VisualStudio" inheritsScope="text/plain" scope="text/plain" />
+          <VersionControlPolicy inheritsSet="Mono" />
+          <ChangeLogPolicy UpdateMode="None" inheritsSet="Mono">
+            <MessageStyle Header="${Date:yyyy-MM-dd}  derekjamescurtis  djcurtis@summersetsoftware.com&#xA;&#xA;" LineAlign="0" />
+          </ChangeLogPolicy>
         </Policies>
       </Properties>
     </MonoDevelop>
