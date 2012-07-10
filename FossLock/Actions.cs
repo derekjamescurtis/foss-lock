@@ -30,7 +30,6 @@ namespace FossLock
             DirectoryInfo appDataDirInfo = new DirectoryInfo(appDataPath);
 
 
-
             // try to get info for %appdata%\FossLock
             var fosslockAppDataDirInfo = appDataDirInfo.GetDirectories("FossLock").FirstOrDefault();
 
@@ -67,15 +66,18 @@ namespace FossLock
 				case StorageProviderType.SqLite:
 					cn = new SQLiteConnection(settings.StorageLocation.ConnectionString);
 					break;
+
 				case StorageProviderType.MySql:
 					cn = new MySqlConnection(settings.StorageLocation.ConnectionString);
 					break;
+
 				case StorageProviderType.MsSql:
 					cn = new SqlConnection(settings.StorageLocation.ConnectionString);
 					break;
+
 				default:
 					throw new NotImplementedException("The appropriate logic has not been implemented for the requested storage type provider.");
-					break;
+
 			}
 
 			// Open the connection and return

@@ -3,49 +3,52 @@ using System.Data;
 
 namespace FossLock.Core
 {
+	/// <summary>
+	/// Specifies the CRUD commands that can be generated for an individual object.
+	/// </summary>
 	public interface IEntityDbOperations
 	{
 		/// <summary>
-		/// Gets the update command.
+		/// Gets a provider-specific command to update this object in the database.
 		/// </summary>
 		/// <returns>
-		/// The update command.
+		/// A command object assigned to the specified connection and enrolled in the specified transation.
 		/// </returns>
 		/// <param name='cn'>
-		/// Cn.
+		/// The database connection that will generate the provider-specific command.  This argument must be provided.
 		/// </param>
 		/// <param name='transaction'>
-		/// Transaction.
+		/// A reference to the provider-specific transation that this command should be enrolled in.  This may be null.
 		/// </param>
-		IDbCommand GetUpdateCommand(IDbConnection cn = null, IDbTransaction transaction = null);
+		IDbCommand GetUpdateCommand(IDbConnection cn, IDbTransaction transaction);
 
 		/// <summary>
-		/// Gets the delete command.
+		/// Gets a provider-specific command that will delete the underlying database record for this object.
 		/// </summary>
 		/// <returns>
-		/// The delete command.
+		/// A command object assigned to the specified connection and enrolled in the specified transation.
 		/// </returns>
 		/// <param name='cn'>
-		/// Cn.
+		/// The database connection that will generate the provider-specific command.  This argument must be provided.
 		/// </param>
 		/// <param name='transaction'>
-		/// Transaction.
+		/// A reference to the provider-specific transation that this command should be enrolled in.  This may be null.
 		/// </param>
-		IDbCommand GetDeleteCommand(IDbConnection cn = null, IDbTransaction transaction = null);
+		IDbCommand GetDeleteCommand(IDbConnection cn, IDbTransaction transaction);
 
 		/// <summary>
-		/// Gets the insert command.
+		/// Gets a provider-specific command that will insert this object into the database.
 		/// </summary>
 		/// <returns>
-		/// The insert command.
+		/// A command object assigned to the specified connection and enrolled in the specified transation.
 		/// </returns>
 		/// <param name='cn'>
-		/// Cn.
+		/// The database connection that will generate the provider-specific command.  This argument must be provided.
 		/// </param>
 		/// <param name='transaction'>
-		/// Transaction.
+		/// A reference to the provider-specific transation that this command should be enrolled in.  This may be null.
 		/// </param>
-		IDbCommand GetInsertCommand(IDbConnection cn = null, IDbTransaction transaction = null);
+		IDbCommand GetInsertCommand(IDbConnection cn, IDbTransaction transaction);
 
 	}
 }

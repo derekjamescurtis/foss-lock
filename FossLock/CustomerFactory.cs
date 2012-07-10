@@ -14,6 +14,10 @@ namespace FossLock
 	public class CustomerFactory
 	{
 
+		// logging for this class
+		private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
+
+
 		private CustomerFactory () { }
 
 
@@ -23,12 +27,12 @@ namespace FossLock
 		/// <returns>
 		/// The customers.
 		/// </returns>
-		public static IList<Core.CustomerBase> GetCustomers()
+		public static IList<Core.Customer> GetCustomers()
 		{
 
 			var settings 	= Settings.GetInstance();
 			var cn 			= Actions.GetConnection();
-			var customers 	= new ObservableCollection<Core.CustomerBase>();
+			var customers 	= new ObservableCollection<Core.Customer>();
 
 
 			// make sure the Customers table has been initialized
@@ -39,16 +43,46 @@ namespace FossLock
 			cmdGetCustomers.CommandText = "SELECT * FROM Customers";
 
 			var rdr = cmdGetCustomers.ExecuteReader();
-			while (rdr.Read ())
+
+			try 
 			{				
-				// instantiate the proper customer object based on the setting type
+				while (rdr.Read ()) 
+					customers.Add (new FossLock.Core.Customer(rdr));
 
-
+			} 
+			catch(Exception ex)
+			{
+				logger.ErrorException("An error occurred while populating the Customers list.", ex);
+				throw;
 			}
+			finally 
+			{
+				// make sure the reader has been closed and cleaned up after
+				if (rdr != null && !rdr.IsClosed) 
+					rdr.Close ();
+			}
+
+
+			return customers;
 
 		}
 
+		/// <summary>
+		/// Creates the customer.
+		/// </summary>
+		/// <returns>
+		/// The customer.
+		/// </returns>
+		/// <param name='list'>
+		/// A list that the newly-created customer reference will be inserted into.  This parameter may be left null.
+		/// </param>
+		public static Core.Customer CreateCustomer(IList<Core.Customer> list = null)
+		{
+			throw new NotImplementedException();
+		}
 
+
+		// runs the creation script for the appropriate provider.
 		static void InitializeTable(StorageProviderType type, IDbConnection cn)
 		{
 			var cmdInitializeType = cn.CreateCommand();
@@ -61,7 +95,7 @@ namespace FossLock
 
 		}
 	
-
+		// dialect-specific database creation scripts for all the supported providers
 		static Dictionary<StorageProviderType, string> _tableCreationScripts = new Dictionary<StorageProviderType, string>()
 		{
 			{ 

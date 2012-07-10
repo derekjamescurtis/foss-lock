@@ -30,7 +30,7 @@ namespace FossLock.Core
 		public EntityState ChangeState
 		{
 			get { return _state; }
-			set
+			protected internal set
 			{
 				if (value != ChangeState)
 					_state = value;
@@ -115,7 +115,7 @@ namespace FossLock.Core
 		/// <param name='transaction'>
 		///  Transaction. 
 		/// </param>
-		public IDbCommand GetUpdateCommand (IDbConnection cn, IDbTransaction transaction);
+		public abstract IDbCommand GetUpdateCommand (IDbConnection cn, IDbTransaction transaction);
 		/// <summary>
 		/// When overridden in a derrived class, returns a provider-specific command that will remove this object's data from 
 		/// the underlying database.
@@ -126,7 +126,7 @@ namespace FossLock.Core
 		/// <param name='transaction'>
 		///  Transaction. 
 		/// </param>
-		public IDbCommand GetDeleteCommand (IDbConnection cn, IDbTransaction transaction);
+		public abstract IDbCommand GetDeleteCommand (IDbConnection cn, IDbTransaction transaction);
 		/// <summary>
 		/// When overridden in a derrived class, returns a provider-specific command that will insert this object's data in 
 		/// the underlying database.
@@ -137,12 +137,9 @@ namespace FossLock.Core
 		/// <param name='transaction'>
 		///  Transaction. 
 		/// </param>
-		public IDbCommand GetInsertCommand (IDbConnection cn, IDbTransaction transaction);
+		public abstract IDbCommand GetInsertCommand (IDbConnection cn, IDbTransaction transaction);
 
 		#endregion
-
-
-
 	}
 }
 

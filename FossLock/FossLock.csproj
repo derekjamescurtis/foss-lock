@@ -68,17 +68,12 @@
     <Compile Include="CustomerFactory.cs" />
     <Compile Include="Core\Validation.cs" />
     <Compile Include="Core\ShallowCaretaker.cs" />
-    <Compile Include="Core\CustomerBase.cs" />
-    <Compile Include="Core\ICustomer.cs" />
-    <Compile Include="SqLite\SqLiteCustomer.cs" />
     <Compile Include="Core\IEntityDbOperations.cs" />
+    <Compile Include="Core\Customer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Folder Include="Mssql\" />
-    <Folder Include="Mysql\" />
     <Folder Include="Core\" />
-    <Folder Include="SqLite\" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>
