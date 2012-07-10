@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FossLock", "FossLock\FossLock.csproj", "{174EBCA3-5D67-4675-BE08-4C49C210716E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicenseManager", "LicenseManager\LicenseManager.csproj", "{855AE444-3F89-4C4B-B56B-6953F27F2538}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{6CE50B2C-2F14-47C0-88AB-52F1C3B72D9D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{174EBCA3-5D67-4675-BE08-4C49C210716E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{174EBCA3-5D67-4675-BE08-4C49C210716E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{174EBCA3-5D67-4675-BE08-4C49C210716E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{174EBCA3-5D67-4675-BE08-4C49C210716E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CE50B2C-2F14-47C0-88AB-52F1C3B72D9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CE50B2C-2F14-47C0-88AB-52F1C3B72D9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CE50B2C-2F14-47C0-88AB-52F1C3B72D9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CE50B2C-2F14-47C0-88AB-52F1C3B72D9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{855AE444-3F89-4C4B-B56B-6953F27F2538}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{855AE444-3F89-4C4B-B56B-6953F27F2538}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{855AE444-3F89-4C4B-B56B-6953F27F2538}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{855AE444-3F89-4C4B-B56B-6953F27F2538}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = FossLock\FossLock.csproj
+		Policies = $0
+		$0.DotNetNamingPolicy = $1
+		$1.DirectoryNamespaceAssociation = None
+		$1.ResourceNamePolicy = FileFormatDefault
+		$0.TextStylePolicy = $2
+		$2.inheritsSet = null
+		$2.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $3
+		$3.IndentSwitchBody = True
+		$3.AnonymousMethodBraceStyle = NextLine
+		$3.PropertyBraceStyle = NextLine
+		$3.PropertyGetBraceStyle = NextLine
+		$3.PropertySetBraceStyle = NextLine
+		$3.EventBraceStyle = NextLine
+		$3.EventAddBraceStyle = NextLine
+		$3.EventRemoveBraceStyle = NextLine
+		$3.StatementBraceStyle = NextLine
+		$3.inheritsSet = Mono
+		$3.inheritsScope = text/x-csharp
+		$3.scope = text/x-csharp
+	EndGlobalSection
+EndGlobal
