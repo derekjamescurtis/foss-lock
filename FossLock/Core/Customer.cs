@@ -10,9 +10,6 @@ namespace FossLock.Core
 	/// </summary>
 	public class Customer : Core.EntityBase
 	{
-		//TODO: when returning to work on this, the CRUD command methods need implemented.
-
-
 		// logging for this class
 		private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
 
@@ -352,6 +349,8 @@ namespace FossLock.Core
 		public override void AcceptChanges()
 		{		
 
+			//TODO: we need to include a method insert..select to retrieve the primary key after insert
+
 			// get a connection object
 			var cn = Actions.GetConnection();
 			IDbCommand cmd;
@@ -428,7 +427,75 @@ namespace FossLock.Core
 		/// </param>
 		public override IDbCommand GetUpdateCommand (IDbConnection cn, IDbTransaction transaction)
 		{
-			throw new System.NotImplementedException ();
+
+			var cmdUpdate = cn.CreateCommand();
+			if (transaction != null) cmdUpdate.Transaction = transaction;
+
+
+			cmdUpdate.CommandText = 
+				@"UPDATE Customers SET 
+					Name = @name, Address1 = @address1, Address2 = @address2 
+					City = @city, State = @state, PostalCode = @postalCode,
+					Phone1 = @phone1, Phone2 = @phone2, Fax = @fax, Email = @email, 
+					ContactFirstName = @contactFirstName, ContactLastName = @contactLastName
+					WHERE Id = @id;";
+
+
+			var paramName = cmdUpdate.CreateParameter();
+			paramName.ParameterName = "@name";
+			paramName.Value = this.Name;
+
+			var paramAddress1 = cmdUpdate.CreateParameter();
+			paramAddress1.ParameterName = "@address1";
+			paramAddress1.Value = this.Address1;
+
+			var paramAddress2 = cmdUpdate.CreateParameter();
+			paramAddress2.ParameterName = "@address2";
+			paramAddress2.Value = this.Address2;
+
+			var paramCity = cmdUpdate.CreateParameter();
+			paramCity.ParameterName = "@city";
+			paramCity.Value = this.City;
+
+			var paramState = cmdUpdate.CreateParameter();
+			paramState.ParameterName = "@state";
+			paramState.Value = this.State;
+
+			var paramPostalCode = cmdUpdate.CreateParameter();
+			paramPostalCode.ParameterName = "@postalCode";
+			paramPostalCode.Value = this.PostalCode;
+
+			var paramPhone1 = cmdUpdate.CreateParameter();
+			paramPhone1.ParameterName = "@phone1";
+			paramPhone1.Value = this.Phone1;
+
+			var paramPhone2 = cmdUpdate.CreateParameter();
+			paramPhone2.ParameterName = "@phone2";
+			paramPhone2.Value = this.Phone2;
+
+			var paramFax = cmdUpdate.CreateParameter();
+			paramFax.ParameterName = "@fax";
+			paramFax.Value = this.Fax;
+
+			var paramEmail = cmdUpdate.CreateParameter();
+			paramEmail.ParameterName = "@email";
+			paramEmail.Value = this.Email;
+
+			var paramContactFirstName = cmdUpdate.CreateParameter();
+			paramContactFirstName.ParameterName = "@contactFirstName";
+			paramContactFirstName.Value = this.ContactFirstName;
+
+			var paramContactLastName = cmdUpdate.CreateParameter();
+			paramContactLastName.ParameterName = "@contactLastName";
+			paramContactLastName.Value = this.ContactLastName;
+
+			var paramId = cmdUpdate.CreateParameter();
+			paramId.ParameterName = "@id";
+			paramId.Value = this.Id;
+
+
+			return cmdUpdate;
+
 		}
 
 		/// <summary>
@@ -445,7 +512,16 @@ namespace FossLock.Core
 		/// </param>
 		public override IDbCommand GetDeleteCommand (IDbConnection cn, IDbTransaction transaction)
 		{
-			throw new System.NotImplementedException ();
+			var cmdDelete = cn.CreateCommand ();
+			if (transaction != null) cmdDelete.Transaction = transaction;
+
+			cmdDelete.CommandText = "DELETE FROM Customers WHERE Id = @id;";
+
+			var paramId = cmdDelete.CreateParameter();
+			paramId.ParameterName = "@id";
+			paramId.Value = this.Id;
+
+			return cmdDelete;
 		}
 
 		/// <summary>
@@ -462,8 +538,90 @@ namespace FossLock.Core
 		/// </param>
 		public override IDbCommand GetInsertCommand (IDbConnection cn, IDbTransaction transaction)
 		{
-			throw new System.NotImplementedException ();
+			
+			var cmdInsert = cn.CreateCommand();
+			if (transaction != null) cmdInsert.Transaction = transaction;
+
+
+			// we have 2 different types of update commands
+			if (this.Id == 0)
+			{
+				// if Id was left to zero, then we're going to let the database assign the Id column.
+
+				cmdInsert.CommandText = 
+					@"INSERT INTO Customers 
+						(Name, Address1, Address2, City, State, PostalCode, Phone1, Phone2, Fax, Email, ContactFirstName, ContactLastName) 
+						VALUES 
+						(@name, @address1, @address2, @city, @state, @postalCode, @phone1, @phone2, @fax, @email, @contactFirstName, @contactLastName);"
+			}
+			else
+			{
+				// if the Id was set--then we're going to use the database 
+
+				cmdInsert.CommandText = 
+					@"INSERT INTO Customers 
+						(Id, Name, Address1, Address2, City, State, PostalCode, Phone1, Phone2, Fax, Email, ContactFirstName, ContactLastName) 
+						VALUES 
+						(@id, @name, @address1, @address2, @city, @state, @postalCode, @phone1, @phone2, @fax, @email, @contactFirstName, @contactLastName);";
+
+				var paramId = cmdInsert.CreateParameter();
+				paramId.ParameterName = "@id";
+				paramId.Value = this.Id;
+			}
+
+			var paramName = cmdInsert.CreateParameter();
+			paramName.ParameterName = "@name";
+			paramName.Value = this.Name;
+
+			var paramAddress1 = cmdInsert.CreateParameter();
+			paramAddress1.ParameterName = "@address1";
+			paramAddress1.Value = this.Address1;
+
+			var paramAddress2 = cmdInsert.CreateParameter();
+			paramAddress2.ParameterName = "@address2";
+			paramAddress2.Value = this.Address2;
+
+			var paramCity = cmdInsert.CreateParameter();
+			paramCity.ParameterName = "@city";
+			paramCity.Value = this.City;
+
+			var paramState = cmdInsert.CreateParameter();
+			paramState.ParameterName = "@state";
+			paramState.Value = this.State;
+
+			var paramPostalCode = cmdInsert.CreateParameter();
+			paramPostalCode.ParameterName = "@postalCode";
+			paramPostalCode.Value = this.PostalCode;
+
+			var paramPhone1 = cmdInsert.CreateParameter();
+			paramPhone1.ParameterName = "@phone1";
+			paramPhone1.Value = this.Phone1;
+
+			var paramPhone2 = cmdInsert.CreateParameter();
+			paramPhone2.ParameterName = "@phone2";
+			paramPhone2.Value = this.Phone2;
+
+			var paramFax = cmdInsert.CreateParameter();
+			paramFax.ParameterName = "@fax";
+			paramFax.Value = this.Fax;
+
+			var paramEmail = cmdInsert.CreateParameter();
+			paramEmail.ParameterName = "@email";
+			paramEmail.Value = this.Email;
+
+			var paramContactFirstName = cmdInsert.CreateParameter();
+			paramContactFirstName.ParameterName = "@contactFirstName";
+			paramContactFirstName.Value = this.ContactFirstName;
+
+			var paramContactLastName = cmdInsert.CreateParameter();
+			paramContactLastName.ParameterName = "@contactLastName";
+			paramContactLastName.Value = this.ContactLastName;
+
+
+
+			return cmdInsert;
 		}
+
 		#endregion
 
 	}
