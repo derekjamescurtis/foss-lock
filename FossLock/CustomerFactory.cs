@@ -27,12 +27,12 @@ namespace FossLock
 		/// <returns>
 		/// The customers.
 		/// </returns>
-		public static IList<Core.Customer> GetCustomers()
+		public static IList<Customer> GetCustomers()
 		{
 
 			var settings 	= Settings.GetInstance();
 			var cn 			= Actions.GetConnection();
-			var customers 	= new ObservableCollection<Core.Customer>();
+			var customers 	= new ObservableCollection<Customer>();
 
 
 			// make sure the Customers table has been initialized
@@ -47,7 +47,7 @@ namespace FossLock
 			try 
 			{				
 				while (rdr.Read ()) 
-					customers.Add (new FossLock.Core.Customer(rdr));
+					customers.Add (new FossLock.Customer(rdr));
 
 			} 
 			catch(Exception ex)
@@ -68,18 +68,61 @@ namespace FossLock
 		}
 
 		/// <summary>
-		/// Creates the customer.
+		/// Gets the customer.
 		/// </summary>
 		/// <returns>
 		/// The customer.
 		/// </returns>
-		/// <param name='list'>
-		/// A list that the newly-created customer reference will be inserted into.  This parameter may be left null.
+		/// <param name='customerId'>
+		/// Customer identifier.
 		/// </param>
-		public static Core.Customer CreateCustomer(IList<Core.Customer> list = null)
+		public static Customer GetCustomer(int customerId)
 		{
-			throw new NotImplementedException();
+			
+			var settings 	= Settings.GetInstance();
+			var cn 			= Actions.GetConnection();
+			Customer customer;
+
+
+			// make sure the Customers table has been initialized
+			InitializeTable(settings.StorageType, cn);
+
+			// query the table, get a list of customers.
+			var cmdGetCustomers = cn.CreateCommand();
+			cmdGetCustomers.CommandText = "SELECT * FROM Customers WHERE Id = @id";
+
+			var paramId = cmdGetCustomers.CreateParameter();
+			paramId.ParameterName = "@id";
+			paramId.Value = customerId;
+
+
+			// get a cursor
+			var rdr = cmdGetCustomers.ExecuteReader();
+
+			try 
+			{
+				if (rdr.Read())
+					customer = new FossLock.Customer(rdr);
+				else
+					throw new ArgumentException(string.Format("The provided Customer Id {0} does not match any customer records in the database.", customerId));
+
+			} 
+			catch(Exception ex)
+			{
+				logger.ErrorException("An error occurred while retrieving the requested customer.", ex);
+				throw;
+			}
+			finally 
+			{
+				// make sure the reader has been closed and cleaned up after
+				if (rdr != null && !rdr.IsClosed) 
+					rdr.Close ();
+			}
+
+
+			return customer;
 		}
+
 
 
 		// runs the creation script for the appropriate provider.

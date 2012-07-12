@@ -3,18 +3,24 @@ using System.Data;
 using System.Reflection;
 
 
-namespace FossLock.Core
+namespace FossLock
 {
 	/// <summary>
 	/// Represents a Customer entity who may have 0..* Licenses associated with their account.
 	/// </summary>
-	public class Customer : Core.EntityBase
+	public sealed class Customer : Core.EntityBase
 	{
+		#region Constructor + Fields
+
 		// logging for this class
-		private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
+		static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
+
+		// allows for rolling back changes made to this object.
+		Core.ShallowCaretaker<Customer> _caretaker;
+
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="FossLock.Core.Customer"/> class in the Added state.
+		/// Initializes a new instance of the <see cref="FossLock.Customer"/> class in the Added state.
 		/// On AcceptChanges() this instance will be inserted into the database.
 		/// </summary>
 		internal Customer ()
@@ -23,10 +29,10 @@ namespace FossLock.Core
 			this.ChangeState = EntityState.Added;
 
 			// necessary for change rollbacks
-			this._caretaker = new ShallowCaretaker<Customer>(this);
+			this._caretaker = new Core.ShallowCaretaker<Customer>(this);
 		}
 		/// <summary>
-		/// Initializes a new instance of the <see cref="FossLock.Core.Customer"/> class.
+		/// Initializes a new instance of the <see cref="FossLock.Customer"/> class.
 		/// The reader parameter must be positioned on the proper record before being passed to this constructor.
 		/// </summary>
 		/// <param name='reader'>
@@ -49,10 +55,12 @@ namespace FossLock.Core
 			_contactFirstName 	= (string)reader["ContactFirstName"];
 			_contactLastName 	= (string)reader["ContactLastName"];
 
+
 			// necessary for change rollbacks
-			this._caretaker = new ShallowCaretaker<Customer>(this);
+			this._caretaker = new Core.ShallowCaretaker<Customer>(this);
 		}
 
+		#endregion
 		#region Properties
 
 		/// <summary>
@@ -71,7 +79,7 @@ namespace FossLock.Core
 				if (value != Id)
 				{
 					if (ChangeState != System.Data.EntityState.Added)
-						throw new NotImplementedException("Id property is currently automatically being set by the data provider and cannot be modified.");
+						throw new InvalidOperationException("Id property is currently automatically being set by the data provider and cannot be modified.");
 
 					_id = value;
 					OnPropertyChanged("Id");
@@ -81,7 +89,7 @@ namespace FossLock.Core
 		int _id = 0;
 
 		/// <summary>
-		/// Gets or sets the Address1 property.
+		/// Gets or sets a short amount of text that identifies this instance to users.
 		/// </summary>
 		/// <remarks>
 		/// This has a maximum of 50 characters and may not be null, however an empty string is valid.
@@ -98,7 +106,7 @@ namespace FossLock.Core
 				{
 					Core.Validation.ValidateString(value, 0, 50, false);
 					_name = value;
-					OnPropertyChanged("CustomerName");
+					OnPropertyChanged("Name");
 				}
 			}
 		}
@@ -340,8 +348,6 @@ namespace FossLock.Core
 		#endregion		
 		#region implemented abstract members of FossLock.Core.EntityBase
 
-		// allows for rolling back changes made to this object.
-		ShallowCaretaker<Customer> _caretaker;
 
 		/// <summary>
 		///  Commits any pending changes to the database, and resets this object's ChangeState to Unchanged. 
@@ -393,7 +399,7 @@ namespace FossLock.Core
 			this.ChangeState = EntityState.Unchanged;
 
 			// create a new caretaker for the current state
-			_caretaker = new ShallowCaretaker<Customer>(this);
+			_caretaker = new Core.ShallowCaretaker<Customer>(this);
 		}
 
 		/// <summary>
@@ -552,7 +558,7 @@ namespace FossLock.Core
 					@"INSERT INTO Customers 
 						(Name, Address1, Address2, City, State, PostalCode, Phone1, Phone2, Fax, Email, ContactFirstName, ContactLastName) 
 						VALUES 
-						(@name, @address1, @address2, @city, @state, @postalCode, @phone1, @phone2, @fax, @email, @contactFirstName, @contactLastName);"
+						(@name, @address1, @address2, @city, @state, @postalCode, @phone1, @phone2, @fax, @email, @contactFirstName, @contactLastName);";
 			}
 			else
 			{
