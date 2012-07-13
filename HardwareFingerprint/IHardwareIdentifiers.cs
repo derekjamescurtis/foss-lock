@@ -14,13 +14,34 @@ namespace HardwareFingerprint
 	/// </summary>
 	public interface IHardwareIdentifiers
 	{
-		String getMACAddress();
-		String getCPUID();
-		String getMotherboardID();
-		String getPrimaryHDDID();
-		String getBIOSID();
-		String getSystemUUID();
-		String getVideoCardID();
+		String MACAddress
+		{
+			get;
+		}
+		String CPUID
+		{
+			get;
+		}
+		String MotherboardID
+		{
+			get;
+		}
+		String PrimaryHDDID
+		{
+			get;
+		}
+		String BIOSID
+		{
+			get;
+		}
+		String SystemUUID
+		{
+			get;
+		}
+		String VideoCardID
+		{
+			get;
+		}
 	}
 }
 

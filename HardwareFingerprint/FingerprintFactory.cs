@@ -36,7 +36,7 @@ namespace HardwareFingerprint
 		/// <returns>
 		/// The system fingerprinter.
 		/// </returns>
-		public static Fingerprint getSystemFingerprinter ()
+		public static IHardwareIdentifiers getSystemFingerprinter ()
 		{
 			switch (FingerprintFactory.clientOSVersion)
 			{

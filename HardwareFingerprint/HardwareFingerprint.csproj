@@ -43,7 +43,6 @@
     <Compile Include="WindowsFingerprint.cs" />
     <Compile Include="LinuxFingerprint.cs" />
     <Compile Include="FingerprintFactory.cs" />
-    <Compile Include="Fingerprint.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

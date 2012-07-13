@@ -12,38 +12,73 @@ namespace HardwareFingerprint
 	/// to derive values from peripheral data in order to obtain
 	/// what is actually requested in some cases.
 	/// </summary>
-	public class WindowsFingerprint : Fingerprint
+	public class WindowsFingerprint : IHardwareIdentifiers
 	{
 		public WindowsFingerprint ()
 		{
 		}
 
-		private override String getMACAddress ()
+		public String MACAddress
 		{
+			get
+			{
+				// TODO: Insert code to obtain MAC Address
+				return "";
+			}
 		}
 
-		private override String getCPUId ()
+		public String CPUID
 		{
+			get
+			{
+				// TODO: Insert code to obtain CPU ID
+				return "";
+			}
 		}
 
-		private override String getMotherboardId ()
+		public String MotherboardID
 		{
+			get
+			{
+				// TODO: Insert code to obtain Motherboard ID
+				return "";
+			}
 		}
 
-		private override String getPrimaryHDDId ()
+		public String PrimaryHDDID
 		{
+			get
+			{
+				// TODO: Insert code to obtain Primary HDD ID
+				return "";
+			}
 		}
 
-		private override String getBIOSId ()
+		public String BIOSID
 		{
+			get
+			{
+				// TODO: Insert code to obtain BIOS ID
+				return "";
+			}
 		}
 
-		private override String getSystemUUID ()
+		public String SystemUUID
 		{
+			get
+			{
+				// TODO: Insert code to obtain System UUID
+				return "";
+			}
 		}
 
-		private override String getVideoCardId ()
+		public String VideoCardID
 		{
+			get
+			{
+				// TODO: Insert code to obtain Video Card ID
+				return "";
+			}
 		}
 	}
 }
