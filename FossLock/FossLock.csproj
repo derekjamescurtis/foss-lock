@@ -73,7 +73,13 @@
     <Compile Include="Core\Validation.cs" />
     <Compile Include="Core\ShallowCaretaker.cs" />
     <Compile Include="Core\IEntityDbOperations.cs" />
-    <Compile Include="Core\Customer.cs" />
+    <Compile Include="Product.cs" />
+    <Compile Include="Customer.cs" />
+    <Compile Include="License.cs" />
+    <Compile Include="LockProperties.cs" />
+    <Compile Include="LicenseActivation.cs" />
+    <Compile Include="LicenseStatus.cs" />
+    <Compile Include="LicenseType.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -93,4 +99,7 @@
       </Properties>
     </MonoDevelop>
   </ProjectExtensions>
+  <ItemGroup>
+    <None Include="FossLockDiagram.uml" />
+  </ItemGroup>
 </Project>
