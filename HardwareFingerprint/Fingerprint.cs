@@ -2,6 +2,11 @@ using System;
 
 namespace HardwareFingerprint
 {
+	/// <summary>
+	/// Defines how higher-tiered Fingerprinters reveal their data to clients
+	/// (which is simply through properties that call down to corresponding
+	/// methods).
+	/// </summary>
 	public abstract class Fingerprint : IHardwareIdentifiers
 	{
 		public String macAddress
