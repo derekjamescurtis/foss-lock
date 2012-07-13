@@ -23,6 +23,10 @@ namespace HardwareFingerprint
 	/// the hardware and their respective modules so that values can attempt
 	/// to be derived if the proper value requested isn't immediately
 	/// available).
+	/// 
+	/// It should also be noted too that if the client is running Linux
+	/// under a hosted (type 2) hypervisor, this class is nearly useless.
+	/// I still haven't tested this under a bare-metal (type 1) hypervisors.
 	/// </summary>
 	public class LinuxFingerprint : IHardwareIdentifiers
 	{
