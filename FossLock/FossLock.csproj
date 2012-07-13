@@ -9,6 +9,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>FossLock</RootNamespace>
     <AssemblyName>FossLock</AssemblyName>
+    <newfilesearch>OnLoad</newfilesearch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -37,9 +38,11 @@
     </Reference>
     <Reference Include="System.Data.SQLite, Version=1.0.81.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139">
       <Private>False</Private>
+      <Package>C:\Program Files\System.Data.SQLite\2010\bin\System.Data.SQLite.dll</Package>
     </Reference>
     <Reference Include="System.Data.SQLite.Linq, Version=1.0.81.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139">
       <Private>False</Private>
+      <Package>C:\Program Files\System.Data.SQLite\2010\bin\System.Data.SQLite.Linq.dll</Package>
     </Reference>
     <Reference Include="System.IO.Log" />
     <Reference Include="System.ServiceModel" />
@@ -54,6 +57,7 @@
     <Reference Include="System.Core" />
     <Reference Include="SQLite.Designer, Version=1.0.81.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139">
       <Private>False</Private>
+      <Package>C:\Program Files\System.Data.SQLite\2010\bin\SQLite.Designer.dll</Package>
     </Reference>
     <Reference Include="MySql.Data, Version=6.5.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d">
       <Private>False</Private>
@@ -80,7 +84,7 @@
       <Properties>
         <Policies>
           <DotNetNamingPolicy DirectoryNamespaceAssociation="Hierarchical" ResourceNamePolicy="MSBuild" />
-          <TextStylePolicy FileWidth="120" TabsToSpaces="False" inheritsSet="VisualStudio" inheritsScope="text/plain" scope="text/plain" />
+          <TextStylePolicy FileWidth="120" TabWidth="4" inheritsSet="Mono" inheritsScope="text/plain" scope="text/plain" />
           <VersionControlPolicy inheritsSet="Mono" />
           <ChangeLogPolicy UpdateMode="None" inheritsSet="Mono">
             <MessageStyle Header="${Date:yyyy-MM-dd}  derekjamescurtis  djcurtis@summersetsoftware.com&#xA;&#xA;" LineAlign="0" />
