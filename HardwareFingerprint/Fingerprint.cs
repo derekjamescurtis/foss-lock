@@ -21,7 +21,7 @@ namespace HardwareFingerprint
 		{
 			get
 			{
-				getCPUID();
+				return getCPUID();
 			}
 		}
 
@@ -29,7 +29,7 @@ namespace HardwareFingerprint
 		{
 			get
 			{
-				getMotherboardID();
+				return getMotherboardID();
 			}
 		}
 
@@ -37,7 +37,7 @@ namespace HardwareFingerprint
 		{
 			get
 			{
-				getPrimaryHDDID();
+				return getPrimaryHDDID();
 			}
 		}
 
@@ -45,7 +45,7 @@ namespace HardwareFingerprint
 		{
 			get
 			{
-				getBIOSID();
+				return getBIOSID();
 			}
 		}
 
@@ -53,7 +53,7 @@ namespace HardwareFingerprint
 		{
 			get
 			{
-				getSystemUUID();
+				return getSystemUUID();
 			}
 		}
 
@@ -61,7 +61,7 @@ namespace HardwareFingerprint
 		{
 			get
 			{
-				getVideoCardID();
+				return getVideoCardID();
 			}
 		}
 
