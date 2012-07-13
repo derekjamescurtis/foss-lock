@@ -1,5 +1,6 @@
 using System;
 using System.Management;
+using System.Text;
 
 namespace HardwareFingerprint
 {
@@ -14,7 +15,7 @@ namespace HardwareFingerprint
 	/// what is actually requested in some cases.
 	/// 
 	/// A majority of the code here is borrowed from Derek's
-	/// HardwareFingerprint class.
+	/// source.
 	/// </summary>
 	public class WindowsFingerprint : IHardwareIdentifiers
 	{
@@ -58,19 +59,19 @@ namespace HardwareFingerprint
 		{
 			get
 			{
-				String val = String.Empty;
+				StringBuilder sbuilder = new StringBuilder();
 
 				/*
 				 * Pack several values into val with whitespace appended to the end of
 				 * each query value so that methods like split can pull the values
 				 * out into an array.
 				 */
-				val += WindowsFingerprint.WMIInfo("Win32_BaseBoard", "Manufacturer") + " ";
-				val += WindowsFingerprint.WMIInfo("Win32_BaseBoard", "Model") + " ";
-				val += WindowsFingerprint.WMIInfo("Win32_BaseBoard", "PartNumber") + " ";
-				val += WindowsFingerprint.WMIInfo("Win32_BaseBoard", "SerialNumber") + " ";
+				sbuilder.Append(WindowsFingerprint.WMIInfo("Win32_BaseBoard", "Manufacturer") + " ");
+				sbuilder.Append(WindowsFingerprint.WMIInfo("Win32_BaseBoard", "Model") + " ");
+				sbuilder.Append(WindowsFingerprint.WMIInfo("Win32_BaseBoard", "PartNumber") + " ");
+				sbuilder.Append(WindowsFingerprint.WMIInfo("Win32_BaseBoard", "SerialNumber")); // The last string doesn't need the whitespac
 
-				return val;
+				return sbuilder.ToString();
 			}
 		}
 
@@ -113,8 +114,7 @@ namespace HardwareFingerprint
 		{
 			get
 			{
-				// TODO: Insert code to obtain System UUID
-				return "";
+				return WindowsFingerprint.WMIInfo("Win32_ComputerSystemProduct", "UUID");
 			}
 		}
 
@@ -122,8 +122,7 @@ namespace HardwareFingerprint
 		{
 			get
 			{
-				// TODO: Insert code to obtain Video Card ID
-				return "";
+				return WindowsFingerprint.WMIInfo("Win32_VideoController", "DeviceID");
 			}
 		}
 
