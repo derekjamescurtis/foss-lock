@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<foss-lock>
+	<license>
+		<customer-name>Sample Customer</customer-name>
+		<product>Some Product</product>
+		<version>123456</version>
+		<registered-level>111</registered-level>
+		<network-lic>yes</network-lic>
+		<user-defined-field>User Defined Field</user-defined-field>
+	</license>
+</foss-lock>
