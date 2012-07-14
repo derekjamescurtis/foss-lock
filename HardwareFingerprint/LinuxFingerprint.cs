@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 
 namespace HardwareFingerprint
 {
@@ -30,12 +31,58 @@ namespace HardwareFingerprint
 	/// </summary>
 	public class LinuxFingerprint : IHardwareIdentifiers
 	{
+		Process forkedProcess = null;
+		
 		public String MACAddress
 		{
 			get
 			{
-				// TODO: Insert code to obtain MAC Address
-				return "";
+				String val = String.Empty;
+				
+				/*
+				 * Uses a bash shell command to get the MAC address of the primary
+				 * network card (default is eth0 on Linux). The actual command sequence is
+				 * listed below:
+				 *
+				 * ifconfig eth0 | grep HWaddr | sed s/.*HWaddr\\s/''/
+				 *
+				 * Because of the awkward nature of how ProcessStartInfo handles populating
+				 * and launching a process, the actual program (what ProcessStartInfo refers
+				 * to as FileName) is set as bash and the argument passed to bash is the
+				 * actual line that gets the MAC address with quotations around the entire
+				 * program list and single quotes around the regex used by sed. Thankfully,
+				 * ifconfig, grep, and sed don't require root access so making this a silent
+				 * operation is fairly straightforward.
+				 */
+				forkedProcess = new Process();
+				
+				// Keep the Process silent
+				forkedProcess.EnableRaisingEvents = false;
+				
+				// Launch bash
+				forkedProcess.StartInfo.FileName = "bash";
+				
+				/*
+				 * Since we have to launch bash instead of actually launching the string of
+				 * commands directly, we need to pack them into a proper String and pass that
+				 * to bash.
+				 */ 
+				forkedProcess.StartInfo.Arguments = "-c \"ifconfig eth0 | grep HWaddr | sed 's/.*HWaddr\\s//'\"";
+				
+				// Capture stdio
+				forkedProcess.StartInfo.RedirectStandardOutput = true;
+				
+				// Hide forked shell to keep Process silent
+				forkedProcess.StartInfo.UseShellExecute = false;
+				forkedProcess.StartInfo.CreateNoWindow = true;
+				
+				// Launch the process
+				forkedProcess.Start();
+				
+				// Grab the result of the Process (the MAC address of eth0)
+				val = forkedProcess.StandardOutput.ReadToEnd();
+				
+				return val;
 			}
 		}
 
