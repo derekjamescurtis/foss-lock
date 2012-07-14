@@ -130,9 +130,6 @@ namespace HardwareFingerprint
 				 * references as either PATA or SATA devices. Once that's done, it then becomes trivial
 				 * to get the drive's data.
 				 */ 
-				
-				// True = SCSI/SATA False = PATA/IDE
-				bool driveInterfaceType = false;
 				String val = String.Empty;
 				String driveTypeString = String.Empty;
 				
@@ -150,15 +147,6 @@ namespace HardwareFingerprint
 				// Check to see what type of drive was returned
 				if(driveTypeString.Contains("/dev/sd"))
 				{
-					driveInterfaceType = true;
-				}
-				else if(driveTypeString.Contains("/dev/hd"))
-				{
-					driveInterfaceType = false;
-				}
-				
-				if(driveInterfaceType == true)
-				{
 					forkedProcess = new Process();
 					forkedProcess.EnableRaisingEvents = true;
 					forkedProcess.StartInfo.UseShellExecute = false;
@@ -172,7 +160,7 @@ namespace HardwareFingerprint
 					
 					return val;
 				}
-				else
+				else if(driveTypeString.Contains("/dev/hd"))
 				{
 					forkedProcess = new Process();
 					forkedProcess.EnableRaisingEvents = true;
