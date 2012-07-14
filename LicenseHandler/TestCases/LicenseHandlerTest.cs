@@ -21,42 +21,42 @@ namespace LicenseHandler
 		[Test()]
 		public void getCustomerName()
 		{
-			FossLockNoEncryption locker = new FossLockNoEncryption();
+			FossLockCryptoInterface locker = new FossLockStringInput();
 			LicenseHandler lh = new LicenseHandler(locker, sampleFile);
 			Assert.AreEqual(lh.getCustomerName(), "Sample Customer");
 		}
 		
 		[Test()]
 		public void getProduct(){
-			FossLockNoEncryption locker = new FossLockNoEncryption();
+			FossLockCryptoInterface locker = new FossLockStringInput();
 			LicenseHandler lh = new LicenseHandler(locker, sampleFile);
 			Assert.AreEqual(lh.getProduct() , "Some Product");
 		}
 		
 		[Test()]
 		public void getVersion (){
-			FossLockNoEncryption locker = new FossLockNoEncryption();
+			FossLockCryptoInterface locker = new FossLockStringInput();
 			LicenseHandler lh = new LicenseHandler(locker, sampleFile);
 			Assert.AreEqual(lh.getVersion(), "123456");			
 		}
 		
 		[Test()]
 		public void getRegisteredLevel (){
-			FossLockNoEncryption locker = new FossLockNoEncryption();
+			FossLockCryptoInterface locker = new FossLockStringInput();
 			LicenseHandler lh = new LicenseHandler(locker, sampleFile);
 			Assert.AreEqual(lh.getRegisteredLevel(), "111");			
 		}
 		
 		[Test()]
 		public void getNetworkLic(){
-			FossLockNoEncryption locker = new FossLockNoEncryption();
+			FossLockCryptoInterface locker = new FossLockStringInput();
 			LicenseHandler lh = new LicenseHandler(locker, sampleFile);
 			Assert.AreEqual(lh.getNetworkLic(), "yes");			
 		}
 		
 		[Test()]
 		public void getUserDefinedField(){
-			FossLockNoEncryption locker = new FossLockNoEncryption();
+			FossLockCryptoInterface locker = new FossLockStringInput();
 			LicenseHandler lh = new LicenseHandler(locker, sampleFile);
 			Assert.AreEqual(lh.getUserDefinedField(), "User Defined Field");			
 		}

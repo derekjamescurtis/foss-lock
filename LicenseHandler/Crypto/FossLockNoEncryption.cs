@@ -2,31 +2,30 @@ using System;
 using System.IO;
 using LicenseHandler.Crypto;
 using System.Xml;
-using System.Xml.Linq;
 
 
 namespace LicenseHandler.Crypto
 {
+	/// <summary>
+	/// Class that inmplements FlossLockCryptoInterface. 
+	/// This class is able to read in a plain text license file. 
+	/// </summary>
+
 	public class FossLockNoEncryption : FossLockCryptoInterface 
 	{
-		public FossLockNoEncryption ()
-		{
-		}
-		
+
 		public XmlDocument decryptXml(string fileName){
-			XDocument doc = XDocument.Parse(fileName);
+			XmlDocument doc = new XmlDocument();
+			XmlTextReader reader = new XmlTextReader(fileName);
 			
-			var xmlDocument = new XmlDocument();
-            using(var xmlReader = doc.CreateReader())
-            {
-                xmlDocument.Load(xmlReader);
-            }
-			
-			return xmlDocument;
+			reader.Read(); 
+			// load reader 
+			doc.Load(reader);
+			return doc;
 		}
 
 		public void encryptXml(string fileName, XmlDocument inputDoc){
-			//DO NOTHING
+			inputDoc.Save(fileName);
 		}
 	}
 }
