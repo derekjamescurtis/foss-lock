@@ -108,8 +108,85 @@ namespace HardwareFingerprint
 		{
 			get
 			{
-				// TODO: Insert code to obtain Primary HDD ID
-				return "";
+				/*
+				 * This field is probably the second most difficult to obtain.
+				 * 
+				 * Under Unix, hard drives are referenced differently depending upon several factors.
+				 * If the device is connected via PATA/IDE, the first letter of the drive ID in /proc is
+				 * 'h'. If the device is connected via SATA/SCSI, the first letter of the ID in /proc
+				 * is 's'. Because of this, there's no safe way to make assumptions about the client's
+				 * configuration (even though a majority of modern systems use SATA, there are still
+				 * a deal of Linux systems that run PATA drives).
+				 * 
+				 * The second problem is that a deal of terminal-based utilties tend to either
+				 * overlook the drives entirely or only grab extremely basic metrics (like the
+				 * geometry only) even with root permissions.
+				 * 
+				 * hdparm is the best utility (probably the only reliable one) for getting the drive
+				 * information required. It gets its data directly from the Linux core headers (hdreg.h)
+				 * so things like model, manufacturer, and serial number.
+				 * 
+				 * The first thing that needs done is to determine if the user's drives are being
+				 * references as either PATA or SATA devices. Once that's done, it then becomes trivial
+				 * to get the drive's data.
+				 */ 
+				
+				// True = SCSI/SATA False = PATA/IDE
+				bool driveInterfaceType = false;
+				String val = String.Empty;
+				String driveTypeString = String.Empty;
+				
+				// Configure the process for getting a shallow list of mounted devices
+				forkedProcess = new Process();
+				forkedProcess.EnableRaisingEvents = false;
+				forkedProcess.StartInfo.UseShellExecute = false;
+				forkedProcess.StartInfo.CreateNoWindow = true;
+				forkedProcess.StartInfo.RedirectStandardOutput = true;
+				forkedProcess.StartInfo.FileName = "bash";
+				forkedProcess.StartInfo.Arguments = "-c \"cat /proc/mounts | grep -e '/dev/[s|h]d'\"";
+				forkedProcess.Start();
+				driveTypeString = forkedProcess.StandardOutput.ReadToEnd();
+				
+				// Check to see what type of drive was returned
+				if(driveTypeString.Contains("/dev/sd"))
+				{
+					driveInterfaceType = true;
+				}
+				else if(driveTypeString.Contains("/dev/hd"))
+				{
+					driveInterfaceType = false;
+				}
+				
+				if(driveInterfaceType == true)
+				{
+					forkedProcess = new Process();
+					forkedProcess.EnableRaisingEvents = true;
+					forkedProcess.StartInfo.UseShellExecute = false;
+					forkedProcess.StartInfo.CreateNoWindow = true;
+					forkedProcess.StartInfo.RedirectStandardOutput = true;
+					forkedProcess.StartInfo.FileName = "bash";
+					forkedProcess.StartInfo.Arguments = "-c \"sudo hdparm -i /dev/sda | grep SerialNo | sed 's/.*SerialNo=//'\"";
+					
+					forkedProcess.Start();
+					val = forkedProcess.StandardOutput.ReadToEnd();
+					
+					return val;
+				}
+				else
+				{
+					forkedProcess = new Process();
+					forkedProcess.EnableRaisingEvents = true;
+					forkedProcess.StartInfo.UseShellExecute = false;
+					forkedProcess.StartInfo.CreateNoWindow = true;
+					forkedProcess.StartInfo.RedirectStandardOutput = true;
+					forkedProcess.StartInfo.FileName = "bash";
+					forkedProcess.StartInfo.Arguments = "-c \"sudo hdparm -i /dev/hda | grep SerialNo | sed 's/.*SerialNo=//'\"";
+					
+					forkedProcess.Start();
+					val = forkedProcess.StandardOutput.ReadToEnd();
+					
+					return val;
+				}
 			}
 		}
 
@@ -145,4 +222,3 @@ namespace HardwareFingerprint
 		}
 	}
 }
-
