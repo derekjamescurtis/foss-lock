@@ -38,11 +38,9 @@
     </Reference>
     <Reference Include="System.Data.SQLite, Version=1.0.81.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139">
       <Private>False</Private>
-      <Package>C:\Program Files\System.Data.SQLite\2010\bin\System.Data.SQLite.dll</Package>
     </Reference>
     <Reference Include="System.Data.SQLite.Linq, Version=1.0.81.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139">
       <Private>False</Private>
-      <Package>C:\Program Files\System.Data.SQLite\2010\bin\System.Data.SQLite.Linq.dll</Package>
     </Reference>
     <Reference Include="System.IO.Log" />
     <Reference Include="System.ServiceModel" />
@@ -57,7 +55,6 @@
     <Reference Include="System.Core" />
     <Reference Include="SQLite.Designer, Version=1.0.81.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139">
       <Private>False</Private>
-      <Package>C:\Program Files\System.Data.SQLite\2010\bin\SQLite.Designer.dll</Package>
     </Reference>
     <Reference Include="MySql.Data, Version=6.5.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d">
       <Private>False</Private>

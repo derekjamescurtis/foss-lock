@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{6
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HardwareFingerprint", "HardwareFingerprint\HardwareFingerprint.csproj", "{51306562-B699-4DD2-ABB6-F2A122E77F6D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicenseHandler", "LicenseHandler\LicenseHandler.csproj", "{74CD4824-1B49-46A8-B2EC-D36ABB46B240}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{6CE50B2C-2F14-47C0-88AB-52F1C3B72D9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CE50B2C-2F14-47C0-88AB-52F1C3B72D9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6CE50B2C-2F14-47C0-88AB-52F1C3B72D9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74CD4824-1B49-46A8-B2EC-D36ABB46B240}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74CD4824-1B49-46A8-B2EC-D36ABB46B240}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74CD4824-1B49-46A8-B2EC-D36ABB46B240}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74CD4824-1B49-46A8-B2EC-D36ABB46B240}.Release|Any CPU.Build.0 = Release|Any CPU
 		{855AE444-3F89-4C4B-B56B-6953F27F2538}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{855AE444-3F89-4C4B-B56B-6953F27F2538}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{855AE444-3F89-4C4B-B56B-6953F27F2538}.Release|Any CPU.ActiveCfg = Release|Any CPU

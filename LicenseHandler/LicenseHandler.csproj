@@ -5,10 +5,10 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{51306562-B699-4DD2-ABB6-F2A122E77F6D}</ProjectGuid>
+    <ProjectGuid>{74CD4824-1B49-46A8-B2EC-D36ABB46B240}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>HardwareFingerprint</RootNamespace>
-    <AssemblyName>HardwareFingerprint</AssemblyName>
+    <RootNamespace>LicenseHandler</RootNamespace>
+    <AssemblyName>LicenseHandler</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,17 +30,29 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Management" />
-    <Reference Include="System.Management.Instrumentation" />
-    <Reference Include="Mono.Posix" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml" />
+    <Reference Include="nunit.framework, Version=2.4.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77">
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MyClass.cs" />
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="IHardwareIdentifiers.cs" />
-    <Compile Include="WindowsFingerprint.cs" />
-    <Compile Include="LinuxFingerprint.cs" />
-    <Compile Include="FingerprintFactory.cs" />
+    <Compile Include="LicenseHandler.cs" />
+    <Compile Include="Crypto\FossLockCryptoInterface.cs" />
+    <Compile Include="Crypto\FossLockNoEncryption.cs" />
+    <Compile Include="TestCases\LicenseHandlerTest.cs" />
+    <Compile Include="Crypto\FossLockStringInput.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\LicenseManager\LicenseManager.csproj">
+      <Project>{855AE444-3F89-4C4B-B56B-6953F27F2538}</Project>
+      <Name>LicenseManager</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Crypto\" />
+    <Folder Include="TestCases\" />
+  </ItemGroup>
 </Project>
