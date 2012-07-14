@@ -1,0 +1,10 @@
+*.pidb 
+*.resources 
+*.userprefs 
+test-results/ 
+bin/ 
+*.usertasks 
+*.suo 
+*.user 
+obj/ 
+*~
