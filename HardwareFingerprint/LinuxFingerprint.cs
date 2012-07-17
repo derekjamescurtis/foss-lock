@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics;
 
-namespace HardwareFingerprint
+namespace FossLock.HardwareFingerprint
 {
 	/// <summary>
 	/// The Fingerprint class responsible for generating locking
@@ -29,7 +29,7 @@ namespace HardwareFingerprint
 	/// under a hosted (type 2) hypervisor, this class is nearly useless.
 	/// I still haven't tested this under a bare-metal (type 1) hypervisors.
 	/// </summary>
-	public class LinuxFingerprint : IHardwareIdentifiers
+	internal class LinuxFingerprint : IHardwareIdentifiers
 	{
 		Process forkedProcess = null;
 		

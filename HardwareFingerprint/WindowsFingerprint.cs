@@ -2,7 +2,7 @@ using System;
 using System.Management;
 using System.Text;
 
-namespace HardwareFingerprint
+namespace FossLock.HardwareFingerprint
 {
 	/// <summary>
 	/// The Fingerprint class responsible for generating locking
@@ -17,7 +17,7 @@ namespace HardwareFingerprint
 	/// A majority of the code here is borrowed from Derek's
 	/// source.
 	/// </summary>
-	public class WindowsFingerprint : IHardwareIdentifiers
+	internal class WindowsFingerprint : IHardwareIdentifiers
 	{
 		public WindowsFingerprint ()
 		{

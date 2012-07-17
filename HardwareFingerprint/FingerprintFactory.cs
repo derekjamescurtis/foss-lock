@@ -1,6 +1,6 @@
 using System;
 
-namespace HardwareFingerprint
+namespace FossLock.HardwareFingerprint
 {
 	public class FingerprintFactory
 	{

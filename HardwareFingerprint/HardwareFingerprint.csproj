@@ -7,7 +7,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{51306562-B699-4DD2-ABB6-F2A122E77F6D}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>HardwareFingerprint</RootNamespace>
+    <RootNamespace>FossLock.HardwareFingerprint</RootNamespace>
     <AssemblyName>HardwareFingerprint</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
