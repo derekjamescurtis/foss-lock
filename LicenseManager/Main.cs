@@ -1,16 +1,16 @@
 using System;
 using Gtk;
 
-namespace LicenseManager
+namespace FossLock.LicenseManager
 {
 	class MainClass
 	{
 		public static void Main (string[] args)
 		{
-			Application.Init ();
-			MainWindow win = new MainWindow ();
-			win.Show ();
-			Application.Run ();
+			//			Application.Init ();
+			//			MainWindow win = new MainWindow ();
+			//			win.Show ();
+			//			Application.Run ();
 		}
 	}
 }
