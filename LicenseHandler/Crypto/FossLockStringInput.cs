@@ -4,9 +4,9 @@ using LicenseHandler.Crypto;
 using System.Xml;
 using System.Xml.Linq;
 
-namespace LicenseHandler.Crypto
+namespace FossLock.LicenseHandler.Crypto
 {
-	public class FossLockStringInput : FossLockCryptoInterface 
+	public class FossLockStringInput : IFossLockCrypto 
 	{
 		
 		/// <summary>

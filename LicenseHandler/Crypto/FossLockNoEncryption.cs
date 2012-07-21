@@ -4,14 +4,14 @@ using LicenseHandler.Crypto;
 using System.Xml;
 
 
-namespace LicenseHandler.Crypto
+namespace FossLock.LicenseHandler.Crypto
 {
 	/// <summary>
 	/// Class that inmplements FlossLockCryptoInterface. 
 	/// This class is able to read in a plain text license file. 
 	/// </summary>
 
-	public class FossLockNoEncryption : FossLockCryptoInterface 
+	public class FossLockNoEncryption : IFossLockCrypto 
 	{
 
 		public XmlDocument decryptXml(string fileName){

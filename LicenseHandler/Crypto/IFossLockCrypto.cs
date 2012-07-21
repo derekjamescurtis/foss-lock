@@ -2,9 +2,9 @@ using System;
 using System.IO;
 using System.Xml;
 
-namespace LicenseHandler.Crypto
+namespace FossLock.LicenseHandler.Crypto
 {
-	public interface FossLockCryptoInterface
+	public interface IFossLockCrypto
 	{
 			XmlDocument decryptXml(string fileName);
 	

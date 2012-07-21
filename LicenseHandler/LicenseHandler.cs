@@ -3,15 +3,15 @@ using System.IO;
 using System.Xml;
 using LicenseHandler.Crypto;
 
-namespace LicenseHandler
+namespace FossLock.LicenseHandler
 {
 	public class LicenseHandler
 	{
-		private FossLockCryptoInterface gCrypto;
+		private IFossLockCrypto gCrypto;
 		private XmlDocument doc;
 		private string gPathToLicenseFile;
 		
-		public LicenseHandler (FossLockCryptoInterface crypto, String pathToLicenseFile)
+		public LicenseHandler (IFossLockCrypto crypto, String pathToLicenseFile)
 		{
 			gCrypto = crypto;
 			gPathToLicenseFile = pathToLicenseFile;

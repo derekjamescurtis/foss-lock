@@ -39,10 +39,10 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="LicenseHandler.cs" />
-    <Compile Include="Crypto\FossLockCryptoInterface.cs" />
     <Compile Include="Crypto\FossLockNoEncryption.cs" />
     <Compile Include="TestCases\LicenseHandlerTest.cs" />
     <Compile Include="Crypto\FossLockStringInput.cs" />
+    <Compile Include="Crypto\IFossLockCrypto.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
