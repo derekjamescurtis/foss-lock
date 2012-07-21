@@ -1,7 +1,7 @@
 using System;
 using NUnit.Framework;
-using LicenseHandler.Crypto;
-using LicenseHandler;
+using FossLock.LicenseHandler.Crypto;
+using FossLock.LicenseHandler;
 
 namespace FossLock.LicenseHandler
 {
@@ -11,54 +11,62 @@ namespace FossLock.LicenseHandler
 		string sampleFile = "<?xml version=\"1.0\"?>" +
 			"<foss-lock><license>" +
 			"<customer-name>Sample Customer</customer-name>" +
-			"<product>Some Product</product>" +
-			"<version>123456</version>" +
+			"<product-name>Some Product</product-name>" +
+			"<product-id>123456</product-id>" +
+			"<product-version>123</product-version>" +
 			"<registered-level>111</registered-level>" +
 			"<network-lic>yes</network-lic>" +
 			"<user-defined-field>User Defined Field</user-defined-field>" +
 			"</license></foss-lock>";
 		
 		[Test()]
-		public void getCustomerName()
+		public void CustomerName()
 		{
 			IFossLockCrypto locker = new FossLockStringInput();
 			LicenseHandler lh = new LicenseHandler(locker, sampleFile);
-			Assert.AreEqual(lh.getCustomerName(), "Sample Customer");
+			Assert.AreEqual(lh.CustomerName, "Sample Customer");
 		}
 		
 		[Test()]
-		public void getProduct(){
+		public void ProductName(){
 			IFossLockCrypto locker = new FossLockStringInput();
 			LicenseHandler lh = new LicenseHandler(locker, sampleFile);
-			Assert.AreEqual(lh.getProduct() , "Some Product");
+			Assert.AreEqual(lh.ProductName , "Some Product");
 		}
 		
 		[Test()]
-		public void getVersion (){
+		public void ProductID(){
 			IFossLockCrypto locker = new FossLockStringInput();
 			LicenseHandler lh = new LicenseHandler(locker, sampleFile);
-			Assert.AreEqual(lh.getVersion(), "123456");			
+			Assert.AreEqual(lh.ProductID, "123456");
 		}
 		
 		[Test()]
-		public void getRegisteredLevel (){
+		public void ProductVersion (){
 			IFossLockCrypto locker = new FossLockStringInput();
 			LicenseHandler lh = new LicenseHandler(locker, sampleFile);
-			Assert.AreEqual(lh.getRegisteredLevel(), "111");			
+			Assert.AreEqual(lh.ProductVersion, "123");			
 		}
 		
 		[Test()]
-		public void getNetworkLic(){
+		public void RegisteredLevel (){
 			IFossLockCrypto locker = new FossLockStringInput();
 			LicenseHandler lh = new LicenseHandler(locker, sampleFile);
-			Assert.AreEqual(lh.getNetworkLic(), "yes");			
+			Assert.AreEqual(lh.RegisterLevel, "111");			
+		}
+		
+		[Test()]
+		public void NetworkLic(){
+			IFossLockCrypto locker = new FossLockStringInput();
+			LicenseHandler lh = new LicenseHandler(locker, sampleFile);
+			Assert.AreEqual(lh.NetworkLic, "yes");			
 		}
 		
 		[Test()]
 		public void getUserDefinedField(){
 			IFossLockCrypto locker = new FossLockStringInput();
 			LicenseHandler lh = new LicenseHandler(locker, sampleFile);
-			Assert.AreEqual(lh.getUserDefinedField(), "User Defined Field");			
+			Assert.AreEqual(lh.UserDefinedField, "User Defined Field");			
 		}
 	}
 }

@@ -39,18 +39,11 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="LicenseHandler.cs" />
-    <Compile Include="Crypto\FossLockNoEncryption.cs" />
     <Compile Include="TestCases\LicenseHandlerTest.cs" />
     <Compile Include="Crypto\FossLockStringInput.cs" />
     <Compile Include="Crypto\IFossLockCrypto.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <ProjectReference Include="..\LicenseManager\LicenseManager.csproj">
-      <Project>{855AE444-3F89-4C4B-B56B-6953F27F2538}</Project>
-      <Name>LicenseManager</Name>
-    </ProjectReference>
-  </ItemGroup>
   <ItemGroup>
     <Folder Include="Crypto\" />
     <Folder Include="TestCases\" />

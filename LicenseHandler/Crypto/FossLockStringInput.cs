@@ -1,6 +1,6 @@
 using System;
 using System.IO;
-using LicenseHandler.Crypto;
+using FossLock.LicenseHandler.Crypto;
 using System.Xml;
 using System.Xml.Linq;
 
@@ -39,8 +39,13 @@ namespace FossLock.LicenseHandler.Crypto
 		/// <param name='inputDoc'>
 		/// Input document. --Ignored
 		/// </param>
-		public void encryptXml(string fileName, XmlDocument inputDoc){
-			//Do Nothing
+		public string encryptXml(XmlDocument inputDoc){
+			
+			StringWriter sw = new StringWriter();
+			XmlTextWriter xw = new XmlTextWriter(sw);
+			inputDoc.WriteTo(xw);
+			return sw.ToString();
+
 		}
 	}
 }

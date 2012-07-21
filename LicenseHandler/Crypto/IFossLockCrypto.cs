@@ -8,7 +8,7 @@ namespace FossLock.LicenseHandler.Crypto
 	{
 			XmlDocument decryptXml(string fileName);
 	
-			void encryptXml(string fileName, XmlDocument inputDoc);
+			string encryptXml(XmlDocument inputDoc);
 		
  
 	}
