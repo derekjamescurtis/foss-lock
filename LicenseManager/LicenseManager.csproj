@@ -7,7 +7,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{855AE444-3F89-4C4B-B56B-6953F27F2538}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Vashon.LicenseManager</RootNamespace>
+    <RootNamespace>FossLock.LicenseManager</RootNamespace>
     <AssemblyName>LicenseManager</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -37,6 +37,13 @@
     <Reference Include="pango-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="Mono.Posix" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite, Version=1.0.81.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.5.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d">
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
@@ -45,9 +52,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />
-    <Compile Include="gtk-gui\MainWindow.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="MainWindow.cs" />
+    <Compile Include="SettingsDialog.cs" />
+    <Compile Include="gtk-gui\FossLock.LicenseManager.MainWindow.cs" />
+    <Compile Include="gtk-gui\FossLock.LicenseManager.SettingsDialog.cs" />
+    <Compile Include="Presenter\SettingsDialogPresenter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Presenter\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FossLock\FossLock.csproj">
+      <Project>{174EBCA3-5D67-4675-BE08-4C49C210716E}</Project>
+      <Name>FossLock</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

@@ -352,6 +352,11 @@
             This has a maximum of 10 characters and a minimum of 1 character.
             </remarks>
         </member>
+        <member name="P:FossLock.Product.LockProperties">
+            <summary>
+            Gets or sets the system-identifier properties that the license is locked to.
+            </summary>
+        </member>
         <member name="T:FossLock.Customer">
             <summary>
             Represents a Customer entity who may have 0..* Licenses associated with their account.
@@ -530,6 +535,66 @@
             <remarks>
             This has a maximum of 50 characters and may not be null, however an empty string is valid.
             </remarks>
+        </member>
+        <member name="T:FossLock.LockProperties">
+            <summary>
+            Enumeration of possible identifiers that a license can be locked to.
+            </summary>
+        </member>
+        <member name="F:FossLock.LockProperties.None">
+            <summary>
+            License is not locked to any hardware identifiers.
+            </summary>
+        </member>
+        <member name="F:FossLock.LockProperties.CPU">
+            <summary>
+            Locks to a CPU-related identifier.
+            </summary>
+        </member>
+        <member name="F:FossLock.LockProperties.Motherboard">
+            <summary>
+            Locks to a motherboard-related identifier.
+            </summary>
+        </member>
+        <member name="F:FossLock.LockProperties.Harddisk">
+            <summary>
+            Locks to a harddisk-related identifier.
+            </summary>
+        </member>
+        <member name="F:FossLock.LockProperties.Video">
+            <summary>
+            Locks to the video identifier.
+            </summary>
+        </member>
+        <member name="F:FossLock.LockProperties.BIOS">
+            <summary>
+            Locks to the BIOS.
+            </summary>
+        </member>
+        <member name="F:FossLock.LockProperties.MACAddress">
+            <summary>
+            Locks to a MAC address.
+            </summary>
+        </member>
+        <member name="F:FossLock.LockProperties.UUID">
+            <summary>
+            Locks to the system UUID number.
+            </summary>
+        </member>
+        <member name="F:FossLock.LicenseStatus.Available">
+            <summary>
+            The license is currently avaialble for locking to another hardware platform.  
+            </summary>
+        </member>
+        <member name="F:FossLock.LicenseStatus.Activated">
+            <summary>
+            The license has been activated and is currently locked to a specific hardware fingerprint.
+            </summary>
+        </member>
+        <member name="F:FossLock.LicenseStatus.Broken">
+            <summary>
+            The license is broken and cannot be relicensed.  
+            </summary>
         </member>
     </members>
 </doc>

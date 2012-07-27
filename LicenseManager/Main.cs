@@ -11,6 +11,17 @@ namespace FossLock.LicenseManager
 			//			MainWindow win = new MainWindow ();
 			//			win.Show ();
 			//			Application.Run ();
+
+			Application.Init ();
+
+			SettingsDialog dlg = new SettingsDialog();
+
+
+
+
+
+			dlg.Show();
+			Application.Run ();
 		}
 	}
 }
