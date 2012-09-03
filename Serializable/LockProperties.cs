@@ -1,6 +1,6 @@
 using System;
 
-namespace FossLock
+namespace FossLock.Core
 {
 	/// <summary>
 	/// Enumeration of possible identifiers that a license can be locked to.

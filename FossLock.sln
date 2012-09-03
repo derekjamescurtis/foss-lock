@@ -1,22 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FossLock", "FossLock\FossLock.csproj", "{174EBCA3-5D67-4675-BE08-4C49C210716E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicenseManager", "LicenseManager\LicenseManager.csproj", "{855AE444-3F89-4C4B-B56B-6953F27F2538}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{6CE50B2C-2F14-47C0-88AB-52F1C3B72D9D}"
+# SharpDevelop 4.2.1.8805
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FossLock.Client", "FossLock.Client\FossLock.csproj", "{174EBCA3-5D67-4675-BE08-4C49C210716E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HardwareFingerprint", "HardwareFingerprint\HardwareFingerprint.csproj", "{51306562-B699-4DD2-ABB6-F2A122E77F6D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicenseHandler", "LicenseHandler\LicenseHandler.csproj", "{74CD4824-1B49-46A8-B2EC-D36ABB46B240}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FossLock.Serializable", "Serializable\FossLock.Serializable.csproj", "{E397E1A8-97F1-480C-8BF1-BFA4DB58DDEB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FossLock.Core", "Fosslock.Core\Fosslock.Core.csproj", "{FC4A93E1-337C-45E0-9E62-DA00BB95845F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FossLock.Server", "FossLock.Server\FossLock.Server.csproj", "{39B78D66-0956-4339-A690-79A477B73C57}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FossLock.Web", "FossLock.Web\FossLock.Web.csproj", "{BAE37326-0FEF-409E-8343-E68BD6696EDA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{174EBCA3-5D67-4675-BE08-4C49C210716E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -27,22 +30,34 @@ Global
 		{51306562-B699-4DD2-ABB6-F2A122E77F6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51306562-B699-4DD2-ABB6-F2A122E77F6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51306562-B699-4DD2-ABB6-F2A122E77F6D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6CE50B2C-2F14-47C0-88AB-52F1C3B72D9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6CE50B2C-2F14-47C0-88AB-52F1C3B72D9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6CE50B2C-2F14-47C0-88AB-52F1C3B72D9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6CE50B2C-2F14-47C0-88AB-52F1C3B72D9D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{74CD4824-1B49-46A8-B2EC-D36ABB46B240}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{74CD4824-1B49-46A8-B2EC-D36ABB46B240}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74CD4824-1B49-46A8-B2EC-D36ABB46B240}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74CD4824-1B49-46A8-B2EC-D36ABB46B240}.Release|Any CPU.Build.0 = Release|Any CPU
-		{855AE444-3F89-4C4B-B56B-6953F27F2538}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{855AE444-3F89-4C4B-B56B-6953F27F2538}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{855AE444-3F89-4C4B-B56B-6953F27F2538}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{855AE444-3F89-4C4B-B56B-6953F27F2538}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E397E1A8-97F1-480C-8BF1-BFA4DB58DDEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E397E1A8-97F1-480C-8BF1-BFA4DB58DDEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E397E1A8-97F1-480C-8BF1-BFA4DB58DDEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E397E1A8-97F1-480C-8BF1-BFA4DB58DDEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC4A93E1-337C-45E0-9E62-DA00BB95845F}.Debug|Any CPU.Build.0 = Debug|x86
+		{FC4A93E1-337C-45E0-9E62-DA00BB95845F}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{FC4A93E1-337C-45E0-9E62-DA00BB95845F}.Debug|x86.Build.0 = Debug|x86
+		{FC4A93E1-337C-45E0-9E62-DA00BB95845F}.Debug|x86.ActiveCfg = Debug|x86
+		{FC4A93E1-337C-45E0-9E62-DA00BB95845F}.Release|Any CPU.Build.0 = Release|x86
+		{FC4A93E1-337C-45E0-9E62-DA00BB95845F}.Release|Any CPU.ActiveCfg = Release|x86
+		{FC4A93E1-337C-45E0-9E62-DA00BB95845F}.Release|x86.Build.0 = Release|x86
+		{FC4A93E1-337C-45E0-9E62-DA00BB95845F}.Release|x86.ActiveCfg = Release|x86
+		{39B78D66-0956-4339-A690-79A477B73C57}.Debug|Any CPU.Build.0 = Debug|x86
+		{39B78D66-0956-4339-A690-79A477B73C57}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{39B78D66-0956-4339-A690-79A477B73C57}.Debug|x86.Build.0 = Debug|x86
+		{39B78D66-0956-4339-A690-79A477B73C57}.Debug|x86.ActiveCfg = Debug|x86
+		{39B78D66-0956-4339-A690-79A477B73C57}.Release|Any CPU.Build.0 = Release|x86
+		{39B78D66-0956-4339-A690-79A477B73C57}.Release|Any CPU.ActiveCfg = Release|x86
+		{39B78D66-0956-4339-A690-79A477B73C57}.Release|x86.Build.0 = Release|x86
+		{39B78D66-0956-4339-A690-79A477B73C57}.Release|x86.ActiveCfg = Release|x86
+		{BAE37326-0FEF-409E-8343-E68BD6696EDA}.Debug|Any CPU.Build.0 = Debug|x86
+		{BAE37326-0FEF-409E-8343-E68BD6696EDA}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{BAE37326-0FEF-409E-8343-E68BD6696EDA}.Debug|x86.Build.0 = Debug|x86
+		{BAE37326-0FEF-409E-8343-E68BD6696EDA}.Debug|x86.ActiveCfg = Debug|x86
+		{BAE37326-0FEF-409E-8343-E68BD6696EDA}.Release|Any CPU.Build.0 = Release|x86
+		{BAE37326-0FEF-409E-8343-E68BD6696EDA}.Release|Any CPU.ActiveCfg = Release|x86
+		{BAE37326-0FEF-409E-8343-E68BD6696EDA}.Release|x86.Build.0 = Release|x86
+		{BAE37326-0FEF-409E-8343-E68BD6696EDA}.Release|x86.ActiveCfg = Release|x86
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = FossLock\FossLock.csproj

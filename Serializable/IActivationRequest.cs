@@ -1,6 +1,6 @@
 using System;
 
-namespace FossLock.Serializable
+namespace FossLock.Core
 {
 	/// <summary>
 	/// I activation request.
