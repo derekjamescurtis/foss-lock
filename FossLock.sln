@@ -8,7 +8,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HardwareFingerprint", "Hard
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicenseHandler", "LicenseHandler\LicenseHandler.csproj", "{74CD4824-1B49-46A8-B2EC-D36ABB46B240}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FossLock.Core", "Fosslock.Core\Fosslock.Core.csproj", "{FC4A93E1-337C-45E0-9E62-DA00BB95845F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FossLock.Core", "FossLock.Core\Fosslock.Core.csproj", "{FC4A93E1-337C-45E0-9E62-DA00BB95845F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FossLock.Server", "FossLock.Server\FossLock.Server.csproj", "{39B78D66-0956-4339-A690-79A477B73C57}"
 EndProject
