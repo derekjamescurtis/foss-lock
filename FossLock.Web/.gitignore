@@ -2,6 +2,9 @@
 *.pidb
 *.userprefs
 
+#VisualStudio Ignores
+*.user
+
 # Debug temp build directories
 bin
 obj

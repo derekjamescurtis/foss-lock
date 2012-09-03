@@ -1,2 +1,0 @@
-﻿
-<%@ServiceHost language="C#" Debug="true" Service="FossLock.Web.Activation"%>

@@ -1,3 +1,4 @@
 #MonoDevelop Ignores
 *.pidb
 *.userprefs
+*.bak
