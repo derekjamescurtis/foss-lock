@@ -1,0 +1,12 @@
+C:\Users\Derek\Documents\SharpDevelop Projects\foss-lock\FossLock.Web.Tests\obj\Debug\FossLock.Web.Tests.csprojResolveAssemblyReference.cache
+C:\Users\Derek\Documents\SharpDevelop Projects\foss-lock\FossLock.Web.Tests\bin\Debug\hibernate.cfg.xml
+C:\Users\Derek\Documents\SharpDevelop Projects\foss-lock\FossLock.Web.Tests\bin\Debug\FossLock.Web.Tests.dll
+C:\Users\Derek\Documents\SharpDevelop Projects\foss-lock\FossLock.Web.Tests\bin\Debug\FossLock.Web.Tests.pdb
+C:\Users\Derek\Documents\SharpDevelop Projects\foss-lock\FossLock.Web.Tests\bin\Debug\FossLock.Web.dll
+C:\Users\Derek\Documents\SharpDevelop Projects\foss-lock\FossLock.Web.Tests\bin\Debug\Iesi.Collections.dll
+C:\Users\Derek\Documents\SharpDevelop Projects\foss-lock\FossLock.Web.Tests\bin\Debug\NHibernate.dll
+C:\Users\Derek\Documents\SharpDevelop Projects\foss-lock\FossLock.Web.Tests\bin\Debug\FossLock.Web.pdb
+C:\Users\Derek\Documents\SharpDevelop Projects\foss-lock\FossLock.Web.Tests\bin\Debug\Iesi.Collections.xml
+C:\Users\Derek\Documents\SharpDevelop Projects\foss-lock\FossLock.Web.Tests\bin\Debug\NHibernate.xml
+C:\Users\Derek\Documents\SharpDevelop Projects\foss-lock\FossLock.Web.Tests\obj\Debug\FossLock.Web.Tests.dll
+C:\Users\Derek\Documents\SharpDevelop Projects\foss-lock\FossLock.Web.Tests\obj\Debug\FossLock.Web.Tests.pdb

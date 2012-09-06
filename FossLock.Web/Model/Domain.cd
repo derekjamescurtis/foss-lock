@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="FossLock.Web.Model.Product">
+    <Position X="0.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>IAAiCAAAAAAIAAAAAAAAAAQAAAEgAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Product.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Versions" />
+      <Property Name="AvailableFeatures" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="FossLock.Web.Model.Customer">
+    <Position X="10.5" Y="1.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ACAiAAAAgCAAAAAIIAAEAAQAQAAAAAAAAAAAJAAAAAA=</HashCode>
+      <FileName>Model\Customer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FossLock.Web.Model.License">
+    <Position X="7.5" Y="1" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAFiICAAAAAAAACAAAAAAAAACAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Model\License.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Customer" />
+      <Property Name="ProductVersion" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="LicensedFeatures" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="FossLock.Web.Model.Activation">
+    <Position X="6" Y="3.75" Width="1.5" />
+    <AssociationLine Name="License" Type="FossLock.Web.Model.License" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.719" Y="3.75" />
+        <Point X="6.719" Y="3.656" />
+        <Point X="8.438" Y="3.656" />
+        <Point X="8.438" Y="3.517" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAACAAAhAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Model\Activation.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="License" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="FossLock.Web.Model.ProductVersion">
+    <Position X="4.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\ProductVersion.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Product" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="FossLock.Web.Model.ProductFeature">
+    <Position X="4.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\ProductFeature.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Product" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
