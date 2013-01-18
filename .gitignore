@@ -2,3 +2,16 @@
 *.pidb
 *.userprefs
 *.bak
+
+# visual studio ignores
+*.suo
+*.user
+/FossLock.Model/bin
+/FossLock.Model/obj
+/FossLock.Web/bin
+/FossLock.Web/obj
+
+
+# common temp file
+*~
+
