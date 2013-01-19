@@ -16,8 +16,9 @@ namespace FossLock.Model
         public DateTime ReleaseDate { get; set; }
         public LockPropertyType DefaultLockProperties { get; set; }
         public ActivationType PermittedActivationTypes { get; set; }
-        public string Notes { get; set; }
-        public int TrialDays { get; set; }
+        public VersioningStyle VersioningStyle { get; set; }
+        public string Notes { get; set; }        
+        public bool FailOnNullHardwareIdentifier { get; set; }
         public virtual ICollection<ProductFeature> AvailableFeatures { get; set; }
         public virtual ICollection<ProductVersion> Versions { get; set; }
 

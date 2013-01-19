@@ -12,7 +12,8 @@ namespace FossLock.Model
         public DbSet<Customer> Customers { get; set; }
         public DbSet<License> Licenses { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<ProductFeature> ProductFeatures { get; set; } // we might be able to get rid of this
-        public DbSet<ProductVersion> ProductVersions { get; set; } // we might be able to get rid of this as well
+        public DbSet<ProductFeature> ProductFeatures { get; set; } // TODO: we might be able to get rid of this
+        public DbSet<ProductVersion> ProductVersions { get; set; } // TODO: we might be able to get rid of this as well
+        protected DbSet<Settings> Settings { get; set; }
     }
 }

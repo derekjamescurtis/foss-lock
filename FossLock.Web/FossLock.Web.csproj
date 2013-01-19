@@ -280,6 +280,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Model\Settings.cs" />
     <Compile Include="Model\SiteContext.cs" />
     <Compile Include="Model\SiteDatabaseInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

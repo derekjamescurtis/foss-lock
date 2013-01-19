@@ -33,6 +33,7 @@ namespace FossLock.Model
                     ReleaseDate                 = DateTime.Now,
                     DefaultLockProperties       = LockPropertyType.BIOS | LockPropertyType.CPU | LockPropertyType.MACAddress,
                     PermittedActivationTypes    = Core.ActivationType.OnlineAPI | Core.ActivationType.Manual,
+                    Notes                       = "This is a sample product that demonstrates some simple capabilities of FossLock",
                     TrialDays                   = 0, 
                     AvailableFeatures = new List<ProductFeature>()
                     {

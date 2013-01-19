@@ -24,10 +24,13 @@ namespace FossLock.Model
         public DateTimeOffset? DeactivationDateTime { get; set; }
 
         /// <summary>
-        /// A SHA
+        /// A SHA-256 hash of the hardware identifiers 
         /// </summary>
         public string HardwareFingerprint { get; set; }
         
+        /// <summary>
+        /// A reference to the license this activation was generated for.
+        /// </summary>
         public virtual License License { get; set; }
 
 	}
