@@ -12,7 +12,7 @@ namespace FossLock.Model
         public int Id { get; set; }
         public DateTimeOffset ActivationDateTime { get; set; }
         public DateTimeOffset? DeactivationDateTime { get; set; }
-        public string EncryptedSerializedHwdFP { get; set; }
+        public string HardwareFingerprint { get; set; }
         public virtual License License { get; set; }
 
 	}

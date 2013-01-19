@@ -55,7 +55,7 @@
     <None Include="App.config" />
     <None Include="DomainModel.cd" />
     <None Include="packages.config" />
-    <None Include="README" />
+    <Content Include="README.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FossLock.Core\FossLock.Core.csproj">

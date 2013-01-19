@@ -6,7 +6,7 @@ namespace FossLock
 	/// Enumeration of possible identifiers that a license can be locked to.
 	/// </summary>
 	[Flags]
-	public enum LockProperties
+	public enum LockPropertyType
 	{
 
 		/// <summary>

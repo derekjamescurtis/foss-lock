@@ -12,7 +12,7 @@ namespace FossLock.Model
         /// An integer that uniquely represents this Customer within the database.
         /// </summary>
         [ScaffoldColumn(false)]
-        public int ID { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// String that helps the user identify this Customer.  This name should generally be unique.

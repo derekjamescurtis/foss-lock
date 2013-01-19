@@ -16,7 +16,7 @@ namespace FossLock.Serializable
 		int ProductId { get; set; }
 
 		// lock-to information
-		LockProperties LockTo { get; set; }
+		LockPropertyType LockTo { get; set; }
 
 		// customer information
 		int CustomerId { get; set; }

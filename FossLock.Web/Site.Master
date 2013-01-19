@@ -38,7 +38,7 @@
         <div class="content-wrapper">
             <div class="float-left">
                 <p class="site-title">
-                    <a runat="server" href="~/">your logo here</a>
+                    FossLock - License Manager
                 </p>
             </div>
             <div class="float-right">

@@ -6,12 +6,11 @@
 # visual studio ignores
 *.suo
 *.user
-/FossLock.Model/bin
-/FossLock.Model/obj
-/FossLock.Web/bin
-/FossLock.Web/obj
+/*/bin
+/*/obj
+/FossLock.Web/App_Data/* 
 
-
-# common temp file
+# common temp file suffix
 *~
+
 

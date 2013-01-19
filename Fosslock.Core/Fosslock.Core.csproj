@@ -47,13 +47,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActivationType.cs" />
     <Compile Include="EntityBase.cs" />
     <Compile Include="IActivationRequest.cs" />
     <Compile Include="IEntityDbOperations.cs" />
-    <Compile Include="LockProperties.cs" />
+    <Compile Include="LockPropertyType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShallowCaretaker.cs" />
     <Compile Include="Validation.cs" />
+    <Compile Include="LicenseType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

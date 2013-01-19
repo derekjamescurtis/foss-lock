@@ -1,38 +1,45 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="FossLock.Model.ProductVersion" Collapsed="true">
-    <Position X="3.5" Y="2.75" Width="1.5" />
+  <Class Name="FossLock.Model.ProductVersion">
+    <Position X="0.5" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ProductVersion.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="FossLock.Model.ProductFeature" Collapsed="true">
-    <Position X="1.75" Y="2.75" Width="1.5" />
+  <Class Name="FossLock.Model.ProductFeature">
+    <Position X="0.5" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAgAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ProductFeature.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="FossLock.Model.License" Collapsed="true">
-    <Position X="5.25" Y="1.75" Width="1.5" />
+  <Class Name="FossLock.Model.License">
+    <Position X="3.25" Y="0.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAFiICAAAAAAAACAAAAAAAAACAAAAAAAAAAIAAAAAAA=</HashCode>
       <FileName>License.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="FossLock.Model.Customer" Collapsed="true">
-    <Position X="3.5" Y="1.75" Width="1.5" />
+  <Class Name="FossLock.Model.Customer">
+    <Position X="2.5" Y="4" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>ACAgAAAAgCAAgAAIIAAEAAQAQAIAAAAAAAAAJAAAAAA=</HashCode>
+      <HashCode>ACAiAAAAgCAAAAAIIAAEAAQAQAIAAAAAAAAAJAAAAAA=</HashCode>
       <FileName>Customer.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="FossLock.Model.Activation" Collapsed="true">
-    <Position X="1.75" Y="1.75" Width="1.5" />
+  <Class Name="FossLock.Model.Activation">
+    <Position X="0.5" Y="0.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAACAAAhAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAACAA=</HashCode>
+      <HashCode>AAACAAAgAAAAAAAAAAAAAAEAACAAAAAAAAAAAAAACAA=</HashCode>
       <FileName>Activation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FossLock.Model.Product">
+    <Position X="4.75" Y="4" Width="2" />
+    <TypeIdentifier>
+      <HashCode>IAAiCAAAAAAIAAAAAAAAAAQAAAEgAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Product.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

@@ -14,7 +14,7 @@ namespace FossLock.Model
         public DateTimeOffset? DestroyedDateTime { get; set; }
         public string Notes { get; set; }
         public int? NetworkLicenseCount { get; set; }
-        public LockProperties RequiredLockProperties { get; set; }
+        public LockPropertyType RequiredLockProperties { get; set; }
         public virtual ICollection<ProductFeature> LicensedFeatures { get; set; }
 
 	}
