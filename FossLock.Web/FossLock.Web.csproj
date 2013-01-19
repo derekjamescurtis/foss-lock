@@ -292,6 +292,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="API\0.0.1\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>

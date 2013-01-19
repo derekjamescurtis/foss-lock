@@ -45,7 +45,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activation.cs" />
-    <Compile Include="ICustomerRepository.cs" />
     <Compile Include="License.cs" />
     <Compile Include="ProductFeature.cs" />
     <Compile Include="ProductVersion.cs" />

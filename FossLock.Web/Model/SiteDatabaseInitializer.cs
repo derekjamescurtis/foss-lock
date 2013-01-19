@@ -29,27 +29,42 @@ namespace FossLock.Model
             return new List<Product>(){
                 new Product
                 {
-                    Name        = "Sample Product",
-                    ReleaseDate = DateTime.Now,
-                    DefaultLockProperties = LockPropertyType.BIOS | LockPropertyType.CPU | LockPropertyType.MACAddress,
-                    TrialDays   = 0, 
+                    Name                        = "Sample Product",
+                    ReleaseDate                 = DateTime.Now,
+                    DefaultLockProperties       = LockPropertyType.BIOS | LockPropertyType.CPU | LockPropertyType.MACAddress,
+                    PermittedActivationTypes    = Core.ActivationType.OnlineAPI | Core.ActivationType.Manual,
+                    TrialDays                   = 0, 
                     AvailableFeatures = new List<ProductFeature>()
+                    {
+                        new ProductFeature
                         {
-                            new ProductFeature
-                            {
-                                Name        = "",
-                                Description = ""
-                            },
-                            new ProductFeature
-                            {
-                                Name = "",
-                                Description = ""
-                            },
+                            Name        = "Module A",
+                            Description = "Feature A that is licensed"
                         },
+                        new ProductFeature
+                        {
+                            Name        = "Module B",
+                            Description = "Feature B that is licensed"
+                        },
+                    },
                     Versions = new List<ProductVersion>()
+                    {
+                        new ProductVersion
                         {
-                        
+                            Version = "0.0.1",
+                            Type = Core.VersionType.Alpha
                         },
+                        new ProductVersion
+                        {
+                            Version = "0.9.0",                                
+                            Type = Core.VersionType.Beta
+                        },
+                        new ProductVersion
+                        {
+                            Version = "1.0.0",
+                            Type = Core.VersionType.Release
+                        },
+                    },
                 },
             };
 

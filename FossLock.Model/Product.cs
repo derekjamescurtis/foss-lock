@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FossLock.Core;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -10,14 +11,11 @@ namespace FossLock.Model
     /// </summary>
     public class Product
     {
-        public Product()
-        {
-        }
-
         public int Id { get; set; }
         public string Name { get; set; }
         public DateTime ReleaseDate { get; set; }
         public LockPropertyType DefaultLockProperties { get; set; }
+        public ActivationType PermittedActivationTypes { get; set; }
         public string Notes { get; set; }
         public int TrialDays { get; set; }
         public virtual ICollection<ProductFeature> AvailableFeatures { get; set; }

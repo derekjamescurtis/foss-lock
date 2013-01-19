@@ -1,7 +1,0 @@
-#MonoDevelop Ignores
-*.pidb
-*.userprefs
-
-# Debug temp build directories
-bin
-obj
