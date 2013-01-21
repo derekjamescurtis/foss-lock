@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace FossLock.Model
 {
     /// <summary>
-    /// 
+    /// An instance of a specific <see cref="Product"/> purchased by a <see cref="Customer"/>.
     /// </summary>
 	public class License
 	{

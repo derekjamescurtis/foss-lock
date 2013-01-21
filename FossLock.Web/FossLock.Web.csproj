@@ -39,6 +39,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Summerset.SemanticVersion">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Summerset Software\SemanticVersion\Summerset.SemanticVersion.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />

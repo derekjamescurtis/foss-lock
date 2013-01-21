@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace FossLock.Model
 {
@@ -31,6 +32,12 @@ namespace FossLock.Model
         /// </summary>
         [Required, StringLength(200), Display(Name = "Contact Last Name")]
         public string ContactLastName { get; set; }
+
+        /// <summary>
+        /// When using Semantic Versioning for a product, this customer may license prerelease versions of that product.
+        /// </summary>
+        [Required]
+        public bool MayLicensePreReleaseVersions { get; set; }
 
         /// <summary>
         /// A string that represents the billing address street and building number.
@@ -96,5 +103,11 @@ namespace FossLock.Model
         /// Any additional information, such as preferred contact times or the first name of the point of contact.
         /// </summary>
         public string Notes { get; set; }
+
+        /// <summary>
+        /// All the product licenses purchased by this Customer.
+        /// </summary>
+        public virtual ICollection<License> ProductLicenses { get; set; }
+
     }
 }
