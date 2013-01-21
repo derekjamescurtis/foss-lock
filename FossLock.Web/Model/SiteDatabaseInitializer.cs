@@ -32,9 +32,13 @@ namespace FossLock.Model
                     Name                        = "Sample Product",
                     ReleaseDate                 = DateTime.Now,
                     DefaultLockProperties       = LockPropertyType.BIOS | LockPropertyType.CPU | LockPropertyType.MACAddress,
+                    FailOnNullHardwareIdentifier = false,
                     PermittedActivationTypes    = Core.ActivationType.OnlineAPI | Core.ActivationType.Manual,
+                    PermittedExpirationTypes    = Core.ExpirationType.Permanent | Core.ExpirationType.ExpiresDaysAfterActivation | Core.ExpirationType.ExpiresOnCalendarDate,
+                    MaximumTrialDays            = 30,
                     Notes                       = "This is a sample product that demonstrates some simple capabilities of FossLock",
-                    TrialDays                   = 0, 
+                    VersioningStyle             = Core.VersioningStyle.Semantic,
+                    VersionLeeway               = Core.VersionLeewayType.WithinSameMajorVersion,
                     AvailableFeatures = new List<ProductFeature>()
                     {
                         new ProductFeature
@@ -52,24 +56,19 @@ namespace FossLock.Model
                     {
                         new ProductVersion
                         {
-                            Version = "0.0.1",
-                            Type = Core.VersionType.Alpha
+                            Version = "0.0.1-Alpha.1",
                         },
                         new ProductVersion
                         {
-                            Version = "0.9.0",                                
-                            Type = Core.VersionType.Beta
+                            Version = "0.9.0-Beta.1",
                         },
                         new ProductVersion
                         {
                             Version = "1.0.0",
-                            Type = Core.VersionType.Release
                         },
                     },
                 },
             };
-
-            // version should have a 'alpha', 'beta', 'release', 'legacy' flag in addition to the version number
 
 
         }

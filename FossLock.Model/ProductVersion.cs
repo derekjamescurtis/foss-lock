@@ -28,9 +28,5 @@ namespace FossLock.Model
         /// </summary>
         public virtual Product Product { get; set; }
 
-        /// <summary>
-        /// Indicates the development stage of this version.
-        /// </summary>
-        public VersionType Type { get; set; }
     }
 }

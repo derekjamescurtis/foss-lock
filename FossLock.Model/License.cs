@@ -39,6 +39,10 @@ namespace FossLock.Model
         /// </summary>
         public ActivationType ActivationType { get; set; }
 
+        //todo: the below description may reference inaccurate enum member names
+        /// <summary>
+        /// Indicates the date/time this product will expire.  This is preset on types that ExpireOnDate, and will be set by the ActivationRequest on licenses that ExpireDaysAfterActivation
+        /// </summary>
         public DateTimeOffset? ExpirationDate { get; set; }
 
         /// <summary>

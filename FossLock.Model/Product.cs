@@ -42,6 +42,16 @@ namespace FossLock.Model
         public ActivationType PermittedActivationTypes { get; set; }
 
         /// <summary>
+        /// Indicates the types of expirations permitted for new <see cref="License"/>s
+        /// </summary>
+        public ExpirationType PermittedExpirationTypes { get; set; }
+
+        /// <summary>
+        /// Enforces a maximum trial length when issuing new licenses.  
+        /// </summary>
+        public int MaximumTrialDays { get; set; }
+
+        /// <summary>
         /// Indicates whether this product will use Microsoft's <see cref="System.Version"/> object for version numbering, 
         /// or Summerset Software's <see cref="Summerset.SemanticVersion"/> object (complies with http://www.semver.org).  
         /// </summary>
