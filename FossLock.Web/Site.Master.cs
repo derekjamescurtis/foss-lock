@@ -10,12 +10,14 @@ namespace FossLock.Web
 {
     public partial class SiteMaster : MasterPage
     {
-        private const string AntiXsrfTokenKey = "__AntiXsrfToken";
-        private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
+        private const string AntiXsrfTokenKey       = "__AntiXsrfToken";
+        private const string AntiXsrfUserNameKey    = "__AntiXsrfUserName";
         private string _antiXsrfTokenValue;
 
         protected void Page_Init(object sender, EventArgs e)
         {
+
+
             // The code below helps to protect against XSRF attacks
             var requestCookie = Request.Cookies[AntiXsrfTokenKey];
             Guid requestCookieGuidValue;
@@ -67,7 +69,16 @@ namespace FossLock.Web
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["alertMessage"] != null)
+            {
+                headerAlertBox.Visible = true;                
+                headerAlertLbl.Text = (string)Session["alertMessage"];
+                Session.Remove("alertMessage");
+            }
+            else
+            {
+                headerAlertLbl.Text = "no alert found here =(";
+            }
         }
     }
 }

@@ -8,9 +8,7 @@
 *.user
 /*/bin
 /*/obj
-/FossLock.Web/App_Data/* 
+/FossLock.Web/App_Data/*
 
 # common temp file suffix
 *~
-
-

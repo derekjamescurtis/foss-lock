@@ -34,24 +34,7 @@ namespace FossLock.Web
                 MembershipCreateStatus status; // we don't actually do anything with this.  we just need to pass it to the CreateUser function as an out variable
 
                 Membership.CreateUser("admin", "password", "admin@contoso.com", "Life, the universe and everything", "42", true, out status);
-                Roles.AddUserToRole("admin", "Administrator");
-
-                // add the admin required information
-                using (var db = new Models.CastrolSiteContext())
-                {
-                    var newCustomer = new Models.Customer()
-                    {
-                        Email = "admin@contoso.com",
-                        Username = "admin",
-                        LicenseNumber = "42",
-                        PhoneCell = "+60 3 1234.1234",
-                        PhoneHome = "+60 3 1234.1234",
-                        RegistrationDate = DateTime.Now
-                    };
-
-                    db.Customers.Add(newCustomer);
-                    db.SaveChanges();
-                }
+                Roles.AddUserToRole("admin", "Administrator");                
 
             }
 

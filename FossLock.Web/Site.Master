@@ -60,6 +60,12 @@
                     </asp:LoginView>
                 </section>
                 <nav>
+                    <asp:LoginView runat="server" ViewStateMode="Disabled">
+                        <LoggedInTemplate>
+                            <li><a href="/Admin/Customers.aspx">Customers</a></li>
+                            <li><a href="/Admin/Products.aspx">Products</a></li>
+                        </LoggedInTemplate>
+                    </asp:LoginView>
                     <ul id="menu">
                         <li><a runat="server" href="~/">Home</a></li>
                         <li><a runat="server" href="~/About.aspx">About</a></li>
@@ -67,7 +73,17 @@
                     </ul>
                 </nav>
             </div>
+
+
+            <div style="clear:both;">&nbsp;</div>
+            <asp:Panel ID="headerAlertBox" runat="server" Visible="false">
+                <asp:Label ID="headerAlertLbl" runat="server" />
+            </asp:Panel>
+
         </div>
+
+
+
     </header>
     <div id="body">
         <asp:ContentPlaceHolder runat="server" ID="FeaturedContent" />

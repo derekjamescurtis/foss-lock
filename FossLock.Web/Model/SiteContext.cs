@@ -4,7 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
-namespace FossLock.Model
+namespace FossLock.Core.Model
 {
     public class SiteContext : DbContext
     {
