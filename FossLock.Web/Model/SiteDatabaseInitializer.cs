@@ -1,10 +1,11 @@
-﻿using System;
+﻿using FossLock.Core;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
-namespace FossLock.Core.Model
+namespace FossLock.Model
 {
     public class SiteDatabaseInitializer : DropCreateDatabaseIfModelChanges<SiteContext> // TODO: after development, this should be changed to something other than a dropcreate
     {

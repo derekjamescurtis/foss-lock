@@ -37,7 +37,7 @@ namespace FossLock.Model
         /// When using Semantic Versioning for a product, this customer may license prerelease versions of that product.
         /// </summary>
         [Required]
-        public bool MayLicensePreReleaseVersions { get; set; }
+        public bool CanLicensePreReleaseVersions { get; set; }
 
         /// <summary>
         /// A string that represents the billing address street and building number.

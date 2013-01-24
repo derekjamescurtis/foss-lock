@@ -67,9 +67,15 @@
                         </LoggedInTemplate>
                     </asp:LoginView>
                     <ul id="menu">
-                        <li><a runat="server" href="~/">Home</a></li>
-                        <li><a runat="server" href="~/About.aspx">About</a></li>
-                        <li><a runat="server" href="~/Contact.aspx">Contact</a></li>
+                        <asp:LoginView ID="LoginView1" runat="server" ViewStateMode="Disabled">
+                            <LoggedInTemplate>
+                                <!-- TODO:  update urls in masterpage -->
+                                <li><a href="">Customers</a></li>
+                                <li><a href="">Products</a></li>
+                                <li><a href="">Users</a></li>
+                                <li><a href="">Reports</a></li>
+                            </LoggedInTemplate>
+                        </asp:LoginView>    
                     </ul>
                 </nav>
             </div>
@@ -94,7 +100,7 @@
     <footer>
         <div class="content-wrapper">
             <div class="float-left">
-                <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
+                <p>&copy; <%: DateTime.Now.Year %> - FossLock</p>
             </div>
         </div>
     </footer>

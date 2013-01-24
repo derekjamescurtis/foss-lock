@@ -12,3 +12,5 @@
 
 # common temp file suffix
 *~
+/FossLock.Web.Tests/bin
+/FossLock.Web.Tests/obj

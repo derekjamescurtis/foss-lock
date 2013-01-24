@@ -54,7 +54,6 @@
     <Compile Include="ExpirationType.cs" />
     <Compile Include="VersioningStyle.cs" />
     <Compile Include="VersionLeewayType.cs" />
-    <Compile Include="VersionType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

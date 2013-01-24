@@ -55,11 +55,7 @@
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <Reference Include="NLog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Data.SQLite, Version=1.0.81.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139" />
-    <Reference Include="System.Data.SQLite.Linq, Version=1.0.81.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139" />
     <Reference Include="System.IO.Log" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Runtime.Serialization" />
@@ -71,22 +67,9 @@
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Core" />
-    <Reference Include="SQLite.Designer, Version=1.0.81.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139" />
-    <Reference Include="MySql.Data, Version=6.5.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d" />
-    <Reference Include="nunit.framework" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="Settings.cs" />
-    <Compile Include="StorageProviderType.cs" />
-    <Compile Include="Actions.cs" />
-    <Compile Include="CustomerFactory.cs" />
-    <Compile Include="Product.cs" />
-    <Compile Include="Customer.cs" />
-    <Compile Include="License.cs" />
-    <Compile Include="LicenseActivation.cs" />
-    <Compile Include="LicenseStatus.cs" />
-    <Compile Include="LicenseType.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
@@ -103,12 +86,6 @@
       </Properties>
     </MonoDevelop>
   </ProjectExtensions>
-  <ItemGroup>
-    <ProjectReference Include="..\Serializable\FossLock.Serializable.csproj">
-      <Project>{E397E1A8-97F1-480C-8BF1-BFA4DB58DDEB}</Project>
-      <Name>FossLock.Serializable</Name>
-    </ProjectReference>
-  </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

@@ -1,8 +1,8 @@
 using System;
-using NUnit.Framework;
+//using NUnit.Framework;
 using FossLock.LicenseHandler.Crypto;
 using FossLock.LicenseHandler;
-
+/*
 namespace FossLock.LicenseHandler
 {
 	[TestFixture()]
@@ -71,3 +71,4 @@ namespace FossLock.LicenseHandler
 	}
 }
 
+*/

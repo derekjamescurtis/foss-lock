@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Xml;
 using FossLock.LicenseHandler.Crypto;
-
+/*
 namespace FossLock.LicenseHandler
 {
 	public class LicenseHandler
@@ -150,3 +150,4 @@ namespace FossLock.LicenseHandler
 	}
 }
 
+*/

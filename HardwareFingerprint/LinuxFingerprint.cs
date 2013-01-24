@@ -145,36 +145,39 @@ namespace FossLock.HardwareFingerprint
 				driveTypeString = forkedProcess.StandardOutput.ReadToEnd();
 				
 				// Check to see what type of drive was returned
-				if(driveTypeString.Contains("/dev/sd"))
-				{
-					forkedProcess = new Process();
-					forkedProcess.EnableRaisingEvents = true;
-					forkedProcess.StartInfo.UseShellExecute = false;
-					forkedProcess.StartInfo.CreateNoWindow = true;
-					forkedProcess.StartInfo.RedirectStandardOutput = true;
-					forkedProcess.StartInfo.FileName = "bash";
-					forkedProcess.StartInfo.Arguments = "-c \"sudo hdparm -i /dev/sda | grep SerialNo | sed 's/.*SerialNo=//'\"";
-					
-					forkedProcess.Start();
-					val = forkedProcess.StandardOutput.ReadToEnd();
-					
-					return val;
-				}
-				else if(driveTypeString.Contains("/dev/hd"))
-				{
-					forkedProcess = new Process();
-					forkedProcess.EnableRaisingEvents = true;
-					forkedProcess.StartInfo.UseShellExecute = false;
-					forkedProcess.StartInfo.CreateNoWindow = true;
-					forkedProcess.StartInfo.RedirectStandardOutput = true;
-					forkedProcess.StartInfo.FileName = "bash";
-					forkedProcess.StartInfo.Arguments = "-c \"sudo hdparm -i /dev/hda | grep SerialNo | sed 's/.*SerialNo=//'\"";
-					
-					forkedProcess.Start();
-					val = forkedProcess.StandardOutput.ReadToEnd();
-					
-					return val;
-				}
+                if (driveTypeString.Contains("/dev/sd"))
+                {
+                    forkedProcess = new Process();
+                    forkedProcess.EnableRaisingEvents = true;
+                    forkedProcess.StartInfo.UseShellExecute = false;
+                    forkedProcess.StartInfo.CreateNoWindow = true;
+                    forkedProcess.StartInfo.RedirectStandardOutput = true;
+                    forkedProcess.StartInfo.FileName = "bash";
+                    forkedProcess.StartInfo.Arguments = "-c \"sudo hdparm -i /dev/sda | grep SerialNo | sed 's/.*SerialNo=//'\"";
+
+                    forkedProcess.Start();
+                    val = forkedProcess.StandardOutput.ReadToEnd();
+
+                    return val;
+                }
+                else if (driveTypeString.Contains("/dev/hd"))
+                {
+                    forkedProcess = new Process();
+                    forkedProcess.EnableRaisingEvents = true;
+                    forkedProcess.StartInfo.UseShellExecute = false;
+                    forkedProcess.StartInfo.CreateNoWindow = true;
+                    forkedProcess.StartInfo.RedirectStandardOutput = true;
+                    forkedProcess.StartInfo.FileName = "bash";
+                    forkedProcess.StartInfo.Arguments = "-c \"sudo hdparm -i /dev/hda | grep SerialNo | sed 's/.*SerialNo=//'\"";
+
+                    forkedProcess.Start();
+                    val = forkedProcess.StandardOutput.ReadToEnd();
+
+                    return val;
+                }
+
+                else
+                    throw new Exception();
 			}
 		}
 
