@@ -23,11 +23,18 @@ namespace FossLock.Web
             Database.SetInitializer(new Model.SiteDatabaseInitializer());
 
 
-            // Add Administrator.
-            if (!Roles.RoleExists("Administrator"))
-            {
-                Roles.CreateRole("Administrator");
-            }
+            // Create Roles
+            if (!Roles.RoleExists(Account.RoleNames.ADMIN_ROLE))            
+                Roles.CreateRole(Account.RoleNames.ADMIN_ROLE);
+
+            if (!Roles.RoleExists(Account.RoleNames.MANAGER_ROLE))
+                Roles.CreateRole(Account.RoleNames.MANAGER_ROLE);
+
+            if (!Roles.RoleExists(Account.RoleNames.USER_ROLE))
+                Roles.CreateRole(Account.RoleNames.USER_ROLE);
+
+
+            // Create admin account
             if (Membership.GetUser("admin") == null)
             {
 

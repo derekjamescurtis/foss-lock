@@ -69,16 +69,15 @@ namespace FossLock.Web
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["alertMessage"] != null)
+            // some type of alert/warning displayed to the user at the top of the page
+            if (Session[SessionKeys.ALERT_MESSAGE] != null)
             {
-                headerAlertBox.Visible = true;                
-                headerAlertLbl.Text = (string)Session["alertMessage"];
-                Session.Remove("alertMessage");
+                headerAlertBox.Visible  = true;
+                headerAlertLbl.Text     = (string)Session[SessionKeys.ALERT_MESSAGE];
+
+                Session.Remove(SessionKeys.ALERT_MESSAGE);
             }
-            else
-            {
-                headerAlertLbl.Text = "no alert found here =(";
-            }
+            
         }
     }
 }

@@ -49,7 +49,7 @@ namespace FossLock.Model
         /// <summary>
         /// Enforces a maximum trial length when issuing new licenses.  
         /// </summary>
-        public int MaximumTrialDays { get; set; }
+        public int? MaximumTrialDays { get; set; }
 
         /// <summary>
         /// Indicates whether this product will use Microsoft's <see cref="System.Version"/> object for version numbering, 

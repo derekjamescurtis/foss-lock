@@ -22,7 +22,7 @@ namespace FossLock.Web.Admin
 
         public IQueryable<Product> GetProducts()
         {
-            return _db.Products.AsQueryable();
+            return _db.Products.OrderBy(p => p.Name).AsQueryable();
         }
 
     }

@@ -240,6 +240,7 @@
     <Content Include="Bundle.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account\RoleNames.cs" />
     <Compile Include="Admin\AddEditCustomer.aspx.cs">
       <DependentUpon>AddEditCustomer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -326,6 +327,7 @@
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
+    <Compile Include="SessionKeys.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="API\0.0.1\" />
