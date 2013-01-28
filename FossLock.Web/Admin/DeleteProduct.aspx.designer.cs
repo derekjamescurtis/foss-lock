@@ -10,6 +10,6 @@
 namespace FossLock.Web.Admin {
     
     
-    public partial class Products {
+    public partial class DeleteProduct {
     }
 }

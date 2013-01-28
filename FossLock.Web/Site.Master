@@ -69,13 +69,14 @@
                     <ul id="menu">
                         <asp:LoginView ID="LoginView1" runat="server" ViewStateMode="Disabled">
                             <LoggedInTemplate>
-                                <!-- TODO:  update urls in masterpage -->
-                                <li><a href="">Customers</a></li>
-                                <li><a href="">Products</a></li>
-                                <li><a href="">Users</a></li>
-                                <li><a href="">Reports</a></li>
+                                
                             </LoggedInTemplate>
-                        </asp:LoginView>    
+                        </asp:LoginView>   
+                        <!-- TODO:  move this into the logged in view -->
+                        <li><a href="<%= FossLock.Web.RedirectPaths.CUSTOMER_LIST %>">Customers</a></li>
+                        <li><a href="<%= FossLock.Web.RedirectPaths.PRODUCT_LIST %>">Products</a></li>
+                        <li><a href="<%= FossLock.Web.RedirectPaths.USER_LIST %>">Users</a></li>
+                        <li><a href="#">Reports</a></li> 
                     </ul>
                 </nav>
             </div>

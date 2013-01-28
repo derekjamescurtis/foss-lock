@@ -19,6 +19,7 @@
         <asp:TextBox ID="ReleaseDateTbx" runat="server" />
         <asp:RequiredFieldValidator ControlToValidate="ReleaseDateTbx" ErrorMessage="Release Date is a required field." Display="None" runat="server" />
         <asp:CompareValidator ControlToValidate="ReleaseDateTbx" ErrorMessage="Release Date is in an invalid format." Type="Date" Operator="DataTypeCheck" Display="None" runat="server" /> 
+        <asp:RangeValidator ControlToValidate="ReleaseDateTbx" runat="server" Display="None" ID="DateRangeValidator" />  <!-- this is config'd in code behind -->
     </div>
 
     <div>
@@ -67,7 +68,7 @@
     <!-- Versions -->
 
     <div>
-        <asp:Button ID="SaveButton" Text="Save Changes" runat="server" OnClick="SaveButton_Click" /><br />
+        <asp:Button ID="SaveButton" Text="Save Changes" runat="server" /><br />
         <asp:Button ID="DeleteButton" Text="Delete" runat="server" OnClick="DeleteButton_Click" />
     </div>
 

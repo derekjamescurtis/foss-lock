@@ -20,8 +20,9 @@ namespace FossLock.Web.Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            // 
+            // populate all the list controls with choices
             PrepForm();
+
 
             // we're editing an existing product -- try to look it up in the db
             if (Request.QueryString["id"] != null)
@@ -29,15 +30,19 @@ namespace FossLock.Web.Admin
                 var id = int.Parse(Request.QueryString["id"]);
                 _product = _db.Products.Where(prod => prod.Id == id).FirstOrDefault();
 
+                // these weren't the droids you were looking for.
                 if (_product == null)
                 {
-                    Session["alertMessage"] = "Error looking up Product ID: " + id;
-                    Response.Redirect("/Admin/Products.aspx");
+                    Session[SessionKeys.ALERT_MESSAGE] = "Error looking up Product ID: " + id;
+                    Response.Redirect("/Admin/Products.aspx"); // todo: refactor this to a constant
                 }
 
+                // set the postback url for the delete button -- need to check this user is an admin
+                this.DeleteButton.PostBackUrl = RedirectPaths.PRODUCT_DELETE + "?id=" + Request.QueryString["id"];                
             }
             else
             {
+                // just add a few simple properties
                 _product = new Product { Name = "New Product", ReleaseDate = DateTime.Now.Date };
 
                 // update the buttons to reflect the fact that we're adding a new product
@@ -60,7 +65,11 @@ namespace FossLock.Web.Admin
         // populate all the list controls with their values -- most of these are enum values, so we're doing this manually rather than fanagle databinding to work here
         void PrepForm()
         {
-                       
+            // set the min/max range values
+            this.DateRangeValidator.MinimumValue = System.Data.SqlTypes.SqlDateTime.MinValue.Value.ToShortDateString();
+            this.DateRangeValidator.MaximumValue = System.Data.SqlTypes.SqlDateTime.MaxValue.Value.ToShortDateString();
+            this.DateRangeValidator.ErrorMessage = string.Format("Release Date must be between {0} and {1}", this.DateRangeValidator.MinimumValue, this.DateRangeValidator.MaximumValue);
+
 
             if (LockPropertiesClbx.Items.Count == 0)
                 LockPropertiesClbx.Items.AddRange(
@@ -170,7 +179,6 @@ namespace FossLock.Web.Admin
         void UpdateDatabase()
         {
             // update the object based on the ui selection
-
             this.Product.Name = this.NameTbx.Text;
             this.Product.ReleaseDate = DateTime.Parse(this.ReleaseDateTbx.Text);
             this.Product.DefaultLockProperties = this.GetLockPropertiesValue();
@@ -188,19 +196,14 @@ namespace FossLock.Web.Admin
 
 
             try
-            {
-
-
+            {                
                 if (this.Product.Id == 0)
                 {
                     // actually we're adding the product
                     _db.Products.Add(this.Product);
                     _db.SaveChanges();
 
-                    // reload the page
-                    Session[SessionKeys.ALERT_MESSAGE] = "Product Created - " + this.Product.Name;
-                    Response.Redirect("/Admin/Products.aspx");
-                    //Response.Redirect(string.Format("/Admin/AddEditProduct.aspx?id={0}", this.Product.Id));
+                    Session[SessionKeys.ALERT_MESSAGE] = "Product Created - " + this.Product.Name;                    
                 }
                 else
                 {
@@ -208,14 +211,16 @@ namespace FossLock.Web.Admin
                     _db.SaveChanges();
 
                     // redirect back to the products page
-                    Session[SessionKeys.ALERT_MESSAGE] = "Changes Saved - " + this.Product.Name; 
-                    Response.Redirect("/Admin/Products.aspx");
+                    Session[SessionKeys.ALERT_MESSAGE] = "Changes Saved - " + this.Product.Name;
                 }
             }
             catch (Exception ex)
             {
-                Session[SessionKeys.ALERT_MESSAGE] = "Error: " + ex.Message;
-                Response.Redirect("/Admin/Products.aspx"); // todo: probably best to refactor these out to constants
+                Session[SessionKeys.ALERT_MESSAGE] = "Error: " + ex.Message;                
+            }
+            finally
+            {
+                Response.Redirect("/Admin/Products.aspx"); // probably best to refactor this
             }
 
         }
@@ -262,10 +267,6 @@ namespace FossLock.Web.Admin
 
         #endregion
 
-        protected void SaveButton_Click(object sender, EventArgs e)
-        {
-            // nothing exciting here           
-        }
 
         protected void DeleteButton_Click(object sender, EventArgs e)
         {

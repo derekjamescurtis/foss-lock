@@ -21,7 +21,6 @@
     </asp:GridView>
 
     <a href="AddEditProduct.aspx">Add Product</a> <br />
-    <input type="text" name="alertMessage"></input>
-    <asp:Button ID="alertButton" runat="server" Text="Test Alert" />
+
 
 </asp:Content>

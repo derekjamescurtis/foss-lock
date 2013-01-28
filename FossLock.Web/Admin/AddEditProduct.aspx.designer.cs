@@ -40,6 +40,15 @@ namespace FossLock.Web.Admin {
         protected global::System.Web.UI.WebControls.TextBox ReleaseDateTbx;
         
         /// <summary>
+        /// DateRangeValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator DateRangeValidator;
+        
+        /// <summary>
         /// LockPropertiesClbx control.
         /// </summary>
         /// <remarks>
