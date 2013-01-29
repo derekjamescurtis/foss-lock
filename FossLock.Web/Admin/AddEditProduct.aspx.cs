@@ -11,8 +11,8 @@ namespace FossLock.Web.Admin
     public partial class AddEditProduct : System.Web.UI.Page
     {
         
-        private SiteContext _db = new SiteContext();
-        private Product _product;
+        SiteContext _db = new SiteContext();
+        Product _product;
         public Product Product
         {
             get { return _product; }

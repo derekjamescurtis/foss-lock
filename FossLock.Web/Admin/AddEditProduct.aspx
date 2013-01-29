@@ -69,7 +69,7 @@
 
     <div>
         <asp:Button ID="SaveButton" Text="Save Changes" runat="server" /><br />
-        <asp:Button ID="DeleteButton" Text="Delete" runat="server" OnClick="DeleteButton_Click" />
+        <asp:Button ID="DeleteButton" Text="Delete" runat="server" /> <%-- postback url is set in form_load event --%>
     </div>
 
 

@@ -21,6 +21,10 @@
     </div>
 
     <!-- can license prereleases -->
+    <div>
+        <asp:CheckBox ID="CanLicensePrereleaseChx" runat="server" />
+        <asp:Label AssociatedControlID="CanLicensePrereleaseChx" Text="Can License Prerelease Versions" runat="server" />
+    </div>
 
     <div>
         <asp:Label AssociatedControlID="Address1Tbx" Text="Address 1" runat="server" />
@@ -35,7 +39,7 @@
     <div>
         <asp:Label AssociatedControlID="CityTbx" Text="City/State" runat="server" />
         <asp:TextBox ID="CityTbx" runat="server" /> <!-- city then state tbx -->
-        <asp:TextBox ID="StateTbx" runat="server" />
+        <asp:TextBox ID="StateTbx" runat="server" MaxLength="2" />
     </div>
 
     <div>
@@ -74,5 +78,10 @@
     </div>
 
     <!-- Licenses -->
+
+    <div>
+        <asp:Button ID="SaveButton" Text="Save Changes" runat="server" />
+        <asp:Button ID="DeleteButton" Text="Delete" runat="server" />
+    </div>
 
 </asp:Content>

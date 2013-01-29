@@ -132,6 +132,7 @@
     <Content Include="Admin\AddEditCustomer.aspx" />
     <Content Include="Admin\AddEditProduct.aspx" />
     <Content Include="Admin\Customers.aspx" />
+    <Content Include="Admin\DeleteCustomer.aspx" />
     <Content Include="Admin\DeleteProduct.aspx" />
     <Content Include="Admin\Products.aspx" />
     <Content Include="Content\Site.css" />
@@ -262,6 +263,13 @@
     </Compile>
     <Compile Include="Admin\Customers.aspx.designer.cs">
       <DependentUpon>Customers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\DeleteCustomer.aspx.cs">
+      <DependentUpon>DeleteCustomer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\DeleteCustomer.aspx.designer.cs">
+      <DependentUpon>DeleteCustomer.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\DeleteProduct.aspx.cs">
       <DependentUpon>DeleteProduct.aspx</DependentUpon>
