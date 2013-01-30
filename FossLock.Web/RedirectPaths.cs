@@ -16,9 +16,10 @@ namespace FossLock.Web
         public const string CUSTOMER_DETAIL = "/Admin/AddEditCustomer.aspx";
         public const string CUSTOMER_DELETE = "/Admin/DeleteCustomer.aspx";
 
-        public const string USER_LIST       = "";
-        public const string USER_DETAIL     = "";
-        public const string USER_DELETE     = "";
+        public const string USER_LIST       = "/Admin/Users.aspx";
+        public const string USER_ADD        = "/Admin/AddUser.aspx";
+        public const string USER_EDIT       = "/Admin/EditUser.aspx";
+        public const string USER_DELETE     = "/Admin/DeleteUser.aspx";
 
         public const string REPORT_LIST     = "";
         
