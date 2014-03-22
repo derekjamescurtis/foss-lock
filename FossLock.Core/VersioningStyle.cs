@@ -1,4 +1,6 @@
-﻿namespace FossLock.Core
+﻿using System;
+
+namespace FossLock.Core
 {
     /// <summary>
     /// Indicates the versioning style for a given product.

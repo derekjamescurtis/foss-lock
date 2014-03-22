@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FossLock.Core", "FossLock.C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FossLock.Model", "FossLock.Model\FossLock.Model.csproj", "{FCED1C46-7658-4F58-B5DF-D7881B768FC4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FossLock.Web", "FossLock.Web\FossLock.Web.csproj", "{0B6FD755-5ACA-40AB-9142-B75FE9428874}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FossLock.Web", "FossLock.Web\FossLock.Web.csproj", "{D530C6BD-887B-4BED-837F-7DB07F9E8A6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,16 +75,16 @@ Global
 		{FCED1C46-7658-4F58-B5DF-D7881B768FC4}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{FCED1C46-7658-4F58-B5DF-D7881B768FC4}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{FCED1C46-7658-4F58-B5DF-D7881B768FC4}.Release|x86.ActiveCfg = Release|Any CPU
-		{0B6FD755-5ACA-40AB-9142-B75FE9428874}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0B6FD755-5ACA-40AB-9142-B75FE9428874}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0B6FD755-5ACA-40AB-9142-B75FE9428874}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{0B6FD755-5ACA-40AB-9142-B75FE9428874}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{0B6FD755-5ACA-40AB-9142-B75FE9428874}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{0B6FD755-5ACA-40AB-9142-B75FE9428874}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0B6FD755-5ACA-40AB-9142-B75FE9428874}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0B6FD755-5ACA-40AB-9142-B75FE9428874}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{0B6FD755-5ACA-40AB-9142-B75FE9428874}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{0B6FD755-5ACA-40AB-9142-B75FE9428874}.Release|x86.ActiveCfg = Release|Any CPU
+		{D530C6BD-887B-4BED-837F-7DB07F9E8A6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D530C6BD-887B-4BED-837F-7DB07F9E8A6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D530C6BD-887B-4BED-837F-7DB07F9E8A6D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{D530C6BD-887B-4BED-837F-7DB07F9E8A6D}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{D530C6BD-887B-4BED-837F-7DB07F9E8A6D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D530C6BD-887B-4BED-837F-7DB07F9E8A6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D530C6BD-887B-4BED-837F-7DB07F9E8A6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D530C6BD-887B-4BED-837F-7DB07F9E8A6D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{D530C6BD-887B-4BED-837F-7DB07F9E8A6D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{D530C6BD-887B-4BED-837F-7DB07F9E8A6D}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

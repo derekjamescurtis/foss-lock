@@ -32,7 +32,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActivationType.cs" />
@@ -42,6 +41,9 @@
     <Compile Include="ExpirationType.cs" />
     <Compile Include="VersioningStyle.cs" />
     <Compile Include="VersionLeewayType.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

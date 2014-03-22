@@ -1,16 +1,10 @@
-﻿# FossLock.Model
+﻿# FossLock.Core
 
 ## Synopsis
 
-This whole proejct just contains the POCO classes used to generate the 
-database for EF6, and also are also used as serializable transport 
-objects for communicating with the web server's API.
-
-Right now, all special settings are being done via attributes.
-
-At this point, that's probably sufficient as the database really 
-shouldn't be getting more complex than this, however if it does
-we can start by moving this to configuration via the fluent api.
+This is a simple library that has base types (such as several enums)
+that are used by other assemblies in this application, including the 
+POCO classes in FossLock.Model.*
 
 ## License
 

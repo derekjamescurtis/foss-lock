@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace FossLock.Model
 {
@@ -20,7 +21,7 @@ namespace FossLock.Model
         /// <summary>
         /// Indicates the date and time that this acviation was made invalid.  
         /// This is only set when the activation is destoryed, so it can be recreated.  
-        /// </summary>
+        /// </summary>       
         public DateTimeOffset? DeactivationDateTime { get; set; }
 
         /// <summary>
