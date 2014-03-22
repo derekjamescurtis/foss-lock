@@ -2,62 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Optimization;
+using System.Web.Http;
+using System.Web.Mvc;
 using System.Web.Routing;
-using System.Web.Security;
-using FossLock.Web;
-using System.Data.Entity;
 
 namespace FossLock.Web
 {
-    public class Global : HttpApplication
+    // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
+    // visit http://go.microsoft.com/?LinkId=9394801
+    public class MvcApplication : System.Web.HttpApplication
     {
-        void Application_Start(object sender, EventArgs e)
+        protected void Application_Start()
         {
-            // Code that runs on application startup
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
-            AuthConfig.RegisterOpenAuth();
+            AreaRegistration.RegisterAllAreas();
 
-
-            // Initialize the database
-            Database.SetInitializer(new Model.SiteDatabaseInitializer());
-
-
-            // Create Roles
-            if (!Roles.RoleExists(Account.RoleNames.ADMIN_ROLE))            
-                Roles.CreateRole(Account.RoleNames.ADMIN_ROLE);
-
-            if (!Roles.RoleExists(Account.RoleNames.MANAGER_ROLE))
-                Roles.CreateRole(Account.RoleNames.MANAGER_ROLE);
-
-            if (!Roles.RoleExists(Account.RoleNames.USER_ROLE))
-                Roles.CreateRole(Account.RoleNames.USER_ROLE);
-
-
-            // Create admin account
-            if (Membership.GetUser("admin") == null)
-            {
-
-                MembershipCreateStatus status; // we don't actually do anything with this.  we just need to pass it to the CreateUser function as an out variable
-
-                Membership.CreateUser("admin", "password", "admin@contoso.com", "Life, the universe and everything", "42", true, out status);
-                Roles.AddUserToRole("admin", "Administrator");                
-
-            }
-
-
-        }
-
-        void Application_End(object sender, EventArgs e)
-        {
-            //  Code that runs on application shutdown
-
-        }
-
-        void Application_Error(object sender, EventArgs e)
-        {
-            // Code that runs when an unhandled error occurs
-
+            WebApiConfig.Register(GlobalConfiguration.Configuration);
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
     }
 }

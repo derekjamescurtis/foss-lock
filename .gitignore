@@ -1,16 +1,29 @@
-#MonoDevelop Ignores
-*.pidb
-*.userprefs
-*.bak
-
-# visual studio ignores
-*.suo
+Thumbs.db
+*.obj
+*.exe
+*.pdb
 *.user
-/*/bin
-/*/obj
-/FossLock.Web/App_Data/*
-
-# common temp file suffix
-*~
-/FossLock.Web.Tests/bin
-/FossLock.Web.Tests/obj
+*.aps
+*.pch
+*.vspscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.sln.docstates
+*.tlb
+*.tlh
+*.bak
+*.cache
+*.ilk
+*.log
+[Bb]in
+[Dd]ebug*/
+*.lib
+*.sbr
+obj/
+[Rr]elease*/
+_ReSharper*/
+[Tt]est[Rr]esult*
+*.vssscc
+$tf*/
