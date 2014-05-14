@@ -19,8 +19,8 @@ namespace FossLock.Core
         /// </summary>
         Manual  = 1 << 0,
 
-        /// <summary>
-        /// Activation request must be sent by the <see cref="FossLock.Model.Customer"/>'s registered e-mail address, to an e-mail server that the activation server is capiable of reading/sending from.
+        /// <summary> Activation request must be sent by the <see cref="FossLock.Model.Customer"/>'s registered 
+        /// e-mail address, to an e-mail server that the activation server is capiable of reading/sending from.
         /// The <see cref="FossLock.Model.Activation"/> information will be returned to that <see cref="FossLock.Model.Customer"/>'s e-mail address, which they must manually register in their software.
         /// </summary>
         Email   = 1 << 1,

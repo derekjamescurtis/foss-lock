@@ -19,6 +19,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -38,6 +39,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="BundleTransformer.Core">
+      <HintPath>..\packages\BundleTransformer.Core.1.8.30\lib\net40\BundleTransformer.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="BundleTransformer.Less">
+      <HintPath>..\packages\BundleTransformer.Less.1.8.31\lib\net40\BundleTransformer.Less.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -45,7 +55,19 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="JavaScriptEngineSwitcher.Core">
+      <HintPath>..\packages\JavaScriptEngineSwitcher.Core.1.1.3\lib\net40\JavaScriptEngineSwitcher.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="JavaScriptEngineSwitcher.Msie">
+      <HintPath>..\packages\JavaScriptEngineSwitcher.Msie.1.1.6\lib\net40\JavaScriptEngineSwitcher.Msie.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MsieJavaScriptEngine">
+      <HintPath>..\packages\MsieJavaScriptEngine.1.4.3\lib\net40\MsieJavaScriptEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -55,6 +77,9 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -62,6 +87,9 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebGrease">
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -88,28 +116,95 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Site.css" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Web.config" />
+    <None Include="BundleTransformer.Configuration.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Static\less\mixins.css">
+      <DependentUpon>mixins.less</DependentUpon>
+    </Content>
+    <Content Include="Static\less\mixins.min.css">
+      <DependentUpon>mixins.less</DependentUpon>
+    </Content>
+    <Content Include="Static\less\site.css">
+      <DependentUpon>site.less</DependentUpon>
+    </Content>
+    <Content Include="Static\less\site.min.css">
+      <DependentUpon>site.less</DependentUpon>
+    </Content>
+    <Content Include="Static\lib\bootstrap3\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Static\lib\bootstrap3\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Static\lib\bootstrap3\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Static\lib\bootstrap3\js\bootstrap.js" />
+    <Content Include="Static\lib\bootstrap3\less\alerts.less" />
+    <Content Include="Static\lib\bootstrap3\less\badges.less" />
+    <Content Include="Static\lib\bootstrap3\less\bootstrap.less" />
+    <Content Include="Static\lib\bootstrap3\less\breadcrumbs.less" />
+    <Content Include="Static\lib\bootstrap3\less\button-groups.less" />
+    <Content Include="Static\lib\bootstrap3\less\buttons.less" />
+    <Content Include="Static\lib\bootstrap3\less\carousel.less" />
+    <Content Include="Static\lib\bootstrap3\less\close.less" />
+    <Content Include="Static\lib\bootstrap3\less\code.less" />
+    <Content Include="Static\lib\bootstrap3\less\component-animations.less" />
+    <Content Include="Static\lib\bootstrap3\less\dropdowns.less" />
+    <Content Include="Static\lib\bootstrap3\less\forms.less" />
+    <Content Include="Static\lib\bootstrap3\less\glyphicons.less" />
+    <Content Include="Static\lib\bootstrap3\less\grid.less" />
+    <Content Include="Static\lib\bootstrap3\less\input-groups.less" />
+    <Content Include="Static\lib\bootstrap3\less\jumbotron.less" />
+    <Content Include="Static\lib\bootstrap3\less\labels.less" />
+    <Content Include="Static\lib\bootstrap3\less\list-group.less" />
+    <Content Include="Static\lib\bootstrap3\less\media.less" />
+    <Content Include="Static\lib\bootstrap3\less\mixins.less" />
+    <Content Include="Static\lib\bootstrap3\less\modals.less" />
+    <Content Include="Static\lib\bootstrap3\less\navbar.less" />
+    <Content Include="Static\lib\bootstrap3\less\navs.less" />
+    <Content Include="Static\lib\bootstrap3\less\normalize.less" />
+    <Content Include="Static\lib\bootstrap3\less\pager.less" />
+    <Content Include="Static\lib\bootstrap3\less\pagination.less" />
+    <Content Include="Static\lib\bootstrap3\less\panels.less" />
+    <Content Include="Static\lib\bootstrap3\less\popovers.less" />
+    <Content Include="Static\lib\bootstrap3\less\print.less" />
+    <Content Include="Static\lib\bootstrap3\less\progress-bars.less" />
+    <Content Include="Static\lib\bootstrap3\less\responsive-utilities.less" />
+    <Content Include="Static\lib\bootstrap3\less\scaffolding.less" />
+    <Content Include="Static\lib\bootstrap3\less\tables.less" />
+    <Content Include="Static\lib\bootstrap3\less\theme.less" />
+    <Content Include="Static\lib\bootstrap3\less\thumbnails.less" />
+    <Content Include="Static\lib\bootstrap3\less\tooltip.less" />
+    <Content Include="Static\lib\bootstrap3\less\type.less" />
+    <Content Include="Static\lib\bootstrap3\less\utilities.less" />
+    <Content Include="Static\lib\bootstrap3\less\variables.less" />
+    <Content Include="Static\lib\bootstrap3\less\wells.less" />
+    <Content Include="Static\lib\fa4\fonts\fontawesome-webfont.eot" />
+    <Content Include="Static\lib\fa4\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Static\lib\fa4\fonts\fontawesome-webfont.woff" />
+    <Content Include="Static\lib\fa4\fonts\FontAwesome.otf" />
+    <Content Include="Static\lib\fa4\less\bordered-pulled.less" />
+    <Content Include="Static\lib\fa4\less\core.less" />
+    <Content Include="Static\lib\fa4\less\fixed-width.less" />
+    <Content Include="Static\lib\fa4\less\font-awesome.less" />
+    <Content Include="Static\lib\fa4\less\icons.less" />
+    <Content Include="Static\lib\fa4\less\larger.less" />
+    <Content Include="Static\lib\fa4\less\list.less" />
+    <Content Include="Static\lib\fa4\less\mixins.less" />
+    <Content Include="Static\lib\fa4\less\path.less" />
+    <Content Include="Static\lib\fa4\less\rotated-flipped.less" />
+    <Content Include="Static\lib\fa4\less\spinning.less" />
+    <Content Include="Static\lib\fa4\less\stacked.less" />
+    <Content Include="Static\lib\fa4\less\variables.less" />
+    <Content Include="Static\lib\bootstrap3\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Static\lib\fa4\fonts\fontawesome-webfont.svg" />
+    <Content Include="Static\less\site.less" />
+    <Content Include="Static\less\mixins.less" />
+    <None Include="Static\lib\jquery-1.10.2.intellisense.js" />
+    <Content Include="Static\lib\jquery-1.10.2.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -122,9 +217,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="DAL\README.md" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Customer\Create.cshtml" />
@@ -142,7 +238,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+    <Folder Include="Static\img\" />
+    <Folder Include="Static\js\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FossLock.Model\FossLock.Model.csproj">

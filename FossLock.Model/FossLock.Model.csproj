@@ -39,6 +39,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activation.cs" />
+    <Compile Include="Base\EntityBase.cs" />
+    <Compile Include="Base\NamedEntityBase.cs" />
+    <Compile Include="Component\Address.cs" />
+    <Compile Include="Component\HumanContact.cs" />
     <Compile Include="License.cs" />
     <Compile Include="ProductFeature.cs" />
     <Compile Include="ProductVersion.cs" />

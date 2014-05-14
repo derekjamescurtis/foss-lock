@@ -6,13 +6,9 @@ namespace FossLock.Model
 	/// <summary>
 	/// Description of Activation.
 	/// </summary>
-	public class Activation
+	public class Activation : EntityBase
 	{
-        /// <summary>
-        /// 
-        /// </summary>
-        public int Id { get; set; }
-
+        
         /// <summary>
         /// Indicates the date and time this activation was created.
         /// </summary>
