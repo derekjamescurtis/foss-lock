@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FossLock.Model", "FossLock.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FossLock.Web", "FossLock.Web\FossLock.Web.csproj", "{D530C6BD-887B-4BED-837F-7DB07F9E8A6D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FossLock.BLL", "FossLock.BLL\FossLock.BLL.csproj", "{AFD60E24-49D9-458F-92DF-39BF72AC5F96}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -85,6 +87,16 @@ Global
 		{D530C6BD-887B-4BED-837F-7DB07F9E8A6D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{D530C6BD-887B-4BED-837F-7DB07F9E8A6D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{D530C6BD-887B-4BED-837F-7DB07F9E8A6D}.Release|x86.ActiveCfg = Release|Any CPU
+		{AFD60E24-49D9-458F-92DF-39BF72AC5F96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFD60E24-49D9-458F-92DF-39BF72AC5F96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFD60E24-49D9-458F-92DF-39BF72AC5F96}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{AFD60E24-49D9-458F-92DF-39BF72AC5F96}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{AFD60E24-49D9-458F-92DF-39BF72AC5F96}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AFD60E24-49D9-458F-92DF-39BF72AC5F96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFD60E24-49D9-458F-92DF-39BF72AC5F96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFD60E24-49D9-458F-92DF-39BF72AC5F96}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{AFD60E24-49D9-458F-92DF-39BF72AC5F96}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{AFD60E24-49D9-458F-92DF-39BF72AC5F96}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

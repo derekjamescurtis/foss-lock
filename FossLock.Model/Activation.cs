@@ -1,10 +1,10 @@
-﻿using System;
+﻿using FossLock.Model.Base;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace FossLock.Model
 {
-	/// <summary>
-	/// Description of Activation.
+	/// <summary> A single time that a license was successfully activated by the server.
 	/// </summary>
 	public class Activation : EntityBase
 	{

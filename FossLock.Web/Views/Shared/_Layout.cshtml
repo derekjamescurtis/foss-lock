@@ -1,10 +1,14 @@
-﻿<!DOCTYPE html>
+﻿@using System.Web.Optimization;
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     
+    @Styles.Render("~/Static/Styles");
+
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -29,11 +33,12 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Summerset Software, LLC</p>
+            <p>This software is Open Source and released under the terms of the BSD License.</p>
         </footer>
     </div>
 
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
+    @Scripts.Render("~/Static/Scripts");
+
 </body>
 </html>
