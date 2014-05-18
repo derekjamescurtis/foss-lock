@@ -23,11 +23,13 @@ namespace FossLock.Model
         /// <summary>
         /// A SHA-256 hash of the hardware identifiers 
         /// </summary>
+        [Required]
         public string HardwareFingerprint { get; set; }
         
         /// <summary>
         /// A reference to the license this activation was generated for.
         /// </summary>
+        [Required]
         public virtual License License { get; set; }
 
 	}

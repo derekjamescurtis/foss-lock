@@ -9,7 +9,8 @@ namespace FossLock.Model.Base
 {
     public abstract class NamedEntityBase : EntityBase
     {
-        [Required, MaxLength(255)]
+        [Required]
+        [MaxLength(255)]
         public string Name { get; set; }
     }
 }

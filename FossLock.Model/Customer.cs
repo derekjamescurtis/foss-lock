@@ -19,13 +19,11 @@ namespace FossLock.Model
 
         /// <summary> Street address information
         /// </summary>
-        [Required]
-        public virtual Address StreetAddress { get; set; }
+        public Address StreetAddress { get; set; }
 
         /// <summary> Where do you send their invoices?
-        /// </summary>
-        [Required]
-        public virtual Address BillingAddress { get; set; }
+        /// </summary>        
+        public Address BillingAddress { get; set; }
 
         /// <summary> The main office phone number.
         /// </summary>

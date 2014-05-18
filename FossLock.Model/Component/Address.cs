@@ -5,19 +5,23 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FossLock.Model.Component
 {
-    public class Address : EntityBase
+    [ComplexType]
+    public class Address
     {
         /// <summary> A string that represents the billing address street and building number.
         /// </summary>
-        [MaxLength(255), Display(Name = "Address 1")]
+        [Display(Name = "Address 1")]
+        [MaxLength(255)]        
         public string Address1 { get; set; }
 
         /// <summary> A string that represents the billing address apt/ste string.
         /// </summary>
-        [MaxLength(255), Display(Name = "Address 2")]
+        [Display(Name = "Address 2")]
+        [MaxLength(255)]        
         public string Address2 { get; set; }
 
         /// <summary> A string that represents the billing address city.
@@ -28,12 +32,15 @@ namespace FossLock.Model.Component
         /// <summary>
         /// A two character string that represents the billing address state/province.
         /// </summary>
-        [MaxLength(3), Display(Name = "State/Province")]
+        [Display(Name = "State/Province")]
+        [MaxLength(3)]
         public string State { get; set; }
 
         /// <summary> A string that represents the billing address postal (or zip) code.
         /// </summary>
-        [MaxLength(20), Display(Name = "Postal Code")]
+        [Display(Name = "Postal Code")]
+        [DataType(DataType.PostalCode)]
+        [MaxLength(25)]
         public string PostalCode { get; set; }
 
         /// <summary> An ISO 3166 alpha-3 code that represents the billing address country.
