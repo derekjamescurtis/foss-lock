@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FossLock.BLL", "FossLock.BL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FossLock.DAL", "FossLock.DAL\FossLock.DAL.csproj", "{FEB9324E-28A1-4A4F-B8DD-6F686B695A69}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests - BLL", "FossLock.Test.BLL\Tests - BLL.csproj", "{1A3EAE58-C8F0-4289-92D2-9955AD34027A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -109,6 +111,16 @@ Global
 		{FEB9324E-28A1-4A4F-B8DD-6F686B695A69}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{FEB9324E-28A1-4A4F-B8DD-6F686B695A69}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{FEB9324E-28A1-4A4F-B8DD-6F686B695A69}.Release|x86.ActiveCfg = Release|Any CPU
+		{1A3EAE58-C8F0-4289-92D2-9955AD34027A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A3EAE58-C8F0-4289-92D2-9955AD34027A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A3EAE58-C8F0-4289-92D2-9955AD34027A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{1A3EAE58-C8F0-4289-92D2-9955AD34027A}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{1A3EAE58-C8F0-4289-92D2-9955AD34027A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1A3EAE58-C8F0-4289-92D2-9955AD34027A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A3EAE58-C8F0-4289-92D2-9955AD34027A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A3EAE58-C8F0-4289-92D2-9955AD34027A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{1A3EAE58-C8F0-4289-92D2-9955AD34027A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{1A3EAE58-C8F0-4289-92D2-9955AD34027A}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
