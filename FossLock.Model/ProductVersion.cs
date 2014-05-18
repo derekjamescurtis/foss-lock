@@ -20,13 +20,11 @@ namespace FossLock.Model
         /// or a <see cref="Summerset.SemanticVersion"/> instance, depending on which type 
         /// is being used for the product.
         /// </summary>
-        [Required]
         public string Version { get; set; }
 
         /// <summary> A reference to the <see cref="Product"/> this 
         /// version is associated with.
         /// </summary>
-        [Required]
         public virtual Product Product { get; set; }
 
     }

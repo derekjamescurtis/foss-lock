@@ -7,13 +7,13 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FossLock.Model;
-using FossLock.Web.DAL;
+using FossLock.DAL.EF;
 
 namespace FossLock.Web.Controllers
 {
     public class ProductController : Controller
     {
-        private SiteData db = new SiteData();
+        private AppDb db = new AppDb();
 
         // GET: /Product/
         public ActionResult Index()

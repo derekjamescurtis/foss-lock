@@ -55,6 +55,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Faker.NET4">
+      <HintPath>..\packages\Faker.Net.1.0.3\lib\net40\Faker.NET4.dll</HintPath>
+    </Reference>
     <Reference Include="JavaScriptEngineSwitcher.Core">
       <HintPath>..\packages\JavaScriptEngineSwitcher.Core.1.1.3\lib\net40\JavaScriptEngineSwitcher.Core.dll</HintPath>
     </Reference>
@@ -206,11 +209,8 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
-    <Compile Include="DAL\Map\CustomerMap.cs" />
-    <Compile Include="DAL\SiteData.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -222,14 +222,8 @@
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="DAL\README.md" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Customer\Create.cshtml" />
-    <Content Include="Views\Customer\Delete.cshtml" />
-    <Content Include="Views\Customer\Details.cshtml" />
-    <Content Include="Views\Customer\Edit.cshtml" />
-    <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Product\Create.cshtml" />
     <Content Include="Views\Product\Delete.cshtml" />
@@ -249,6 +243,18 @@
     <Folder Include="Static\js\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FossLock.BLL\FossLock.BLL.csproj">
+      <Project>{afd60e24-49d9-458f-92df-39bf72ac5f96}</Project>
+      <Name>FossLock.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FossLock.Core\FossLock.Core.csproj">
+      <Project>{fc4a93e1-337c-45e0-9e62-da00bb95845f}</Project>
+      <Name>FossLock.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FossLock.DAL\FossLock.DAL.csproj">
+      <Project>{feb9324e-28a1-4a4f-b8dd-6f686b695a69}</Project>
+      <Name>FossLock.DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FossLock.Model\FossLock.Model.csproj">
       <Project>{fced1c46-7658-4f58-b5df-d7881b768fc4}</Project>
       <Name>FossLock.Model</Name>

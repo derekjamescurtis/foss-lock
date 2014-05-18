@@ -1,8 +1,7 @@
-﻿using FossLock.Core;
-using FossLock.Model.Base;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using FossLock.Core;
+using FossLock.Model.Base;
 
 namespace FossLock.Model
 {
@@ -11,7 +10,7 @@ namespace FossLock.Model
     /// </summary>
     public class Product : NamedEntityBase
     {
-
+        
         /// <summary> The date this product was initially released.
         /// </summary>
         public DateTime ReleaseDate { get; set; }
