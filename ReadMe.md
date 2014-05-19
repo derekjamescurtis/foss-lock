@@ -11,6 +11,9 @@ be getting finished up within the next 1-2 months.
 
 ## Quick Overview
 
+FossLock is a simple copy protection system intended for use by Independent Software
+Vendors, distributing .NET-based applications.
+
 There are 2 major components of the application 
 
 - FossLock.Web
@@ -28,10 +31,15 @@ information and possibly (depending on configuration) to communicate with FossLo
 
 The idea for this project originally came from 
 [ActiveLock](http://www.activelocksoftware.com), which I had personally used
-in a small project a few years back.  Unfortunately the code base is pretty messy,
-it hasn't been well-maintained for a few years.  Originally, I just wanted to make 
-some updates to the project.. but after looking through the code.. I decided on 
-doing a complete new system instead.
+in a small project a few years back.  It hasn't been updated, and the codebase is 
+fairly messy.. I originally planned on contributing some commits back to 
+the project.. before eventually just deciding on building a fresh system with
+some of the basic ideas borrowed from that project, but a completely new code
+based.
+
+My biggest frusteration with their software was not with integration into my software,
+but really the very buggy license manager application, and the fact that the license
+manager was a Winforms app, and not something web-based.  
 
 ## Table of Contents
 
@@ -43,4 +51,4 @@ doing a complete new system instead.
 
 ## Quick Start Guide
 
-- Step 1, wait for this to get done
+- Here's how you get started--wait for this to get done or contribute some code.

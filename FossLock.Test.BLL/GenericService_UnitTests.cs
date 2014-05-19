@@ -12,9 +12,9 @@ namespace FossLock.Test.BLL
     [TestClass]
     public class GenericService_UnitTests
     {
-
         [TestInitialize]
         public void SetUp() { }
+
 
         [TestMethod]
         [Description("GenericService<T> constructor should never accept null arguments.")]
@@ -55,6 +55,32 @@ namespace FossLock.Test.BLL
             Assert.IsInstanceOfType(f, typeof(ProductFeature));
             Assert.IsNotInstanceOfType(f, typeof(Product));
             Assert.IsTrue(f.IsTransient());            
+        }
+
+        #region Retrieve Data Tests
+
+
+
+        #endregion
+
+        #region .Add(T entity) Tests
+
+        [TestMethod]
+        [Description("GenericService<T>.Add() should throw ArgumentNullException is a null entity is provided.")]
+        public void AddMethod_NullEntity_ThrowsException()
+        {
+            var mockProductRepo = new Mock<IRepository<Product>>();
+            var productService = new GenericService<Product>(mockProductRepo.Object);
+            try
+            {
+                productService.Add(null);
+                Assert.Fail("Expected ArgumentNullException but none thrown");
+            }
+            catch (Exception ex)
+            {
+                Assert.IsInstanceOfType(ex, typeof(ArgumentNullException));
+                Assert.AreEqual("entity", ((ArgumentNullException)ex).ParamName);
+            }
         }
 
         [TestMethod]
@@ -102,6 +128,7 @@ namespace FossLock.Test.BLL
                     entity.Id = 1; 
                     return entity; 
                 });            
+
             var productService = new GenericService<Product>(mockProductRepo.Object);
 
             var mockProduct = new Mock<Product>();
@@ -157,29 +184,143 @@ namespace FossLock.Test.BLL
 
         }
 
+        #endregion
+
+        #region .Update(T entity) Tests
+
         [TestMethod]
-        [Description("Not yet implemented!")]
-        public void UpdateMethod_TransientEntity_ThrowsException() { Assert.Inconclusive("not implemented."); }
+        [Description("Update method should raise a NullArgumentException if it is passed a null.")]
+        public void UpdateMethod_NullEntity_ThrowsException()
+        {
+            var mockProductRepo = new Mock<IRepository<Product>>();
+            var productService = new GenericService<Product>(mockProductRepo.Object);
+
+            try
+            {
+                productService.Update(null);
+                Assert.Fail("Expected an ArgumentNullException but none thrown.");
+            }
+            catch (Exception ex)
+            {
+                Assert.IsInstanceOfType(ex, typeof(ArgumentNullException));
+                Assert.AreEqual("entity", ((ArgumentNullException)ex).ParamName);
+            }
+        }
+
+        [TestMethod]
+        [Description("Update method can only be called on objects already in the data store.")]
+        public void UpdateMethod_TransientEntity_ThrowsException() 
+        {
+            // setup our repository
+            var mockProductRepo = new Mock<IRepository<Product>>();
+            mockProductRepo
+                .Setup(e => e.Update(It.IsAny<Product>()))
+                .Returns((Product entity) => { return entity; });
+
+            var productService = new GenericService<Product>(mockProductRepo.Object);
+            var p = productService.New();
+
+            Assert.IsTrue(p.IsTransient());
+
+            try
+            {
+                productService.Update(p);
+                Assert.Fail("Expected an ArgumentException but none thrown.");
+            }
+            catch (Exception ex) 
+            {
+                Assert.IsInstanceOfType(ex, typeof(ArgumentException));
+                Assert.AreEqual("entity", ((ArgumentException)ex).ParamName);
+            }
+        }
+
+        [TestMethod]
+        [Description("Update method should throw an exception if the entity reports itself invalid.")]
+        public void UpdateMethod_NonValidEntity_ThrowsException() 
+        {
+            var mockProductRepo = new Mock<IRepository<Product>>();
+            mockProductRepo
+                .Setup(e => e.Update(It.IsAny<Product>()))
+                .Returns((Product entity) => { return entity; });
+
+            var productService = new GenericService<Product>(mockProductRepo.Object);
+
+            var mockProduct = new Mock<Product>();            
+            mockProduct
+                .Setup(e => e.ValidationResults())
+                .Returns(new List<ValidationResult> { 
+                    new ValidationResult("Yo dawg, you didn't validate."),
+                    new ValidationResult("Yep.. really didn't validate.")
+                });
+
+            var p = mockProduct.Object;
+            p.Id = 1;
+
+            Assert.AreEqual(false, p.IsTransient());
+            Assert.AreEqual(2, p.ValidationResults().Count);
+
+            try
+            {
+                productService.Update(p);
+                Assert.Fail("Expected an ArgumentException but none thrown.");
+            }
+            catch (Exception ex)
+            {
+                Assert.IsInstanceOfType(ex, typeof(ArgumentException), ex.ToString());
+                Assert.AreEqual("entity", ((ArgumentException)ex).ParamName);
+            }
+        }
+
+        [TestMethod]
+        [Description("Update method should complete successfully as long as ValidateUpdate() returns an empty list.")]
+        public void UpdateMethod_ValidEntity_Succeeds() 
+        {
+            var mockProductRepo = new Mock<IRepository<Product>>();
+            mockProductRepo
+                .Setup(e => e.Update(It.IsAny<Product>()))
+                .Returns((Product entity) => { return entity; });
+
+            var productService = new GenericService<Product>(mockProductRepo.Object);
+
+            var p = productService.New();
+            p.Id = 1;
+
+            productService.Update(p);            
+        }
+
+        #endregion
+
+        #region .Delete(T entity) Tests
 
         [TestMethod]
         [Description("Not yet implemented!")]
-        public void UpdateMethod_NonValidEntity_ThrowsException() { Assert.Inconclusive("not implemented."); }
+        public void DeleteMethod_NullEntity_ThrowsException()
+        {
+            Assert.Inconclusive("not implemented");
+        }
 
         [TestMethod]
         [Description("Not yet implemented!")]
-        public void UpdateMethod_ValidEntity_Succeeds() { Assert.Inconclusive("not implemented."); }
+        public void DeleteMethod_TransientEntity_ThrowsException() 
+        { 
+            Assert.Inconclusive("not implemented."); 
+        }
 
         [TestMethod]
         [Description("Not yet implemented!")]
-        public void DeleteMethod_TransientEntity_ThrowsException() { Assert.Inconclusive("not implemented."); }
+        public void DeleteMethod_NonValidEntity_ThrowsException() 
+        { 
+            Assert.Inconclusive("not implemented."); 
+        }
 
         [TestMethod]
         [Description("Not yet implemented!")]
-        public void DeleteMethod_NonValidEntity_ThrowsException() { Assert.Inconclusive("not implemented."); }
+        public void DeleteMethod_ValidEntity_Succeeds() 
+        { 
+            Assert.Inconclusive("not implemented.");
+        }
 
-        [TestMethod]
-        [Description("Not yet implemented!")]
-        public void DeleteMethod_ValidEntity_Succeeds() { Assert.Inconclusive("not implemented."); }
+        #endregion
 
     }
 }
