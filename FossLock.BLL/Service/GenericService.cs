@@ -9,7 +9,8 @@ using FossLock.Model.Base;
 
 namespace FossLock.BLL.Service
 {
-    public class GenericService<T> : IFossLockService<T> where T : EntityBase
+    public class GenericService<T> : IFossLockService<T> 
+        where T : IEntityBase, new()
     {            
         public GenericService(IRepository<T> repository)
         {
@@ -35,23 +36,59 @@ namespace FossLock.BLL.Service
         
         public T Add(T entity)
         {
-            ValidateAdd(entity);   
+            if (entity == null)
+                throw new ArgumentNullException("entity");
+
+            var results = ValidateAdd(entity);            
+            if (results.Any())
+            {
+                throw new ArgumentException("Entity failed to validate", "entity");
+            }
+
             return _repository.Add(entity);
         }
         public T Update(T entity)
         {
+            if (entity == null)
+                throw new ArgumentNullException("entity");
+
             ValidateUpdate(entity);
             return _repository.Update(entity);
         }
         public void Delete(T entity)
         {
+            if (entity == null)
+                throw new ArgumentNullException("entity");
+
             ValidateDelete(entity);
             _repository.Delete(entity);
         }
 
-        protected virtual ICollection<ValidationResult> ValidateAdd(T entity) { throw new NotImplementedException(); }
-        protected virtual ICollection<ValidationResult> ValidateUpdate(T entity) { throw new NotImplementedException(); }
-        protected virtual ICollection<ValidationResult> ValidateDelete(T entity) { throw new NotImplementedException(); }
-        protected virtual ICollection<ValidationResult> Validate(T entity) { throw new NotImplementedException(); }
+        public T New()
+        {
+            return new T();
+        }
+
+        public virtual ICollection<ValidationResult> ValidateAdd(T entity) 
+        {
+            var results = new List<ValidationResult>();
+
+            // if the entity IS NOT transient, then Add() cannot be called.
+            if (entity.IsTransient() == false)
+            {
+                results.Add(new ValidationResult("Entity is already in the database."));
+            }
+
+            // run entity-level validation
+            if (entity.IsValid() == false)
+            {
+                results.AddRange(entity.ValidationResults());
+            }           
+            
+            return results;
+        }
+        public virtual ICollection<ValidationResult> ValidateUpdate(T entity) { throw new NotImplementedException(); }
+        public virtual ICollection<ValidationResult> ValidateDelete(T entity) { throw new NotImplementedException(); }
+        public virtual ICollection<ValidationResult> Validate(T entity) { throw new NotImplementedException(); }
     }
 }

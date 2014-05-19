@@ -40,13 +40,17 @@
   <ItemGroup>
     <Compile Include="Activation.cs" />
     <Compile Include="Base\EntityBase.cs" />
+    <Compile Include="Base\IEntityBase.cs" />
+    <Compile Include="Base\INamedEntityBase.cs" />
     <Compile Include="Base\NamedEntityBase.cs" />
     <Compile Include="Base\SharpArchitecture\BaseObject.cs" />
     <Compile Include="Base\SharpArchitecture\BaseObjectEqualityComparer.cs" />
     <Compile Include="Base\SharpArchitecture\DomainSignatureAttribute.cs" />
     <Compile Include="Base\SharpArchitecture\EntityWithTypedId.cs" />
+    <Compile Include="Base\SharpArchitecture\IBaseObject.cs" />
     <Compile Include="Base\SharpArchitecture\IEntityWithTypedId.cs" />
     <Compile Include="Base\SharpArchitecture\IHasAssignedId.cs" />
+    <Compile Include="Base\SharpArchitecture\IValidatableObject.cs" />
     <Compile Include="Base\SharpArchitecture\ValidatableObject.cs" />
     <Compile Include="Component\Address.cs" />
     <Compile Include="Component\HumanContact.cs" />

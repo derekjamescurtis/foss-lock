@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace FossLock.Model.Base
 {
-    public abstract class NamedEntityBase : EntityBase
+    public abstract class NamedEntityBase : EntityBase, INamedEntityBase
     {
-        [Required]
-        [MaxLength(255)]
         public string Name { get; set; }
     }
 }

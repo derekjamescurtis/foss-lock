@@ -8,7 +8,7 @@ using FossLock.Model.Base;
 namespace FossLock.DAL.Repository
 {
     public interface IRepository<T> 
-        where T : EntityBase
+        where T : IEntityBase
     {
         T GetById(int id);
         ICollection<T> GetAll();

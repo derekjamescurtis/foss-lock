@@ -15,7 +15,7 @@ namespace FossLock.Model.Base.SharpArchitecture
     ///     an in depth and conclusive resolution.
     /// </summary>
     [Serializable]
-    public abstract class BaseObject
+    public abstract class BaseObject : IBaseObject
     {
         /// <summary>
         ///     To help ensure hashcode uniqueness, a carefully selected random number multiplier 

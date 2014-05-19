@@ -65,7 +65,6 @@ namespace FossLock.DAL.Repository
         /// <returns></returns>
         public T Add(T entity)
         {
-            RunValidation(entity);
             var dbSet = _db.Set<T>();
             var returnEntity = dbSet.Add(entity);
             _db.SaveChanges();
@@ -79,7 +78,6 @@ namespace FossLock.DAL.Repository
         /// <returns></returns>
         public T Update(T entity)
         {
-            RunValidation(entity);
             var dbSet = _db.Set<T>();
             _db.Entry<T>(entity).State = EntityState.Modified;
             _db.SaveChanges();
@@ -92,25 +90,12 @@ namespace FossLock.DAL.Repository
         /// <param name="entity"></param>
         public void Delete(T entity)
         {
-            RunValidation(entity);
             var dbSet = _db.Set<T>();
             dbSet.Remove(entity);
             _db.SaveChanges();
         }
        
         #endregion
-
-        public void RunValidation(T entity)
-        {
-            if (!entity.IsValid())
-            {
-                // TODO: implement this better!!
-                // we're returning not much good information here for our viewmodels to use..
-                var results = entity.ValidationResults();
-                var firstResult = results.First();
-                throw new ValidationException(firstResult.ErrorMessage);                
-            }
-        }
 
     }
 }
