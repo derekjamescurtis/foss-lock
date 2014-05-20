@@ -10,10 +10,9 @@ using FossLock.Model.Base;
 
 namespace FossLock.DAL.Repository
 {
-    public class EFRepository<T> : IRepository<T> 
+    public class EFRepository<T> : IRepository<T>
         where T : EntityBase
     {
-
         /// <summary>Initializes a new instance of this class.
         /// Automatically instantiates a new DbContext.
         /// </summary>
@@ -35,7 +34,7 @@ namespace FossLock.DAL.Repository
             _db = source;
         }
 
-        readonly AppDb _db = null;
+        private readonly AppDb _db = null;
 
         /// <summary>Returns a reference to the DbContext
         /// being used by this repository instance.
@@ -44,7 +43,7 @@ namespace FossLock.DAL.Repository
         {
             get { return _db; }
         }
-        
+
         #region IRepository<T> Members
 
         public T GetById(int id)
@@ -53,13 +52,13 @@ namespace FossLock.DAL.Repository
             return dbSet.Find(id);
         }
 
-        public ICollection<T> GetAll()
+        public IList<T> GetAll()
         {
             var dbSet = _db.Set<T>();
             return dbSet.ToList();
         }
 
-        /// <summary>Adds the entity to the object graph and 
+        /// <summary>Adds the entity to the object graph and
         /// immediately writes all pending changes to the data store.
         /// </summary>
         /// <param name="entity"></param>
@@ -72,7 +71,7 @@ namespace FossLock.DAL.Repository
             return returnEntity;
         }
 
-        /// <summary>Makes the specified entity as 'Modified' and 
+        /// <summary>Makes the specified entity as 'Modified' and
         /// immediately writes all pending changes to the data store.
         /// </summary>
         /// <param name="entity"></param>
@@ -95,8 +94,7 @@ namespace FossLock.DAL.Repository
             dbSet.Remove(entity);
             _db.SaveChanges();
         }
-       
-        #endregion
 
+        #endregion IRepository<T> Members
     }
 }

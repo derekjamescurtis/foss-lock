@@ -7,13 +7,17 @@ using FossLock.Model.Base;
 
 namespace FossLock.DAL.Repository
 {
-    public interface IRepository<T> 
+    public interface IRepository<T>
         where T : IEntityBase
     {
         T GetById(int id);
-        ICollection<T> GetAll();
+
+        IList<T> GetAll();
+
         T Add(T entity);
+
         T Update(T entity);
+
         void Delete(T entity);
     }
 }

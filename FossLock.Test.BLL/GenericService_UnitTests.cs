@@ -9,11 +9,6 @@ using Moq;
 
 namespace FossLock.Test.BLL
 {
-    /*
-     * TODO: data retrieval tests
-     * TODO: it would be better to have these tests rely on a mock entity, instead of Products.
-     */
-
     [TestClass]
     public class GenericService_UnitTests
     {
@@ -26,12 +21,20 @@ namespace FossLock.Test.BLL
         {
             { "Add", 0 },
             { "Update", 0 },
-            { "Delete", 0 }
+            { "Delete", 0 },
+            { "GetById", 0 },
+            { "GetList", 0 }
         };
 
         [TestInitialize]
         public void SetUp()
         {
+            // will be used in GetById and GetAll mocks
+            var entities = new List<Product>();
+            for (int i = 0; i < 100; i++)
+                entities.Add(new Product { Id = i, Name = "Product" });
+
+            // setup a fake repository for productService .. retrieves data from the above list.
             var mockProductRepo = new Mock<IRepository<Product>>();
             mockProductRepo
                 .Setup(e => e.Add(It.IsAny<Product>()))
@@ -48,6 +51,17 @@ namespace FossLock.Test.BLL
             mockProductRepo
                 .Setup(e => e.Delete(It.IsAny<Product>()))
                 .Callback(() => { productRepoCalls["Delete"] += 1; });
+            mockProductRepo
+                .Setup(e => e.GetById(It.IsAny<int>()))
+                .Callback(() => { productRepoCalls["GetById"] += 1; })
+                .Returns((int id) =>
+                {
+                    return entities.Find(e => e.Id == id);
+                });
+            mockProductRepo
+                .Setup(e => e.GetAll())
+                .Callback(() => { productRepoCalls["GetList"] += 1; })
+                .Returns(entities);
 
             // we want our service to call all of it's real methods
             // they're all marked as virtual so we have to explicitally tell moq to call them.
@@ -56,11 +70,15 @@ namespace FossLock.Test.BLL
 
             mockProductService.Setup(e => e.Add(It.IsAny<Product>())).CallBase();
             mockProductService.Setup(e => e.Update(It.IsAny<Product>())).CallBase();
-            // mockProductService.Setup(e => e.Delete(It.IsAny<Product>())); .. can't use CallBase() on a void method?
+            // mockProductService.Setup(e => e.Delete(It.IsAny<Product>()));
 
             mockProductService.Setup(e => e.ValidateAdd(It.IsAny<Product>())).CallBase();
             mockProductService.Setup(e => e.ValidateUpdate(It.IsAny<Product>())).CallBase();
             mockProductService.Setup(e => e.ValidateDelete(It.IsAny<Product>())).CallBase();
+
+            mockProductService.Setup(e => e.GetById(It.IsAny<int>())).CallBase();
+            mockProductService.Setup(e => e.GetList()).CallBase();
+            mockProductService.Setup(e => e.GetList(It.IsAny<int>(), It.IsAny<int>())).CallBase();
 
             productService = mockProductService.Object;
         }
@@ -79,6 +97,88 @@ namespace FossLock.Test.BLL
         }
 
         #region Retrieve Data Tests
+
+        [TestMethod]
+        [Description(".GetById() should require a positive integer argument.. If not, we want to make ")]
+        public void GetById_InvalidParameter_ThrowsException()
+        {
+            var repoGetByIdCalls = productRepoCalls["GetById"];
+
+            try
+            {
+                // id cannot be less than 1
+                var p = productService.GetById(0);
+                Assert.Fail("Expected an ArgumentOutOfRangeException, but none thrown.");
+            }
+            catch (Exception ex)
+            {
+                Assert.IsInstanceOfType(ex, typeof(ArgumentOutOfRangeException));
+                Assert.AreEqual("id", ((ArgumentOutOfRangeException)ex).ParamName);
+                Assert.AreEqual(repoGetByIdCalls, productRepoCalls["GetById"]);
+            }
+        }
+
+        [TestMethod]
+        [Description(".GetById() returns null if no matches found.")]
+        public void GetById_NoMatchingIdentity_ReturnsNull()
+        {
+            var repoGetByIdCalls = productRepoCalls["GetById"];
+
+            var p = productService.GetById(50000); // request an ID well outside of our range in SetUp()
+
+            Assert.IsNull(p);
+            Assert.AreEqual((repoGetByIdCalls + 1), productRepoCalls["GetById"]);
+        }
+
+        [TestMethod]
+        [Description(".GetById() should return expected entity.")]
+        public void GetById_ValidId_ReturnsExpectedResult()
+        {
+            var repoGetByIdCalls = productRepoCalls["GetById"];
+
+            var idRequested = 1;
+            var p = productService.GetById(idRequested); // request an ID well outside of our range in SetUp()
+
+            Assert.IsInstanceOfType(p, typeof(Product));
+            Assert.AreEqual(idRequested, p.Id);
+            Assert.AreEqual((repoGetByIdCalls + 1), productRepoCalls["GetById"]);
+        }
+
+        [TestMethod]
+        [Description(".GetList() should return the expected results.")]
+        public void GetList_Returns_ExpectedSlice()
+        {
+            var repoGetList = productRepoCalls["GetList"];
+
+            // make sure our full list is what we expect
+            var fullList = productService.GetList();
+            Assert.AreEqual(100, fullList.Count,
+                "We're expecting 100 elements to exist in our mock"); // weaksauce.. dependent on list setup in SetUp()
+            Assert.AreEqual((repoGetList + 1), productRepoCalls["GetList"],
+                "A single call to the underlying repository is expected");
+
+            var partialList = productService.GetList(2, 10);
+            Assert.AreEqual(10, partialList.Count,
+                "Partial list should contain 10 elements.");
+            Assert.AreEqual(10, partialList[0].Id,
+                "First element in the partial list should have Id==10");
+            Assert.AreEqual(19, partialList[9].Id,
+                "Last element in the partial list should have Id==19");
+            Assert.AreEqual((repoGetList + 2), productRepoCalls["GetList"],
+                "A second call to the underlying repo is now expected.");
+
+            partialList = productService.GetList(pageNumber: 1000, pageSize: 10);
+            Assert.AreEqual(0, partialList.Count,
+                "A request outside of the bound of the list should return an empty list.");
+            Assert.AreEqual((repoGetList + 3), productRepoCalls["GetList"],
+                "A third call to the underlying repo is now expected.");
+
+            partialList = productService.GetList(pageNumber: 10, pageSize: 11);
+            Assert.AreEqual(1, partialList.Count,
+                "A request extending past the bounds of the list should return a list with just the items until the end of the list.");
+            Assert.AreEqual((repoGetList + 4), productRepoCalls["GetList"],
+                "A fourth call to the underlying repo is now expected.");
+        }
 
         #endregion Retrieve Data Tests
 

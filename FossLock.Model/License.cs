@@ -9,8 +9,8 @@ namespace FossLock.Model
     /// <summary>
     /// An instance of a specific <see cref="Product"/> purchased by a <see cref="Customer"/>.
     /// </summary>
-	public class License : EntityBase
-	{
+    public class License : EntityBase
+    {
 		
         /// <summary> A reference to the customer that has purchased this license.
         /// </summary>

@@ -55,7 +55,7 @@ namespace FossLock.BLL.Service
             return _repository.GetById(id);
         }
 
-        public virtual ICollection<T> GetList()
+        public virtual IList<T> GetList()
         {
             return GetList(1, int.MaxValue);
         }
@@ -69,7 +69,7 @@ namespace FossLock.BLL.Service
         /// <param name="pageNumber"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
-        public virtual ICollection<T> GetList(int pageNumber, int pageSize)
+        public virtual IList<T> GetList(int pageNumber, int pageSize)
         {
             // make sure these make sense.
             if (pageNumber < 1)
@@ -81,7 +81,7 @@ namespace FossLock.BLL.Service
                             .Skip((pageNumber - 1) * pageSize)
                             .Take(pageSize);
 
-            return (ICollection<T>)slice;
+            return slice.ToList();
         }
 
         #endregion Data Retrieval
