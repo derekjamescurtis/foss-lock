@@ -9,6 +9,10 @@ using FossLock.Model.Base;
 
 namespace FossLock.BLL.Service
 {
+    /*
+     * TODO: move documentation from this class to it's underlying interface.
+     */ 
+
     /// <summary> A generic service for retrieving business entities
     /// and validating any changes made to those entities before passing
     /// them back to the repository to be Added/Updated/Deleted.
@@ -75,7 +79,7 @@ namespace FossLock.BLL.Service
             var results = ValidateAdd(entity);            
             if (results.Any())
                 throw new ArgumentException("Entity failed to validate", "entity");
-            
+
             return _repository.Add(entity);
         }
         public virtual T Update(T entity)
@@ -120,6 +124,7 @@ namespace FossLock.BLL.Service
             
             return results;
         }
+        
         public virtual ICollection<ValidationResult> ValidateUpdate(T entity) 
         {
             var results = new List<ValidationResult>();
@@ -137,7 +142,14 @@ namespace FossLock.BLL.Service
 
             return results;
         }
-        public virtual ICollection<ValidationResult> ValidateDelete(T entity) { throw new NotImplementedException(); }
+        
+        public virtual ICollection<ValidationResult> ValidateDelete(T entity) 
+        { 
+            // this should check for transient
+            // should NOT check for entity-level validation
+            // if additional checks are required, this should be overridden by a derrived class.
+            throw new NotImplementedException(); 
+        }
         
         #endregion
     }
