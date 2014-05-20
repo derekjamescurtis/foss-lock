@@ -36,6 +36,7 @@ namespace FossLock.DAL.Repository
         }
 
         readonly AppDb _db = null;
+
         /// <summary>Returns a reference to the DbContext
         /// being used by this repository instance.
         /// </summary>
