@@ -1,21 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FossLock.Client", "FossLock.Client\FossLock.Client.csproj", "{174EBCA3-5D67-4675-BE08-4C49C210716E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib - Client", "FossLock.Client\Lib - Client.csproj", "{174EBCA3-5D67-4675-BE08-4C49C210716E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HardwareFingerprint", "HardwareFingerprint\HardwareFingerprint.csproj", "{51306562-B699-4DD2-ABB6-F2A122E77F6D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HardwareFingerprint", "FossLock.HardwareFingerprint\HardwareFingerprint.csproj", "{51306562-B699-4DD2-ABB6-F2A122E77F6D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicenseHandler", "LicenseHandler\LicenseHandler.csproj", "{74CD4824-1B49-46A8-B2EC-D36ABB46B240}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicenseHandler", "FossLock.LicenseHandler\LicenseHandler.csproj", "{74CD4824-1B49-46A8-B2EC-D36ABB46B240}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FossLock.Core", "FossLock.Core\FossLock.Core.csproj", "{FC4A93E1-337C-45E0-9E62-DA00BB95845F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib - Core", "FossLock.Core\Lib - Core.csproj", "{FC4A93E1-337C-45E0-9E62-DA00BB95845F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FossLock.Model", "FossLock.Model\FossLock.Model.csproj", "{FCED1C46-7658-4F58-B5DF-D7881B768FC4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib - Model", "FossLock.Model\Lib - Model.csproj", "{FCED1C46-7658-4F58-B5DF-D7881B768FC4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FossLock.Web", "FossLock.Web\FossLock.Web.csproj", "{D530C6BD-887B-4BED-837F-7DB07F9E8A6D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web - License Manager", "FossLock.Web\Web - License Manager.csproj", "{D530C6BD-887B-4BED-837F-7DB07F9E8A6D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FossLock.BLL", "FossLock.BLL\FossLock.BLL.csproj", "{AFD60E24-49D9-458F-92DF-39BF72AC5F96}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib - BLL", "FossLock.BLL\Lib - BLL.csproj", "{AFD60E24-49D9-458F-92DF-39BF72AC5F96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FossLock.DAL", "FossLock.DAL\FossLock.DAL.csproj", "{FEB9324E-28A1-4A4F-B8DD-6F686B695A69}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib - DAL", "FossLock.DAL\Lib - DAL.csproj", "{FEB9324E-28A1-4A4F-B8DD-6F686B695A69}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests - BLL", "FossLock.Test.BLL\Tests - BLL.csproj", "{1A3EAE58-C8F0-4289-92D2-9955AD34027A}"
 EndProject
@@ -24,7 +24,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		ReadMe.md = ReadMe.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FossLock.Test.DAL", "FossLock.Test.DAL\FossLock.Test.DAL.csproj", "{A66AD3A9-EA75-411E-AFCD-6A3C9935A9DE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests - DAL", "FossLock.Test.DAL\Tests - DAL.csproj", "{A66AD3A9-EA75-411E-AFCD-6A3C9935A9DE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -58,17 +58,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FossLock.BLL\FossLock.BLL.csproj">
+    <ProjectReference Include="..\FossLock.BLL\Lib - BLL.csproj">
       <Project>{afd60e24-49d9-458f-92df-39bf72ac5f96}</Project>
-      <Name>FossLock.BLL</Name>
+      <Name>Lib - BLL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\FossLock.DAL\FossLock.DAL.csproj">
+    <ProjectReference Include="..\FossLock.DAL\Lib - DAL.csproj">
       <Project>{feb9324e-28a1-4a4f-b8dd-6f686b695a69}</Project>
-      <Name>FossLock.DAL</Name>
+      <Name>Lib - DAL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\FossLock.Model\FossLock.Model.csproj">
+    <ProjectReference Include="..\FossLock.Model\Lib - Model.csproj">
       <Project>{fced1c46-7658-4f58-b5df-d7881b768fc4}</Project>
-      <Name>FossLock.Model</Name>
+      <Name>Lib - Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

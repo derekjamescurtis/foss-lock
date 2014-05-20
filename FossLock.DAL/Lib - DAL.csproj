@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{AFD60E24-49D9-458F-92DF-39BF72AC5F96}</ProjectGuid>
+    <ProjectGuid>{FEB9324E-28A1-4A4F-B8DD-6F686B695A69}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FossLock.BLL</RootNamespace>
-    <AssemblyName>FossLock.BLL</AssemblyName>
+    <RootNamespace>FossLock.DAL</RootNamespace>
+    <AssemblyName>FossLock.DAL</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -21,7 +21,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <RunCodeAnalysis>true</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,6 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -42,19 +47,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EF\AppDb.cs" />
+    <Compile Include="EF\Map\NamedEntityMap.cs" />
+    <Compile Include="EF\Map\ProductFeatureMap.cs" />
+    <Compile Include="EF\Map\ProductMap.cs" />
+    <Compile Include="EF\Map\ProductVersionMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service\GenericService.cs" />
-    <Compile Include="Service\IFossLockService.cs" />
-    <Compile Include="Service\ProductService.cs" />
+    <Compile Include="Repository\EFRepository.cs" />
+    <Compile Include="Repository\IRepository.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FossLock.DAL\FossLock.DAL.csproj">
-      <Project>{feb9324e-28a1-4a4f-b8dd-6f686b695a69}</Project>
-      <Name>FossLock.DAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FossLock.Model\FossLock.Model.csproj">
+    <ProjectReference Include="..\FossLock.Model\Lib - Model.csproj">
       <Project>{fced1c46-7658-4f58-b5df-d7881b768fc4}</Project>
-      <Name>FossLock.Model</Name>
+      <Name>Lib - Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
