@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib - Client", "FossLock.Client\Lib - Client.csproj", "{174EBCA3-5D67-4675-BE08-4C49C210716E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HardwareFingerprint", "FossLock.HardwareFingerprint\HardwareFingerprint.csproj", "{51306562-B699-4DD2-ABB6-F2A122E77F6D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib -HardwareFingerprint", "FossLock.HardwareFingerprint\Lib -HardwareFingerprint.csproj", "{51306562-B699-4DD2-ABB6-F2A122E77F6D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicenseHandler", "FossLock.LicenseHandler\LicenseHandler.csproj", "{74CD4824-1B49-46A8-B2EC-D36ABB46B240}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib - LicenseHandler", "FossLock.LicenseHandler\Lib - LicenseHandler.csproj", "{74CD4824-1B49-46A8-B2EC-D36ABB46B240}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib - Core", "FossLock.Core\Lib - Core.csproj", "{FC4A93E1-337C-45E0-9E62-DA00BB95845F}"
 EndProject
