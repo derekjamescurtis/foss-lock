@@ -9,9 +9,12 @@ using FossLock.Model;
 
 namespace FossLock.BLL.Service
 {
-    public sealed class ProductService : GenericService<Product> 
+    public sealed class ProductService : GenericService<Product>
     {
-        public ProductService(IRepository<Product> repository) : 
-            base(repository) { }
+        public ProductService(IRepository<Product> repository) :
+            base(repository)
+        {
+            var x = new EFRepository<Product>();
+        }
     }
 }

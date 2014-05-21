@@ -34,14 +34,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Management" />
     <Reference Include="System.Management.Instrumentation" />
     <Reference Include="Mono.Posix" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MyClass.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="IHardwareIdentifiers.cs" />
     <Compile Include="WindowsFingerprint.cs" />
@@ -49,8 +46,15 @@
     <Compile Include="FingerprintFactory.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
+    <None Include="ReadMe.md" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="LocalRefs\Mono\4.5\Mono.Posix.dll" />
+    <Content Include="LocalRefs\MS\4.5\System.Management.dll" />
+    <Content Include="LocalRefs\MS\4.5\System.Management.Instrumentation.dll" />
+    <Content Include="LocalRefs\MS\4.5\System.Management.Instrumentation.xml" />
+    <Content Include="LocalRefs\MS\4.5\System.Management.xml" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -10,91 +10,64 @@ using FossLock.Model.Base;
 
 namespace FossLock.DAL.Repository
 {
-    public class EFRepository<T> : IRepository<T>
-        where T : EntityBase
+    /// <summary>
+    ///     A repository backed by an Entity Framework DbContext.
+    /// </summary>
+    /// <typeparam name="TEntity">
+    ///     The entity type to be managed by this repository.
+    /// </typeparam>
+    public class EFRepository<TEntity> : RepositoryBase<TEntity, AppDb>
+        where TEntity : EntityBase
     {
-        /// <summary>Initializes a new instance of this class.
-        /// Automatically instantiates a new DbContext.
-        /// </summary>
+        #region Constructors
+
         public EFRepository()
-        {
-            _db = new AppDb();
-        }
+            : base()
+        { }
 
-        // TODO: source parameter might need to change to OBJECT .. we'll see if I ever get around to implementing a repo for anything other than EF..
-
-        /// <summary>Initializes a new instance using whatever
-        /// repository is provided to the constructor.
-        /// </summary>
-        /// <param name="source"></param>
         public EFRepository(AppDb source)
+            : base(source)
+        { }
+
+        #endregion Constructors
+
+        #region RepositoryBase<TEntity, TDataSource>
+
+        public override TEntity GetById(int id)
         {
-            if (source == null)
-                throw new ArgumentNullException("source");
-            _db = source;
-        }
-
-        private readonly AppDb _db = null;
-
-        /// <summary>Returns a reference to the DbContext
-        /// being used by this repository instance.
-        /// </summary>
-        public object Source
-        {
-            get { return _db; }
-        }
-
-        #region IRepository<T> Members
-
-        public T GetById(int id)
-        {
-            var dbSet = _db.Set<T>();
+            var dbSet = _source.Set<TEntity>();
             return dbSet.Find(id);
         }
 
-        public IList<T> GetAll()
+        public override IList<TEntity> GetAll()
         {
-            var dbSet = _db.Set<T>();
+            var dbSet = _source.Set<TEntity>();
             return dbSet.ToList();
         }
 
-        /// <summary>Adds the entity to the object graph and
-        /// immediately writes all pending changes to the data store.
-        /// </summary>
-        /// <param name="entity"></param>
-        /// <returns></returns>
-        public T Add(T entity)
+        public override TEntity Add(TEntity entity)
         {
-            var dbSet = _db.Set<T>();
+            var dbSet = _source.Set<TEntity>();
             var returnEntity = dbSet.Add(entity);
-            _db.SaveChanges();
+            _source.SaveChanges();
             return returnEntity;
         }
 
-        /// <summary>Makes the specified entity as 'Modified' and
-        /// immediately writes all pending changes to the data store.
-        /// </summary>
-        /// <param name="entity"></param>
-        /// <returns></returns>
-        public T Update(T entity)
+        public override TEntity Update(TEntity entity)
         {
-            var dbSet = _db.Set<T>();
-            _db.Entry<T>(entity).State = EntityState.Modified;
-            _db.SaveChanges();
+            var dbSet = _source.Set<TEntity>();
+            _source.Entry<TEntity>(entity).State = EntityState.Modified;
+            _source.SaveChanges();
             return entity;
         }
 
-        /// <summary>Removes the specified object from the object graph
-        /// and immediately writes all pending changes to the data store.
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Delete(T entity)
+        public override void Delete(TEntity entity)
         {
-            var dbSet = _db.Set<T>();
+            var dbSet = _source.Set<TEntity>();
             dbSet.Remove(entity);
-            _db.SaveChanges();
+            _source.SaveChanges();
         }
 
-        #endregion IRepository<T> Members
+        #endregion RepositoryBase<TEntity, TDataSource>
     }
 }
