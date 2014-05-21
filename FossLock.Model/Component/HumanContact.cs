@@ -1,10 +1,4 @@
-﻿using FossLock.Model.Base;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FossLock.Model.Component
@@ -54,6 +48,5 @@ namespace FossLock.Model.Component
         /// <summary> Any extra user-provided data for this entity.
         /// </summary>
         public string Notes { get; set; }
-
     }
 }

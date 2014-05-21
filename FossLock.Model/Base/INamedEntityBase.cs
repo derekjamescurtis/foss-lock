@@ -1,7 +1,6 @@
-﻿using System;
-namespace FossLock.Model.Base
+﻿namespace FossLock.Model.Base
 {
-    interface INamedEntityBase : IEntityBase
+    internal interface INamedEntityBase : IEntityBase
     {
         string Name { get; set; }
     }

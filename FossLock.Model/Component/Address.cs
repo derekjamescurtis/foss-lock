@@ -1,10 +1,4 @@
-﻿using FossLock.Model.Base;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FossLock.Model.Component
@@ -15,13 +9,13 @@ namespace FossLock.Model.Component
         /// <summary> A string that represents the billing address street and building number.
         /// </summary>
         [Display(Name = "Address 1")]
-        [MaxLength(255)]        
+        [MaxLength(255)]
         public string Address1 { get; set; }
 
         /// <summary> A string that represents the billing address apt/ste string.
         /// </summary>
         [Display(Name = "Address 2")]
-        [MaxLength(255)]        
+        [MaxLength(255)]
         public string Address2 { get; set; }
 
         /// <summary> A string that represents the billing address city.
