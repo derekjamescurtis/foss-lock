@@ -1,3 +1,4 @@
+# visual studio standard ignores
 Thumbs.db
 *.obj
 *.exe
@@ -27,3 +28,6 @@ _ReSharper*/
 [Tt]est[Rr]esult*
 *.vssscc
 $tf*/
+
+# monodevelop-specific
+*.userprefs
