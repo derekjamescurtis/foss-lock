@@ -14,7 +14,6 @@ namespace FossLock.BLL.Service
         public ProductService(IRepository<Product> repository) :
             base(repository)
         {
-            var x = new EFRepository<Product>();
         }
     }
 }

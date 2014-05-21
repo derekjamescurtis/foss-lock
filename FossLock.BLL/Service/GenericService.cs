@@ -9,27 +9,28 @@ using FossLock.Model.Base;
 
 namespace FossLock.BLL.Service
 {
-    /*
-     * TODO: move documentation from this class to it's underlying interface.
-     */
-
-    /// <summary> A generic service for retrieving business entities
-    /// and validating any changes made to those entities before passing
-    /// them back to the repository to be Added/Updated/Deleted.
+    /// <summary> 
+    ///     A generic service for retrieving business entities
+    ///     and validating any changes made to those entities before passing
+    ///     them back to the repository to be Added/Updated/Deleted.
     /// </summary>
-    /// <remarks> Note: Upon calls to Add()/Update()/Delete(), the underlying
-    /// repository should immediately commit all pending changes to the data store.
+    /// <remarks>
+    ///     Note: Upon calls to Add()/Update()/Delete(), the underlying
+    ///     repository should immediately commit all pending changes to the data store.
     /// </remarks>
-    /// <typeparam name="T"> Any entity type from under the FossLock.Models namespace.
+    /// <typeparam name="T">
+    ///     Any entity type from under the FossLock.Models namespace.
     /// </typeparam>
     public class GenericService<T> : IFossLockService<T>
         where T : IEntityBase, new()
     {
-        /// <summary> Initializes a new instance of this class with the
-        /// provided repository.
+        /// <summary> 
+        ///     Initializes a new instance of this class with the
+        ///     provided repository.
         /// </summary>
-        /// <param name="repository"> An IRepository object that will be used for
-        /// retrieving entities and persisting changes to the data store.
+        /// <param name="repository">
+        ///     An IRepository object that will be used for
+        ///     retrieving entities and persisting changes to the data store.
         /// </param>
         public GenericService(IRepository<T> repository)
         {
@@ -55,16 +56,18 @@ namespace FossLock.BLL.Service
             return _repository.GetById(id);
         }
 
+        
         public virtual IList<T> GetList()
         {
             return GetList(1, int.MaxValue);
         }
 
-        /// <summary>Gets a paginated selection of data from the underlying repository.
-        /// NOTE: this is a very, very inefficient call.  Basically, it grabs the full list
-        /// from the underlying repository, and then strips off what it doesn't need.
-        /// There isn't any real filtering capabilities here either.. it tries to be as dumb
-        /// as possible about what the underlying repository could be based on.
+        /// <summary>
+        ///     Gets a paginated selection of data from the underlying repository.
+        ///     NOTE: this is a very, very inefficient call.  Basically, it grabs the full list
+        ///     from the underlying repository, and then strips off what it doesn't need.
+        ///     There isn't any real filtering capabilities here either.. it tries to be as dumb
+        ///     as possible about what the underlying repository could be based on.
         /// </summary>
         /// <param name="pageNumber"></param>
         /// <param name="pageSize"></param>
