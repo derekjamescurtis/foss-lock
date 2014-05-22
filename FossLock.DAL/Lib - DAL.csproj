@@ -50,6 +50,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EF\AppDb.cs" />
+    <Compile Include="EF\Map\ComplexType\AddressMap.cs" />
+    <Compile Include="EF\Map\ComplexType\HumanContactMap.cs" />
     <Compile Include="EF\Map\NamedEntityMap.cs" />
     <Compile Include="EF\Map\ProductFeatureMap.cs" />
     <Compile Include="EF\Map\ProductMap.cs" />

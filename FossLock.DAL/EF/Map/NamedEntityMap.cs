@@ -8,7 +8,7 @@ using FossLock.Model.Base;
 
 namespace FossLock.DAL.EF.Map
 {
-    abstract class NamedEntityBaseMap<T> : EntityTypeConfiguration<T> 
+    internal abstract class NamedEntityBaseMap<T> : EntityTypeConfiguration<T>
         where T : NamedEntityBase
     {
         public NamedEntityBaseMap()
