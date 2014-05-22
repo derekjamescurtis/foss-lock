@@ -35,15 +35,22 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activation.cs" />
+    <Compile Include="Base\DesignByContract\AssertionException.cs" />
+    <Compile Include="Base\DesignByContract\DesignByContractException.cs" />
+    <Compile Include="Base\DesignByContract\InvariantException.cs" />
+    <Compile Include="Base\DesignByContract\PostconditionException.cs" />
+    <Compile Include="Base\DesignByContract\PreconditionException.cs" />
     <Compile Include="Base\EntityBase.cs" />
     <Compile Include="Base\IEntityBase.cs" />
     <Compile Include="Base\INamedEntityBase.cs" />
     <Compile Include="Base\NamedEntityBase.cs" />
     <Compile Include="Base\SharpArchitecture\BaseObject.cs" />
     <Compile Include="Base\SharpArchitecture\BaseObjectEqualityComparer.cs" />
+    <Compile Include="Base\DesignByContract\Check.cs" />
     <Compile Include="Base\SharpArchitecture\DomainSignatureAttribute.cs" />
     <Compile Include="Base\SharpArchitecture\EntityWithTypedId.cs" />
     <Compile Include="Base\SharpArchitecture\IBaseObject.cs" />
@@ -51,6 +58,7 @@
     <Compile Include="Base\SharpArchitecture\IHasAssignedId.cs" />
     <Compile Include="Base\SharpArchitecture\IValidatableObject.cs" />
     <Compile Include="Base\SharpArchitecture\ValidatableObject.cs" />
+    <Compile Include="Base\SharpArchitecture\ValueObject.cs" />
     <Compile Include="Component\Address.cs" />
     <Compile Include="Component\HumanContact.cs" />
     <Compile Include="License.cs" />

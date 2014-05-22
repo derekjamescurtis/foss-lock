@@ -4,12 +4,12 @@ using System.ComponentModel.DataAnnotations;
 using FossLock.BLL.Service;
 using FossLock.DAL.Repository;
 using FossLock.Model;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using NUnit.Framework;
 
 namespace FossLock.Test.BLL
 {
-    [TestClass]
+    [TestFixture]
     public class GenericService_UnitTests
     {
         #region Test Setup
@@ -26,7 +26,7 @@ namespace FossLock.Test.BLL
             { "GetList", 0 }
         };
 
-        [TestInitialize]
+        [TestFixtureSetUp]
         public void SetUp()
         {
             // will be used in GetById and GetAll mocks
@@ -85,20 +85,19 @@ namespace FossLock.Test.BLL
 
         #endregion Test Setup
 
-        [TestMethod]
+        [Test]
         [Description("GenericService<T>.New() method should return transient instance of type T")]
         public void NewMethod_Returns_TransientOfExpectedType()
         {
             // make sure the repositories are only returning the expected types
             var p = productService.New();
-            Assert.IsInstanceOfType(p, typeof(Product));
-            Assert.IsNotInstanceOfType(p, typeof(ProductFeature));
+            Assert.IsInstanceOf<Product>(p);
             Assert.IsTrue(p.IsTransient());
         }
 
         #region Retrieve Data Tests
 
-        [TestMethod]
+        [Test]
         [Description(".GetById() should require a positive integer argument.. If not, we want to make ")]
         public void GetById_InvalidParameter_ThrowsException()
         {
@@ -112,13 +111,13 @@ namespace FossLock.Test.BLL
             }
             catch (Exception ex)
             {
-                Assert.IsInstanceOfType(ex, typeof(ArgumentOutOfRangeException));
+                Assert.IsInstanceOf<ArgumentOutOfRangeException>(ex);
                 Assert.AreEqual("id", ((ArgumentOutOfRangeException)ex).ParamName);
                 Assert.AreEqual(repoGetByIdCalls, productRepoCalls["GetById"]);
             }
         }
 
-        [TestMethod]
+        [Test]
         [Description(".GetById() returns null if no matches found.")]
         public void GetById_NoMatchingIdentity_ReturnsNull()
         {
@@ -130,7 +129,7 @@ namespace FossLock.Test.BLL
             Assert.AreEqual((repoGetByIdCalls + 1), productRepoCalls["GetById"]);
         }
 
-        [TestMethod]
+        [Test]
         [Description(".GetById() should return expected entity.")]
         public void GetById_ValidId_ReturnsExpectedResult()
         {
@@ -139,12 +138,12 @@ namespace FossLock.Test.BLL
             var idRequested = 1;
             var p = productService.GetById(idRequested); // request an ID well outside of our range in SetUp()
 
-            Assert.IsInstanceOfType(p, typeof(Product));
+            Assert.IsInstanceOf<Product>(p);
             Assert.AreEqual(idRequested, p.Id);
             Assert.AreEqual((repoGetByIdCalls + 1), productRepoCalls["GetById"]);
         }
 
-        [TestMethod]
+        [Test]
         [Description(".GetList() should return the expected results.")]
         public void GetList_Returns_ExpectedSlice()
         {
@@ -184,7 +183,7 @@ namespace FossLock.Test.BLL
 
         #region .Add(T entity) Tests
 
-        [TestMethod]
+        [Test]
         [Description("GenericService<T>.Add() should throw ArgumentNullException is " +
             "a null entity is provided.  Underlying repository .Add should never get called.")]
         public void AddMethod_NullEntity_ThrowsException()
@@ -198,7 +197,7 @@ namespace FossLock.Test.BLL
             }
             catch (Exception ex)
             {
-                Assert.IsInstanceOfType(ex, typeof(ArgumentNullException));
+                Assert.IsInstanceOf<ArgumentNullException>(ex);
                 Assert.AreEqual("entity", ((ArgumentNullException)ex).ParamName);
 
                 // make sure underlying repository .Add hasn't been called.
@@ -206,7 +205,7 @@ namespace FossLock.Test.BLL
             }
         }
 
-        [TestMethod]
+        [Test]
         [Description("Add method should throw an exception if any validation " +
             " failures on entity.  Underlying repository .Add should never get called.")]
         public void AddMethod_NonValidEntity_ThrowsException()
@@ -229,7 +228,7 @@ namespace FossLock.Test.BLL
             }
             catch (Exception ex)
             {
-                Assert.IsInstanceOfType(ex, typeof(ArgumentException));
+                Assert.IsInstanceOf<ArgumentException>(ex);
                 Assert.AreEqual("entity", ((ArgumentException)ex).ParamName);
 
                 // make sure underlying repository .Add hasn't been called.
@@ -237,7 +236,7 @@ namespace FossLock.Test.BLL
             }
         }
 
-        [TestMethod]
+        [Test]
         [Description("Add method should complete successfully as long as the ValidateAdd() " +
             "returns an empty list.  Underlying repository .Add should get called one time.")]
         public void AddMethod_ValidEntity_Succeeds()
@@ -258,7 +257,7 @@ namespace FossLock.Test.BLL
 
         #region .Update(T entity) Tests
 
-        [TestMethod]
+        [Test]
         [Description(".Update() should raise a NullArgumentException if it is passed a null. " +
             "Underlying repository .Update() should not be called.")]
         public void UpdateMethod_NullEntity_ThrowsException()
@@ -272,13 +271,13 @@ namespace FossLock.Test.BLL
             }
             catch (Exception ex)
             {
-                Assert.IsInstanceOfType(ex, typeof(ArgumentNullException));
+                Assert.IsInstanceOf<ArgumentNullException>(ex);
                 Assert.AreEqual("entity", ((ArgumentNullException)ex).ParamName);
                 Assert.AreEqual(repoUpdateCalls, productRepoCalls["Update"]);
             }
         }
 
-        [TestMethod]
+        [Test]
         [Description("Update method should throw an exception if the entity reports itself invalid. " +
             "Underlying repository .Update() should not be called.")]
         public void UpdateMethod_NonValidEntity_ThrowsException()
@@ -308,14 +307,14 @@ namespace FossLock.Test.BLL
             }
             catch (Exception ex)
             {
-                Assert.IsInstanceOfType(ex, typeof(ArgumentException), ex.ToString());
+                Assert.IsInstanceOf<ArgumentException>(ex);
                 Assert.AreEqual("entity", ((ArgumentException)ex).ParamName);
                 Assert.AreEqual(repoUpdateCalls, productRepoCalls["Update"]);
             }
         }
 
         // add -- repository IS called
-        [TestMethod]
+        [Test]
         [Description("Update method should complete successfully as long as ValidateUpdate() " +
             "returns an empty list. Underlying repository .Update() should be called exactly one time.")]
         public void UpdateMethod_ValidEntity_Succeeds()
@@ -334,7 +333,7 @@ namespace FossLock.Test.BLL
 
         #region .Delete(T entity) Tests
 
-        [TestMethod]
+        [Test]
         [Description("Delete() should throw an exception when passed a null. " +
             "Underlying repository's .Delete() method should not be called.")]
         public void DeleteMethod_NullEntity_ThrowsException()
@@ -348,13 +347,13 @@ namespace FossLock.Test.BLL
             }
             catch (Exception ex)
             {
-                Assert.IsInstanceOfType(ex, typeof(ArgumentNullException));
+                Assert.IsInstanceOf<ArgumentNullException>(ex);
                 Assert.AreEqual("entity", ((ArgumentNullException)ex).ParamName);
                 Assert.AreEqual(repoDeleteCalls, productRepoCalls["Delete"]);
             }
         }
 
-        [TestMethod]
+        [Test]
         [Description("Delete() should thrown an exception when validation fails. " +
             "Underlying repository's .Delete() method should not be called.")]
         public void DeleteMethod_NonValidEntity_ThrowsException()
@@ -371,13 +370,13 @@ namespace FossLock.Test.BLL
             }
             catch (Exception ex)
             {
-                Assert.IsInstanceOfType(ex, typeof(ArgumentException));
+                Assert.IsInstanceOf<ArgumentException>(ex);
                 Assert.AreEqual("entity", ((ArgumentException)ex).ParamName);
                 Assert.AreEqual(repoDeleteCalls, productRepoCalls["Delete"]);
             }
         }
 
-        [TestMethod]
+        [Test]
         [Description("Delete method should succeed when validation passes. " +
             "Underlying repository's .Delete() method should be called exactly once.")]
         public void DeleteMethod_ValidEntity_Succeeds()
@@ -404,7 +403,7 @@ namespace FossLock.Test.BLL
 
         #region ValidateAdd Tests
 
-        [TestMethod]
+        [Test]
         [Description("ValidateAdd should return failure results if the entity is not transient.")]
         public void ValidateAdd_NonTransientEntity_Fails()
         {
@@ -416,7 +415,7 @@ namespace FossLock.Test.BLL
             Assert.AreNotEqual(0, results.Count);
         }
 
-        [TestMethod]
+        [Test]
         [Description("ValidateAdd() should return results if the Entity fails to validate itself.")]
         public void ValidateAdd_InvalidEntity_Fails()
         {
@@ -446,7 +445,7 @@ namespace FossLock.Test.BLL
             Assert.AreEqual(3, results.Count);
         }
 
-        [TestMethod]
+        [Test]
         [Description("ValidateAdd() should return nothing for a valid entity.")]
         public void ValidateAdd_ValidTransient_Succeeds()
         {
@@ -463,7 +462,7 @@ namespace FossLock.Test.BLL
 
         #region ValidateUpdate Tests
 
-        [TestMethod]
+        [Test]
         [Description("ValidateUpdate() should return failures for a transient entity.")]
         public void ValidateUpdate_TransientEntity_Fails()
         {
@@ -475,7 +474,7 @@ namespace FossLock.Test.BLL
             Assert.AreEqual(1, results.Count);
         }
 
-        [TestMethod]
+        [Test]
         [Description("ValidateUpdate() should return failures for a transient entity.")]
         public void ValidateUpdate_InvalidEntity_Fails()
         {
@@ -506,7 +505,7 @@ namespace FossLock.Test.BLL
             Assert.AreEqual((validationFails.Count + 1), results.Count);
         }
 
-        [TestMethod]
+        [Test]
         [Description("Non-transient entity with no validation errors should validate.")]
         public void ValidateUpdate_NonTransientValid_Succeeds()
         {
@@ -524,7 +523,7 @@ namespace FossLock.Test.BLL
 
         #region ValidateDelete Tests
 
-        [TestMethod]
+        [Test]
         [Description("Transient entities can't be deleted because they're not in the data store yet.")]
         public void ValidateDelete_TransientEntity_Fails()
         {
@@ -543,7 +542,7 @@ namespace FossLock.Test.BLL
          * thing we're ignoring is the entity's validation
          */
 
-        [TestMethod]
+        [Test]
         [Description("Entity validation results should be ignored because the object is being deleted.")]
         public void ValidateDelete_InvalidEntity_Succeeds()
         {
