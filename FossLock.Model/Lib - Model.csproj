@@ -13,6 +13,8 @@
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
+    <ProductVersion>12.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -67,11 +69,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="Product.cs" />
-    <None Include="ReadMe.md" />
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FossLock.Core\Lib - Core.csproj">
-      <Project>{fc4a93e1-337c-45e0-9e62-da00bb95845f}</Project>
+      <Project>{FC4A93E1-337C-45E0-9E62-DA00BB95845F}</Project>
       <Name>Lib - Core</Name>
     </ProjectReference>
   </ItemGroup>
