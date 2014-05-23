@@ -19,33 +19,57 @@
         <hr />
         @Html.ValidationSummary(true)
 
-        <div>
-            <h4>Basics</h4>
-            <div>
+        <h4>Basics</h4>
+        <ul>
+
+            <li>
                 @Html.LabelFor(model => model.Name)
                 @Html.EditorFor(model => model.Name)
                 @Html.ValidationMessageFor(model => model.Name)
-            </div>
-            <div>
+            </li>
+            <li>
                 @Html.LabelFor(model => model.ReleaseDate)
                 @Html.EditorFor(model => model.ReleaseDate)
                 @Html.ValidationMessageFor(model => model.ReleaseDate)
-            </div>
-            <div>
+            </li>
+            <li>
                 @Html.LabelFor(model => model.VersioningStyle)
                 @Html.DropDownListFor(model => model.VersioningStyle, Model.AllVersioningStyles)
                 @Html.ValidationMessageFor(model => model.VersioningStyle)
-            </div>
-            <div>
+            </li>
+            <li>
                 @Html.LabelFor(model => model.Notes)
                 @Html.EditorFor(model => model.Notes)
                 @Html.ValidationMessageFor(model => model.Notes)
-            </div>
-        </div>
+            </li>
+        </ul>
 
-        <div>
-            <h4>License/Security</h4>
-        </div>
+        <h4>License/Security</h4>
+        <ul>
+            <li>
+                @Html.LabelFor(model => model.SelectedDefaultLockProperties)
+                @Html.ListBoxFor(model => model.SelectedDefaultLockProperties, Model.AllLockProperties)
+                @Html.ValidationMessageFor(model => model.SelectedDefaultLockProperties)
+            </li>
+
+            <li>
+                @Html.LabelFor(model => model.FailOnNullHardwareIdentifier)
+                @Html.CheckBoxFor(model => model.FailOnNullHardwareIdentifier)
+                @Html.ValidationMessageFor(model => model.FailOnNullHardwareIdentifier)
+            </li>
+
+            <li>
+                @Html.LabelFor(model => model.PermittedActivationTypes)
+                @Html.ListBoxFor(model => model.PermittedActivationTypes, Model.AllActivationTypes)
+                @Html.ValidationMessageFor(model => model.PermittedActivationTypes)
+            </li>
+
+            <li>
+                @Html.LabelFor(model => model.VersionLeeway)
+                @Html.DropDownListFor(model => model.VersionLeeway, Model.AllLeewayTypes)
+                @Html.ValidationMessageFor(model => model.VersionLeeway)
+            </li>
+        </ul>
     </div>
 
     <input type="submit" value="Create" />

@@ -15,9 +15,9 @@ namespace FossLock.BLL.Util
     ///     ProductService this is by design at the current time because I see
     ///     it being overkill to do anything else here.
     /// </summary>
-    internal class RsaKeypairGenerator
+    public class RsaKeypairGenerator
     {
-        public KeyPair GenerateKey(EncryptionType encryption)
+        public KeyPair GenerateKeypair(EncryptionType encryption)
         {
             int modulus;
             switch (encryption)
@@ -78,7 +78,7 @@ namespace FossLock.BLL.Util
         }
     }
 
-    internal class KeyPair
+    public class KeyPair
     {
         public string PubKey { get; set; }
 

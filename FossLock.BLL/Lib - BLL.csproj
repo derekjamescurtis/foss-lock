@@ -48,8 +48,13 @@
     <Compile Include="Service\GenericService.cs" />
     <Compile Include="Service\IFossLockService.cs" />
     <Compile Include="Service\ProductService.cs" />
+    <Compile Include="Util\RsaKeypairGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FossLock.Core\Lib - Core.csproj">
+      <Project>{fc4a93e1-337c-45e0-9e62-da00bb95845f}</Project>
+      <Name>Lib - Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FossLock.DAL\Lib - DAL.csproj">
       <Project>{FEB9324E-28A1-4A4F-B8DD-6F686B695A69}</Project>
       <Name>Lib - DAL</Name>

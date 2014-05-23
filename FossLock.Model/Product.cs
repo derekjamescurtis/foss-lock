@@ -76,11 +76,6 @@ namespace FossLock.Model
         public ExpirationType PermittedExpirationTypes { get; set; }
 
         /// <summary>
-        ///     Enforces a maximum trial length when issuing new licenses.
-        /// </summary>
-        public int? MaximumTrialDays { get; set; }
-
-        /// <summary>
         ///     Indicates how strict the system will be when activating.
         ///     <see cref="FossLock.Core.VersionLeewayType"/> has additional details.
         /// </summary>

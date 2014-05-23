@@ -12,13 +12,6 @@ namespace FossLock.Web.ViewModels
     {
         public ProductViewModel()
         {
-            //AllVersioningStyles =
-            //    ((IEnumerable<int>)Enum.GetValues(typeof(VersioningStyle)))
-            //        .Select(e => new SelectListItem
-            //        {
-            //            Text = Enum.GetName(typeof(VersioningStyle), e),
-            //            Value = e.ToString()
-            //        });
         }
 
         #region Basics
@@ -33,20 +26,26 @@ namespace FossLock.Web.ViewModels
         [DataType(DataType.Date)]
         public DateTime ReleaseDate { get; set; }
 
+        [DataType(DataType.MultilineText)]
         public string Notes { get; set; }
 
+        [Required]
+        [DefaultValue(VersioningStyle.DotNet)]
         public VersioningStyle VersioningStyle { get; set; }
 
         #endregion Basics
 
         #region
 
-        public IEnumerable<LockPropertyType> SelectedDefaultLockProperties { get; set; }
+        public IList<LockPropertyType> SelectedDefaultLockProperties { get; set; }
 
+        [DefaultValue(true)]
         public bool FailOnNullHardwareIdentifier { get; set; }
 
-        public IEnumerable<ActivationType> PermittedActivationTypes { get; set; }
+        public IList<ActivationType> PermittedActivationTypes { get; set; }
 
+        [Required]
+        [DefaultValue(VersionLeewayType.WithinSameMajorVersion)]
         public VersionLeewayType VersionLeeway { get; set; }
 
         #endregion
@@ -126,6 +125,27 @@ namespace FossLock.Web.ViewModels
                 }
 
                 return _allVersioningStyles;
+            }
+        }
+
+        private IEnumerable<SelectListItem> _allLeewayTypes = null;
+
+        public IEnumerable<SelectListItem> AllLeewayTypes
+        {
+            get
+            {
+                if (_allLeewayTypes == null)
+                {
+                    _allLeewayTypes =
+                        ((IEnumerable<int>)Enum.GetValues(typeof(VersionLeewayType)))
+                        .Select(e => new SelectListItem
+                        {
+                            Text = Enum.GetName(typeof(VersionLeewayType), e),
+                            Value = e.ToString()
+                        });
+                }
+
+                return _allLeewayTypes;
             }
         }
 
