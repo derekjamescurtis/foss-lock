@@ -41,6 +41,16 @@ namespace FossLock.Model
         public EncryptionType LicenseEncryptionType { get; set; }
 
         /// <summary>
+        ///     Private encryption key generated for whatever EncryptionType was specified.
+        /// </summary>
+        public string PrivateKey { get; set; }
+
+        /// <summary>
+        ///     Public encryption key generated for whatever EncryptionType was specified.
+        /// </summary>
+        public string PublicKey { get; set; }
+
+        /// <summary>
         ///     Flag enum that indicates the hardware lock properties that will be
         ///     required by default for activation. This may be overridden on an
         ///     individual license.

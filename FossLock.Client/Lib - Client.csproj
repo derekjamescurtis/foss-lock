@@ -77,6 +77,18 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FossLock.Core\Lib - Core.csproj">
+      <Project>{fc4a93e1-337c-45e0-9e62-da00bb95845f}</Project>
+      <Name>Lib - Core</Name>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </ProjectReference>
+    <ProjectReference Include="..\FossLock.HardwareFingerprint\Lib -HardwareFingerprint.csproj">
+      <Project>{51306562-b699-4dd2-abb6-f2a122e77f6d}</Project>
+      <Name>Lib -HardwareFingerprint</Name>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <MonoDevelop>

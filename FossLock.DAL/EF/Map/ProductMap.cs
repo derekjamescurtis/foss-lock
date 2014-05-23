@@ -8,11 +8,12 @@ using FossLock.Model;
 
 namespace FossLock.DAL.EF.Map
 {
-    class ProductMap : NamedEntityBaseMap<Product>
+    internal class ProductMap : NamedEntityBaseMap<Product>
     {
         public ProductMap()
         {
-            
+            Property(e => e.PublicKey).IsRequired();
+            Property(e => e.PrivateKey).IsRequired();
         }
     }
 }
