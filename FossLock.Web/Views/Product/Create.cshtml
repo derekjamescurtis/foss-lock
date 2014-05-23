@@ -1,5 +1,6 @@
 ﻿@model FossLock.Model.Product
 @using System.Web.Mvc.Html
+@using System.Web.Mvc
 @using FossLock.Core
 @using System.Linq
 
@@ -9,103 +10,89 @@
 
 <h2>Create</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Product</h4>
+
+    <div>
+        <h3>Product</h3>
         <hr />
         @Html.ValidationSummary(true)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ReleaseDate, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+        <div>
+            <h4>Basics</h4>
+            <div>
+                @Html.LabelFor(model => model.Name)
+                @Html.EditorFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+            <div>
+                @Html.LabelFor(model => model.ReleaseDate)
                 @Html.EditorFor(model => model.ReleaseDate)
                 @Html.ValidationMessageFor(model => model.ReleaseDate)
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.DefaultLockProperties, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DefaultLockProperties)
-                @Html.ValidationMessageFor(model => model.DefaultLockProperties)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.FailOnNullHardwareIdentifier, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.FailOnNullHardwareIdentifier)
-                @Html.ValidationMessageFor(model => model.FailOnNullHardwareIdentifier)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.PermittedActivationTypes, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PermittedActivationTypes)
-                @Html.ValidationMessageFor(model => model.PermittedActivationTypes)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.PermittedExpirationTypes, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PermittedExpirationTypes)
-                @Html.ValidationMessageFor(model => model.PermittedExpirationTypes)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.MaximumTrialDays, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MaximumTrialDays)
-                @Html.ValidationMessageFor(model => model.MaximumTrialDays)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.VersioningStyle, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div>
+                @Html.LabelFor(model => model.VersioningStyle)
                 @Html.EditorFor(model => model.VersioningStyle)
                 @Html.ValidationMessageFor(model => model.VersioningStyle)
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Notes, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div>
+                @Html.LabelFor(model => model.Notes)
                 @Html.EditorFor(model => model.Notes)
                 @Html.ValidationMessageFor(model => model.Notes)
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.VersionLeeway, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+        <div>
+            <h4>License/Security</h4>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.DefaultLockProperties)
+                @Html.EditorFor(model => model.DefaultLockProperties)
+                @Html.ValidationMessageFor(model => model.DefaultLockProperties)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.FailOnNullHardwareIdentifier, new { @class = "control-label col-md-2" })
+
+                @Html.EditorFor(model => model.FailOnNullHardwareIdentifier)
+                @Html.ValidationMessageFor(model => model.FailOnNullHardwareIdentifier)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PermittedActivationTypes, new { @class = "control-label col-md-2" })
+
+                @Html.EditorFor(model => model.PermittedActivationTypes)
+                @Html.ValidationMessageFor(model => model.PermittedActivationTypes)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PermittedExpirationTypes, new { @class = "control-label col-md-2" })
+
+                @Html.EditorFor(model => model.PermittedExpirationTypes)
+                @Html.ValidationMessageFor(model => model.PermittedExpirationTypes)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.MaximumTrialDays, new { @class = "control-label col-md-2" })
+
+                @Html.EditorFor(model => model.MaximumTrialDays)
+                @Html.ValidationMessageFor(model => model.MaximumTrialDays)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.VersionLeeway, new { @class = "control-label col-md-2" })
+
                 @Html.EditorFor(model => model.VersionLeeway)
-                @Html.DropDownListFor(model => model.VersionLeeway, Enum.GetValues(typeof(VersionLeewayType)).Select(e => e.
-                
-                @Html.ValidationMessageFor(model => model.VersionLeeway)                
-            </div>
-        </div>
+                <!-- Html.DropDownListFor(model => model.VersionLeeway, Enum.GetValues(typeof(VersionLeewayType)).Select(e => e. -->
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name)
-                @Html.ValidationMessageFor(model => model.Name)
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                @Html.ValidationMessageFor(model => model.VersionLeeway)
             </div>
         </div>
     </div>
+
+    <input type="submit" value="Create" />
+
 }
 
 <div>
