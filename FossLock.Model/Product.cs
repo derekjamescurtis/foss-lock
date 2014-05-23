@@ -10,10 +10,35 @@ namespace FossLock.Model
     /// </summary>
     public class Product : NamedEntityBase
     {
+        #region Basics
+
         /// <summary>
         ///     The date this product was initially released.
         /// </summary>
         public DateTime ReleaseDate { get; set; }
+
+        /// <summary>
+        ///     Indicates whether this product will use Microsoft's
+        ///     <see cref="System.Version"/> object for version numbering,
+        ///     or Summerset Software's <see cref="Summerset.SemanticVersion"/>
+        ///     object (complies with http://www.semver.org).
+        /// </summary>
+        public VersioningStyle VersioningStyle { get; set; }
+
+        /// <summary>
+        ///     Any additional notes about this product.
+        /// </summary>
+        public string Notes { get; set; }
+
+        #endregion Basics
+
+        #region License/Security Settings
+
+        /// <summary>
+        ///     Indicates the type of encryption used when generating license
+        ///     files.
+        /// </summary>
+        public EncryptionType LicenseEncryptionType { get; set; }
 
         /// <summary>
         ///     Flag enum that indicates the hardware lock properties that will be
@@ -46,23 +71,14 @@ namespace FossLock.Model
         public int? MaximumTrialDays { get; set; }
 
         /// <summary>
-        ///     Indicates whether this product will use Microsoft's
-        ///     <see cref="System.Version"/> object for version numbering,
-        ///     or Summerset Software's <see cref="Summerset.SemanticVersion"/>
-        ///     object (complies with http://www.semver.org).
-        /// </summary>
-        public VersioningStyle VersioningStyle { get; set; }
-
-        /// <summary>
-        ///     Any additional notes about this product.
-        /// </summary>
-        public string Notes { get; set; }
-
-        /// <summary>
         ///     Indicates how strict the system will be when activating.
         ///     <see cref="FossLock.Core.VersionLeewayType"/> has additional details.
         /// </summary>
         public VersionLeewayType VersionLeeway { get; set; }
+
+        #endregion License/Security Settings
+
+        #region Navigation Properties
 
         /// <summary>
         ///     Optional collection of features that may be licensed in
@@ -75,5 +91,7 @@ namespace FossLock.Model
         ///     the objects licensed out to customers.
         /// </summary>
         public virtual ICollection<ProductVersion> Versions { get; set; }
+
+        #endregion Navigation Properties
     }
 }

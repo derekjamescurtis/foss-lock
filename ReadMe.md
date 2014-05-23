@@ -41,7 +41,20 @@ __FossLock.Client__ is a class library that you embed with your assemblies.
 The main job of FossLock.Client is to collect hardware information validate licensing
 information and possibly (depending on configuration) to communicate with FossLock.Web.
 
-## Reasoning
+## Rationale
+
+We all love open source software.  Sometimes, however, it's not possible/permissible
+for whatever reason.  When it comes to .NET applications that need to have their 
+installation base limited, you're generally left with two options--build your own
+or purchase a 3rd party licensing system, which may cost more than small ISV's have
+the resources for.  
+
+This is where FossLock fits into the picture.  It allows you to generate hardware 
+fingerprints (FossLock.HardwareFingerprint) from the target machines, 
+post them back to a licensing server (FossLock.Client)
+(called an 'unlock request') and then generated license file (from FossLock.Web)
+is downloaded back on the target machine and can be validated (again by
+FossLock.Client)
 
 The idea for this project originally came from 
 [ActiveLock](http://www.activelocksoftware.com), which I had personally used
@@ -51,9 +64,33 @@ the project.. before eventually just deciding on building a fresh system with
 some of the basic ideas borrowed from that project, but a completely new code
 based.
 
-My biggest frusteration with their software was not with integration into my software,
-but really the very buggy license manager application, and the fact that the license
-manager was a Winforms app, and not something web-based.  
+# Architecture Features
+
+FossLock is designed to be modified to whatever your needs are.  This is not
+meant to be an as-is solution to every need out there... think of it more in terms
+of a customizable framework..  
+
+Out the gate it comes with Entity Framework 6 as it's persistance layer, meaning 
+that your web server can store data anywhere that has a driver supporting EF 
+(MSSQL, MySQL, PostGres, Oracle, SQLite3, etc).
+
+The entity model is using code-first and automatic migrations so feel free to
+customize the models and deploy your own version of the database.
+
+On top of that, EF is not directly accessed by anything but a repository (FossLock.DAL) 
+that  encapsulates EF-specific logic.  Need to store you data in a CSV or something 
+else weird?  Create your own repository, modify the dependency injection
+container and you're done.  
+
+Validation is handled by a separate service layer (FossLock.BLL).
+
+FossLock.HardwareFingerprint and FossLock.Client are to be embedded with your application.
+HardwareFingerprint generates a unique identification based on the hardware reported
+by the operating system.  FossLock.Client will validate any perviously-existing 
+license on the system against the fingerprint.  If can also generate unlock requests
+and communicate with FossLock.Web to automatically pull new licenses if required.
+
+For the web license manager, 
 
 ## Table of Contents
 

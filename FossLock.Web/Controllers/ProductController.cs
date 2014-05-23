@@ -6,8 +6,9 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using FossLock.Model;
 using FossLock.DAL.EF;
+using FossLock.Model;
+using FossLock.Web.ViewModels;
 
 namespace FossLock.Web.Controllers
 {
@@ -39,23 +40,25 @@ namespace FossLock.Web.Controllers
         // GET: /Product/Create
         public ActionResult Create()
         {
-            return View();
+            var vm = new ProductViewModel
+            {
+                Name = "Your great new product =D",
+                Notes = "",
+            };
+            return View(vm);
         }
 
         // POST: /Product/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(
-            [Bind(Include = 
-                "Id,ReleaseDate,DefaultLockProperties,FailOnNullHardwareIdentifier,PermittedActivationTypes," + 
-                 "PermittedExpirationTypes,MaximumTrialDays,VersioningStyle,Notes,VersionLeeway,Name")] Product product)
+        public ActionResult Create(ProductViewModel product)
         {
             if (ModelState.IsValid)
             {
-                db.Products.Add(product);
-                db.SaveChanges();
+                //db.Products.Add(product);
+                //db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -78,11 +81,11 @@ namespace FossLock.Web.Controllers
         }
 
         // POST: /Product/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,ReleaseDate,DefaultLockProperties,FailOnNullHardwareIdentifier,PermittedActivationTypes,PermittedExpirationTypes,MaximumTrialDays,VersioningStyle,Notes,VersionLeeway,Name")] Product product)
+        public ActionResult Edit([Bind(Include = "Id,ReleaseDate,DefaultLockProperties,FailOnNullHardwareIdentifier,PermittedActivationTypes,PermittedExpirationTypes,MaximumTrialDays,VersioningStyle,Notes,VersionLeeway,Name")] Product product)
         {
             if (ModelState.IsValid)
             {

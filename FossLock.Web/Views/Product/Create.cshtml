@@ -1,4 +1,4 @@
-﻿@model FossLock.Model.Product
+﻿@model FossLock.Web.ViewModels.ProductViewModel
 @using System.Web.Mvc.Html
 @using System.Web.Mvc
 @using FossLock.Core
@@ -33,7 +33,7 @@
             </div>
             <div>
                 @Html.LabelFor(model => model.VersioningStyle)
-                @Html.EditorFor(model => model.VersioningStyle)
+                @Html.DropDownListFor(model => model.VersioningStyle, Model.AllVersioningStyles)
                 @Html.ValidationMessageFor(model => model.VersioningStyle)
             </div>
             <div>
@@ -45,49 +45,6 @@
 
         <div>
             <h4>License/Security</h4>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.DefaultLockProperties)
-                @Html.EditorFor(model => model.DefaultLockProperties)
-                @Html.ValidationMessageFor(model => model.DefaultLockProperties)
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.FailOnNullHardwareIdentifier, new { @class = "control-label col-md-2" })
-
-                @Html.EditorFor(model => model.FailOnNullHardwareIdentifier)
-                @Html.ValidationMessageFor(model => model.FailOnNullHardwareIdentifier)
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.PermittedActivationTypes, new { @class = "control-label col-md-2" })
-
-                @Html.EditorFor(model => model.PermittedActivationTypes)
-                @Html.ValidationMessageFor(model => model.PermittedActivationTypes)
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.PermittedExpirationTypes, new { @class = "control-label col-md-2" })
-
-                @Html.EditorFor(model => model.PermittedExpirationTypes)
-                @Html.ValidationMessageFor(model => model.PermittedExpirationTypes)
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.MaximumTrialDays, new { @class = "control-label col-md-2" })
-
-                @Html.EditorFor(model => model.MaximumTrialDays)
-                @Html.ValidationMessageFor(model => model.MaximumTrialDays)
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.VersionLeeway, new { @class = "control-label col-md-2" })
-
-                @Html.EditorFor(model => model.VersionLeeway)
-                <!-- Html.DropDownListFor(model => model.VersionLeeway, Enum.GetValues(typeof(VersionLeewayType)).Select(e => e. -->
-
-                @Html.ValidationMessageFor(model => model.VersionLeeway)
-            </div>
         </div>
     </div>
 

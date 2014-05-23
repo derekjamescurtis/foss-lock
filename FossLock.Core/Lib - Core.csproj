@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActivationType.cs" />
+    <Compile Include="EncryptionType.cs" />
     <Compile Include="LockPropertyType.cs" />
     <Compile Include="Logic\HashingFunctions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

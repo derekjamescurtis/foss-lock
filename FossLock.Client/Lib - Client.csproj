@@ -92,7 +92,4 @@
       </Properties>
     </MonoDevelop>
   </ProjectExtensions>
-  <ItemGroup>
-    <None Include="FossLock.PartCover.Settings" />
-  </ItemGroup>
 </Project>

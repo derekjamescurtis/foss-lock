@@ -29,5 +29,10 @@ _ReSharper*/
 *.vssscc
 $tf*/
 
+# project with nuget package restore enabled
+# there'a a configuration file in this folder we want to keep, but 
+# everything in a subdirectory can go.
+/packages/*/*
+
 # monodevelop-specific
 *.userprefs
