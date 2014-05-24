@@ -7,10 +7,15 @@ using FossLock.Model;
 
 namespace FossLock.Web.ViewModels.Converters
 {
-    public class ProductEntityConverter
+    public class ProductEntityConverter : IEntityConverter<Product, ProductViewModel>
     {
         public ProductViewModel EntityToViewmodel(Product entity)
         {
+            if (entity == null)
+            {
+                throw new ArgumentNullException("entity");
+            }
+
             var vm = new ProductViewModel
             {
                 Id = entity.Id,
@@ -43,6 +48,11 @@ namespace FossLock.Web.ViewModels.Converters
 
         public Product ViewmodelToEntity(ProductViewModel viewmodel)
         {
+            if (viewmodel == null)
+            {
+                throw new ArgumentNullException("viewmodel");
+            }
+
             var p = new Product
             {
                 Id = viewmodel.Id,

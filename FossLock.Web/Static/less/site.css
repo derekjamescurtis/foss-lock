@@ -7187,3 +7187,6 @@ td.visible-print {
 .fa-plus-square-o:before {
   content: "\f196";
 }
+body {
+  padding-top: 70px;
+}
