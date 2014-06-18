@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Faker">
+      <HintPath>..\packages\Faker.1.2\lib\Faker.dll</HintPath>
+    </Reference>
     <Reference Include="Moq">
       <HintPath>..\packages\Moq.4.2.1402.2112\lib\net40\Moq.dll</HintPath>
     </Reference>
@@ -67,12 +70,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModel\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FossLock.Core\Lib - Core.csproj">
+      <Project>{fc4a93e1-337c-45e0-9e62-da00bb95845f}</Project>
+      <Name>Lib - Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FossLock.Model\Lib - Model.csproj">
       <Project>{fced1c46-7658-4f58-b5df-d7881b768fc4}</Project>
       <Name>Lib - Model</Name>

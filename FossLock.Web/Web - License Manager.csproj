@@ -213,7 +213,6 @@
     <Content Include="Static\lib\fa4\fonts\fontawesome-webfont.svg" />
     <Content Include="Static\less\site.less" />
     <Content Include="Static\less\mixins.less" />
-    <None Include="Properties\PublishProfiles\Local Publish.pubxml" />
     <None Include="Static\lib\jquery-1.10.2.intellisense.js" />
     <Content Include="Static\lib\jquery-1.10.2.js" />
     <Content Include="Web.config">

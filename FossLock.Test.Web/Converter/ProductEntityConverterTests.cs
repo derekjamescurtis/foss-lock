@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Faker;
+using FossLock.Core;
 using FossLock.Model;
 using FossLock.Web.ViewModels;
 using FossLock.Web.ViewModels.Converters;
@@ -41,7 +43,22 @@ namespace FossLock.Test.Web.Converter
         }
 
         [Test]
-        public void ViewmodelToEntity_NullEntity_ThrowsException()
+        public void EntityToViewmodel_ValidEntity_ReturnsExpectedViewmodel()
+        {
+            var p = new Product
+            {
+                Id = NumberFaker.Number(1, 200),
+                Name = StringFaker.Alpha(20),
+                ReleaseDate = DateTimeFaker.DateTimeBetweenYears(2014, 2020),
+                VersioningStyle = BooleanFaker.Boolean() ? VersioningStyle.DotNet : VersioningStyle.Semantic,
+                Notes = TextFaker.Sentences(5),
+
+                LicenseEncryptionType = EncryptionType.RSA_4096,
+            };
+        }
+
+        [Test]
+        public void ViewmodelToEntity_NullViewmodel_ThrowsException()
         {
             try
             {
@@ -54,6 +71,12 @@ namespace FossLock.Test.Web.Converter
                 Assert.IsInstanceOf<ArgumentNullException>(ex);
                 Assert.AreEqual("viewmodel", ((ArgumentNullException)ex).ParamName);
             }
+        }
+
+        [Test]
+        public void ViewmodelToEntity_ValidViewmodel_ReturnsExpectedResult()
+        {
+            Assert.Inconclusive("Not implemented");
         }
     }
 }
