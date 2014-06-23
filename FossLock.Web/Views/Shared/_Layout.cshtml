@@ -5,10 +5,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    
-    @Styles.Render("~/Static/Styles");
+    <title>@ViewBag.Title - FossLock</title>
 
+    @Styles.Render("~/Static/Styles")
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -25,7 +24,7 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Customers", "Index", "Customer")</li>
                     <li>@Html.ActionLink("Products", "Index", "Product")</li>
-                </ul>                
+                </ul>
             </div>
         </div>
     </div>
@@ -34,12 +33,18 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Summerset Software, LLC</p>
-            <p>This software is Open Source and released under the terms of the BSD License.</p>
+            <p>
+                Copyright © 2012 - @DateTime.Now.Year - 
+                <a href="https://github.com/derekjamescurtis/foss-lock/graphs/contributors">FossLock Contributers</a>
+            </p>
+            <p>
+                This open source project is hosted on 
+                <a href="https://github.com/derekjamescurtis/foss-lock">GitHub</a> and released under the terms of the 
+                <a href="http://opensource.org/licenses/BSD-3-Clause">BSD License</a>.
+            </p>
         </footer>
     </div>
 
     @Scripts.Render("~/Static/Scripts");
-
 </body>
 </html>

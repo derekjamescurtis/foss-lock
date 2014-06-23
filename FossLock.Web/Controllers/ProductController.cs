@@ -21,7 +21,6 @@ namespace FossLock.Web.Controllers
         private ProductService service = new ProductService(new EFRepository<Product>());
         private ProductEntityConverter converter = new ProductEntityConverter();
 
-        // GET: /Product/
         public ActionResult Index()
         {
             var vms = service
@@ -30,7 +29,6 @@ namespace FossLock.Web.Controllers
             return View(vms);
         }
 
-        // GET: /Product/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -105,7 +103,12 @@ namespace FossLock.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,ReleaseDate,DefaultLockProperties,FailOnNullHardwareIdentifier,PermittedActivationTypes,PermittedExpirationTypes,MaximumTrialDays,VersioningStyle,Notes,VersionLeeway,Name")] Product product)
+        public ActionResult Edit(
+            [Bind(Include = "Id,ReleaseDate,DefaultLockProperties," +
+                "FailOnNullHardwareIdentifier,PermittedActivationTypes," +
+                "PermittedExpirationTypes,MaximumTrialDays,VersioningStyle," +
+                "Notes,VersionLeeway,Name")]
+            Product product)
         {
             if (ModelState.IsValid)
             {
@@ -132,7 +135,8 @@ namespace FossLock.Web.Controllers
         }
 
         // POST: /Product/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
+        [ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

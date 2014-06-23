@@ -24,6 +24,8 @@ namespace FossLock.Web.ViewModels
 
         [Required]
         [DataType(DataType.Date)]
+        [Display(Name = "Release Date",
+            Description = "Date the product was first avaialble for licensing (for reporting purposes only).")]
         public DateTime ReleaseDate { get; set; }
 
         [DataType(DataType.MultilineText)]
@@ -31,6 +33,7 @@ namespace FossLock.Web.ViewModels
 
         [Required]
         [DefaultValue(VersioningStyle.DotNet)]
+        [Display(Name = "Versioning Style")]
         public VersioningStyle VersioningStyle { get; set; }
 
         #endregion Basics
