@@ -37,3 +37,5 @@ $tf*/
 # monodevelop-specific
 *.userprefs
 App_Data
+
+/FossLock.Web/Static/less/*.css
