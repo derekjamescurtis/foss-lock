@@ -19,7 +19,7 @@ namespace FossLock.Web.Controllers
     public class ProductController : Controller
     {
         private ProductService service = new ProductService(new EFRepository<Product>());
-        private ProductEntityConverter converter = new ProductEntityConverter();
+        private IEntityConverter<Product, ProductViewModel> converter = new ProductEntityConverter();
 
         public ActionResult Index()
         {
@@ -47,16 +47,13 @@ namespace FossLock.Web.Controllers
             return View(vm);
         }
 
-        // GET: /Product/Create
+        [HttpGet]
         public ActionResult Create()
         {
             var vm = new ProductViewModel();
             return View(vm);
         }
 
-        // POST: /Product/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(ProductViewModel vm)
@@ -83,66 +80,57 @@ namespace FossLock.Web.Controllers
             return View(vm);
         }
 
-        // GET: /Product/Edit/5
+        [HttpGet]
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = service.GetById(id.Value);
-            if (product == null)
+            Product p = service.GetById(id.Value);
+            if (p == null)
             {
                 return HttpNotFound();
             }
-            return View(product);
+            var vm = converter.EntityToViewmodel(p);
+            return View(vm);
         }
 
-        // POST: /Product/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(
-            [Bind(Include = "Id,ReleaseDate,DefaultLockProperties," +
-                "FailOnNullHardwareIdentifier,PermittedActivationTypes," +
-                "PermittedExpirationTypes,MaximumTrialDays,VersioningStyle," +
-                "Notes,VersionLeeway,Name")]
-            Product product)
+        public ActionResult Edit(ProductViewModel vm)
         {
             if (ModelState.IsValid)
             {
-                //db.Entry(product).State = EntityState.Modified;
-                //db.SaveChanges();
+                var p = converter.ViewmodelToEntity(vm);
+                service.Update(p);
                 return RedirectToAction("Index");
             }
-            return View(product);
+            return View(vm);
         }
 
-        // GET: /Product/Delete/5
+        [HttpGet]
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = service.GetById(id.Value);
-            if (product == null)
+
+            Product p = service.GetById(id.Value);
+            if (p == null)
             {
                 return HttpNotFound();
             }
-            return View(product);
+            var vm = converter.EntityToViewmodel(p);
+            return View(vm);
         }
 
-        // POST: /Product/Delete/5
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            //Product product = db.Products.Find(id);
-            //db.Products.Remove(product);
-            //db.SaveChanges();
             return RedirectToAction("Index");
         }
 

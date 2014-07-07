@@ -32,15 +32,27 @@ namespace FossLock.Web.ViewModels.Converters
             var allActivationTypes = Enum.GetValues(typeof(ActivationType));
             foreach (ActivationType activationType in allActivationTypes)
             {
+                if (activationType == ActivationType.None)
+                    continue;
+
                 if (entity.PermittedActivationTypes.HasFlag(activationType))
+                {
                     vm.PermittedActivationTypes.Add(activationType);
+                    vm.AllLockProperties.First(e => ((ActivationType)Enum.Parse(typeof(ActivationType), e.Value)) == activationType).Selected = true;
+                }
             }
 
             var allLockProperties = Enum.GetValues(typeof(LockPropertyType));
             foreach (LockPropertyType lockType in allLockProperties)
             {
+                if (lockType == LockPropertyType.None)
+                    continue;
+
                 if (entity.DefaultLockProperties.HasFlag(lockType))
+                {
                     vm.SelectedDefaultLockProperties.Add(lockType);
+                    vm.AllLockProperties.First(e => ((LockPropertyType)Enum.Parse(typeof(LockPropertyType), e.Value)) == lockType).Selected = true;
+                }
             }
 
             return vm;
@@ -62,7 +74,8 @@ namespace FossLock.Web.ViewModels.Converters
                 Notes = viewmodel.Notes,
                 VersioningStyle = viewmodel.VersioningStyle,
                 PermittedActivationTypes = ActivationType.None,
-                DefaultLockProperties = LockPropertyType.None
+                DefaultLockProperties = LockPropertyType.None,
+                VersionLeeway = viewmodel.VersionLeeway
             };
 
             foreach (var activationType in viewmodel.PermittedActivationTypes)

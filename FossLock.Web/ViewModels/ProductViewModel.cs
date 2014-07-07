@@ -32,26 +32,29 @@ namespace FossLock.Web.ViewModels
         public string Notes { get; set; }
 
         [Required]
-        [DefaultValue(VersioningStyle.DotNet)]
         [Display(Name = "Versioning Style")]
         public VersioningStyle VersioningStyle { get; set; }
 
         #endregion Basics
 
-        #region
+        #region License/Security
 
+        [Display(Name = "Default required hardware identifiers.")]
         public IList<LockPropertyType> SelectedDefaultLockProperties { get; set; }
 
+        [Display(Name = "Licensing fails on null hardware identifier.")]
         [DefaultValue(true)]
         public bool FailOnNullHardwareIdentifier { get; set; }
 
+        [Display(Name = "Allowed Activation Modes")]
         public IList<ActivationType> PermittedActivationTypes { get; set; }
 
+        [Display(Name = "Version Leeway")]
         [Required]
         [DefaultValue(VersionLeewayType.WithinSameMajorVersion)]
         public VersionLeewayType VersionLeeway { get; set; }
 
-        #endregion
+        #endregion License/Security
 
         #region Selection Lists
 
@@ -152,6 +155,6 @@ namespace FossLock.Web.ViewModels
             }
         }
 
-        #endregion
+        #endregion Selection Lists
     }
 }
