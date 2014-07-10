@@ -22,6 +22,7 @@ namespace FossLock.Test.Web.Converter
     {
         private ProductEntityConverter converter = null;
         private Product fakeProduct = null;
+        private ProductViewModel fakeViewmodel = null;
 
         /// <summary>
         ///     Reinitializes converter and fakeProduct before each test.
@@ -45,6 +46,19 @@ namespace FossLock.Test.Web.Converter
                 FailOnNullHardwareIdentifier = BooleanFaker.Boolean(),
                 PermittedActivationTypes = ActivationType.Manual | ActivationType.Email,
                 PermittedExpirationTypes = ExpirationType.Service,
+                VersionLeeway = VersionLeewayType.Strict,
+            };
+
+            fakeViewmodel = new ProductViewModel
+            {
+                Id = NumberFaker.Number(1, int.MaxValue),
+                Name = StringFaker.Alpha(20),
+                ReleaseDate = DateTime.Now,
+                Notes = TextFaker.Sentences(5),
+                VersioningStyle = BooleanFaker.Boolean() ? VersioningStyle.DotNet : VersioningStyle.Semantic,
+                SelectedDefaultLockProperties = new List<LockPropertyType> { LockPropertyType.CPU, LockPropertyType.BIOS },
+                FailOnNullHardwareIdentifier = BooleanFaker.Boolean(),
+                PermittedActivationTypes = new List<ActivationType> { ActivationType.Manual, ActivationType.Email },
                 VersionLeeway = VersionLeewayType.Strict,
             };
         }
@@ -137,7 +151,25 @@ namespace FossLock.Test.Web.Converter
         [Test(Description = "Product attributes set properly after conversion.")]
         public void ViewmodelToEntity_ValidViewmodel_ReturnsExpectedResult()
         {
-            Assert.Inconclusive("Not implemented");
+            var entity = converter.ViewmodelToEntity(fakeViewmodel);
+
+            Assert.AreEqual(fakeViewmodel.Id, entity.Id);
+            Assert.AreEqual(fakeViewmodel.Name, entity.Name);
+            Assert.AreEqual(fakeViewmodel.ReleaseDate, entity.ReleaseDate);
+            Assert.AreEqual(fakeViewmodel.Notes, entity.Notes);
+            Assert.AreEqual(fakeViewmodel.VersioningStyle, entity.VersioningStyle);
+            Assert.AreEqual(fakeViewmodel.FailOnNullHardwareIdentifier, entity.FailOnNullHardwareIdentifier);
+            Assert.AreEqual(fakeViewmodel.VersionLeeway, entity.VersionLeeway);
+
+            var expectedActivationType = ActivationType.None;
+            foreach (var activation_type in fakeViewmodel.PermittedActivationTypes)
+                expectedActivationType |= activation_type;
+            Assert.AreEqual(expectedActivationType, entity.PermittedActivationTypes);
+
+            var expectedLockProps = LockPropertyType.None;
+            foreach (var lock_prop in fakeViewmodel.SelectedDefaultLockProperties)
+                expectedLockProps |= lock_prop;
+            Assert.AreEqual(expectedLockProps, entity.DefaultLockProperties);
         }
     }
 }
