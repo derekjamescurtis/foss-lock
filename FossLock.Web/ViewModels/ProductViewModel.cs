@@ -8,6 +8,10 @@ using FossLock.Core;
 
 namespace FossLock.Web.ViewModels
 {
+    /// <summary>
+    ///     Represents a Product object in a way that can be properly
+    ///     handled by a Razor template.
+    /// </summary>
     public class ProductViewModel
     {
         /// <summary>
@@ -30,7 +34,8 @@ namespace FossLock.Web.ViewModels
                 {
                     Text = Enum.GetName(typeof(LockPropertyType), e),
                     Value = e.ToString()
-                });
+                })
+                .ToList();
 
             AllActivationTypes = ((IEnumerable<int>)Enum.GetValues(typeof(ActivationType)))
                 .Where(e =>
@@ -51,23 +56,30 @@ namespace FossLock.Web.ViewModels
                 {
                     Text = Enum.GetName(typeof(ActivationType), e),
                     Value = e.ToString()
-                });
+                })
+                .ToList();
 
             AllVersioningStyles = ((IEnumerable<int>)Enum.GetValues(typeof(VersioningStyle)))
                 .Select(e => new SelectListItem
                 {
                     Text = Enum.GetName(typeof(VersioningStyle), e),
                     Value = e.ToString()
-                });
+                })
+                .ToList();
 
             AllLeewayTypes = ((IEnumerable<int>)Enum.GetValues(typeof(VersionLeewayType)))
                 .Select(e => new SelectListItem
                 {
                     Text = Enum.GetName(typeof(VersionLeewayType), e),
                     Value = e.ToString()
-                });
+                })
+                .ToList();
 
-            // set our default values
+            // set our default values for other fields
+            Name = string.Empty;
+            ReleaseDate = DateTime.Now;
+            Notes = string.Empty;
+            VersioningStyle = Core.VersioningStyle.DotNet;
         }
 
         #region Basics
@@ -78,10 +90,10 @@ namespace FossLock.Web.ViewModels
         [MaxLength(255)]
         public string Name { get; set; }
 
+        // TODO: format in web standard
         [Required]
         [DataType(DataType.Date)]
-        [Display(Name = "Release Date",
-            Description = "Date the product was first avaialble for licensing (for reporting purposes only).")]
+        [Display(Name = "Release Date")]
         public DateTime ReleaseDate { get; set; }
 
         [DataType(DataType.MultilineText)]
@@ -112,13 +124,20 @@ namespace FossLock.Web.ViewModels
 
         #region Selection Lists
 
-        public IEnumerable<SelectListItem> AllLockProperties { get; private set; }
+        /*
+         * Note:
+         * The following lists are read-only from the outside world.
+         * They are used to display all the possible chocies for a particular property
+         * to the Razor engine.
+         */
 
-        public IEnumerable<SelectListItem> AllActivationTypes { get; private set; }
+        public IList<SelectListItem> AllLockProperties { get; private set; }
 
-        public IEnumerable<SelectListItem> AllVersioningStyles { get; private set; }
+        public IList<SelectListItem> AllActivationTypes { get; private set; }
 
-        public IEnumerable<SelectListItem> AllLeewayTypes { get; private set; }
+        public IList<SelectListItem> AllVersioningStyles { get; private set; }
+
+        public IList<SelectListItem> AllLeewayTypes { get; private set; }
 
         #endregion Selection Lists
     }

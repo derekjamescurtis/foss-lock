@@ -136,18 +136,6 @@
     <None Include="BundleTransformer.Configuration.xsd">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Static\less\mixins.css">
-      <DependentUpon>mixins.less</DependentUpon>
-    </Content>
-    <Content Include="Static\less\mixins.min.css">
-      <DependentUpon>mixins.less</DependentUpon>
-    </Content>
-    <Content Include="Static\less\site.css">
-      <DependentUpon>site.less</DependentUpon>
-    </Content>
-    <Content Include="Static\less\site.min.css">
-      <DependentUpon>site.less</DependentUpon>
-    </Content>
     <Content Include="Static\lib\bootstrap3\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Static\lib\bootstrap3\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Static\lib\bootstrap3\fonts\glyphicons-halflings-regular.woff" />
