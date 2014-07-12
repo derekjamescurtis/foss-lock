@@ -10,6 +10,8 @@
 {
     @Html.AntiForgeryToken()
 
+    @Html.HiddenFor(model => model.Id);
+
     <div>
         <h3>Product</h3>
         <hr />
@@ -68,7 +70,7 @@
         </ul>
     </div>
 
-    <input type="submit" value="Create" />
+    <input type="submit" value="Save" />
 
 }
 

@@ -98,13 +98,13 @@ namespace FossLock.Test.Web.Converter
             // to a single value using bitwise math.
             var actualLockProperties = LockPropertyType.None;
             foreach (var lock_property in vm.SelectedDefaultLockProperties)
-                actualLockProperties |= lock_property;
+                actualLockProperties |= (LockPropertyType)Enum.Parse(typeof(LockPropertyType), lock_property);
 
             Assert.AreEqual(fakeProduct.DefaultLockProperties, actualLockProperties);
 
             var actualActivationTypes = ActivationType.None;
             foreach (var activation_type in vm.PermittedActivationTypes)
-                actualActivationTypes |= activation_type;
+                actualActivationTypes |= (ActivationType)Enum.Parse(typeof(ActivationType), activation_type);
 
             Assert.AreEqual(fakeProduct.PermittedActivationTypes, actualActivationTypes);
 
@@ -135,6 +135,7 @@ namespace FossLock.Test.Web.Converter
         [Test(Description = "ViewmodelToEntity requires a single, non-null argument")]
         public void ViewmodelToEntity_NullViewmodel_ThrowsException()
         {
+            // test the first overload
             try
             {
                 ProductViewModel vm = null;
@@ -146,6 +147,24 @@ namespace FossLock.Test.Web.Converter
                 Assert.IsInstanceOf<ArgumentNullException>(ex);
                 Assert.AreEqual("viewmodel", ((ArgumentNullException)ex).ParamName);
             }
+
+            // test our second overload
+            try
+            {
+                ProductViewModel vm = null;
+                converter.ViewmodelToEntity(vm);
+                Assert.Fail("An ArgumentNullException was expected, but none was thrown.");
+            }
+            catch (Exception ex)
+            {
+                Assert.IsInstanceOf<ArgumentNullException>(ex);
+                Assert.AreEqual("viewmodel", ((ArgumentNullException)ex).ParamName);
+            }
+        }
+
+        public void ViewmodelToEntity_Returns_SameEntityReference()
+        {
+            // todo: second overload should return the exact same reference as was provided
         }
 
         [Test(Description = "Product attributes set properly after conversion.")]
@@ -170,6 +189,74 @@ namespace FossLock.Test.Web.Converter
             foreach (var lock_prop in fakeViewmodel.SelectedDefaultLockProperties)
                 expectedLockProps |= lock_prop;
             Assert.AreEqual(expectedLockProps, entity.DefaultLockProperties);
+        }
+
+        [Test(Description = "ViewmodelToEntity requires two, non-null arguments.  Additionally, the entity.Id property cannot be 0 (indicates it is not already in the database)")]
+        public void ViewmodelToEntity_FromEntity_NullViewmodelOrEntity_ThrowsException()
+        {
+            var exceptions = new List<Exception>();
+
+            try
+            {
+                converter.ViewmodelToEntity(null, fakeProduct);
+            }
+            catch (Exception ex)
+            {
+                exceptions.Add(ex);
+            }
+
+            try
+            {
+                converter.ViewmodelToEntity(fakeViewmodel, null);
+            }
+            catch (Exception ex)
+            {
+                exceptions.Add(ex);
+            }
+
+            try
+            {
+                converter.ViewmodelToEntity(null, null);
+            }
+            catch (Exception ex)
+            {
+                exceptions.Add(ex);
+            }
+
+            var nullArgumentExceptionCount =
+                exceptions.Where(e => e.GetType() == typeof(ArgumentNullException)).Count();
+
+            Assert.AreEqual(3, nullArgumentExceptionCount);
+        }
+
+        public void ViewmodelToEntity_FromEntity_ValidModel_ReturnsExpectedResult()
+        {
+            var entity = converter.ViewmodelToEntity(fakeViewmodel, fakeProduct);
+
+            // make sure the returned instance is the same as the entity passed to the function
+            Assert.AreSame(entity, fakeProduct);
+
+            // make sure the properties are what we expect
+            Assert.AreEqual(fakeViewmodel.Id, entity.Id);
+            Assert.AreEqual(fakeViewmodel.Name, entity.Name);
+            Assert.AreEqual(fakeViewmodel.ReleaseDate, entity.ReleaseDate);
+            Assert.AreEqual(fakeViewmodel.Notes, entity.Notes);
+            Assert.AreEqual(fakeViewmodel.VersioningStyle, entity.VersioningStyle);
+            Assert.AreEqual(fakeViewmodel.FailOnNullHardwareIdentifier, entity.FailOnNullHardwareIdentifier);
+            Assert.AreEqual(fakeViewmodel.VersionLeeway, entity.VersionLeeway);
+
+            var expectedActivationType = ActivationType.None;
+            foreach (var activation_type in fakeViewmodel.PermittedActivationTypes)
+                expectedActivationType |= activation_type;
+            Assert.AreEqual(expectedActivationType, entity.PermittedActivationTypes);
+
+            var expectedLockProps = LockPropertyType.None;
+            foreach (var lock_prop in fakeViewmodel.SelectedDefaultLockProperties)
+                expectedLockProps |= lock_prop;
+            Assert.AreEqual(expectedLockProps, entity.DefaultLockProperties);
+
+            Assert.IsFalse(string.IsNullOrWhiteSpace(entity.PublicKey));
+            Assert.IsFalse(string.IsNullOrWhiteSpace(entity.PrivateKey));
         }
     }
 }

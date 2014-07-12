@@ -22,22 +22,23 @@ namespace FossLock.Web.ViewModels
         public ProductViewModel()
         {
             // initialize our lists
-            SelectedDefaultLockProperties = new List<LockPropertyType>();
-            PermittedActivationTypes = new List<ActivationType>();
+            SelectedDefaultLockProperties = new List<string>();
+            PermittedActivationTypes = new List<string>();
 
             // the following 4 properties are used in the Razor templates to display
             // all the possible choices.  Currently all four are based on enums (but not
             // all the enum values are displayed).
-            AllLockProperties = ((IEnumerable<int>)Enum.GetValues(typeof(LockPropertyType)))
+            AllLockProperties = new SelectList(
+                ((IEnumerable<int>)Enum.GetValues(typeof(LockPropertyType)))
                 .Where(e => (LockPropertyType)e != LockPropertyType.None)
-                .Select(e => new SelectListItem
+                .Select(e => new
                 {
                     Text = Enum.GetName(typeof(LockPropertyType), e),
                     Value = e.ToString()
-                })
-                .ToList();
+                }), "Value", "Text");
 
-            AllActivationTypes = ((IEnumerable<int>)Enum.GetValues(typeof(ActivationType)))
+            AllActivationTypes = new SelectList(
+                ((IEnumerable<int>)Enum.GetValues(typeof(ActivationType)))
                 .Where(e =>
                 {
                     // the following types are not currently permitted and shouldn't be shown
@@ -52,28 +53,27 @@ namespace FossLock.Web.ViewModels
                         return false;
                     }
                 })
-                .Select(e => new SelectListItem
+                .Select(e => new
                 {
                     Text = Enum.GetName(typeof(ActivationType), e),
                     Value = e.ToString()
-                })
-                .ToList();
+                }), "Value", "Text");
 
-            AllVersioningStyles = ((IEnumerable<int>)Enum.GetValues(typeof(VersioningStyle)))
-                .Select(e => new SelectListItem
+            AllVersioningStyles = new SelectList(
+                ((IEnumerable<int>)Enum.GetValues(typeof(VersioningStyle)))
+                .Select(e => new
                 {
                     Text = Enum.GetName(typeof(VersioningStyle), e),
                     Value = e.ToString()
-                })
-                .ToList();
+                }), "Value", "Text");
 
-            AllLeewayTypes = ((IEnumerable<int>)Enum.GetValues(typeof(VersionLeewayType)))
-                .Select(e => new SelectListItem
+            AllLeewayTypes = new SelectList(
+                ((IEnumerable<int>)Enum.GetValues(typeof(VersionLeewayType)))
+                .Select(e => new
                 {
                     Text = Enum.GetName(typeof(VersionLeewayType), e),
                     Value = e.ToString()
-                })
-                .ToList();
+                }), "Value", "Text");
 
             // set our default values for other fields
             Name = string.Empty;
@@ -84,6 +84,10 @@ namespace FossLock.Web.ViewModels
 
         #region Basics
 
+        /// <summary>
+        ///     Holds the database primary key.  Shouldn't be directly displayed
+        ///     or modified by the user.
+        /// </summary>
         public int Id { get; set; }
 
         [Required]
@@ -94,6 +98,7 @@ namespace FossLock.Web.ViewModels
         [Required]
         [DataType(DataType.Date)]
         [Display(Name = "Release Date")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime ReleaseDate { get; set; }
 
         [DataType(DataType.MultilineText)]
@@ -108,13 +113,13 @@ namespace FossLock.Web.ViewModels
         #region License/Security
 
         [Display(Name = "Default required hardware identifiers.")]
-        public IList<LockPropertyType> SelectedDefaultLockProperties { get; set; }
+        public IList<string> SelectedDefaultLockProperties { get; set; }
 
         [Display(Name = "Licensing fails on null hardware identifier.")]
         public bool FailOnNullHardwareIdentifier { get; set; }
 
         [Display(Name = "Allowed Activation Modes")]
-        public IList<ActivationType> PermittedActivationTypes { get; set; }
+        public IList<string> PermittedActivationTypes { get; set; }
 
         [Required]
         [Display(Name = "Version Leeway")]
@@ -131,13 +136,13 @@ namespace FossLock.Web.ViewModels
          * to the Razor engine.
          */
 
-        public IList<SelectListItem> AllLockProperties { get; private set; }
+        public SelectList AllLockProperties { get; private set; }
 
-        public IList<SelectListItem> AllActivationTypes { get; private set; }
+        public SelectList AllActivationTypes { get; private set; }
 
-        public IList<SelectListItem> AllVersioningStyles { get; private set; }
+        public SelectList AllVersioningStyles { get; private set; }
 
-        public IList<SelectListItem> AllLeewayTypes { get; private set; }
+        public SelectList AllLeewayTypes { get; private set; }
 
         #endregion Selection Lists
     }

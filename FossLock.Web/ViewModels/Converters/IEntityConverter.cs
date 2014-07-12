@@ -13,6 +13,8 @@ namespace FossLock.Web.ViewModels.Converters
     {
         TEntity ViewmodelToEntity(TViewModel vm);
 
+        TEntity ViewmodelToEntity(TViewModel vm, TEntity entity);
+
         TViewModel EntityToViewmodel(TEntity entity);
     }
 }

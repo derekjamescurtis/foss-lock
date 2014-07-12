@@ -102,8 +102,10 @@ namespace FossLock.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var p = converter.ViewmodelToEntity(vm);
+                var p = service.GetById(vm.Id);
+                p = converter.ViewmodelToEntity(vm, p);
                 service.Update(p);
+
                 return RedirectToAction("Index");
             }
             return View(vm);

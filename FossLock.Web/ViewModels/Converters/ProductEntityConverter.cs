@@ -31,8 +31,8 @@ namespace FossLock.Web.ViewModels.Converters
                 Notes = entity.Notes,
                 VersioningStyle = entity.VersioningStyle,
                 VersionLeeway = entity.VersionLeeway,
-                PermittedActivationTypes = new List<ActivationType>(),
-                SelectedDefaultLockProperties = new List<LockPropertyType>()
+                PermittedActivationTypes = new List<string>(),
+                SelectedDefaultLockProperties = new List<string>()
             };
 
             var allActivationTypes = Enum.GetValues(typeof(ActivationType));
@@ -45,11 +45,12 @@ namespace FossLock.Web.ViewModels.Converters
                 // figure out which activation types have already been selected.
                 if (entity.PermittedActivationTypes.HasFlag(activationType))
                 {
-                    vm.PermittedActivationTypes.Add(activationType);
+                    vm.PermittedActivationTypes.Add(((int)activationType).ToString());
 
                     var selectListItem = vm.AllActivationTypes.First(
                         e =>
                             (ActivationType)Enum.Parse(typeof(ActivationType), e.Value) == activationType);
+
                     selectListItem.Selected = true;
                 }
             }
@@ -63,7 +64,7 @@ namespace FossLock.Web.ViewModels.Converters
 
                 if (entity.DefaultLockProperties.HasFlag(lockType))
                 {
-                    vm.SelectedDefaultLockProperties.Add(lockType);
+                    vm.SelectedDefaultLockProperties.Add(((int)lockType).ToString());
                     vm.AllLockProperties.First(
                         e =>
                             ((LockPropertyType)Enum.Parse(typeof(LockPropertyType), e.Value)) == lockType)
@@ -74,37 +75,62 @@ namespace FossLock.Web.ViewModels.Converters
             return vm;
         }
 
+        /// <summary>
+        ///     Creates an entirely new entity based on a viewmodel.
+        /// </summary>
+        /// <param name="viewmodel">The viewmodel that our entity will be based on.</param>
+        /// <returns>
+        ///     A new Product with it's properties set based on the provided
+        ///     viewmodel instance.
+        /// </returns>
         public Product ViewmodelToEntity(ProductViewModel viewmodel)
         {
+            var entity = new Product();
+            ViewmodelToEntity(viewmodel, entity);
+            return entity;
+        }
+
+        /// <summary>
+        ///     Updates an existing Product instance with properties
+        ///     set on a viewmodel.
+        /// </summary>
+        /// <param name="viewmodel">
+        ///     The viewmodel that will be used as a reference when setting
+        ///     property values on our entity.
+        /// </param>
+        /// <param name="entity">The entity that will have it's properties set.</param>
+        /// <returns>The same instance of Product that was provided to this method.</returns>
+        public Product ViewmodelToEntity(ProductViewModel viewmodel, Product entity)
+        {
             if (viewmodel == null)
-            {
                 throw new ArgumentNullException("viewmodel");
-            }
+            if (entity == null)
+                throw new ArgumentNullException("entity");
 
-            var p = new Product
-            {
-                Id = viewmodel.Id,
-                Name = viewmodel.Name,
-                ReleaseDate = viewmodel.ReleaseDate,
-                FailOnNullHardwareIdentifier = viewmodel.FailOnNullHardwareIdentifier,
-                Notes = viewmodel.Notes,
-                VersioningStyle = viewmodel.VersioningStyle,
-                PermittedActivationTypes = ActivationType.None,
-                DefaultLockProperties = LockPropertyType.None,
-                VersionLeeway = viewmodel.VersionLeeway
-            };
+            entity.Id = viewmodel.Id;
+            entity.Name = viewmodel.Name;
+            entity.ReleaseDate = viewmodel.ReleaseDate;
+            entity.FailOnNullHardwareIdentifier = viewmodel.FailOnNullHardwareIdentifier;
+            entity.Notes = viewmodel.Notes;
+            entity.VersioningStyle = viewmodel.VersioningStyle;
+            entity.VersionLeeway = viewmodel.VersionLeeway;
 
+            entity.PermittedActivationTypes = ActivationType.None;
             foreach (var activationType in viewmodel.PermittedActivationTypes)
             {
-                p.PermittedActivationTypes |= activationType;
+                // TODO: turn these back to their normal types
+
+                entity.PermittedActivationTypes |= (ActivationType)Enum.Parse(typeof(ActivationType), activationType);
             }
 
+            entity.DefaultLockProperties = LockPropertyType.None;
             foreach (var lockProperty in viewmodel.SelectedDefaultLockProperties)
             {
-                p.DefaultLockProperties |= lockProperty;
+                // TODO: hack
+                entity.DefaultLockProperties |= (LockPropertyType)Enum.Parse(typeof(LockPropertyType), lockProperty);
             }
 
-            return p;
+            return entity;
         }
     }
 }
