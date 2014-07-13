@@ -207,7 +207,34 @@ namespace FossLock.Test.Web.Converter
         [Test]
         public void EntityToViewmodel_ReturnValue_MatchesExpectedState()
         {
-            Assert.Inconclusive("Not Implemented");
+            var vm = converter.EntityToViewmodel(fakeEntity);
+
+            Assert.That(vm.Id, Is.EqualTo(fakeEntity.Id));
+            Assert.That(vm.Name, Is.EqualTo(fakeEntity.Name));
+            Assert.That(vm.CanLicensePreReleaseVersions, Is.EqualTo(fakeEntity.CanLicensePreReleaseVersions));
+            // first run, billing+street should be different
+            Assert.That(vm.StreetAddress, Is.EqualTo(fakeEntity.StreetAddress));
+            Assert.That(vm.BillingAddress, Is.EqualTo(fakeEntity.BillingAddress));
+            Assert.That(vm.BillingMatchesStreetAddress, Is.False);
+            Assert.That(vm.OfficePhone1, Is.EqualTo(fakeEntity.OfficePhone1));
+            Assert.That(vm.OfficePhone2, Is.EqualTo(fakeEntity.OfficePhone2));
+            Assert.That(vm.OfficeFax, Is.EqualTo(fakeEntity.OfficeFax));
+            Assert.That(vm.Email, Is.EqualTo(fakeEntity.Email));
+            Assert.That(vm.Notes, Is.EqualTo(fakeEntity.Notes));
+            Assert.That(vm.PrimaryContact, Is.EqualTo(fakeEntity.PrimaryContact));
+
+            // now, we're going to make a shallow copy of the street address so it's equal to billing.
+            fakeEntity.BillingAddress.Address1 = fakeEntity.StreetAddress.Address1;
+            fakeEntity.BillingAddress.Address2 = fakeEntity.StreetAddress.Address2;
+            fakeEntity.BillingAddress.City = fakeEntity.StreetAddress.City;
+            fakeEntity.BillingAddress.State = fakeEntity.StreetAddress.State;
+            fakeEntity.BillingAddress.PostalCode = fakeEntity.StreetAddress.PostalCode;
+            fakeEntity.BillingAddress.Country = fakeEntity.StreetAddress.Country;
+
+            vm = converter.EntityToViewmodel(fakeEntity);
+
+            Assert.That(vm.StreetAddress, Is.EqualTo(vm.BillingAddress));
+            Assert.That(vm.BillingMatchesStreetAddress, Is.True);
         }
     }
 }
