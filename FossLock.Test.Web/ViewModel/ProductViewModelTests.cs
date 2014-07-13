@@ -27,8 +27,11 @@ namespace FossLock.Test.Web.ViewModel
             var t = typeof(ProductViewModel);
 
             var list_type_props = t.GetProperties().Where(e =>
-                e.PropertyType.GetInterfaces().Contains(typeof(ICollection)) ||
-                e.PropertyType.GetInterfaces().Contains(typeof(IEnumerable)));
+                e.PropertyType != typeof(System.String) && (
+                    e.PropertyType.GetInterfaces().Contains(typeof(ICollection)) ||
+                    e.PropertyType.GetInterfaces().Contains(typeof(IEnumerable))
+                )
+            );
 
             foreach (var p in list_type_props)
             {

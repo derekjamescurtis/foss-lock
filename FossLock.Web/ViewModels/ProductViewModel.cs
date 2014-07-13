@@ -79,7 +79,7 @@ namespace FossLock.Web.ViewModels
             Name = string.Empty;
             ReleaseDate = DateTime.Now;
             Notes = string.Empty;
-            VersioningStyle = Core.VersioningStyle.DotNet;
+            VersioningStyle = ((int)Core.VersioningStyle.DotNet).ToString();
         }
 
         #region Basics
@@ -94,7 +94,6 @@ namespace FossLock.Web.ViewModels
         [MaxLength(255)]
         public string Name { get; set; }
 
-        // TODO: format in web standard
         [Required]
         [DataType(DataType.Date)]
         [Display(Name = "Release Date")]
@@ -106,7 +105,7 @@ namespace FossLock.Web.ViewModels
 
         [Required]
         [Display(Name = "Versioning Style")]
-        public VersioningStyle VersioningStyle { get; set; }
+        public string VersioningStyle { get; set; }
 
         #endregion Basics
 
@@ -123,7 +122,7 @@ namespace FossLock.Web.ViewModels
 
         [Required]
         [Display(Name = "Version Leeway")]
-        public VersionLeewayType VersionLeeway { get; set; }
+        public string VersionLeeway { get; set; }
 
         #endregion License/Security
 

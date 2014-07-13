@@ -55,11 +55,12 @@ namespace FossLock.Test.Web.Converter
                 Name = StringFaker.Alpha(20),
                 ReleaseDate = DateTime.Now,
                 Notes = TextFaker.Sentences(5),
-                VersioningStyle = BooleanFaker.Boolean() ? VersioningStyle.DotNet : VersioningStyle.Semantic,
-                SelectedDefaultLockProperties = new List<LockPropertyType> { LockPropertyType.CPU, LockPropertyType.BIOS },
+                VersioningStyle = BooleanFaker.Boolean() ? ((int)VersioningStyle.DotNet).ToString() : ((int)VersioningStyle.Semantic).ToString(),
+                SelectedDefaultLockProperties = new List<string> { ((int)LockPropertyType.CPU).ToString(), ((int)LockPropertyType.BIOS).ToString() },
                 FailOnNullHardwareIdentifier = BooleanFaker.Boolean(),
-                PermittedActivationTypes = new List<ActivationType> { ActivationType.Manual, ActivationType.Email },
-                VersionLeeway = VersionLeewayType.Strict,
+                PermittedActivationTypes = new List<string> { ((int)ActivationType.Manual).ToString(), ((int)ActivationType.Email).ToString() },
+                // randomly selects a versionleewaytype
+                VersionLeeway = ((int)VersionLeewayType.Strict).ToString()
             };
         }
 
@@ -88,10 +89,10 @@ namespace FossLock.Test.Web.Converter
             Assert.AreEqual(fakeProduct.Name, vm.Name);
             Assert.AreEqual(fakeProduct.ReleaseDate, vm.ReleaseDate);
             Assert.AreEqual(fakeProduct.Notes, vm.Notes);
-            Assert.AreEqual(fakeProduct.VersioningStyle, vm.VersioningStyle);
+            Assert.AreEqual(fakeProduct.VersioningStyle, Enum.Parse(typeof(VersioningStyle), vm.VersioningStyle));
 
             Assert.AreEqual(fakeProduct.FailOnNullHardwareIdentifier, vm.FailOnNullHardwareIdentifier);
-            Assert.AreEqual(fakeProduct.VersionLeeway, vm.VersionLeeway);
+            Assert.AreEqual(fakeProduct.VersionLeeway, Enum.Parse(typeof(VersionLeewayType), vm.VersionLeeway));
 
             // the following two asserts are a little more tricky.
             // we have to convert the list of enums (stored in the view model)
@@ -107,29 +108,6 @@ namespace FossLock.Test.Web.Converter
                 actualActivationTypes |= (ActivationType)Enum.Parse(typeof(ActivationType), activation_type);
 
             Assert.AreEqual(fakeProduct.PermittedActivationTypes, actualActivationTypes);
-
-            // the next few checks are to make sure the selected flag is set
-            // in the AllActivationTypes/AllLockProperties
-            // this is a little logical insanity in how Razor works imho..
-            foreach (var activation_type in vm.AllActivationTypes)
-            {
-                var enum_value = (ActivationType)Enum.Parse(typeof(ActivationType), activation_type.Value);
-                if (fakeProduct.PermittedActivationTypes.HasFlag(enum_value))
-                {
-                    Assert.IsTrue(activation_type.Selected,
-                        string.Format("{0} present in PermittedActivationTypes, but AllActivationTypes missing Selected flag", activation_type.Text));
-                }
-            }
-
-            foreach (var lock_prop in vm.AllLockProperties)
-            {
-                var enum_value = (LockPropertyType)Enum.Parse(typeof(LockPropertyType), lock_prop.Value);
-                if (fakeProduct.DefaultLockProperties.HasFlag(enum_value))
-                {
-                    Assert.IsTrue(lock_prop.Selected,
-                        string.Format("{0} present in DefaultLockProperties, but AllLockProperties missing Selected flag", lock_prop.Text));
-                }
-            }
         }
 
         [Test(Description = "ViewmodelToEntity requires a single, non-null argument")]
@@ -162,11 +140,6 @@ namespace FossLock.Test.Web.Converter
             }
         }
 
-        public void ViewmodelToEntity_Returns_SameEntityReference()
-        {
-            // todo: second overload should return the exact same reference as was provided
-        }
-
         [Test(Description = "Product attributes set properly after conversion.")]
         public void ViewmodelToEntity_ValidViewmodel_ReturnsExpectedResult()
         {
@@ -176,18 +149,18 @@ namespace FossLock.Test.Web.Converter
             Assert.AreEqual(fakeViewmodel.Name, entity.Name);
             Assert.AreEqual(fakeViewmodel.ReleaseDate, entity.ReleaseDate);
             Assert.AreEqual(fakeViewmodel.Notes, entity.Notes);
-            Assert.AreEqual(fakeViewmodel.VersioningStyle, entity.VersioningStyle);
+            Assert.AreEqual(Enum.Parse(typeof(VersioningStyle), fakeViewmodel.VersioningStyle), entity.VersioningStyle);
             Assert.AreEqual(fakeViewmodel.FailOnNullHardwareIdentifier, entity.FailOnNullHardwareIdentifier);
-            Assert.AreEqual(fakeViewmodel.VersionLeeway, entity.VersionLeeway);
+            Assert.AreEqual(Enum.Parse(typeof(VersionLeewayType), fakeViewmodel.VersionLeeway), entity.VersionLeeway);
 
             var expectedActivationType = ActivationType.None;
             foreach (var activation_type in fakeViewmodel.PermittedActivationTypes)
-                expectedActivationType |= activation_type;
+                expectedActivationType |= (ActivationType)Enum.Parse(typeof(ActivationType), activation_type);
             Assert.AreEqual(expectedActivationType, entity.PermittedActivationTypes);
 
             var expectedLockProps = LockPropertyType.None;
             foreach (var lock_prop in fakeViewmodel.SelectedDefaultLockProperties)
-                expectedLockProps |= lock_prop;
+                expectedLockProps |= (LockPropertyType)Enum.Parse(typeof(LockPropertyType), lock_prop);
             Assert.AreEqual(expectedLockProps, entity.DefaultLockProperties);
         }
 
@@ -229,6 +202,7 @@ namespace FossLock.Test.Web.Converter
             Assert.AreEqual(3, nullArgumentExceptionCount);
         }
 
+        [Test()]
         public void ViewmodelToEntity_FromEntity_ValidModel_ReturnsExpectedResult()
         {
             var entity = converter.ViewmodelToEntity(fakeViewmodel, fakeProduct);
@@ -241,18 +215,18 @@ namespace FossLock.Test.Web.Converter
             Assert.AreEqual(fakeViewmodel.Name, entity.Name);
             Assert.AreEqual(fakeViewmodel.ReleaseDate, entity.ReleaseDate);
             Assert.AreEqual(fakeViewmodel.Notes, entity.Notes);
-            Assert.AreEqual(fakeViewmodel.VersioningStyle, entity.VersioningStyle);
+            Assert.AreEqual(Enum.Parse(typeof(VersioningStyle), fakeViewmodel.VersioningStyle), entity.VersioningStyle);
             Assert.AreEqual(fakeViewmodel.FailOnNullHardwareIdentifier, entity.FailOnNullHardwareIdentifier);
-            Assert.AreEqual(fakeViewmodel.VersionLeeway, entity.VersionLeeway);
+            Assert.AreEqual(Enum.Parse(typeof(VersionLeewayType), fakeViewmodel.VersionLeeway), entity.VersionLeeway);
 
             var expectedActivationType = ActivationType.None;
             foreach (var activation_type in fakeViewmodel.PermittedActivationTypes)
-                expectedActivationType |= activation_type;
+                expectedActivationType |= (ActivationType)Enum.Parse(typeof(ActivationType), activation_type);
             Assert.AreEqual(expectedActivationType, entity.PermittedActivationTypes);
 
             var expectedLockProps = LockPropertyType.None;
             foreach (var lock_prop in fakeViewmodel.SelectedDefaultLockProperties)
-                expectedLockProps |= lock_prop;
+                expectedLockProps |= (LockPropertyType)Enum.Parse(typeof(LockPropertyType), lock_prop);
             Assert.AreEqual(expectedLockProps, entity.DefaultLockProperties);
 
             Assert.IsFalse(string.IsNullOrWhiteSpace(entity.PublicKey));

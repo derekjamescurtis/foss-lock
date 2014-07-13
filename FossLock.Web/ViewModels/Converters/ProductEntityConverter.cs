@@ -7,6 +7,10 @@ using FossLock.Model;
 
 namespace FossLock.Web.ViewModels.Converters
 {
+    /// <summary>
+    ///     Provides methods to convert Product instances to their corresponding ViewModel
+    ///     instance, and vice versa.
+    /// </summary>
     public class ProductEntityConverter : IEntityConverter<Product, ProductViewModel>
     {
         /// <summary>
@@ -29,8 +33,8 @@ namespace FossLock.Web.ViewModels.Converters
                 ReleaseDate = entity.ReleaseDate,
                 FailOnNullHardwareIdentifier = entity.FailOnNullHardwareIdentifier,
                 Notes = entity.Notes,
-                VersioningStyle = entity.VersioningStyle,
-                VersionLeeway = entity.VersionLeeway,
+                VersioningStyle = ((int)entity.VersioningStyle).ToString(),
+                VersionLeeway = ((int)entity.VersionLeeway).ToString(),
                 PermittedActivationTypes = new List<string>(),
                 SelectedDefaultLockProperties = new List<string>()
             };
@@ -46,12 +50,6 @@ namespace FossLock.Web.ViewModels.Converters
                 if (entity.PermittedActivationTypes.HasFlag(activationType))
                 {
                     vm.PermittedActivationTypes.Add(((int)activationType).ToString());
-
-                    var selectListItem = vm.AllActivationTypes.First(
-                        e =>
-                            (ActivationType)Enum.Parse(typeof(ActivationType), e.Value) == activationType);
-
-                    selectListItem.Selected = true;
                 }
             }
 
@@ -65,10 +63,6 @@ namespace FossLock.Web.ViewModels.Converters
                 if (entity.DefaultLockProperties.HasFlag(lockType))
                 {
                     vm.SelectedDefaultLockProperties.Add(((int)lockType).ToString());
-                    vm.AllLockProperties.First(
-                        e =>
-                            ((LockPropertyType)Enum.Parse(typeof(LockPropertyType), e.Value)) == lockType)
-                            .Selected = true;
                 }
             }
 
@@ -112,21 +106,18 @@ namespace FossLock.Web.ViewModels.Converters
             entity.ReleaseDate = viewmodel.ReleaseDate;
             entity.FailOnNullHardwareIdentifier = viewmodel.FailOnNullHardwareIdentifier;
             entity.Notes = viewmodel.Notes;
-            entity.VersioningStyle = viewmodel.VersioningStyle;
-            entity.VersionLeeway = viewmodel.VersionLeeway;
+            entity.VersioningStyle = (VersioningStyle)Enum.Parse(typeof(VersioningStyle), viewmodel.VersioningStyle);
+            entity.VersionLeeway = (VersionLeewayType)Enum.Parse(typeof(VersionLeewayType), viewmodel.VersionLeeway);
 
             entity.PermittedActivationTypes = ActivationType.None;
             foreach (var activationType in viewmodel.PermittedActivationTypes)
             {
-                // TODO: turn these back to their normal types
-
                 entity.PermittedActivationTypes |= (ActivationType)Enum.Parse(typeof(ActivationType), activationType);
             }
 
             entity.DefaultLockProperties = LockPropertyType.None;
             foreach (var lockProperty in viewmodel.SelectedDefaultLockProperties)
             {
-                // TODO: hack
                 entity.DefaultLockProperties |= (LockPropertyType)Enum.Parse(typeof(LockPropertyType), lockProperty);
             }
 

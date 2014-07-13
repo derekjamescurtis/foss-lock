@@ -21,30 +21,13 @@ namespace FossLock.Web.Controllers
         private ProductService service = new ProductService(new EFRepository<Product>());
         private IEntityConverter<Product, ProductViewModel> converter = new ProductEntityConverter();
 
+        [HttpGet]
         public ActionResult Index()
         {
             var vms = service
                         .GetList()
                         .Select(e => converter.EntityToViewmodel(e));
             return View(vms);
-        }
-
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            Product product = service.GetById(id.Value);
-
-            if (product == null)
-            {
-                return HttpNotFound();
-            }
-
-            var vm = converter.EntityToViewmodel(product);
-            return View(vm);
         }
 
         [HttpGet]
@@ -133,17 +116,15 @@ namespace FossLock.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
+            var p = service.GetById(id);
+            if (p == null)
             {
-                // db.Dispose();
-                service = null;
+                return HttpNotFound();
             }
-            base.Dispose(disposing);
+
+            service.Delete(p);
+
+            return RedirectToAction("Index");
         }
     }
 }
