@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
+﻿using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using FossLock.BLL.Service;
-using FossLock.Core;
-using FossLock.DAL.EF;
 using FossLock.DAL.Repository;
 using FossLock.Model;
 using FossLock.Web.ViewModels;
@@ -18,10 +11,9 @@ namespace FossLock.Web.Controllers
 {
     public class ProductController : Controller
     {
-        private ProductService service = new ProductService(new EFRepository<Product>());
+        private GenericService<Product> service = new ProductService(new EFRepository<Product>());
         private IEntityConverter<Product, ProductViewModel> converter = new ProductConverter();
 
-        [HttpGet]
         public ActionResult Index()
         {
             var vms = service
@@ -30,7 +22,6 @@ namespace FossLock.Web.Controllers
             return View(vms);
         }
 
-        [HttpGet]
         public ActionResult Create()
         {
             var vm = new ProductViewModel();
@@ -44,39 +35,31 @@ namespace FossLock.Web.Controllers
             if (ModelState.IsValid)
             {
                 var p = converter.ViewmodelToEntity(vm);
-                try
-                {
-                    service.Add(p);
-                    return RedirectToAction("Index");
-                }
-                catch (Exception)
-                {
-                    var valErrors = service.ValidateAdd(p);
-                    foreach (var valError in valErrors)
-                    {
-                        ModelState.AddModelError(
-                            valError.MemberNames.First(), valError.ErrorMessage);
-                    }
-                }
+                service.Add(p);
+                return RedirectToAction("Index");
             }
-
-            return View(vm);
+            else
+            {
+                return View(vm);
+            }
         }
 
-        [HttpGet]
         public ActionResult Edit(int? id)
         {
             if (id == null)
-            {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+
             Product p = service.GetById(id.Value);
+
             if (p == null)
             {
                 return HttpNotFound();
             }
-            var vm = converter.EntityToViewmodel(p);
-            return View(vm);
+            else
+            {
+                var vm = converter.EntityToViewmodel(p);
+                return View(vm);
+            }
         }
 
         [HttpPost]
@@ -91,24 +74,28 @@ namespace FossLock.Web.Controllers
 
                 return RedirectToAction("Index");
             }
-            return View(vm);
+            else
+            {
+                return View(vm);
+            }
         }
 
-        [HttpGet]
         public ActionResult Delete(int? id)
         {
             if (id == null)
-            {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
 
             Product p = service.GetById(id.Value);
+
             if (p == null)
             {
                 return HttpNotFound();
             }
-            var vm = converter.EntityToViewmodel(p);
-            return View(vm);
+            else
+            {
+                var vm = converter.EntityToViewmodel(p);
+                return View(vm);
+            }
         }
 
         [HttpPost]
@@ -117,14 +104,16 @@ namespace FossLock.Web.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             var p = service.GetById(id);
+
             if (p == null)
             {
                 return HttpNotFound();
             }
-
-            service.Delete(p);
-
-            return RedirectToAction("Index");
+            else
+            {
+                service.Delete(p);
+                return RedirectToAction("Index");
+            }
         }
     }
 }
