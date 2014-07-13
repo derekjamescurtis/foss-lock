@@ -19,7 +19,7 @@ namespace FossLock.Web.Controllers
     public class ProductController : Controller
     {
         private ProductService service = new ProductService(new EFRepository<Product>());
-        private IEntityConverter<Product, ProductViewModel> converter = new ProductEntityConverter();
+        private IEntityConverter<Product, ProductViewModel> converter = new ProductConverter();
 
         [HttpGet]
         public ActionResult Index()

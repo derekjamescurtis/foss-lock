@@ -212,7 +212,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Static\img\" />
     <Folder Include="Static\js\" />
-    <Folder Include="Views\Customer\" />
   </ItemGroup>
   <!-- compiled (c#) files -->
   <ItemGroup>
@@ -227,8 +226,9 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\Converters\CustomerConverter.cs" />
     <Compile Include="ViewModels\Converters\IEntityConverter.cs" />
-    <Compile Include="ViewModels\Converters\ProductEntityConverter.cs" />
+    <Compile Include="ViewModels\Converters\ProductConverter.cs" />
     <Compile Include="ViewModels\CustomerViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
   </ItemGroup>
@@ -245,6 +245,7 @@
     <Content Include="Views\Product\Edit.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Web.config" />
+    <Content Include="Views\Customer\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

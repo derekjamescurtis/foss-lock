@@ -11,7 +11,7 @@ namespace FossLock.Web.ViewModels.Converters
     ///     Provides methods to convert Product instances to their corresponding ViewModel
     ///     instance, and vice versa.
     /// </summary>
-    public class ProductEntityConverter : IEntityConverter<Product, ProductViewModel>
+    public class ProductConverter : IEntityConverter<Product, ProductViewModel>
     {
         /// <summary>
         ///     Converts a Product object to it's corresponding ProductViewModel

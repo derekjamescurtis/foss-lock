@@ -18,9 +18,9 @@ namespace FossLock.Test.Web.Converter
     ///     Unit tests for FossLock.Web.ViewModels.Converters.ProductEntityConverter
     /// </summary>
     [TestFixture]
-    internal class ProductEntityConverterTests
+    internal class ProductConverterTests
     {
-        private ProductEntityConverter converter = null;
+        private ProductConverter converter = null;
         private Product fakeProduct = null;
         private ProductViewModel fakeViewmodel = null;
 
@@ -30,7 +30,7 @@ namespace FossLock.Test.Web.Converter
         [SetUp]
         public void TestSetup()
         {
-            converter = new ProductEntityConverter();
+            converter = new ProductConverter();
 
             fakeProduct = new Product
             {
