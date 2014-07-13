@@ -212,12 +212,14 @@
     <Folder Include="App_Data\" />
     <Folder Include="Static\img\" />
     <Folder Include="Static\js\" />
+    <Folder Include="Views\Customer\" />
   </ItemGroup>
   <!-- compiled (c#) files -->
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">

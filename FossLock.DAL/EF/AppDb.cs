@@ -22,6 +22,7 @@ namespace FossLock.DAL.EF
 
             /*
              * Database-wide configs
+             * Just a personal preference, but I don't like using pluralized tables
              */
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 

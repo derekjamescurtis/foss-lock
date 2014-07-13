@@ -58,11 +58,6 @@ namespace FossLock.Model
         public virtual ICollection<License> ProductLicenses { get; set; }
 
         /// <summary>
-        ///     A list of all known contacts for this client.
-        /// </summary>
-        public virtual ICollection<HumanContact> Contacts { get; set; }
-
-        /// <summary>
         ///     The main contact that should be tried first.
         /// </summary>
         public virtual HumanContact PrimaryContact { get; set; }
