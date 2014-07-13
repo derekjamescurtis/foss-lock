@@ -47,6 +47,11 @@ namespace FossLock.Model
         public string Email { get; set; }
 
         /// <summary>
+        ///     The main contact that should be tried first.
+        /// </summary>
+        public HumanContact PrimaryContact { get; set; }
+
+        /// <summary>
         ///     Any additional information, such as preferred contact times
         ///     or the first name of the point of contact.
         /// </summary>
@@ -55,11 +60,6 @@ namespace FossLock.Model
         /// <summary>
         ///     All the product licenses purchased by this Customer.
         /// </summary>
-        public virtual ICollection<License> ProductLicenses { get; set; }
-
-        /// <summary>
-        ///     The main contact that should be tried first.
-        /// </summary>
-        public virtual HumanContact PrimaryContact { get; set; }
+        public virtual IList<License> ProductLicenses { get; set; }
     }
 }

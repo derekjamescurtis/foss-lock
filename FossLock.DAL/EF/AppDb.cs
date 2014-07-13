@@ -28,6 +28,9 @@ namespace FossLock.DAL.EF
 
             /*
              * Complex types
+             * These aren't directly represented by tables in the database.
+             * Instead they're attached into other tables so for things like an 'address',
+             * which is a distinct type, but doesn't require a separate table to represent it.
              */
             modelBuilder.Configurations.Add(new AddressMap());
             modelBuilder.Configurations.Add(new HumanContactMap());
@@ -39,6 +42,9 @@ namespace FossLock.DAL.EF
             modelBuilder.Configurations.Add(new ProductMap());
             modelBuilder.Configurations.Add(new ProductFeatureMap());
             modelBuilder.Configurations.Add(new ProductVersionMap());
+
+            // customers
+            modelBuilder.Configurations.Add(new CustomerMap());
         }
     }
 }
