@@ -1,0 +1,98 @@
+﻿@model FossLock.Web.ViewModels.CustomerViewModel
+
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        <h3>Customer</h3>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <h4>Basics</h4>
+        <ul>
+
+            <li>
+                @Html.LabelFor(model => model.Name)
+                @Html.EditorFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+            </li>
+            <li>
+                @Html.LabelFor(model => model.CanLicensePreReleaseVersions)
+                @Html.EditorFor(model => model.CanLicensePreReleaseVersions)
+                @Html.ValidationMessageFor(model => model.CanLicensePreReleaseVersions)
+            </li>
+            <li>
+                @Html.LabelFor(model => model.OfficePhone1)
+                @Html.EditorFor(model => model.OfficePhone1)
+                @Html.ValidationMessageFor(model => model.OfficePhone1)
+            </li>
+            <li>
+                @Html.LabelFor(model => model.OfficePhone2)
+                @Html.EditorFor(model => model.OfficePhone2)
+                @Html.ValidationMessageFor(model => model.OfficePhone2)
+            </li>
+            <li>
+                @Html.LabelFor(model => model.OfficeFax)
+                @Html.EditorFor(model => model.OfficeFax)
+                @Html.ValidationMessageFor(model => model.OfficeFax)
+            </li>
+            <li>
+                @Html.LabelFor(model => model.Email)
+                @Html.EditorFor(model => model.Email)
+                @Html.ValidationMessageFor(model => model.Email)
+            </li>
+            <li>
+                @Html.LabelFor(model => model.Notes)
+                @Html.EditorFor(model => model.Notes)
+                @Html.ValidationMessageFor(model => model.Notes)
+            </li>
+        </ul>
+
+        <h4>Primary Contact Info</h4>
+        <ul>
+            <li>
+                @Html.LabelFor(model => model.PrimaryContact)
+                @Html.EditorFor(model => model.PrimaryContact)
+                @Html.ValidationMessageFor(model => model.PrimaryContact)
+            </li>
+        </ul>
+
+        <h4>Street Address</h4>
+        <ul>
+            <li>
+                @Html.LabelFor(model => model.StreetAddress)
+                @Html.EditorFor(model => model.StreetAddress)
+                @Html.ValidationMessageFor(model => model.StreetAddress)
+            </li>
+        </ul>
+
+        <h4>Billing Address</h4>
+        <ul>
+            <li>
+                @Html.LabelFor(model => model.BillingMatchesStreetAddress)
+                @Html.EditorFor(model => model.BillingMatchesStreetAddress)
+                @Html.ValidationMessageFor(model => model.BillingMatchesStreetAddress)
+            </li>
+            <li>
+                @Html.LabelFor(model => model.BillingAddress)
+                @Html.EditorFor(model => model.BillingAddress)
+                @Html.ValidationMessageFor(model => model.BillingAddress)
+            </li>
+        </ul>
+    </div>
+
+    <input type="submit" value="Create" />
+
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
