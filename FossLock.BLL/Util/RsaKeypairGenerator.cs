@@ -64,7 +64,7 @@ namespace FossLock.BLL.Util
                         PubKey = pubBlob
                     };
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     throw;
                 }

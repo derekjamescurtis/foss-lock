@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using FossLock.Model;
+using FossLock.Model.Component;
 
 namespace FossLock.Web.ViewModels.Converters
 {
@@ -57,7 +58,24 @@ namespace FossLock.Web.ViewModels.Converters
             if (entity == null)
                 throw new ArgumentNullException("entity");
 
-            throw new NotImplementedException();
+            var vm = new CustomerViewModel
+            {
+                Id = entity.Id,
+                Name = entity.Name,
+                CanLicensePreReleaseVersions = entity.CanLicensePreReleaseVersions,
+                StreetAddress = entity.StreetAddress,
+                BillingAddress = entity.BillingAddress,
+                OfficePhone1 = entity.OfficePhone1,
+                OfficePhone2 = entity.OfficePhone2,
+                OfficeFax = entity.OfficeFax,
+                Email = entity.Email,
+                Notes = entity.Notes,
+                PrimaryContact = entity.PrimaryContact
+            };
+
+            vm.BillingMatchesStreetAddress = vm.BillingAddress.Equals(vm.StreetAddress);
+
+            return vm;
         }
     }
 }
