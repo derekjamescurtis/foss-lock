@@ -23,12 +23,6 @@ namespace FossLock.Web.ViewModels.Converters
             return ViewmodelToEntity(vm, entity);
         }
 
-        // NOTE THIS IS VERY VERY IMPORTANT.
-        // when copying the FossLock.Model.Component.* fields, we are not performing
-        // any type of cloning.. they are set to references from the original object
-        // this is not a problem in a web application with a request/response cycle
-        // but if you end up reusing any of this code inside a GUI appliction, be warned!
-
         public Customer ViewmodelToEntity(CustomerViewModel vm, Customer entity)
         {
             if (vm == null)
@@ -41,7 +35,22 @@ namespace FossLock.Web.ViewModels.Converters
             entity.CanLicensePreReleaseVersions = vm.CanLicensePreReleaseVersions;
 
             entity.StreetAddress = vm.StreetAddress;
-            entity.BillingAddress = vm.BillingMatchesStreetAddress ? entity.StreetAddress : vm.BillingAddress;
+            if (vm.BillingMatchesStreetAddress)
+            {
+                entity.BillingAddress = new Address
+                {
+                    Address1 = vm.StreetAddress.Address1,
+                    Address2 = vm.StreetAddress.Address2,
+                    City = vm.StreetAddress.City,
+                    State = vm.StreetAddress.State,
+                    PostalCode = vm.StreetAddress.PostalCode,
+                    Country = vm.StreetAddress.Country,
+                };
+            }
+            else
+            {
+                entity.BillingAddress = vm.BillingAddress;
+            }
 
             entity.OfficePhone1 = vm.OfficePhone1;
             entity.OfficePhone2 = vm.OfficePhone2;
