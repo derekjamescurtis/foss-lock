@@ -5,6 +5,11 @@ namespace FossLock.Web.App_Start
 {
     using System;
     using System.Web;
+    using FossLock.BLL.Service;
+    using FossLock.DAL.Repository;
+    using FossLock.Model;
+    using FossLock.Web.ViewModels;
+    using FossLock.Web.ViewModels.Converters;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
     using Ninject;
     using Ninject.Web.Common;
@@ -59,6 +64,16 @@ namespace FossLock.Web.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            // for customer controller
+            // TODO:  These are really static bindings..
+            // It's not obvious to me from the documentation how to actually accomplish this
+            // in a generic mannor.  Come back here later and figure it out
+            // i.e.) Ideally, I want to create one set of bindings that would work
+            // for all the controllers (or maybe 2.. one for primaryentitycrud and another for
+            // secondaryentitycrud)
+            kernel.Bind<IRepository<Customer>>().To<EFRepository<Customer>>();
+            kernel.Bind<IFossLockService<Customer>>().To<GenericService<Customer>>();
+            kernel.Bind<IEntityConverter<Customer, CustomerViewModel>>().To<CustomerConverter>();
         }
     }
 }

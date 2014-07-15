@@ -219,6 +219,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\Base\PrimaryEntityCrudController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -231,7 +232,10 @@
     <Compile Include="ViewModels\Converters\CustomerConverter.cs" />
     <Compile Include="ViewModels\Converters\IEntityConverter.cs" />
     <Compile Include="ViewModels\Converters\ProductConverter.cs" />
+    <Compile Include="ViewModels\Converters\ProductFeatureConverter.cs" />
     <Compile Include="ViewModels\CustomerViewModel.cs" />
+    <Compile Include="ViewModels\IFossLockViewModel.cs" />
+    <Compile Include="ViewModels\ProductFeatureViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
   </ItemGroup>
   <!-- templates (.cshtml) -->

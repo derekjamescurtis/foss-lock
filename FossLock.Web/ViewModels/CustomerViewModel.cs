@@ -11,7 +11,7 @@ namespace FossLock.Web.ViewModels
     ///     Represents a Customer instance that can be properly rendered
     ///     by the Razor template engine.
     /// </summary>
-    public class CustomerViewModel
+    public class CustomerViewModel : IFossLockViewModel
     {
         public CustomerViewModel()
         {

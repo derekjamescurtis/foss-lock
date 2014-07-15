@@ -12,7 +12,7 @@ namespace FossLock.Web.ViewModels
     ///     Represents a Product object in a way that can be properly
     ///     handled by a Razor template.
     /// </summary>
-    public class ProductViewModel
+    public class ProductViewModel : IFossLockViewModel
     {
         /// <summary>
         ///     Initializes the ProductViewModel.

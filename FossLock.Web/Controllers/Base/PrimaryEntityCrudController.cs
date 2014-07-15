@@ -1,45 +1,50 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
 using FossLock.BLL.Service;
-using FossLock.DAL.Repository;
-using FossLock.Model;
+using FossLock.Model.Base;
 using FossLock.Web.ViewModels;
 using FossLock.Web.ViewModels.Converters;
 
-namespace FossLock.Web.Controllers
+namespace FossLock.Web.Controllers.Base
 {
-    public class ProductController : Controller
+    public abstract class PrimaryEntityCrudController<TEntity, TViewModel> : Controller
+        where TEntity : EntityBase, new()
+        where TViewModel : class, IFossLockViewModel, new()
     {
-        public ProductController()
+        public PrimaryEntityCrudController(IFossLockService<TEntity> service, IEntityConverter<TEntity, TViewModel> converter)
         {
+            this.service = service;
+            this.converter = converter;
         }
 
-        private GenericService<Product> service = new ProductService(new EFRepository<Product>());
-        private IEntityConverter<Product, ProductViewModel> converter = new ProductConverter();
+        private IFossLockService<TEntity> service = null;
+        private IEntityConverter<TEntity, TViewModel> converter = null;
 
         public ActionResult Index()
         {
-            var vms = service
+            var vmList = service
                         .GetList()
                         .Select(e => converter.EntityToViewmodel(e));
-            return View(vms);
+            return View(vmList);
         }
 
         public ActionResult Create()
         {
-            var vm = new ProductViewModel();
+            var vm = new TViewModel();
             return View(vm);
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(ProductViewModel vm)
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult Create(TViewModel vm)
         {
             if (ModelState.IsValid)
             {
-                var p = converter.ViewmodelToEntity(vm);
-                service.Add(p);
+                var entity = converter.ViewmodelToEntity(vm);
+                service.Add(entity);
                 return RedirectToAction("Index");
             }
             else
@@ -53,28 +58,27 @@ namespace FossLock.Web.Controllers
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            Product p = service.GetById(id.Value);
+            var entity = service.GetById(id.Value);
 
-            if (p == null)
+            if (entity == null)
             {
                 return HttpNotFound();
             }
             else
             {
-                var vm = converter.EntityToViewmodel(p);
+                var vm = converter.EntityToViewmodel(entity);
                 return View(vm);
             }
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(ProductViewModel vm)
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult Edit(TViewModel vm)
         {
             if (ModelState.IsValid)
             {
-                var p = service.GetById(vm.Id);
-                p = converter.ViewmodelToEntity(vm, p);
-                service.Update(p);
+                var entity = service.GetById(vm.Id);
+                entity = converter.ViewmodelToEntity(vm, entity);
+                service.Update(entity);
 
                 return RedirectToAction("Index");
             }
@@ -89,33 +93,31 @@ namespace FossLock.Web.Controllers
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            Product p = service.GetById(id.Value);
+            var entity = service.GetById(id.Value);
 
-            if (p == null)
+            if (entity == null)
             {
                 return HttpNotFound();
             }
             else
             {
-                var vm = converter.EntityToViewmodel(p);
+                var vm = converter.EntityToViewmodel(entity);
                 return View(vm);
             }
         }
 
-        [HttpPost]
-        [ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        [HttpPost, ValidateAntiForgeryToken, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
-            var p = service.GetById(id);
+            var entity = service.GetById(id);
 
-            if (p == null)
+            if (entity == null)
             {
                 return HttpNotFound();
             }
             else
             {
-                service.Delete(p);
+                service.Delete(entity);
                 return RedirectToAction("Index");
             }
         }

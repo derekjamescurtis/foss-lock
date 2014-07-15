@@ -94,6 +94,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\CustomerControllerTests.cs" />
     <Compile Include="Converter\CustomerConverterTests.cs" />
     <Compile Include="Converter\ProductConverterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
