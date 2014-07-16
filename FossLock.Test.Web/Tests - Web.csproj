@@ -95,6 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\CustomerControllerTests.cs" />
+    <Compile Include="Controllers\PrimaryEntityCrudControllerTests.cs" />
     <Compile Include="Converter\CustomerConverterTests.cs" />
     <Compile Include="Converter\ProductConverterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -107,6 +108,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\FossLock.BLL\Lib - BLL.csproj">
+      <Project>{afd60e24-49d9-458f-92df-39bf72ac5f96}</Project>
+      <Name>Lib - BLL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FossLock.Core\Lib - Core.csproj">
       <Project>{fc4a93e1-337c-45e0-9e62-da00bb95845f}</Project>
       <Name>Lib - Core</Name>

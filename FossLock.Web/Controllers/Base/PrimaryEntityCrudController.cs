@@ -24,7 +24,7 @@ namespace FossLock.Web.Controllers.Base
         private IFossLockService<TEntity> service = null;
         private IEntityConverter<TEntity, TViewModel> converter = null;
 
-        public ActionResult Index()
+        public virtual ActionResult Index()
         {
             var vmList = service
                         .GetList()
@@ -32,14 +32,14 @@ namespace FossLock.Web.Controllers.Base
             return View(vmList);
         }
 
-        public ActionResult Create()
+        public virtual ActionResult Create()
         {
             var vm = new TViewModel();
             return View(vm);
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public ActionResult Create(TViewModel vm)
+        public virtual ActionResult Create(TViewModel vm)
         {
             if (ModelState.IsValid)
             {
@@ -53,7 +53,7 @@ namespace FossLock.Web.Controllers.Base
             }
         }
 
-        public ActionResult Edit(int? id)
+        public virtual ActionResult Edit(int? id)
         {
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -72,7 +72,7 @@ namespace FossLock.Web.Controllers.Base
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public ActionResult Edit(TViewModel vm)
+        public virtual ActionResult Edit(TViewModel vm)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +88,7 @@ namespace FossLock.Web.Controllers.Base
             }
         }
 
-        public ActionResult Delete(int? id)
+        public virtual ActionResult Delete(int? id)
         {
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -107,7 +107,7 @@ namespace FossLock.Web.Controllers.Base
         }
 
         [HttpPost, ValidateAntiForgeryToken, ActionName("Delete")]
-        public ActionResult DeleteConfirmed(int id)
+        public virtual ActionResult DeleteConfirmed(int id)
         {
             var entity = service.GetById(id);
 
