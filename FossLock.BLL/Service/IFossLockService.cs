@@ -20,7 +20,7 @@ namespace FossLock.BLL.Service
         /// </summary>
         /// <param name="id">
         ///     The unique identifier for an object in the object graph.
-        ///     This should typically be assumed to the primary key field 
+        ///     This should typically be assumed to the primary key field
         ///     from the database.
         /// </param>
         /// <returns>
@@ -49,7 +49,7 @@ namespace FossLock.BLL.Service
         ///     the range of the object graph, an empty list should be returned.
         /// </param>
         /// <param name="pageSize">
-        ///     The requested maximum number of entities to return on each 'slice/page' 
+        ///     The requested maximum number of entities to return on each 'slice/page'
         ///     of the object graph to return.
         /// </param>
         /// <returns>
@@ -78,11 +78,11 @@ namespace FossLock.BLL.Service
         ///     The entity to add to the object graph.
         /// </param>
         /// <returns>
-        ///     Returns the entity that was passed in to the function.  Depending 
+        ///     Returns the entity that was passed in to the function.  Depending
         ///     on the repository implementation this may be a reference to the
         ///     instance as was passed in or it may be a new instance representing
         ///     the same entity.
-        /// </summary>
+        /// </returns>
         /// <exception cref="ArgumentNullException">
         ///     Thrown if a null argument is provided for 'entity'
         /// </exception>
@@ -102,7 +102,7 @@ namespace FossLock.BLL.Service
         /// </param>
         /// <returns>
         ///     An object representing the same entity that was provided as
-        ///     an argument to this method.  Depending on the repository 
+        ///     an argument to this method.  Depending on the repository
         ///     implementation this may be the same object reference or
         ///     it may be a new object representing the same entity.
         /// </returns>
@@ -117,7 +117,7 @@ namespace FossLock.BLL.Service
         T Update(T entity);
 
         /// <summary>
-        ///     Removes the provided entity from the object graph and 
+        ///     Removes the provided entity from the object graph and
         ///     commits any pending changes to the repository.
         /// </summary>
         /// <param name="entity">
@@ -134,7 +134,7 @@ namespace FossLock.BLL.Service
         void Delete(T entity);
 
         /// <summary>
-        ///     Checks the entity for any validation problems 
+        ///     Checks the entity for any validation problems
         ///     with adding it to the object graph.
         /// </summary>
         /// <param name="entity">
@@ -147,7 +147,7 @@ namespace FossLock.BLL.Service
         ICollection<ValidationResult> ValidateAdd(T entity);
 
         /// <summary>
-        ///     Checks the entity for any validation problems 
+        ///     Checks the entity for any validation problems
         ///     with persisting it's changes to the repository.
         /// </summary>
         /// <param name="entity">
@@ -160,9 +160,9 @@ namespace FossLock.BLL.Service
         ICollection<ValidationResult> ValidateUpdate(T entity);
 
         /// <summary>
-        ///     Checks the entity for any validation problems 
+        ///     Checks the entity for any validation problems
         ///     with removing it from the  object graph.  Note:
-        ///     entity-level validation checks are skipped 
+        ///     entity-level validation checks are skipped
         ///     (such as whether all required fields are present).
         /// </summary>
         /// <param name="entity">

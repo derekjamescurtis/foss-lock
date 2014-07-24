@@ -25,6 +25,10 @@ namespace FossLock.Test.Web.Controllers
     ///     CustomerViewModel classes, as well as reliance on the actual functionality
     ///     of the CustomerConverter object.  To make these tests more robust, it would
     ///     be ideal to remove this dependency and just mock up all those types.
+    ///
+    ///     This dependency exists because the controller class we're testing was refactored
+    ///     out of a controller that worked with Customer entities.  So, many of these tests
+    ///     were just copied over to these tests.
     /// </remarks>
     [TestFixture]
     internal class PrimaryEntityCrudControllerTests
@@ -38,12 +42,8 @@ namespace FossLock.Test.Web.Controllers
         private Mock<PrimaryEntityCrudController<Customer, CustomerViewModel>> controllerMocker = null;
 
         /// <summary>
-        ///     Reinitializes all of our fields used in these tests.
+        ///     [Re]initializes all of our class-level fields before each test method.
         /// </summary>
-        /// <remarks>
-        ///     NOTE:  serviceMocker and controllerMocker can have further setup
-        ///     defined within the test methods and everything will still work.
-        /// </remarks>
         [SetUp]
         public void SetUp()
         {
@@ -115,8 +115,6 @@ namespace FossLock.Test.Web.Controllers
         [Test]
         public void HttpGet_CreateMethod_ReturnsExpectedViewmodel()
         {
-            controller = controllerMocker.Object;
-
             var result = controller.Create();
             Assert.That(result, Is.InstanceOf<ActionResult>());
 
@@ -129,45 +127,77 @@ namespace FossLock.Test.Web.Controllers
         ///     page and same viewmodel if the viewmodel is reported
         ///     as invalid.
         /// </summary>
-        /// <remarks>
-        ///     TODO: Well, this doesn't work.  I can't override Controller.ModelState
-        ///     with Moq becuase it's not virtual... I need to think more about how I'm going to solve this.
-        /// </remarks>
         [Test]
         public void HttpPost_CreateMethod_InvalidData_RedisplaysSameView()
         {
-            // See remarks above:
-            Assert.Ignore("Can't override the propery I want to mock the controller.");
-
-            // make sure our controller reports 'ModelState.IsValid == false'
-            controllerMocker.Setup(e => e.ModelState).Returns(() =>
-            {
-                var msd = new ModelStateDictionary();
-                msd.AddModelError("I'm a fake error.", new Exception());
-
-                Assert.That(msd.IsValid, Is.False);
-
-                return msd;
-            });
+            // NOTE: we can't actually mock the controller.modelstate propery
+            // because it's not virtual, so moq can't handle it.
+            // so, instead we do this to simulate a validation failure
+            controller.ModelState.AddModelError("Id", new Exception("I'm a fake validation error."));
+            Assert.That(controller.ModelState.IsValid, Is.False);
 
             var vm = new CustomerViewModel();
-
             var result = controller.Create(vm);
 
+            // make sure we're not redirecting and that our viewmodel is the same
             Assert.That(result, Is.InstanceOf<ViewResult>());
             Assert.That(((ViewResult)result).Model, Is.SameAs(vm));
         }
 
+        /// <summary>
+        ///     Verifies that the service's Create method is never called
+        ///     on HTTP Post, if the ViewModel reports itself as invalid.
+        /// </summary>
+        public void HttpPost_CreateMethod_InvalidData_ServiceAdd_NotCalled()
+        {
+            var createCalls = 0;
+            serviceMocker.Setup(e => e.Add(It.IsAny<Customer>()))
+                .Callback(() => { ++createCalls; });
+
+            controller.ModelState.AddModelError("aValidationError", new Exception());
+
+            Assert.That(controller.ModelState.IsValid, Is.False);
+
+            controller.Create(new CustomerViewModel());
+
+            Assert.That(createCalls, Is.EqualTo(0));
+        }
+
+        /// <summary>
+        ///     When viewmodel is valid, the HTTP Post Create method should call
+        ///     the service's Add method.
+        /// </summary>
         [Test]
         public void HttpPost_CreateMethod_ValidData_CallsServiceAdd()
         {
-            Assert.Ignore("Not implemented");
+            var callCount = 0;
+
+            serviceMocker.Setup(e => e.Add(It.IsAny<Customer>()))
+                .Callback(() => { ++callCount; });
+
+            Assert.That(controller.ModelState.IsValid, Is.True);
+
+            var result = controller.Create(new CustomerViewModel());
+            Assert.That(result, Is.InstanceOf<RedirectToRouteResult>());
+
+            Assert.That(callCount, Is.EqualTo(1));
         }
 
+        /// <summary>
+        ///     HTTP Post to Create method, will redirect to Index action
+        ///     after processing a valid viewmodel.
+        /// </summary>
         [Test]
         public void HttpPost_CreateMethod_ValidData_RedirectsToIndex()
         {
-            Assert.Ignore("Not implemented");
+            Assert.That(controller.ModelState.IsValid, Is.True);
+
+            var result = controller.Create(new CustomerViewModel());
+            Assert.That(result, Is.InstanceOf<RedirectToRouteResult>());
+
+            var redirectResult = result as RedirectToRouteResult;
+
+            Assert.That(redirectResult.RouteValues["Action"], Is.EqualTo("Index"));
         }
 
         #endregion Create Tests
@@ -181,37 +211,94 @@ namespace FossLock.Test.Web.Controllers
         [Test]
         public void HttpGet_EditMethod_MissingId_ReturnsBadRequest()
         {
-            controllerMocker = new Mock<PrimaryEntityCrudController<Customer, CustomerViewModel>>(null, null) { CallBase = true };
-
-            controller = controllerMocker.Object;
             var result = controller.Edit(id: null);
 
             Assert.That(result, Is.InstanceOf<HttpStatusCodeResult>());
             Assert.That(((HttpStatusCodeResult)result).StatusCode, Is.EqualTo((int)HttpStatusCode.BadRequest));
         }
 
+        /// <summary>
+        ///     The controller should not call the service's 'update' method on HTTP Post
+        ///     if viewmodel validation fails.
+        /// </summary>
         [Test]
         public void HttpPost_EditMethod_InvalidViewModel_DoesNotUpdateService()
         {
-            Assert.Ignore("Not implemented");
+            var updateCalls = 0;
+            serviceMocker.Setup(e => e.Update(It.IsAny<Customer>())).Callback(() => { ++updateCalls; });
+
+            controller.ModelState.AddModelError("aValidationError", new Exception());
+
+            Assert.That(controller.ModelState.IsValid, Is.False);
+
+            controller.Edit(new CustomerViewModel());
+
+            Assert.That(updateCalls, Is.EqualTo(0));
         }
 
+        /// <summary>
+        ///     The controller should redisplay the same view as 'get' after a 'post'
+        ///     where the viewmodel validation fails.
+        /// </summary>
         [Test]
         public void HttpPost_EditMethod_InvalidViewModel_RedisplaysTheSameView()
         {
-            Assert.Ignore("Not implemented");
+            controller.ModelState.AddModelError("aValidationError", new Exception());
+
+            Assert.That(controller.ModelState.IsValid, Is.False);
+
+            var result = controller.Edit(new CustomerViewModel());
+
+            Assert.That(result, Is.InstanceOf<ViewResult>());
         }
 
+        /// <summary>
+        ///     The controller should call the service's 'update' method on
+        ///     HTTP Post if the viewmodel validates successfully.
+        /// </summary>
         [Test]
         public void HttpPost_EditMethod_ValidViewModel_UpdatesService()
         {
-            Assert.Ignore("Not implemented");
+            var updateCalls = 0;
+
+            serviceMocker.Setup(
+                e => e.GetById(It.IsAny<int>()))
+                    .Returns(new Customer());
+
+            serviceMocker.Setup(
+                e => e.Update(It.IsAny<Customer>()))
+                    .Callback(() =>
+                    {
+                        ++updateCalls;
+                    });
+
+            Assert.That(controller.ModelState.IsValid, Is.True);
+
+            controller.Edit(new CustomerViewModel());
+
+            Assert.That(updateCalls, Is.EqualTo(1));
         }
 
+        /// <summary>
+        ///     The controller should redirect to the action 'index' after
+        ///     a successful 'update' to an entity.
+        /// </summary>
         [Test]
         public void HttpPost_EditMethod_ValidViewModel_RedirectsToIndex()
         {
-            Assert.Ignore("Not implemented");
+            serviceMocker.Setup(
+                e => e.GetById(It.IsAny<int>()))
+                    .Returns(new Customer());
+
+            Assert.That(controller.ModelState.IsValid, Is.True);
+
+            var result = controller.Edit(new CustomerViewModel());
+
+            Assert.That(result, Is.InstanceOf<RedirectToRouteResult>());
+
+            var redirectResult = result as RedirectToRouteResult;
+
+            Assert.That(redirectResult.RouteValues["Action"], Is.EqualTo("Index"));
         }
 
         #endregion Edit Tests
@@ -225,13 +312,47 @@ namespace FossLock.Test.Web.Controllers
         [Test]
         public void HttpGet_DeleteMethod_MissingId_ReturnsBadRequest()
         {
-            controllerMocker = new Mock<PrimaryEntityCrudController<Customer, CustomerViewModel>>(null, null) { CallBase = true };
-            controller = controllerMocker.Object;
-
             var result = controller.Delete(id: null);
 
             Assert.That(result, Is.InstanceOf<HttpStatusCodeResult>());
             Assert.That(((HttpStatusCodeResult)result).StatusCode, Is.EqualTo((int)HttpStatusCode.BadRequest));
+        }
+
+        /// <summary>
+        ///     Calls to 'delete confirmed' should return a redirect respond to
+        ///     the action named 'Index'
+        /// </summary>
+        [Test]
+        public void HttpPost_DeleteConfirmedMethod_RedirectsToIndex()
+        {
+            serviceMocker.Setup(e => e.GetById(It.IsAny<int>())).Returns(new Customer { BillingAddress = new Address(), StreetAddress = new Address() });
+
+            var result = controller.DeleteConfirmed(1234);
+
+            Assert.That(result, Is.InstanceOf<RedirectToRouteResult>());
+
+            var redirectResult = result as RedirectToRouteResult;
+
+            Assert.That(redirectResult.RouteValues["Action"], Is.EqualTo("Index"));
+        }
+
+        /// <summary>
+        ///     Calls to 'delete confirmed' should call the underlying service's
+        ///     'delete' method.
+        /// </summary>
+        [Test]
+        public void HttpPost_DeleteConfirmedMethod_ValidViewModel_CallsService()
+        {
+            var deleteCalls = 0;
+
+            serviceMocker.Setup(e => e.GetById(It.IsAny<int>())).Returns(new Customer { BillingAddress = new Address(), StreetAddress = new Address() });
+            serviceMocker.Setup(e => e.Delete(It.IsAny<Customer>())).Callback(() => { ++deleteCalls; });
+
+            Assert.That(deleteCalls, Is.EqualTo(0));
+
+            controller.DeleteConfirmed(1234);
+
+            Assert.That(deleteCalls, Is.EqualTo(1));
         }
 
         #endregion Delete Tests
