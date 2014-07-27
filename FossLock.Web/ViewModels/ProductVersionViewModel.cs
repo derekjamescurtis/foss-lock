@@ -10,7 +10,7 @@ namespace FossLock.Web.ViewModels
     /// <summary>
     ///
     /// </summary>
-    public class ProductVersionViewModel
+    public class ProductVersionViewModel : IFossLockViewModel
     {
         public int Id { get; set; }
 

@@ -21,43 +21,13 @@ namespace FossLock.Test.Web.Converter
         }
 
         [Test]
-        public void EntityToViewModel_NullEntity_ThrowsException()
+        public void EntityToViewModel_ValidEntity_ReturnsExpectedViewModelState()
         {
             Assert.Inconclusive();
         }
 
         [Test]
-        public void EntityToViewModel_ValidEntity_ReturnsExpectedViewModel()
-        {
-            Assert.Inconclusive();
-        }
-
-        [Test]
-        public void ViewModelToEntity_NullViewModel_ThrowsException()
-        {
-            Assert.Inconclusive();
-        }
-
-        [Test]
-        public void ViewModelToEntity_ValidEntity_ReturnsExpectedResult()
-        {
-            Assert.Inconclusive();
-        }
-
-        [Test]
-        public void ViewModelToEntityFromEntity_NullViewModelOrEntity_ThrowsException()
-        {
-            Assert.Inconclusive();
-        }
-
-        [Test]
-        public void ViewModelToEntityFromEntity_ReturnsExpectedResult()
-        {
-            Assert.Inconclusive();
-        }
-
-        [Test]
-        public void ViewModelToEntityFromEntity_ReturnsSameReference()
+        public void ViewModelToEntity_ValidEntity_ReturnsExpectedEntityState()
         {
             Assert.Inconclusive();
         }

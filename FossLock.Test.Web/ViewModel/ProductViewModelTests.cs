@@ -10,6 +10,9 @@ using NUnit.Framework;
 
 namespace FossLock.Test.Web.ViewModel
 {
+    /// <summary>
+    ///     Nothing too interesting going on here yet.
+    /// </summary>
     [TestFixture]
     internal class ProductViewModelTests
     {

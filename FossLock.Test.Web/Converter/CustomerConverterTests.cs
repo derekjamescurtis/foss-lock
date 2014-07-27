@@ -111,65 +111,6 @@ namespace FossLock.Test.Web.Converter
             };
         }
 
-        /// <summary>
-        ///     Both overloads of this method should throw an exception if any of the
-        ///     provided arguments are null.
-        /// </summary>
-        [Test]
-        public void ViewmodelToEntity_NullArgument_ThrowsException()
-        {
-            // single parameter flavor
-            var ex = Assert.Throws<ArgumentNullException>(new TestDelegate(
-                () => { converter.ViewmodelToEntity(null); }));
-
-            Assert.That(ex.ParamName, Is.EqualTo("vm"));
-
-            // the following are all double-param flavor
-            // null entity
-            ex = Assert.Throws<ArgumentNullException>(new TestDelegate(
-                () => { converter.ViewmodelToEntity(fakeViewModel, null); }));
-
-            Assert.That(ex.ParamName, Is.EqualTo("entity"));
-
-            // null viewmodel
-            ex = Assert.Throws<ArgumentNullException>(new TestDelegate(
-                () => { converter.ViewmodelToEntity(null, fakeEntity); }));
-
-            Assert.That(ex.ParamName, Is.EqualTo("vm"));
-
-            // both null!
-            ex = Assert.Throws<ArgumentNullException>(new TestDelegate(
-                () => { converter.ViewmodelToEntity(null, null); }));
-
-            Assert.That(ex.ParamName, Is.EqualTo("vm").Or.EqualTo("entity"));
-        }
-
-        /// <summary>
-        ///     EntityToViewmodel requires a single, non-null argument.
-        /// </summary>
-        [Test]
-        public void EntityToViewmodel_NullArgument_ThrowsException()
-        {
-            var ex = Assert.Throws<ArgumentNullException>(new TestDelegate(
-                () => { converter.EntityToViewmodel(null); }));
-
-            Assert.That(ex.ParamName, Is.EqualTo("entity"));
-        }
-
-        /// <summary>
-        ///     Make sure the entity returned from ViewmodelToEntity is the same instance
-        ///     as the entity passed into the function.
-        ///
-        ///     NOTE: This is done simply to keep the return type consistant with the other
-        ///           overload of this method to avoid confusion.
-        /// </summary>
-        [Test]
-        public void ViewmodelToEntity_TwoArgumentOverload_ReturnsSameEntityReference()
-        {
-            var returnedEntity = converter.ViewmodelToEntity(fakeViewModel, fakeEntity);
-            Assert.AreSame(fakeEntity, returnedEntity);
-        }
-
         [Test]
         public void ViewmodelToEntity_ReturnValue_MatchesExpectedState()
         {

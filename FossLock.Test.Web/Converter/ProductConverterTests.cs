@@ -64,23 +64,7 @@ namespace FossLock.Test.Web.Converter
             };
         }
 
-        [Test(Description = "EntityToViewmodel requires a single, non-null argument.")]
-        public void EntityToViewmodel_NullEntity_ThrowsException()
-        {
-            try
-            {
-                Product p = null;
-                var vm = converter.EntityToViewmodel(p);
-                Assert.Fail("An ArgumentNullException was expected, but none was thrown.");
-            }
-            catch (Exception ex)
-            {
-                Assert.IsInstanceOf<ArgumentNullException>(ex);
-                Assert.AreEqual("entity", ((ArgumentNullException)ex).ParamName);
-            }
-        }
-
-        [Test(Description = "ProductViewModel attributes set properly after conversion")]
+        [Test]
         public void EntityToViewmodel_ValidEntity_ReturnsExpectedViewmodel()
         {
             var vm = converter.EntityToViewmodel(fakeProduct);
@@ -110,37 +94,9 @@ namespace FossLock.Test.Web.Converter
             Assert.AreEqual(fakeProduct.PermittedActivationTypes, actualActivationTypes);
         }
 
-        [Test(Description = "ViewmodelToEntity requires a single, non-null argument")]
-        public void ViewmodelToEntity_NullViewmodel_ThrowsException()
-        {
-            // test the first overload
-            try
-            {
-                ProductViewModel vm = null;
-                var p = converter.ViewmodelToEntity(vm);
-                Assert.Fail("An ArgumentNullException was expected, but none was thrown.");
-            }
-            catch (Exception ex)
-            {
-                Assert.IsInstanceOf<ArgumentNullException>(ex);
-                Assert.AreEqual("viewmodel", ((ArgumentNullException)ex).ParamName);
-            }
-
-            // test our second overload
-            try
-            {
-                ProductViewModel vm = null;
-                converter.ViewmodelToEntity(vm);
-                Assert.Fail("An ArgumentNullException was expected, but none was thrown.");
-            }
-            catch (Exception ex)
-            {
-                Assert.IsInstanceOf<ArgumentNullException>(ex);
-                Assert.AreEqual("viewmodel", ((ArgumentNullException)ex).ParamName);
-            }
-        }
-
-        [Test(Description = "Product attributes set properly after conversion.")]
+        // todo: remove this once CommonTests checks to make sure this is returning the
+        // result from the other overload of this method.
+        [Test]
         public void ViewmodelToEntity_ValidViewmodel_ReturnsExpectedResult()
         {
             var entity = converter.ViewmodelToEntity(fakeViewmodel);
@@ -164,45 +120,7 @@ namespace FossLock.Test.Web.Converter
             Assert.AreEqual(expectedLockProps, entity.DefaultLockProperties);
         }
 
-        [Test(Description = "ViewmodelToEntity requires two, non-null arguments.  Additionally, the entity.Id property cannot be 0 (indicates it is not already in the database)")]
-        public void ViewmodelToEntity_FromEntity_NullViewmodelOrEntity_ThrowsException()
-        {
-            var exceptions = new List<Exception>();
-
-            try
-            {
-                converter.ViewmodelToEntity(null, fakeProduct);
-            }
-            catch (Exception ex)
-            {
-                exceptions.Add(ex);
-            }
-
-            try
-            {
-                converter.ViewmodelToEntity(fakeViewmodel, null);
-            }
-            catch (Exception ex)
-            {
-                exceptions.Add(ex);
-            }
-
-            try
-            {
-                converter.ViewmodelToEntity(null, null);
-            }
-            catch (Exception ex)
-            {
-                exceptions.Add(ex);
-            }
-
-            var nullArgumentExceptionCount =
-                exceptions.Where(e => e.GetType() == typeof(ArgumentNullException)).Count();
-
-            Assert.AreEqual(3, nullArgumentExceptionCount);
-        }
-
-        [Test()]
+        [Test]
         public void ViewmodelToEntity_FromEntity_ValidModel_ReturnsExpectedResult()
         {
             var entity = converter.ViewmodelToEntity(fakeViewmodel, fakeProduct);

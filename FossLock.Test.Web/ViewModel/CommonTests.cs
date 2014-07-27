@@ -14,11 +14,15 @@ namespace FossLock.Test.Web.ViewModel
     {
         private IEnumerable<Type> allViewModelTypes = null;
 
+        /// <summary>
+        ///     Reinitializes all fields in this class before each test.
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
             var vmInterfaceType = typeof(FossLock.Web.ViewModels.IFossLockViewModel);
 
+            // find all of our viewmodel types from the FossLock.Web assembly.
             allViewModelTypes = Assembly.GetAssembly(vmInterfaceType)
                 .GetTypes().Where(
                     t =>
@@ -27,8 +31,13 @@ namespace FossLock.Test.Web.ViewModel
                 );
         }
 
+        /// <summary>
+        ///     Checks all the classes that implement IFossLockViewModel and make
+        ///     sure that when instantiated, they are automatically initializing all
+        ///     of their list-type properties automatically.
+        /// </summary>
         [Test]
-        public void ViewmodelListPropertiesInitialized()
+        public void Viewmodel_ListProperties_Initialized()
         {
             foreach (var t in allViewModelTypes)
             {
