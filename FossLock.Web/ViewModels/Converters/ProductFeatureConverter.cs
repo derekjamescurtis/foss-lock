@@ -12,17 +12,32 @@ namespace FossLock.Web.ViewModels.Converters
 
         public ProductFeature ViewmodelToEntity(ProductFeatureViewModel vm)
         {
-            throw new NotImplementedException();
+            var entity = new ProductFeature();
+            return ViewmodelToEntity(vm, entity);
         }
 
         public ProductFeature ViewmodelToEntity(ProductFeatureViewModel vm, ProductFeature entity)
         {
-            throw new NotImplementedException();
+            entity.Id = vm.Id;
+            entity.Name = vm.Name;
+            entity.Description = vm.Description;
+            entity.MaximumAllowedPerLicense = vm.MaxAllowed;
+
+            return entity;
         }
 
         public ProductFeatureViewModel EntityToViewmodel(ProductFeature entity)
         {
-            throw new NotImplementedException();
+            var vm = new ProductFeatureViewModel
+            {
+                Id = entity.Id,
+                Description = entity.Description,
+                Name = entity.Name,
+                MaxAllowed = entity.MaximumAllowedPerLicense,
+                Product = entity.Product
+            };
+
+            return vm;
         }
 
         #endregion IEntityConverter<ProductFeature,ProductFeatureViewModel> Members

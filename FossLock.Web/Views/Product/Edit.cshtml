@@ -68,6 +68,24 @@
                 @Html.ValidationMessageFor(model => model.VersionLeeway)
             </li>
         </ul>
+
+        <h4>Versions</h4>
+        @Html.ActionLink("New", "Create", new { controller = "ProductVersion", productId = Model.Id } )
+        <ul>
+            @foreach (var version in Model.Versions)
+            {
+                <li>
+                    @version.Version
+                    <a href="">Edit</a>
+                    <a href="">Delete</a>
+                </li>
+            }
+        </ul>
+
+        <h4>Features</h4>
+        <a href="">New</a>
+        <ul>
+        </ul>
     </div>
 
     <input type="submit" value="Save" />

@@ -20,15 +20,32 @@ namespace FossLock.Web.Controllers
         private GenericService<Product> service = new ProductService(new EFRepository<Product>());
         private IEntityConverter<ProductFeature, ProductFeatureViewModel> converter = new ProductFeatureConverter();
 
-        //
-        // GET: /ProductFeature/
         public ActionResult Index(int productId)
         {
-            return View();
+            var product = service.GetById(productId);
+
+            if (product == null)
+            {
+                return HttpNotFound();
+            }
+
+            var vm = product.AvailableFeatures
+                                .Select(e => converter.EntityToViewmodel(e));
+
+            return View(vm);
         }
 
         public ActionResult Create(int productId)
         {
+            //var product = service.GetById(productId);
+
+            //if (product == null)
+            //{
+            //    return HttpNotFound();
+            //}
+
+            //return View(vm);
+
             throw new NotImplementedException();
         }
 

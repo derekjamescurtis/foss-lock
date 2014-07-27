@@ -9,6 +9,8 @@ using FossLock.Web.ViewModels.Converters;
 
 namespace FossLock.Web.Controllers
 {
+    [RoutePrefix("Product")]
+    [Route("{id:int}/{action}")]
     public class ProductController : Controller
     {
         public ProductController()
@@ -18,6 +20,7 @@ namespace FossLock.Web.Controllers
         private GenericService<Product> service = new ProductService(new EFRepository<Product>());
         private IEntityConverter<Product, ProductViewModel> converter = new ProductConverter();
 
+        [Route]
         public ActionResult Index()
         {
             var vms = service
@@ -26,12 +29,14 @@ namespace FossLock.Web.Controllers
             return View(vms);
         }
 
+        [Route("Create")]
         public ActionResult Create()
         {
             var vm = new ProductViewModel();
             return View(vm);
         }
 
+        [Route("Create")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(ProductViewModel vm)

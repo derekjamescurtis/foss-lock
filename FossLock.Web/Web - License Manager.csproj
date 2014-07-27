@@ -224,17 +224,20 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductFeatureController.cs" />
+    <Compile Include="Controllers\ProductVersionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\Converters\ProductVersionConverter.cs" />
     <Compile Include="ViewModels\Converters\CustomerConverter.cs" />
     <Compile Include="ViewModels\Converters\IEntityConverter.cs" />
     <Compile Include="ViewModels\Converters\ProductConverter.cs" />
     <Compile Include="ViewModels\Converters\ProductFeatureConverter.cs" />
     <Compile Include="ViewModels\CustomerViewModel.cs" />
     <Compile Include="ViewModels\IFossLockViewModel.cs" />
+    <Compile Include="ViewModels\ProductVersionViewModel.cs" />
     <Compile Include="ViewModels\ProductFeatureViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
   </ItemGroup>
@@ -255,6 +258,8 @@
     <Content Include="Views\Customer\Create.cshtml" />
     <Content Include="Views\Customer\Edit.cshtml" />
     <Content Include="Views\Customer\Delete.cshtml" />
+    <Content Include="Views\ProductVersion\Create.cshtml" />
+    <Content Include="Views\ProductVersion\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -99,9 +99,11 @@
     <Compile Include="Controllers\PrimaryEntityCrudControllerTests.cs" />
     <Compile Include="Converter\CustomerConverterTests.cs" />
     <Compile Include="Converter\ProductConverterTests.cs" />
+    <Compile Include="Converter\ProductVersionConverterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\CustomerViewModelTests.cs" />
     <Compile Include="ViewModel\ProductViewModelTests.cs" />
+    <Compile Include="ViewModel\CommonTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

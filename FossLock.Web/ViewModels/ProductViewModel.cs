@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web.Mvc;
 using FossLock.Core;
+using FossLock.Model;
 
 namespace FossLock.Web.ViewModels
 {
@@ -24,6 +25,7 @@ namespace FossLock.Web.ViewModels
             // initialize our lists
             SelectedDefaultLockProperties = new List<string>();
             PermittedActivationTypes = new List<string>();
+            Versions = new List<ProductVersion>();
 
             // the following 4 properties are used in the Razor templates to display
             // all the possible choices.  Currently all four are based on enums (but not
@@ -125,6 +127,12 @@ namespace FossLock.Web.ViewModels
         public string VersionLeeway { get; set; }
 
         #endregion License/Security
+
+        #region Children
+
+        public IEnumerable<ProductVersion> Versions { get; set; }
+
+        #endregion Children
 
         #region Selection Lists
 
