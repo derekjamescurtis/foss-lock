@@ -25,7 +25,7 @@ namespace FossLock.Web.ViewModels.Converters
             return vm;
         }
 
-        public ProductFeature ViewmodelToEntity(ProductFeatureViewModel vm, ProductFeature entity)
+        public void ViewmodelToEntity(ProductFeatureViewModel vm, ref ProductFeature entity)
         {
             if (entity == null)
                 throw new ArgumentNullException("entity");
@@ -36,8 +36,6 @@ namespace FossLock.Web.ViewModels.Converters
             entity.Name = vm.Name;
             entity.Description = vm.Description;
             entity.MaximumAllowedPerLicense = vm.MaxAllowed;
-
-            return entity;
         }
     }
 }

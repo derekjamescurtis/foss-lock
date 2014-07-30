@@ -34,7 +34,7 @@ namespace FossLock.Web.ViewModels.Converters
             return vm;
         }
 
-        public Customer ViewmodelToEntity(CustomerViewModel vm, Customer entity)
+        public void ViewmodelToEntity(CustomerViewModel vm, ref Customer entity)
         {
             if (vm == null)
                 throw new ArgumentNullException("vm");
@@ -69,8 +69,6 @@ namespace FossLock.Web.ViewModels.Converters
             entity.Email = vm.Email;
             entity.Notes = vm.Notes;
             entity.PrimaryContact = vm.PrimaryContact;
-
-            return entity;
         }
     }
 }

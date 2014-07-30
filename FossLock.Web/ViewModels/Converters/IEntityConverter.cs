@@ -35,11 +35,10 @@ namespace FossLock.Web.ViewModels.Converters
 
         /// <summary>
         ///     Takes both a viewmodel and it's corresponding entity instance.
-        ///     Updates the properties on the entity and
+        ///     Updates the properties on the entity according to the viewmodel.
         /// </summary>
-        /// <param name="vm"></param>
-        /// <param name="entity"></param>
-        /// <returns></returns>
-        void ViewmodelToEntity(TViewModel vm, out TEntity entity);
+        /// <param name="vm">The viewmodel whose properties will be used to update the entity.</param>
+        /// <param name="entity">The entity that will be updated.</param>
+        void ViewmodelToEntity(TViewModel vm, ref TEntity entity);
     }
 }

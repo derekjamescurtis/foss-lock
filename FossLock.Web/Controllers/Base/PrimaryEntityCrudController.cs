@@ -94,7 +94,8 @@
         {
             if (ModelState.IsValid)
             {
-                var entity = converter.ViewmodelToEntity(vm);
+                var entity = new TEntity();
+                converter.ViewmodelToEntity(vm, ref entity);
                 service.Add(entity);
                 return RedirectToAction("Index");
             }
@@ -152,7 +153,7 @@
             if (ModelState.IsValid)
             {
                 var entity = service.GetById(vm.Id);
-                entity = converter.ViewmodelToEntity(vm, entity);
+                converter.ViewmodelToEntity(vm, ref entity);
                 service.Update(entity);
 
                 return RedirectToAction("Index");

@@ -18,7 +18,7 @@ namespace FossLock.Web.ViewModels.Converters
             throw new NotImplementedException();
         }
 
-        public ProductVersion ViewmodelToEntity(ProductVersionViewModel vm, ProductVersion entity)
+        public void ViewmodelToEntity(ProductVersionViewModel vm, ref ProductVersion entity)
         {
             if (vm == null)
                 throw new ArgumentNullException("vm");

@@ -60,7 +60,7 @@ namespace FossLock.Web.ViewModels.Converters
             return vm;
         }
 
-        public Product ViewmodelToEntity(ProductViewModel viewmodel, Product entity)
+        public void ViewmodelToEntity(ProductViewModel viewmodel, ref Product entity)
         {
             if (viewmodel == null)
                 throw new ArgumentNullException("viewmodel");
@@ -86,8 +86,6 @@ namespace FossLock.Web.ViewModels.Converters
             {
                 entity.DefaultLockProperties |= (LockPropertyType)Enum.Parse(typeof(LockPropertyType), lockProperty);
             }
-
-            return entity;
         }
     }
 }

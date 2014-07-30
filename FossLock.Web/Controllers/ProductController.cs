@@ -43,8 +43,9 @@ namespace FossLock.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var p = converter.ViewmodelToEntity(vm);
-                service.Add(p);
+                var entity = new Product();
+                converter.ViewmodelToEntity(vm, ref entity);
+                service.Add(entity);
                 return RedirectToAction("Index");
             }
             else
@@ -78,7 +79,7 @@ namespace FossLock.Web.Controllers
             if (ModelState.IsValid)
             {
                 var p = service.GetById(vm.Id);
-                p = converter.ViewmodelToEntity(vm, p);
+                converter.ViewmodelToEntity(vm, ref p);
                 service.Update(p);
 
                 return RedirectToAction("Index");
