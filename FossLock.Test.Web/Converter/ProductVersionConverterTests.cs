@@ -31,5 +31,18 @@ namespace FossLock.Test.Web.Converter
         {
             Assert.Inconclusive();
         }
+
+        [Test]
+        public void ViewModelToEntity_EntityIdNotPreset_ThrowsException()
+        {
+            var vm = new ProductVersionViewModel
+            {
+                Id = 1,
+                Major = "1",
+                Minor = "1",
+                Build = "1",
+                Patch = "1"
+            };
+        }
     }
 }

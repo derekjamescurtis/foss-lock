@@ -8,23 +8,24 @@ namespace FossLock.Web.ViewModels.Converters
 {
     public class ProductVersionConverter : IEntityConverter<ProductVersion, ProductVersionViewModel>
     {
-        #region IEntityConverter<ProductVersion,ProduceVersionViewModel> Members
-
-        public ProductVersion ViewmodelToEntity(ProductVersionViewModel vm)
+        public ProductVersionViewModel EntityToViewmodel(ProductVersion entity)
         {
+            if (entity == null)
+            {
+                throw new ArgumentNullException("entity");
+            }
+
             throw new NotImplementedException();
         }
 
         public ProductVersion ViewmodelToEntity(ProductVersionViewModel vm, ProductVersion entity)
         {
+            if (vm == null)
+                throw new ArgumentNullException("vm");
+            else if (entity == null)
+                throw new ArgumentNullException("entity");
+
             throw new NotImplementedException();
         }
-
-        public ProductVersionViewModel EntityToViewmodel(ProductVersion entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        #endregion IEntityConverter<ProductVersion,ProduceVersionViewModel> Members
     }
 }

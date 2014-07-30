@@ -7,20 +7,31 @@ using FossLock.Model.Component;
 
 namespace FossLock.Web.ViewModels.Converters
 {
-    /// <summary>
-    ///     Provides methods for convertering between our Customer domain model
-    ///     objects, and their corresponding ViewModels.
-    /// </summary>
     public class CustomerConverter : IEntityConverter<Customer, CustomerViewModel>
     {
-        public Customer ViewmodelToEntity(CustomerViewModel vm)
+        public CustomerViewModel EntityToViewmodel(Customer entity)
         {
-            if (vm == null)
-                throw new ArgumentNullException("vm");
+            if (entity == null)
+                throw new ArgumentNullException("entity");
 
-            Customer entity = new Customer();
+            var vm = new CustomerViewModel
+            {
+                Id = entity.Id,
+                Name = entity.Name,
+                CanLicensePreReleaseVersions = entity.CanLicensePreReleaseVersions,
+                StreetAddress = entity.StreetAddress,
+                BillingAddress = entity.BillingAddress,
+                OfficePhone1 = entity.OfficePhone1,
+                OfficePhone2 = entity.OfficePhone2,
+                OfficeFax = entity.OfficeFax,
+                Email = entity.Email,
+                Notes = entity.Notes,
+                PrimaryContact = entity.PrimaryContact
+            };
 
-            return ViewmodelToEntity(vm, entity);
+            vm.BillingMatchesStreetAddress = vm.BillingAddress.Equals(vm.StreetAddress);
+
+            return vm;
         }
 
         public Customer ViewmodelToEntity(CustomerViewModel vm, Customer entity)
@@ -60,31 +71,6 @@ namespace FossLock.Web.ViewModels.Converters
             entity.PrimaryContact = vm.PrimaryContact;
 
             return entity;
-        }
-
-        public CustomerViewModel EntityToViewmodel(Customer entity)
-        {
-            if (entity == null)
-                throw new ArgumentNullException("entity");
-
-            var vm = new CustomerViewModel
-            {
-                Id = entity.Id,
-                Name = entity.Name,
-                CanLicensePreReleaseVersions = entity.CanLicensePreReleaseVersions,
-                StreetAddress = entity.StreetAddress,
-                BillingAddress = entity.BillingAddress,
-                OfficePhone1 = entity.OfficePhone1,
-                OfficePhone2 = entity.OfficePhone2,
-                OfficeFax = entity.OfficeFax,
-                Email = entity.Email,
-                Notes = entity.Notes,
-                PrimaryContact = entity.PrimaryContact
-            };
-
-            vm.BillingMatchesStreetAddress = vm.BillingAddress.Equals(vm.StreetAddress);
-
-            return vm;
         }
     }
 }

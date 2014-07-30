@@ -8,26 +8,11 @@ namespace FossLock.Web.ViewModels.Converters
 {
     public class ProductFeatureConverter : IEntityConverter<ProductFeature, ProductFeatureViewModel>
     {
-        #region IEntityConverter<ProductFeature,ProductFeatureViewModel> Members
-
-        public ProductFeature ViewmodelToEntity(ProductFeatureViewModel vm)
-        {
-            var entity = new ProductFeature();
-            return ViewmodelToEntity(vm, entity);
-        }
-
-        public ProductFeature ViewmodelToEntity(ProductFeatureViewModel vm, ProductFeature entity)
-        {
-            entity.Id = vm.Id;
-            entity.Name = vm.Name;
-            entity.Description = vm.Description;
-            entity.MaximumAllowedPerLicense = vm.MaxAllowed;
-
-            return entity;
-        }
-
         public ProductFeatureViewModel EntityToViewmodel(ProductFeature entity)
         {
+            if (entity == null)
+                throw new ArgumentNullException("entity");
+
             var vm = new ProductFeatureViewModel
             {
                 Id = entity.Id,
@@ -40,6 +25,19 @@ namespace FossLock.Web.ViewModels.Converters
             return vm;
         }
 
-        #endregion IEntityConverter<ProductFeature,ProductFeatureViewModel> Members
+        public ProductFeature ViewmodelToEntity(ProductFeatureViewModel vm, ProductFeature entity)
+        {
+            if (entity == null)
+                throw new ArgumentNullException("entity");
+            else if (vm == null)
+                throw new ArgumentNullException("vm");
+
+            entity.Id = vm.Id;
+            entity.Name = vm.Name;
+            entity.Description = vm.Description;
+            entity.MaximumAllowedPerLicense = vm.MaxAllowed;
+
+            return entity;
+        }
     }
 }

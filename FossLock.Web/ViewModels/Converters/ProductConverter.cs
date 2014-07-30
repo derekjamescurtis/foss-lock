@@ -7,18 +7,8 @@ using FossLock.Model;
 
 namespace FossLock.Web.ViewModels.Converters
 {
-    /// <summary>
-    ///     Provides methods to convert Product instances to their corresponding ViewModel
-    ///     instance, and vice versa.
-    /// </summary>
     public class ProductConverter : IEntityConverter<Product, ProductViewModel>
     {
-        /// <summary>
-        ///     Converts a Product object to it's corresponding ProductViewModel
-        ///     for display by the Razor templates.
-        /// </summary>
-        /// <param name="entity">The Product that we want to display to the user.</param>
-        /// <returns>A ProductViewModel that represents the entity argument.</returns>
         public ProductViewModel EntityToViewmodel(Product entity)
         {
             if (entity == null)
@@ -70,31 +60,6 @@ namespace FossLock.Web.ViewModels.Converters
             return vm;
         }
 
-        /// <summary>
-        ///     Creates an entirely new entity based on a viewmodel.
-        /// </summary>
-        /// <param name="viewmodel">The viewmodel that our entity will be based on.</param>
-        /// <returns>
-        ///     A new Product with it's properties set based on the provided
-        ///     viewmodel instance.
-        /// </returns>
-        public Product ViewmodelToEntity(ProductViewModel viewmodel)
-        {
-            var entity = new Product();
-            ViewmodelToEntity(viewmodel, entity);
-            return entity;
-        }
-
-        /// <summary>
-        ///     Updates an existing Product instance with properties
-        ///     set on a viewmodel.
-        /// </summary>
-        /// <param name="viewmodel">
-        ///     The viewmodel that will be used as a reference when setting
-        ///     property values on our entity.
-        /// </param>
-        /// <param name="entity">The entity that will have it's properties set.</param>
-        /// <returns>The same instance of Product that was provided to this method.</returns>
         public Product ViewmodelToEntity(ProductViewModel viewmodel, Product entity)
         {
             if (viewmodel == null)
