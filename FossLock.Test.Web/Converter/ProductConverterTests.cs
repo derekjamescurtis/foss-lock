@@ -99,56 +99,53 @@ namespace FossLock.Test.Web.Converter
         [Test]
         public void ViewmodelToEntity_ValidViewmodel_ReturnsExpectedResult()
         {
-            var entity = converter.ViewmodelToEntity(fakeViewmodel);
+            converter.ViewmodelToEntity(fakeViewmodel, ref fakeProduct);
 
-            Assert.AreEqual(fakeViewmodel.Id, entity.Id);
-            Assert.AreEqual(fakeViewmodel.Name, entity.Name);
-            Assert.AreEqual(fakeViewmodel.ReleaseDate, entity.ReleaseDate);
-            Assert.AreEqual(fakeViewmodel.Notes, entity.Notes);
-            Assert.AreEqual(Enum.Parse(typeof(VersioningStyle), fakeViewmodel.VersioningStyle), entity.VersioningStyle);
-            Assert.AreEqual(fakeViewmodel.FailOnNullHardwareIdentifier, entity.FailOnNullHardwareIdentifier);
-            Assert.AreEqual(Enum.Parse(typeof(VersionLeewayType), fakeViewmodel.VersionLeeway), entity.VersionLeeway);
+            Assert.AreEqual(fakeViewmodel.Id, fakeProduct.Id);
+            Assert.AreEqual(fakeViewmodel.Name, fakeProduct.Name);
+            Assert.AreEqual(fakeViewmodel.ReleaseDate, fakeProduct.ReleaseDate);
+            Assert.AreEqual(fakeViewmodel.Notes, fakeProduct.Notes);
+            Assert.AreEqual(Enum.Parse(typeof(VersioningStyle), fakeViewmodel.VersioningStyle), fakeProduct.VersioningStyle);
+            Assert.AreEqual(fakeViewmodel.FailOnNullHardwareIdentifier, fakeProduct.FailOnNullHardwareIdentifier);
+            Assert.AreEqual(Enum.Parse(typeof(VersionLeewayType), fakeViewmodel.VersionLeeway), fakeProduct.VersionLeeway);
 
             var expectedActivationType = ActivationType.None;
             foreach (var activation_type in fakeViewmodel.PermittedActivationTypes)
                 expectedActivationType |= (ActivationType)Enum.Parse(typeof(ActivationType), activation_type);
-            Assert.AreEqual(expectedActivationType, entity.PermittedActivationTypes);
+            Assert.AreEqual(expectedActivationType, fakeProduct.PermittedActivationTypes);
 
             var expectedLockProps = LockPropertyType.None;
             foreach (var lock_prop in fakeViewmodel.SelectedDefaultLockProperties)
                 expectedLockProps |= (LockPropertyType)Enum.Parse(typeof(LockPropertyType), lock_prop);
-            Assert.AreEqual(expectedLockProps, entity.DefaultLockProperties);
+            Assert.AreEqual(expectedLockProps, fakeProduct.DefaultLockProperties);
         }
 
         [Test]
         public void ViewmodelToEntity_FromEntity_ValidModel_ReturnsExpectedResult()
         {
-            var entity = converter.ViewmodelToEntity(fakeViewmodel, fakeProduct);
-
-            // make sure the returned instance is the same as the entity passed to the function
-            Assert.AreSame(entity, fakeProduct);
+            converter.ViewmodelToEntity(fakeViewmodel, ref fakeProduct);
 
             // make sure the properties are what we expect
-            Assert.AreEqual(fakeViewmodel.Id, entity.Id);
-            Assert.AreEqual(fakeViewmodel.Name, entity.Name);
-            Assert.AreEqual(fakeViewmodel.ReleaseDate, entity.ReleaseDate);
-            Assert.AreEqual(fakeViewmodel.Notes, entity.Notes);
-            Assert.AreEqual(Enum.Parse(typeof(VersioningStyle), fakeViewmodel.VersioningStyle), entity.VersioningStyle);
-            Assert.AreEqual(fakeViewmodel.FailOnNullHardwareIdentifier, entity.FailOnNullHardwareIdentifier);
-            Assert.AreEqual(Enum.Parse(typeof(VersionLeewayType), fakeViewmodel.VersionLeeway), entity.VersionLeeway);
+            Assert.AreEqual(fakeViewmodel.Id, fakeProduct.Id);
+            Assert.AreEqual(fakeViewmodel.Name, fakeProduct.Name);
+            Assert.AreEqual(fakeViewmodel.ReleaseDate, fakeProduct.ReleaseDate);
+            Assert.AreEqual(fakeViewmodel.Notes, fakeProduct.Notes);
+            Assert.AreEqual(Enum.Parse(typeof(VersioningStyle), fakeViewmodel.VersioningStyle), fakeProduct.VersioningStyle);
+            Assert.AreEqual(fakeViewmodel.FailOnNullHardwareIdentifier, fakeProduct.FailOnNullHardwareIdentifier);
+            Assert.AreEqual(Enum.Parse(typeof(VersionLeewayType), fakeViewmodel.VersionLeeway), fakeProduct.VersionLeeway);
 
             var expectedActivationType = ActivationType.None;
             foreach (var activation_type in fakeViewmodel.PermittedActivationTypes)
                 expectedActivationType |= (ActivationType)Enum.Parse(typeof(ActivationType), activation_type);
-            Assert.AreEqual(expectedActivationType, entity.PermittedActivationTypes);
+            Assert.AreEqual(expectedActivationType, fakeProduct.PermittedActivationTypes);
 
             var expectedLockProps = LockPropertyType.None;
             foreach (var lock_prop in fakeViewmodel.SelectedDefaultLockProperties)
                 expectedLockProps |= (LockPropertyType)Enum.Parse(typeof(LockPropertyType), lock_prop);
-            Assert.AreEqual(expectedLockProps, entity.DefaultLockProperties);
+            Assert.AreEqual(expectedLockProps, fakeProduct.DefaultLockProperties);
 
-            Assert.IsFalse(string.IsNullOrWhiteSpace(entity.PublicKey));
-            Assert.IsFalse(string.IsNullOrWhiteSpace(entity.PrivateKey));
+            Assert.IsFalse(string.IsNullOrWhiteSpace(fakeProduct.PublicKey));
+            Assert.IsFalse(string.IsNullOrWhiteSpace(fakeProduct.PrivateKey));
         }
     }
 }

@@ -138,11 +138,11 @@ namespace FossLock.Test.Web.Converter
                 Assert.That(vm.PrimaryContact, Is.EqualTo(e.PrimaryContact));
             };
 
-            var postConversionEntity = converter.ViewmodelToEntity(fakeViewModel, fakeEntity);
-            doAssertions(fakeViewModel, postConversionEntity);
+            converter.ViewmodelToEntity(fakeViewModel, ref fakeEntity);
+            doAssertions(fakeViewModel, fakeEntity);
 
-            postConversionEntity = converter.ViewmodelToEntity(fakeViewModel);
-            doAssertions(fakeViewModel, postConversionEntity);
+            converter.ViewmodelToEntity(fakeViewModel, ref fakeEntity);
+            doAssertions(fakeViewModel, fakeEntity);
         }
 
         [Test]
