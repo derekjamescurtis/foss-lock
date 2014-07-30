@@ -18,14 +18,6 @@ namespace FossLock.Model
         public DateTime ReleaseDate { get; set; }
 
         /// <summary>
-        ///     Indicates whether this product will use Microsoft's
-        ///     <see cref="System.Version"/> object for version numbering,
-        ///     or Summerset Software's <see cref="Summerset.SemanticVersion"/>
-        ///     object (complies with http://www.semver.org).
-        /// </summary>
-        public VersioningStyle VersioningStyle { get; set; }
-
-        /// <summary>
         ///     Any additional notes about this product.
         /// </summary>
         public string Notes { get; set; }

@@ -23,7 +23,6 @@ namespace FossLock.Web.ViewModels.Converters
                 ReleaseDate = entity.ReleaseDate,
                 FailOnNullHardwareIdentifier = entity.FailOnNullHardwareIdentifier,
                 Notes = entity.Notes,
-                VersioningStyle = ((int)entity.VersioningStyle).ToString(),
                 VersionLeeway = ((int)entity.VersionLeeway).ToString(),
                 PermittedActivationTypes = new List<string>(),
                 SelectedDefaultLockProperties = new List<string>(),
@@ -72,7 +71,6 @@ namespace FossLock.Web.ViewModels.Converters
             entity.ReleaseDate = viewmodel.ReleaseDate;
             entity.FailOnNullHardwareIdentifier = viewmodel.FailOnNullHardwareIdentifier;
             entity.Notes = viewmodel.Notes;
-            entity.VersioningStyle = (VersioningStyle)Enum.Parse(typeof(VersioningStyle), viewmodel.VersioningStyle);
             entity.VersionLeeway = (VersionLeewayType)Enum.Parse(typeof(VersionLeewayType), viewmodel.VersionLeeway);
 
             entity.PermittedActivationTypes = ActivationType.None;

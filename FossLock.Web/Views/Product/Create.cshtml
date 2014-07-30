@@ -33,11 +33,6 @@
                 @Html.ValidationMessageFor(model => model.ReleaseDate)
             </li>
             <li>
-                @Html.LabelFor(model => model.VersioningStyle)
-                @Html.DropDownListFor(model => model.VersioningStyle, Model.AllVersioningStyles)
-                @Html.ValidationMessageFor(model => model.VersioningStyle)
-            </li>
-            <li>
                 @Html.LabelFor(model => model.Notes)
                 @Html.EditorFor(model => model.Notes)
                 @Html.ValidationMessageFor(model => model.Notes)

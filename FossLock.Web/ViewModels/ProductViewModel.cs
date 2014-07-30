@@ -61,14 +61,6 @@ namespace FossLock.Web.ViewModels
                     Value = e.ToString()
                 }), "Value", "Text");
 
-            AllVersioningStyles = new SelectList(
-                ((IEnumerable<int>)Enum.GetValues(typeof(VersioningStyle)))
-                .Select(e => new
-                {
-                    Text = Enum.GetName(typeof(VersioningStyle), e),
-                    Value = e.ToString()
-                }), "Value", "Text");
-
             AllLeewayTypes = new SelectList(
                 ((IEnumerable<int>)Enum.GetValues(typeof(VersionLeewayType)))
                 .Select(e => new
@@ -81,7 +73,6 @@ namespace FossLock.Web.ViewModels
             Name = string.Empty;
             ReleaseDate = DateTime.Now;
             Notes = string.Empty;
-            VersioningStyle = ((int)Core.VersioningStyle.DotNet).ToString();
         }
 
         #region Basics
@@ -146,8 +137,6 @@ namespace FossLock.Web.ViewModels
         public SelectList AllLockProperties { get; private set; }
 
         public SelectList AllActivationTypes { get; private set; }
-
-        public SelectList AllVersioningStyles { get; private set; }
 
         public SelectList AllLeewayTypes { get; private set; }
 

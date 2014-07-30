@@ -38,7 +38,6 @@ namespace FossLock.Test.Web.Converter
                 Name = StringFaker.Alpha(20),
                 ReleaseDate = DateTime.Now,
                 Notes = TextFaker.Sentences(5),
-                VersioningStyle = BooleanFaker.Boolean() ? VersioningStyle.DotNet : VersioningStyle.Semantic,
                 LicenseEncryptionType = EncryptionType.RSA_4096,
                 PrivateKey = StringFaker.AlphaNumeric(50),
                 PublicKey = StringFaker.AlphaNumeric(50),
@@ -55,7 +54,6 @@ namespace FossLock.Test.Web.Converter
                 Name = StringFaker.Alpha(20),
                 ReleaseDate = DateTime.Now,
                 Notes = TextFaker.Sentences(5),
-                VersioningStyle = BooleanFaker.Boolean() ? ((int)VersioningStyle.DotNet).ToString() : ((int)VersioningStyle.Semantic).ToString(),
                 SelectedDefaultLockProperties = new List<string> { ((int)LockPropertyType.CPU).ToString(), ((int)LockPropertyType.BIOS).ToString() },
                 FailOnNullHardwareIdentifier = BooleanFaker.Boolean(),
                 PermittedActivationTypes = new List<string> { ((int)ActivationType.Manual).ToString(), ((int)ActivationType.Email).ToString() },
@@ -73,7 +71,6 @@ namespace FossLock.Test.Web.Converter
             Assert.AreEqual(fakeProduct.Name, vm.Name);
             Assert.AreEqual(fakeProduct.ReleaseDate, vm.ReleaseDate);
             Assert.AreEqual(fakeProduct.Notes, vm.Notes);
-            Assert.AreEqual(fakeProduct.VersioningStyle, Enum.Parse(typeof(VersioningStyle), vm.VersioningStyle));
 
             Assert.AreEqual(fakeProduct.FailOnNullHardwareIdentifier, vm.FailOnNullHardwareIdentifier);
             Assert.AreEqual(fakeProduct.VersionLeeway, Enum.Parse(typeof(VersionLeewayType), vm.VersionLeeway));
@@ -94,8 +91,6 @@ namespace FossLock.Test.Web.Converter
             Assert.AreEqual(fakeProduct.PermittedActivationTypes, actualActivationTypes);
         }
 
-        // todo: remove this once CommonTests checks to make sure this is returning the
-        // result from the other overload of this method.
         [Test]
         public void ViewmodelToEntity_ValidViewmodel_ReturnsExpectedResult()
         {
@@ -105,7 +100,6 @@ namespace FossLock.Test.Web.Converter
             Assert.AreEqual(fakeViewmodel.Name, fakeProduct.Name);
             Assert.AreEqual(fakeViewmodel.ReleaseDate, fakeProduct.ReleaseDate);
             Assert.AreEqual(fakeViewmodel.Notes, fakeProduct.Notes);
-            Assert.AreEqual(Enum.Parse(typeof(VersioningStyle), fakeViewmodel.VersioningStyle), fakeProduct.VersioningStyle);
             Assert.AreEqual(fakeViewmodel.FailOnNullHardwareIdentifier, fakeProduct.FailOnNullHardwareIdentifier);
             Assert.AreEqual(Enum.Parse(typeof(VersionLeewayType), fakeViewmodel.VersionLeeway), fakeProduct.VersionLeeway);
 
@@ -130,7 +124,6 @@ namespace FossLock.Test.Web.Converter
             Assert.AreEqual(fakeViewmodel.Name, fakeProduct.Name);
             Assert.AreEqual(fakeViewmodel.ReleaseDate, fakeProduct.ReleaseDate);
             Assert.AreEqual(fakeViewmodel.Notes, fakeProduct.Notes);
-            Assert.AreEqual(Enum.Parse(typeof(VersioningStyle), fakeViewmodel.VersioningStyle), fakeProduct.VersioningStyle);
             Assert.AreEqual(fakeViewmodel.FailOnNullHardwareIdentifier, fakeProduct.FailOnNullHardwareIdentifier);
             Assert.AreEqual(Enum.Parse(typeof(VersionLeewayType), fakeViewmodel.VersionLeeway), fakeProduct.VersionLeeway);
 
