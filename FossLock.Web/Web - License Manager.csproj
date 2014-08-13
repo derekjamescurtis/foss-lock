@@ -121,6 +121,7 @@
   <!-- non-compiled files (css, xml, etc..) -->
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Static\css\site.css" />
     <Content Include="Static\lib\bootstrap3\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Static\lib\bootstrap3\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Static\lib\bootstrap3\fonts\glyphicons-halflings-regular.woff" />
@@ -195,7 +196,6 @@
   <!-- non-compiled directories -->
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Static\css\" />
     <Folder Include="Static\img\" />
     <Folder Include="Static\js\" />
     <Folder Include="Views\ProductFeature\" />

@@ -23,7 +23,6 @@
     /// <remarks>
     ///     Right now, this class is only used for the Customer and Product entity types.
     /// </remarks>
-    [Route("{id:int}/{action}")]
     public abstract class PrimaryEntityCrudController<TEntity, TViewModel> : Controller
         where TEntity : EntityBase, new()
         where TViewModel : class, IFossLockViewModel, new()
@@ -52,7 +51,6 @@
         /// <returns>
         ///     ViewResult with an IEnumerable of TViewModel as it's model.
         /// </returns>
-        [Route]
         public virtual ActionResult Index()
         {
             var vmList = service
@@ -67,7 +65,6 @@
         /// <returns>
         ///    ViewResult for displaying a form for creating a new entity.
         /// </returns>
-        [Route("Create")]
         public virtual ActionResult Create()
         {
             var vm = new TViewModel();
@@ -89,7 +86,7 @@
         ///     HttpRedirectResult when the updated request has been successfully made.
         ///     ViewResult if there are validation problems with the requested changes.
         /// </returns>
-        [Route("Create"), HttpPost, ValidateAntiForgeryToken]
+        [HttpPost, ValidateAntiForgeryToken]
         public virtual ActionResult Create(TViewModel vm)
         {
             if (ModelState.IsValid)

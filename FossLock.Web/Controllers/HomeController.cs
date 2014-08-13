@@ -6,10 +6,9 @@ using System.Web.Mvc;
 
 namespace FossLock.Web.Controllers
 {
-    [RoutePrefix("")]
     public class HomeController : Controller
     {
-        [Route]
+        [Route("~/")]
         public ActionResult Index()
         {
             return View();

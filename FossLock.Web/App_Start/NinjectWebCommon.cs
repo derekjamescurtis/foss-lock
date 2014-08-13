@@ -19,7 +19,7 @@ namespace FossLock.Web.App_Start
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
 
         /// <summary>
-        /// Starts the application
+        ///     Starts the application
         /// </summary>
         public static void Start()
         {
@@ -29,7 +29,7 @@ namespace FossLock.Web.App_Start
         }
 
         /// <summary>
-        /// Stops the application.
+        ///     Stops the application.
         /// </summary>
         public static void Stop()
         {
@@ -37,7 +37,7 @@ namespace FossLock.Web.App_Start
         }
 
         /// <summary>
-        /// Creates the kernel that will manage your application.
+        ///     Creates the kernel that will manage your application.
         /// </summary>
         /// <returns>The created kernel.</returns>
         private static IKernel CreateKernel()
@@ -59,7 +59,7 @@ namespace FossLock.Web.App_Start
         }
 
         /// <summary>
-        /// Load your modules or register your services here!
+        ///     Load your modules or register your services here!
         /// </summary>
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
@@ -74,6 +74,10 @@ namespace FossLock.Web.App_Start
             kernel.Bind<IRepository<Customer>>().To<EFRepository<Customer>>();
             kernel.Bind<IFossLockService<Customer>>().To<GenericService<Customer>>();
             kernel.Bind<IEntityConverter<Customer, CustomerViewModel>>().To<CustomerConverter>();
+
+            kernel.Bind<IRepository<Product>>().To<EFRepository<Product>>();
+            kernel.Bind<IFossLockService<Product>>().To<GenericService<Product>>();
+            kernel.Bind<IEntityConverter<Product, ProductViewModel>>().To<ProductConverter>();
         }
     }
 }

@@ -4,126 +4,46 @@ using System.Web.Mvc;
 using FossLock.BLL.Service;
 using FossLock.DAL.Repository;
 using FossLock.Model;
+using FossLock.Web.Controllers.Base;
 using FossLock.Web.ViewModels;
 using FossLock.Web.ViewModels.Converters;
 
 namespace FossLock.Web.Controllers
 {
+    /// <summary>
+    ///     Controller for performing basic CRUD functions against Product entities.
+    /// </summary>
+    /// <remarks>
+    ///     We have 3 routes defined which just wrap calls for the base class, only because
+    ///     Route attributes are not inherited from the base class.
+    /// </remarks>
     [RoutePrefix("Product")]
     [Route("{id:int}/{action}")]
-    public class ProductController : Controller
+    public class ProductController : PrimaryEntityCrudController<Product, ProductViewModel>
     {
-        public ProductController()
+        public ProductController(IFossLockService<Product> service,
+                IEntityConverter<Product, ProductViewModel> converter)
+            : base(service, converter)
         {
+            return;
         }
-
-        private GenericService<Product> service = new ProductService(new EFRepository<Product>());
-        private IEntityConverter<Product, ProductViewModel> converter = new ProductConverter();
 
         [Route]
-        public ActionResult Index()
+        public override ActionResult Index()
         {
-            var vms = service
-                        .GetList()
-                        .Select(e => converter.EntityToViewmodel(e));
-            return View(vms);
+            return base.Index();
         }
 
         [Route("Create")]
-        public ActionResult Create()
+        public override ActionResult Create()
         {
-            var vm = new ProductViewModel();
-            return View(vm);
+            return base.Create();
         }
 
         [Route("Create")]
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(ProductViewModel vm)
+        public override ActionResult Create(ProductViewModel vm)
         {
-            if (ModelState.IsValid)
-            {
-                var entity = new Product();
-                converter.ViewmodelToEntity(vm, ref entity);
-                service.Add(entity);
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                return View(vm);
-            }
-        }
-
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-
-            Product p = service.GetById(id.Value);
-
-            if (p == null)
-            {
-                return HttpNotFound();
-            }
-            else
-            {
-                var vm = converter.EntityToViewmodel(p);
-                return View(vm);
-            }
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(ProductViewModel vm)
-        {
-            if (ModelState.IsValid)
-            {
-                var p = service.GetById(vm.Id);
-                converter.ViewmodelToEntity(vm, ref p);
-                service.Update(p);
-
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                return View(vm);
-            }
-        }
-
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-
-            Product p = service.GetById(id.Value);
-
-            if (p == null)
-            {
-                return HttpNotFound();
-            }
-            else
-            {
-                var vm = converter.EntityToViewmodel(p);
-                return View(vm);
-            }
-        }
-
-        [HttpPost]
-        [ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            var p = service.GetById(id);
-
-            if (p == null)
-            {
-                return HttpNotFound();
-            }
-            else
-            {
-                service.Delete(p);
-                return RedirectToAction("Index");
-            }
+            return base.Create(vm);
         }
     }
 }

@@ -10,23 +10,40 @@ using FossLock.Web.ViewModels.Converters;
 
 namespace FossLock.Web.Controllers
 {
-    /*
-     * TODO: just a reminder, there is absolutely NO security implemented here..
-     *      haven't decided whether or not to provide that or leave it up to the end user.
-     *
-     * TODO: pagination on the index page would probably be majorly useful.
-     *      That means changing the repository and the service layers if I really want
-     *      to do that properly.  I could just be a jerk and just retrieve all the results
-     *      and trim off the bits I don't want.. But that would be stupidly lazy and a
-     *      waste of my time.
-     */
-
+    /// <summary>
+    ///     Controller for performing basic CRUD functions against Customer entities.
+    /// </summary>
+    /// <remarks>
+    ///     We have 3 routes defined which just wrap calls for the base class, only because
+    ///     Route attributes are not inherited from the base class.
+    /// </remarks>
+    [RoutePrefix("Customer")]
+    [Route("{id:int}/{action}")]
     public class CustomerController : PrimaryEntityCrudController<Customer, CustomerViewModel>
     {
-        public CustomerController(IFossLockService<Customer> service, IEntityConverter<Customer, CustomerViewModel> converter)
+        public CustomerController(IFossLockService<Customer> service,
+                IEntityConverter<Customer, CustomerViewModel> converter)
             : base(service, converter)
         {
             return;
+        }
+
+        [Route]
+        public override ActionResult Index()
+        {
+            return base.Index();
+        }
+
+        [Route("Create")]
+        public override ActionResult Create()
+        {
+            return base.Create();
+        }
+
+        [Route("Create")]
+        public override ActionResult Create(CustomerViewModel vm)
+        {
+            return base.Create(vm);
         }
     }
 }
