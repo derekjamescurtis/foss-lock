@@ -13,6 +13,11 @@ namespace FossLock.Model
         public virtual Product Product { get; set; }
 
         /// <summary>
+        ///     Foreign Key property for ProductFeature.
+        /// </summary>
+        public int ProductId { get; set; }
+
+        /// <summary>
         ///     Any additional information that describes this product.
         /// </summary>
         public string Description { get; set; }

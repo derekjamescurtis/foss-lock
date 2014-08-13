@@ -95,7 +95,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\CustomerControllerTests.cs" />
     <Compile Include="Controllers\PrimaryEntityCrudControllerTests.cs" />
     <Compile Include="Converter\CommonTests.cs" />
     <Compile Include="Converter\CustomerConverterTests.cs" />

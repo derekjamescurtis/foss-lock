@@ -11,8 +11,6 @@ using FossLock.Web.ViewModels.Converters;
 
 namespace FossLock.Web.Controllers
 {
-    // we don't actually use the productId part of the route.. it's just a throwaway
-
     [RoutePrefix("Product")]
     [Route("{productId:int}/Version/{versionId:int}/{action}")]
     public class ProductVersionController : Controller
