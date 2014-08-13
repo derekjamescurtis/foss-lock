@@ -21,10 +21,11 @@ namespace FossLock.Web.ViewModels.Converters
             {
                 Id = entity.Id,
                 ProductId = entity.Product.Id,
+                ProductName = entity.Product.Name,
                 Major = version.Major.ToString(),
                 Minor = version.Minor.ToString(),
-                Patch = version.Revision.ToString(),
                 Build = version.Build.ToString(),
+                Patch = version.Revision.ToString(),
             };
 
             return vm;
@@ -41,7 +42,7 @@ namespace FossLock.Web.ViewModels.Converters
             if (entity.Product == null)
                 throw new ArgumentException("entity", new InvalidOperationException("entity's Product property must be set first."));
 
-            var versionString = string.Format("{0}.{1}.{2}.{3}", vm.Major, vm.Minor, vm.Patch, vm.Build);
+            var versionString = string.Format("{0}.{1}.{2}.{3}", vm.Major, vm.Minor, vm.Build, vm.Patch);
             // we don't assign the output to anything -- we just want to make sure this parses.. otherwise we should get an exception
             // TODO: write a test for this
             Version.Parse(versionString);

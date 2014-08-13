@@ -4,7 +4,43 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
-<h3>@{
-    // Model.Product.Name   
-}</h3>
+<h2>Edit A Version</h2>
+<h3>@Model.ProductName</h3>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        @Html.ValidationSummary(true);
+
+        <ul>
+            <li>
+                @Html.LabelFor(model => model.Major)
+                @Html.EditorFor(model => model.Major)
+                @Html.ValidationMessageFor(model => model.Major)
+            </li>
+            <li>
+                @Html.LabelFor(model => model.Minor)
+                @Html.EditorFor(model => model.Minor)
+                @Html.ValidationMessageFor(model => model.Minor)
+            </li>
+            <li>
+                @Html.LabelFor(model => model.Build)
+                @Html.EditorFor(model => model.Build)
+                @Html.ValidationMessageFor(model => model.Build)
+            </li>
+            <li>
+                @Html.LabelFor(model => model.Patch)
+                @Html.EditorFor(model => model.Patch)
+                @Html.ValidationMessageFor(model => model.Patch)
+            </li>
+        </ul>
+    </div>
+
+    <input type="submit" value="Save" />
+}
+
+<div>
+    @Html.ActionLink("Back to Product", "Edit", "Product", new { id = Model.ProductId })
+</div>

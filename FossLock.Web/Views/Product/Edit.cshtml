@@ -71,8 +71,8 @@
             {
                 <li>
                     @version.Version
-                    <a href="">Edit</a>
-                    <a href="">Delete</a>
+                    @Html.ActionLink("Edit", "Edit", new { controller = "ProductVersion", productId = version.Product.Id, versionId = version.Id })
+                    @Html.ActionLink("Delete", "Delete", new { controller = "ProductVersion", productId = version.Product.Id, versionId = version.Id })
                 </li>
             }
         </ul>

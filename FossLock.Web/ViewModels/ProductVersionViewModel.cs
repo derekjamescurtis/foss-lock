@@ -16,6 +16,8 @@ namespace FossLock.Web.ViewModels
 
         public int ProductId { get; set; }
 
+        public string ProductName { get; set; }
+
         [Required, Range(0, int.MaxValue), Display(Name = "Major")]
         public string Major { get; set; }
 
