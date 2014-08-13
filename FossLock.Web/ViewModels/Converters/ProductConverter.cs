@@ -59,28 +59,28 @@ namespace FossLock.Web.ViewModels.Converters
             return vm;
         }
 
-        public void ViewmodelToEntity(ProductViewModel viewmodel, ref Product entity)
+        public void ViewmodelToEntity(ProductViewModel vm, ref Product entity)
         {
-            if (viewmodel == null)
-                throw new ArgumentNullException("viewmodel");
+            if (vm == null)
+                throw new ArgumentNullException("vm");
             if (entity == null)
                 throw new ArgumentNullException("entity");
 
-            entity.Id = viewmodel.Id;
-            entity.Name = viewmodel.Name;
-            entity.ReleaseDate = viewmodel.ReleaseDate;
-            entity.FailOnNullHardwareIdentifier = viewmodel.FailOnNullHardwareIdentifier;
-            entity.Notes = viewmodel.Notes;
-            entity.VersionLeeway = (VersionLeewayType)Enum.Parse(typeof(VersionLeewayType), viewmodel.VersionLeeway);
+            entity.Id = vm.Id;
+            entity.Name = vm.Name;
+            entity.ReleaseDate = vm.ReleaseDate;
+            entity.FailOnNullHardwareIdentifier = vm.FailOnNullHardwareIdentifier;
+            entity.Notes = vm.Notes;
+            entity.VersionLeeway = (VersionLeewayType)Enum.Parse(typeof(VersionLeewayType), vm.VersionLeeway);
 
             entity.PermittedActivationTypes = ActivationType.None;
-            foreach (var activationType in viewmodel.PermittedActivationTypes)
+            foreach (var activationType in vm.PermittedActivationTypes)
             {
                 entity.PermittedActivationTypes |= (ActivationType)Enum.Parse(typeof(ActivationType), activationType);
             }
 
             entity.DefaultLockProperties = LockPropertyType.None;
-            foreach (var lockProperty in viewmodel.SelectedDefaultLockProperties)
+            foreach (var lockProperty in vm.SelectedDefaultLockProperties)
             {
                 entity.DefaultLockProperties |= (LockPropertyType)Enum.Parse(typeof(LockPropertyType), lockProperty);
             }

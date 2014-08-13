@@ -11,14 +11,9 @@ namespace FossLock.Web.ViewModels.Converters
         public ProductVersionViewModel EntityToViewmodel(ProductVersion entity)
         {
             if (entity == null)
-            {
                 throw new ArgumentNullException("entity");
-            }
-
-            if (entity.Product == null)
-            {
+            else if (entity.Product == null)
                 throw new ArgumentException("ProductVersion.Product cannot be null", "entity");
-            }
 
             var version = Version.Parse(entity.Version);
 
@@ -42,7 +37,16 @@ namespace FossLock.Web.ViewModels.Converters
             else if (entity == null)
                 throw new ArgumentNullException("entity");
 
-            throw new NotImplementedException();
+            // todo: write a test for this
+            if (entity.Product == null)
+                throw new ArgumentException("entity", new InvalidOperationException("entity's Product property must be set first."));
+
+            var versionString = string.Format("{0}.{1}.{2}.{3}", vm.Major, vm.Minor, vm.Patch, vm.Build);
+            // we don't assign the output to anything -- we just want to make sure this parses.. otherwise we should get an exception
+            // TODO: write a test for this
+            Version.Parse(versionString);
+
+            entity.Version = versionString;
         }
     }
 }

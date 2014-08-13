@@ -123,7 +123,7 @@ namespace FossLock.Test.Web.Converter
 
                 var converterInstance = Activator.CreateInstance(converterType);
 
-                var entityToVm = converterType.GetMethod("ViewmodelToEntity", new Type[] { viewModelType, entityType });
+                var entityToVm = converterType.GetMethod("ViewmodelToEntity", new Type[] { viewModelType, entityType.MakeByRefType() });
 
                 var entityInstance = Activator.CreateInstance(entityType);
                 var viewModelInstance = Activator.CreateInstance(viewModelType);
@@ -141,9 +141,11 @@ namespace FossLock.Test.Web.Converter
                     () => { entityToVm.Invoke(converterInstance, new object[] { null, entityInstance }); },
                     string.Format("{0:s}.ViewmodelToEntity(null, entity) did not throw an Exception", converterType.Name));
 
+                // note: we can't actually test this here.. because if there are additional constraints placed on
+                // the input parameters, there might still be exceptions thrown.
                 // and that it doesn't, if we provide valid arguments
-                Assert.DoesNotThrow(() => { entityToVm.Invoke(converterInstance, new object[] { viewModelInstance, entityInstance }); },
-                    string.Format("{0:s}.ViewmodelToEntity(viewmodel, entity) Threw an Exception", converterType.Name));
+                //Assert.DoesNotThrow(() => { entityToVm.Invoke(converterInstance, new object[] { viewModelInstance, entityInstance }); },
+                //    string.Format("{0:s}.ViewmodelToEntity(viewmodel, entity) Threw an Exception", converterType.Name));
 
                 // test to make sure the exception thrown was what we expected
                 foreach (var ex in new TargetInvocationException[] { ex1, ex2, ex3 })
