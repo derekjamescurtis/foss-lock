@@ -122,9 +122,8 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="Static\css\site.css" />
-    <Content Include="Static\lib\bootstrap3\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Static\lib\bootstrap3\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Static\lib\bootstrap3\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Static\fonts\fontawesome-webfont.svg" />
+    <Content Include="Static\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Static\lib\bootstrap3\js\bootstrap.js" />
     <Content Include="Static\lib\bootstrap3\less\alerts.less" />
     <Content Include="Static\lib\bootstrap3\less\badges.less" />
@@ -166,10 +165,6 @@
     <Content Include="Static\lib\bootstrap3\less\utilities.less" />
     <Content Include="Static\lib\bootstrap3\less\variables.less" />
     <Content Include="Static\lib\bootstrap3\less\wells.less" />
-    <Content Include="Static\lib\fa4\fonts\fontawesome-webfont.eot" />
-    <Content Include="Static\lib\fa4\fonts\fontawesome-webfont.ttf" />
-    <Content Include="Static\lib\fa4\fonts\fontawesome-webfont.woff" />
-    <Content Include="Static\lib\fa4\fonts\FontAwesome.otf" />
     <Content Include="Static\lib\fa4\less\bordered-pulled.less" />
     <Content Include="Static\lib\fa4\less\core.less" />
     <Content Include="Static\lib\fa4\less\fixed-width.less" />
@@ -183,10 +178,15 @@
     <Content Include="Static\lib\fa4\less\spinning.less" />
     <Content Include="Static\lib\fa4\less\stacked.less" />
     <Content Include="Static\lib\fa4\less\variables.less" />
-    <Content Include="Static\lib\bootstrap3\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Static\lib\fa4\fonts\fontawesome-webfont.svg" />
     <Content Include="Static\less\site.less" />
     <Content Include="Static\less\mixins.less" />
+    <Content Include="Static\fonts\fontawesome-webfont.eot" />
+    <Content Include="Static\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Static\fonts\fontawesome-webfont.woff" />
+    <Content Include="Static\fonts\FontAwesome.otf" />
+    <Content Include="Static\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Static\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Static\fonts\glyphicons-halflings-regular.woff" />
     <None Include="Static\lib\jquery-1.10.2.intellisense.js" />
     <Content Include="Static\lib\jquery-1.10.2.js" />
     <Content Include="Web.config">
@@ -198,7 +198,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Static\img\" />
     <Folder Include="Static\js\" />
-    <Folder Include="Views\ProductFeature\" />
   </ItemGroup>
   <!-- compiled (c#) files -->
   <ItemGroup>
@@ -209,7 +208,6 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
-    <Compile Include="Controllers\ProductFeatureController.cs" />
     <Compile Include="Controllers\ProductVersionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
