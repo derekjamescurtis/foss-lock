@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using FossLock.Model;
-using Summerset.SemanticVersion;
 
 namespace FossLock.Web.ViewModels.Converters
 {
