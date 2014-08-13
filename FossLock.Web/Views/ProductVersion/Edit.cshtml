@@ -11,6 +11,8 @@
 {
     @Html.AntiForgeryToken()
 
+    @Html.HiddenFor(model => model.Id);
+
     <div>
         @Html.ValidationSummary(true);
 
@@ -42,5 +44,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to Product", "Edit", "Product", new { id = Model.ProductId })
+    @Html.ActionLink("Back to Product", "Edit", new { controller = "Product", id = Model.ProductId })
 </div>

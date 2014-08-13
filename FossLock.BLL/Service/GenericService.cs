@@ -9,7 +9,7 @@ using FossLock.Model.Base;
 
 namespace FossLock.BLL.Service
 {
-    /// <summary> 
+    /// <summary>
     ///     A generic service for retrieving business entities
     ///     and validating any changes made to those entities before passing
     ///     them back to the repository to be Added/Updated/Deleted.
@@ -24,7 +24,7 @@ namespace FossLock.BLL.Service
     public class GenericService<T> : IFossLockService<T>
         where T : IEntityBase, new()
     {
-        /// <summary> 
+        /// <summary>
         ///     Initializes a new instance of this class with the
         ///     provided repository.
         /// </summary>
@@ -56,7 +56,6 @@ namespace FossLock.BLL.Service
             return _repository.GetById(id);
         }
 
-        
         public virtual IList<T> GetList()
         {
             return GetList(1, int.MaxValue);

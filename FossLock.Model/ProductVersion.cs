@@ -18,6 +18,11 @@ namespace FossLock.Model
         public string Version { get; set; }
 
         /// <summary>
+        ///     Exposed foreign key property for our Product property.
+        /// </summary>
+        public int ProductId { get; set; }
+
+        /// <summary>
         ///     A reference to the <see cref="Product"/> this
         ///     version is associated with.
         /// </summary>

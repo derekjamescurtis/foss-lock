@@ -9,11 +9,13 @@
 <h3>Are you sure you want to delete this?</h3>
 <div>
 
-    <h4>Version @Html.Display(string.Format("{0}.{1}.{2}.{3}", Model.Major, Model.Minor, Model.Build, Model.Patch))</h4>
+    <h4>Version @Html.Raw(string.Format("{0}.{1}.{2}.{3}", Model.Major, Model.Minor, Model.Build, Model.Patch))</h4>
 
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
+
+        @Html.HiddenFor(model => model.Id);
 
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" />

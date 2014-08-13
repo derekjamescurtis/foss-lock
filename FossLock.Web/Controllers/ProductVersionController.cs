@@ -11,28 +11,24 @@ using FossLock.Web.ViewModels.Converters;
 
 namespace FossLock.Web.Controllers
 {
+    // we don't actually use the productId part of the route.. it's just a throwaway
+
     [RoutePrefix("Product")]
     [Route("{productId:int}/Version/{versionId:int}/{action}")]
     public class ProductVersionController : Controller
     {
-        private GenericService<Product> service = new ProductService(new EFRepository<Product>());
-        private IEntityConverter<ProductVersion, ProductVersionViewModel> converter = new ProductVersionConverter();
+        private GenericService<ProductVersion> service =
+            new GenericService<ProductVersion>(new EFRepository<ProductVersion>());
+
+        private IEntityConverter<ProductVersion, ProductVersionViewModel> converter =
+            new ProductVersionConverter();
 
         // todo: tests
         [Route("{productId:int}/Version/Create")]
         public ActionResult Create(int productId)
         {
-            var product = service.GetById(productId);
-
-            if (product == null)
-            {
-                return new HttpNotFoundResult();
-            }
-            else
-            {
-                var vm = new ProductVersionViewModel { ProductId = product.Id };
-                return View(vm);
-            }
+            var vm = new ProductVersionViewModel { ProductId = productId };
+            return View(vm);
         }
 
         // todo: tests
@@ -41,23 +37,12 @@ namespace FossLock.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var product = service.GetById(vm.ProductId);
+                var version = new ProductVersion { ProductId = vm.ProductId };
+                converter.ViewmodelToEntity(vm, ref version);
 
-                if (product == null)
-                {
-                    return new HttpNotFoundResult();
-                }
-                else
-                {
-                    var version = new ProductVersion { Product = product };
-                    converter.ViewmodelToEntity(vm, ref version);
+                service.Add(version);
 
-                    product.Versions.Add(version);
-
-                    service.Update(product);
-
-                    return RedirectToAction("Edit", "Product", new { id = product.Id });
-                }
+                return RedirectToAction("Edit", "Product", new { id = version.ProductId });
             }
             else
             {
@@ -68,10 +53,8 @@ namespace FossLock.Web.Controllers
         // todo: tests
         public ActionResult Edit(int productId, int versionId)
         {
-            var product = service.GetById(productId);
-            var version = product.Versions.FirstOrDefault(e => e.Id == versionId);
-
-            if (product == null || version == null)
+            var version = service.GetById(versionId);
+            if (version == null || version.Product.Id != productId)
             {
                 return new HttpNotFoundResult();
             }
@@ -88,10 +71,8 @@ namespace FossLock.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var product = service.GetById(vm.ProductId);
-                var version = product.Versions.FirstOrDefault(e => e.Id == vm.Id);
-
-                if (product == null || version == null)
+                var version = service.GetById(vm.Id);
+                if (version == null)
                 {
                     return new HttpNotFoundResult();
                 }
@@ -99,9 +80,9 @@ namespace FossLock.Web.Controllers
                 {
                     converter.ViewmodelToEntity(vm, ref version);
 
-                    service.Update(product);
+                    service.Update(version);
 
-                    return RedirectToAction("Edit", "Product", new { id = product.Id });
+                    return RedirectToAction("Edit", "Product", new { id = version.Product.Id });
                 }
             }
             else
@@ -113,10 +94,8 @@ namespace FossLock.Web.Controllers
         // todo: tests
         public ActionResult Delete(int productId, int versionId)
         {
-            var product = service.GetById(productId);
-            var version = product.Versions.FirstOrDefault(e => e.Id == versionId);
-
-            if (product == null || version == null)
+            var version = service.GetById(versionId);
+            if (version == null || version.Product.Id != productId)
             {
                 return new HttpNotFoundResult();
             }
@@ -131,20 +110,15 @@ namespace FossLock.Web.Controllers
         [HttpPost, ValidateAntiForgeryToken, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int productId, int versionId)
         {
-            var product = service.GetById(productId);
-            var version = product.Versions.FirstOrDefault(e => e.Id == versionId);
-
-            if (product == null || version == null)
+            var version = service.GetById(versionId);
+            if (version == null)
             {
                 return new HttpNotFoundResult();
             }
             else
             {
-                product.Versions.Remove(version);
-
-                service.Update(product);
-
-                return RedirectToAction("Edit", "Product", new { id = product.Id });
+                service.Delete(version);
+                return RedirectToAction("Edit", "Product", new { id = productId });
             }
         }
     }

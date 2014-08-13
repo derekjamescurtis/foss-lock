@@ -7,7 +7,7 @@ using FossLock.Model;
 
 namespace FossLock.DAL.EF.Map
 {
-    class ProductVersionMap : EntityTypeConfiguration<ProductVersion>
+    internal class ProductVersionMap : EntityTypeConfiguration<ProductVersion>
     {
         public ProductVersionMap()
         {
