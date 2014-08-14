@@ -201,10 +201,12 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\Base\ChildEntityCrudController.cs" />
     <Compile Include="Controllers\Base\PrimaryEntityCrudController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ProductFeatureController.cs" />
     <Compile Include="Controllers\ProductVersionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -242,6 +244,9 @@
     <Content Include="Views\ProductVersion\Create.cshtml" />
     <Content Include="Views\ProductVersion\Edit.cshtml" />
     <Content Include="Views\ProductVersion\Delete.cshtml" />
+    <Content Include="Views\ProductFeature\Create.cshtml" />
+    <Content Include="Views\ProductFeature\Delete.cshtml" />
+    <Content Include="Views\ProductFeature\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

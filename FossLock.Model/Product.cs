@@ -81,7 +81,7 @@ namespace FossLock.Model
         ///     Optional collection of features that may be licensed in
         ///     addition to the main product license.
         /// </summary>
-        public virtual ICollection<ProductFeature> AvailableFeatures { get; set; }
+        public virtual ICollection<ProductFeature> Features { get; set; }
 
         /// <summary>
         ///     A collection of versions of this product, which are actually

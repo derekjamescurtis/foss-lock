@@ -7,7 +7,7 @@ using FossLock.Model;
 
 namespace FossLock.DAL.EF.Map
 {
-    class ProductFeatureMap : NamedEntityBaseMap<ProductFeature>
+    internal class ProductFeatureMap : NamedEntityBaseMap<ProductFeature>
     {
         public ProductFeatureMap()
         {

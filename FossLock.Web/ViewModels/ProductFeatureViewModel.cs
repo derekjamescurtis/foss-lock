@@ -13,7 +13,9 @@ namespace FossLock.Web.ViewModels
         [Required, MaxLength(255)]
         public string Name { get; set; }
 
-        public FossLock.Model.Product Product { get; set; }
+        public int ProductId { get; set; }
+
+        public string ProductName { get; set; }
 
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }

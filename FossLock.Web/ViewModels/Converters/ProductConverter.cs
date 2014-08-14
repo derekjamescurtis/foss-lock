@@ -26,7 +26,8 @@ namespace FossLock.Web.ViewModels.Converters
                 VersionLeeway = ((int)entity.VersionLeeway).ToString(),
                 PermittedActivationTypes = new List<string>(),
                 SelectedDefaultLockProperties = new List<string>(),
-                Versions = entity.Versions
+                Versions = entity.Versions,
+                Features = entity.Features
             };
 
             var allActivationTypes = Enum.GetValues(typeof(ActivationType));
@@ -84,6 +85,8 @@ namespace FossLock.Web.ViewModels.Converters
             {
                 entity.DefaultLockProperties |= (LockPropertyType)Enum.Parse(typeof(LockPropertyType), lockProperty);
             }
+
+            // we skip both versions and features.  Those are handled by independent controllers.
         }
     }
 }

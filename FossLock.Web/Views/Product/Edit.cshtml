@@ -70,7 +70,7 @@
             @foreach (var version in Model.Versions)
             {
                 <li>
-                    @version.Version
+                    @version.Version |
                     @Html.ActionLink("Edit", "Edit", new { controller = "ProductVersion", productId = version.Product.Id, versionId = version.Id })
                     @Html.ActionLink("Delete", "Delete", new { controller = "ProductVersion", productId = version.Product.Id, versionId = version.Id })
                 </li>
@@ -78,8 +78,16 @@
         </ul>
 
         <h4>Features</h4>
-        <a href="">New</a>
+        @Html.ActionLink("New", "Create", new { controller = "ProductFeature", productId = Model.Id })
         <ul>
+            @foreach (var feature in Model.Features)
+            {
+                <li>
+                    @feature.Name | @feature.Description |
+                    @Html.ActionLink("Edit", "Edit", new { controller = "ProductFeature", productId = feature.Product.Id, featureId = feature.Id })
+                    @Html.ActionLink("Delete", "Delete", new { controller = "ProductFeature", productId = feature.Product.Id, featureId = feature.Id })
+                </li>
+            }
         </ul>
     </div>
 

@@ -26,6 +26,7 @@ namespace FossLock.Web.ViewModels
             SelectedDefaultLockProperties = new List<string>();
             PermittedActivationTypes = new List<string>();
             Versions = new List<ProductVersion>();
+            Features = new List<ProductFeature>();
 
             // the following 4 properties are used in the Razor templates to display
             // all the possible choices.  Currently all four are based on enums (but not
@@ -122,6 +123,8 @@ namespace FossLock.Web.ViewModels
         #region Children
 
         public IEnumerable<ProductVersion> Versions { get; set; }
+
+        public IEnumerable<ProductFeature> Features { get; set; }
 
         #endregion Children
 

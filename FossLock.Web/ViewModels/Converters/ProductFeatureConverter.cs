@@ -19,7 +19,8 @@ namespace FossLock.Web.ViewModels.Converters
                 Description = entity.Description,
                 Name = entity.Name,
                 MaxAllowed = entity.MaximumAllowedPerLicense,
-                Product = entity.Product
+                ProductId = entity.Product.Id,
+                ProductName = entity.Product.Name
             };
 
             return vm;
@@ -31,6 +32,10 @@ namespace FossLock.Web.ViewModels.Converters
                 throw new ArgumentNullException("entity");
             else if (vm == null)
                 throw new ArgumentNullException("vm");
+
+            // todo: write a test for this
+            if (entity.Product == null && entity.ProductId == 0)
+                throw new ArgumentException("entity", new InvalidOperationException("entity's Product or ProductId property must be set first."));
 
             entity.Id = vm.Id;
             entity.Name = vm.Name;
