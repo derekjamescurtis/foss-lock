@@ -33,7 +33,6 @@ namespace FossLock.Test.Web.Converter
             {
                 Id = NumberFaker.Number(1, int.MaxValue),
                 Name = StringFaker.Alpha(25),
-                CanLicensePreReleaseVersions = BooleanFaker.Boolean(),
                 StreetAddress = new Address
                 {
                     Address1 = LocationFaker.Street(),
@@ -120,7 +119,6 @@ namespace FossLock.Test.Web.Converter
             {
                 Assert.That(vm.Id, Is.EqualTo(e.Id));
                 Assert.That(vm.Name, Is.EqualTo(e.Name));
-                Assert.That(vm.CanLicensePreReleaseVersions, Is.EqualTo(e.CanLicensePreReleaseVersions));
                 Assert.That(vm.StreetAddress, Is.EqualTo(e.StreetAddress));
 
                 // If the viewmodel has the 'BillingMatchesStreetAddress' flag,
@@ -152,7 +150,6 @@ namespace FossLock.Test.Web.Converter
 
             Assert.That(vm.Id, Is.EqualTo(fakeEntity.Id));
             Assert.That(vm.Name, Is.EqualTo(fakeEntity.Name));
-            Assert.That(vm.CanLicensePreReleaseVersions, Is.EqualTo(fakeEntity.CanLicensePreReleaseVersions));
             // first run, billing+street should be different
             Assert.That(vm.StreetAddress, Is.EqualTo(fakeEntity.StreetAddress));
             Assert.That(vm.BillingAddress, Is.EqualTo(fakeEntity.BillingAddress));

@@ -18,7 +18,6 @@ namespace FossLock.Web.ViewModels.Converters
             {
                 Id = entity.Id,
                 Name = entity.Name,
-                CanLicensePreReleaseVersions = entity.CanLicensePreReleaseVersions,
                 StreetAddress = entity.StreetAddress,
                 BillingAddress = entity.BillingAddress,
                 OfficePhone1 = entity.OfficePhone1,
@@ -43,7 +42,6 @@ namespace FossLock.Web.ViewModels.Converters
 
             entity.Id = vm.Id;
             entity.Name = vm.Name;
-            entity.CanLicensePreReleaseVersions = vm.CanLicensePreReleaseVersions;
 
             entity.StreetAddress = vm.StreetAddress;
             if (vm.BillingMatchesStreetAddress)

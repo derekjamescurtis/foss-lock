@@ -16,10 +16,14 @@ namespace FossLock.Model
         /// </summary>
         public virtual Customer Customer { get; set; }
 
+        public int CustomerId { get; set; }
+
         /// <summary>
         ///     The version of the product that was purchased by this customer.
         /// </summary>
         public virtual ProductVersion ProductVersion { get; set; }
+
+        public int ProductVersionId { get; set; }
 
         /// <summary>
         ///     The date and time this license was generated.

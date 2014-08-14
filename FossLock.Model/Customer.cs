@@ -11,12 +11,6 @@ namespace FossLock.Model
     public class Customer : NamedEntityBase
     {
         /// <summary>
-        ///     When using Semantic Versioning for a product,
-        ///     this customer may license prerelease versions of that product.
-        /// </summary>
-        public bool CanLicensePreReleaseVersions { get; set; }
-
-        /// <summary>
         ///     Street address information
         /// </summary>
         public Address StreetAddress { get; set; }
