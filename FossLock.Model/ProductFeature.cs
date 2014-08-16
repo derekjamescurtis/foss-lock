@@ -1,4 +1,5 @@
-﻿using FossLock.Model.Base;
+﻿using System.Collections.Generic;
+using FossLock.Model.Base;
 
 namespace FossLock.Model
 {
@@ -7,16 +8,6 @@ namespace FossLock.Model
     /// </summary>
     public class ProductFeature : NamedEntityBase
     {
-        /// <summary>
-        ///     The product that this feature is available for.
-        /// </summary>
-        public virtual Product Product { get; set; }
-
-        /// <summary>
-        ///     Foreign Key property for ProductFeature.
-        /// </summary>
-        public int ProductId { get; set; }
-
         /// <summary>
         ///     Any additional information that describes this product.
         /// </summary>
@@ -28,5 +19,20 @@ namespace FossLock.Model
         ///     that is billed out based on the number of 'rooms' available.
         /// </summary>
         public int MaximumAllowedPerLicense { get; set; }
+
+        /// <summary>
+        ///     The product that this feature is available for.
+        /// </summary>
+        public virtual Product Product { get; set; }
+
+        /// <summary>
+        ///     Foreign Key property for ProductFeature.
+        /// </summary>
+        public int ProductId { get; set; }
+
+        /// <summary>
+        ///     A collection of all the licenses that implement this feature.
+        /// </summary>
+        public virtual ICollection<License> LicensesWithFeature { get; set; }
     }
 }

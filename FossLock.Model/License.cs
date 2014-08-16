@@ -12,20 +12,6 @@ namespace FossLock.Model
     public class License : EntityBase
     {
         /// <summary>
-        ///     A reference to the customer that has purchased this license.
-        /// </summary>
-        public virtual Customer Customer { get; set; }
-
-        public int CustomerId { get; set; }
-
-        /// <summary>
-        ///     The version of the product that was purchased by this customer.
-        /// </summary>
-        public virtual ProductVersion ProductVersion { get; set; }
-
-        public int ProductVersionId { get; set; }
-
-        /// <summary>
         ///     The date and time this license was generated.
         /// </summary>
         public DateTimeOffset GenerationDateTime { get; set; }
@@ -65,6 +51,23 @@ namespace FossLock.Model
         ///     customer to generate the license.
         /// </summary>
         public LockPropertyType RequiredLockProperties { get; set; }
+
+        /// <summary>
+        ///     A reference to the customer that has purchased this license.
+        /// </summary>
+        public virtual Customer Customer { get; set; }
+
+        /// <summary>
+        ///     Exposed foreign key for Customer
+        /// </summary>
+        public int CustomerId { get; set; }
+
+        /// <summary>
+        ///     The version of the product that was purchased by this customer.
+        /// </summary>
+        public virtual ProductVersion ProductVersion { get; set; }
+
+        public int ProductVersionId { get; set; }
 
         /// <summary>
         ///     A collection of the features the software is permitted to use.

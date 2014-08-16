@@ -69,6 +69,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="Product.cs" />
+    <None Include="Diagrams\FullAssemblyMap.dgml" />
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>

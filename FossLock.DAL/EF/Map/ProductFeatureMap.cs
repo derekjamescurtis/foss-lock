@@ -12,6 +12,9 @@ namespace FossLock.DAL.EF.Map
         public ProductFeatureMap()
         {
             HasRequired(e => e.Product);
+
+            HasMany(e => e.LicensesWithFeature)
+                .WithMany();
         }
     }
 }

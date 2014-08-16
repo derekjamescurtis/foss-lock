@@ -45,6 +45,9 @@ namespace FossLock.DAL.EF
 
             // customers
             modelBuilder.Configurations.Add(new CustomerMap());
+
+            // licenses
+            modelBuilder.Configurations.Add(new LicenseMap());
         }
     }
 }

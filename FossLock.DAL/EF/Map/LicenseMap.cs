@@ -13,7 +13,15 @@ namespace FossLock.DAL.EF.Map
         public LicenseMap()
         {
             HasRequired(e => e.Customer);
-            HasRequired(e => e.ProductVersion);
+
+            // prevents multiple cascade paths.
+            // todo: make sure generated sql matches what I want here
+            HasRequired(e => e.ProductVersion)
+                .WithMany()
+                .WillCascadeOnDelete(false);
+
+            HasMany(e => e.LicensedFeatures)
+                .WithMany(v => v.LicensesWithFeature);
         }
     }
 }
