@@ -1,1 +1,12 @@
-﻿
+﻿// font-awesome icon mixin
+.inline-icon(@content, @padding-right: 7px) {
+    &:before {
+        font-family: FontAwesome;
+        padding-right: @padding-right;
+        content: @content;
+        // will derrange the icons
+        font-style: normal;
+        font-weight: normal;
+        text-decoration: none;
+    }
+}

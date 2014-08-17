@@ -76,8 +76,6 @@ namespace FossLock.Web.ViewModels
             Notes = string.Empty;
         }
 
-        #region Basics
-
         /// <summary>
         ///     Holds the database primary key.  Shouldn't be directly displayed
         ///     or modified by the user.
@@ -101,10 +99,6 @@ namespace FossLock.Web.ViewModels
         [Display(Name = "Versioning Style")]
         public string VersioningStyle { get; set; }
 
-        #endregion Basics
-
-        #region License/Security
-
         [Display(Name = "Default required hardware identifiers.")]
         public IList<string> SelectedDefaultLockProperties { get; set; }
 
@@ -118,17 +112,9 @@ namespace FossLock.Web.ViewModels
         [Display(Name = "Version Leeway")]
         public string VersionLeeway { get; set; }
 
-        #endregion License/Security
-
-        #region Children
-
         public IEnumerable<ProductVersion> Versions { get; set; }
 
         public IEnumerable<ProductFeature> Features { get; set; }
-
-        #endregion Children
-
-        #region Selection Lists
 
         /*
          * Note:
@@ -142,7 +128,5 @@ namespace FossLock.Web.ViewModels
         public SelectList AllActivationTypes { get; private set; }
 
         public SelectList AllLeewayTypes { get; private set; }
-
-        #endregion Selection Lists
     }
 }

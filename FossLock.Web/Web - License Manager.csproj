@@ -195,6 +195,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Static\img\" />
     <Folder Include="Static\js\" />
+    <Folder Include="Views\License\" />
   </ItemGroup>
   <!-- compiled (c#) files -->
   <ItemGroup>
@@ -205,6 +206,7 @@
     <Compile Include="Controllers\Base\PrimaryEntityCrudController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LicenseController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductFeatureController.cs" />
     <Compile Include="Controllers\ProductVersionController.cs" />
