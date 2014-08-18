@@ -23,6 +23,9 @@ namespace FossLock.Web.ViewModels.Converters
                 ReleaseDate = entity.ReleaseDate,
                 FailOnNullHardwareIdentifier = entity.FailOnNullHardwareIdentifier,
                 Notes = entity.Notes,
+                LicenseEncryptionType = entity.LicenseEncryptionType,
+                PrivateKey = entity.PrivateKey,
+                PublicKey = entity.PublicKey,
                 VersionLeeway = ((int)entity.VersionLeeway).ToString(),
                 PermittedActivationTypes = new List<string>(),
                 SelectedDefaultLockProperties = new List<string>(),
@@ -30,11 +33,11 @@ namespace FossLock.Web.ViewModels.Converters
                 Features = entity.Features
             };
 
-            var allActivationTypes = Enum.GetValues(typeof(ActivationType));
-            foreach (ActivationType activationType in allActivationTypes)
+            var allActivationTypes = Enum.GetValues(typeof(ActivationMethodType));
+            foreach (ActivationMethodType activationType in allActivationTypes)
             {
                 // skip this, we don't want to display it.
-                if (activationType == ActivationType.None)
+                if (activationType == ActivationMethodType.None)
                     continue;
 
                 // figure out which activation types have already been selected.
@@ -67,17 +70,22 @@ namespace FossLock.Web.ViewModels.Converters
             if (entity == null)
                 throw new ArgumentNullException("entity");
 
+            // TODO: make sure priv + pub keys have been previously-set.
+
             entity.Id = vm.Id;
             entity.Name = vm.Name;
             entity.ReleaseDate = vm.ReleaseDate;
             entity.FailOnNullHardwareIdentifier = vm.FailOnNullHardwareIdentifier;
+            entity.LicenseEncryptionType = vm.LicenseEncryptionType;
+            entity.PublicKey = vm.PublicKey;
+            entity.PrivateKey = vm.PrivateKey;
             entity.Notes = vm.Notes;
             entity.VersionLeeway = (VersionLeewayType)Enum.Parse(typeof(VersionLeewayType), vm.VersionLeeway);
 
-            entity.PermittedActivationTypes = ActivationType.None;
+            entity.PermittedActivationTypes = ActivationMethodType.None;
             foreach (var activationType in vm.PermittedActivationTypes)
             {
-                entity.PermittedActivationTypes |= (ActivationType)Enum.Parse(typeof(ActivationType), activationType);
+                entity.PermittedActivationTypes |= (ActivationMethodType)Enum.Parse(typeof(ActivationMethodType), activationType);
             }
 
             entity.DefaultLockProperties = LockPropertyType.None;

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using FossLock.Core;
+using FossLock.Model;
 
 namespace FossLock.Web.ViewModels
 {
@@ -11,17 +13,6 @@ namespace FossLock.Web.ViewModels
     {
         public LicenseViewModel()
         {
-            AllActivationTypes = new SelectList(
-                ((IEnumerable<int>)Enum.GetValues(typeof(ActivationType)))
-                .Where(e => (ActivationType)e != ActivationType.None)
-                .Select(e =>
-                    new
-                    {
-                        Text = Enum.GetName(typeof(ActivationType), e),
-                        Value = e.ToString()
-                    }), "Value", "Text"
-                );
-
             AllLockProperties = new SelectList(
                 ((IEnumerable<int>)Enum.GetValues(typeof(LockPropertyType)))
                 .Where(e => (LockPropertyType)e != LockPropertyType.None)
@@ -32,20 +23,42 @@ namespace FossLock.Web.ViewModels
                         Value = e.ToString()
                     }), "Value", "Text"
                 );
+
+            //AllProducts = new List<Product>();
         }
 
         public int Id { get; set; }
 
+        [Required]
         public DateTimeOffset GenerationDateTime { get; set; }
 
-        public DateTimeOffset DestroyedDateTime { get; set; }
+        public DateTimeOffset? DestroyedDateTime { get; set; }
 
+        public DateTimeOffset? ExpirationDate { get; set; }
+
+        public string Notes { get; set; }
+
+        public int? NetworkLicenseCount { get; set; }
+
+        public IList<string> RequiredLockProperties { get; set; }
+
+        [Required]
         public int CustomerId { get; set; }
 
         public string CustomerName { get; set; }
 
-        public SelectList AllActivationTypes { get; set; }
+        [Required]
+        public int ProductId { get; set; }
+
+        [Required]
+        public int ProductVersionId { get; set; }
+
+        public ICollection<ProductFeature> LicensedFeatures { get; set; }
+
+        public ICollection<Activation> Activations { get; set; }
 
         public SelectList AllLockProperties { get; set; }
+
+        public SelectList AllProducts { get; set; }
     }
 }

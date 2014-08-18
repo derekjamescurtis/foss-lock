@@ -1,0 +1,42 @@
+﻿@model FossLock.Web.ViewModels.LicenseViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Generate A License</h2>
+<h3>@Model.CustomerName</h3>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.GenerationDateTime)
+
+    <div>
+        @Html.ValidationSummary(true);
+
+        <ul>
+            <li>
+                @Html.LabelFor(model => model.Name)
+                @Html.EditorFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+            </li>
+            <li>
+                @Html.LabelFor(model => model.Description)
+                @Html.EditorFor(model => model.Description)
+                @Html.ValidationMessageFor(model => model.Description)
+            </li>
+            <li>
+                @Html.LabelFor(model => model.MaxAllowed)
+                @Html.EditorFor(model => model.MaxAllowed)
+                @Html.ValidationMessageFor(model => model.MaxAllowed)
+            </li>
+        </ul>
+    </div>
+
+    <input type="submit" value="Create" />
+}
+
+<div>
+    @Html.ActionLink("Back to Product", "Edit", new { controller = "Product", id = Model.ProductId })
+</div>

@@ -118,9 +118,23 @@
   <!-- non-compiled files (css, xml, etc..) -->
   <ItemGroup>
     <Content Include="Global.asax" />
+    <None Include="ReadMe.md" />
+    <Content Include="Static\css\mixins.css" />
     <Content Include="Static\css\site.css" />
     <Content Include="Static\fonts\fontawesome-webfont.svg" />
     <Content Include="Static\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Static\less\mixins.css">
+      <DependentUpon>mixins.less</DependentUpon>
+    </Content>
+    <Content Include="Static\less\mixins.min.css">
+      <DependentUpon>mixins.less</DependentUpon>
+    </Content>
+    <Content Include="Static\less\site.css">
+      <DependentUpon>site.less</DependentUpon>
+    </Content>
+    <Content Include="Static\less\site.min.css">
+      <DependentUpon>site.less</DependentUpon>
+    </Content>
     <Content Include="Static\lib\bootstrap3\js\bootstrap.js" />
     <Content Include="Static\lib\bootstrap3\less\alerts.less" />
     <Content Include="Static\lib\bootstrap3\less\badges.less" />
@@ -195,7 +209,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Static\img\" />
     <Folder Include="Static\js\" />
-    <Folder Include="Views\License\" />
   </ItemGroup>
   <!-- compiled (c#) files -->
   <ItemGroup>
@@ -215,13 +228,16 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\Converters\LicenseConverter.cs" />
     <Compile Include="ViewModels\Converters\ProductVersionConverter.cs" />
     <Compile Include="ViewModels\Converters\CustomerConverter.cs" />
     <Compile Include="ViewModels\Converters\IEntityConverter.cs" />
     <Compile Include="ViewModels\Converters\ProductConverter.cs" />
     <Compile Include="ViewModels\Converters\ProductFeatureConverter.cs" />
     <Compile Include="ViewModels\CustomerViewModel.cs" />
+    <Compile Include="ViewModels\Extensions\EnumExtensions.cs" />
     <Compile Include="ViewModels\IFossLockViewModel.cs" />
+    <Compile Include="ViewModels\LicenseViewModel.cs" />
     <Compile Include="ViewModels\ProductVersionViewModel.cs" />
     <Compile Include="ViewModels\ProductFeatureViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
@@ -249,6 +265,9 @@
     <Content Include="Views\ProductFeature\Create.cshtml" />
     <Content Include="Views\ProductFeature\Delete.cshtml" />
     <Content Include="Views\ProductFeature\Edit.cshtml" />
+    <Content Include="Views\License\Edit.cshtml" />
+    <Content Include="Views\License\Create.cshtml" />
+    <Content Include="Views\License\Delete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

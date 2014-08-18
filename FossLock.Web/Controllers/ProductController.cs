@@ -2,6 +2,7 @@
 using System.Net;
 using System.Web.Mvc;
 using FossLock.BLL.Service;
+using FossLock.BLL.Util;
 using FossLock.DAL.Repository;
 using FossLock.Model;
 using FossLock.Web.Controllers.Base;
@@ -21,6 +22,8 @@ namespace FossLock.Web.Controllers
     [Route("{id:int}/{action}")]
     public class ProductController : PrimaryEntityCrudController<Product, ProductViewModel>
     {
+        private RsaKeypairGenerator keyPairGenerator = new RsaKeypairGenerator();
+
         public ProductController(IFossLockService<Product> service,
                 IEntityConverter<Product, ProductViewModel> converter)
             : base(service, converter)
@@ -43,7 +46,20 @@ namespace FossLock.Web.Controllers
         [Route("Create")]
         public override ActionResult Create(ProductViewModel vm)
         {
+            var kp = keyPairGenerator.GenerateKeypair(vm.LicenseEncryptionType);
+            vm.PublicKey = kp.PubKey;
+            vm.PrivateKey = kp.PrivKey;
+
             return base.Create(vm);
+        }
+
+        public ActionResult GetVersionsJson(int id)
+        {
+            var p = service.GetById(id);
+            if (p == null)
+                return new HttpNotFoundResult();
+
+            return Json(p.Versions);
         }
     }
 }

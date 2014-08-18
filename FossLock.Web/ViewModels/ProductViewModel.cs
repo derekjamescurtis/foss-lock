@@ -41,13 +41,13 @@ namespace FossLock.Web.ViewModels
                 }), "Value", "Text");
 
             AllActivationTypes = new SelectList(
-                ((IEnumerable<int>)Enum.GetValues(typeof(ActivationType)))
+                ((IEnumerable<int>)Enum.GetValues(typeof(ActivationMethodType)))
                 .Where(e =>
                 {
                     // the following types are not currently permitted and shouldn't be shown
-                    if ((ActivationType)e != ActivationType.None &&
-                        (ActivationType)e != ActivationType.Phone &&
-                        (ActivationType)e != ActivationType.SMS)
+                    if ((ActivationMethodType)e != ActivationMethodType.None &&
+                        (ActivationMethodType)e != ActivationMethodType.Phone &&
+                        (ActivationMethodType)e != ActivationMethodType.SMS)
                     {
                         return true;
                     }
@@ -58,7 +58,7 @@ namespace FossLock.Web.ViewModels
                 })
                 .Select(e => new
                 {
-                    Text = Enum.GetName(typeof(ActivationType), e),
+                    Text = Enum.GetName(typeof(ActivationMethodType), e),
                     Value = e.ToString()
                 }), "Value", "Text");
 
@@ -92,12 +92,15 @@ namespace FossLock.Web.ViewModels
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime ReleaseDate { get; set; }
 
+        [Required]
+        public EncryptionType LicenseEncryptionType { get; set; }
+
+        public string PublicKey { get; set; }
+
+        public string PrivateKey { get; set; }
+
         [DataType(DataType.MultilineText)]
         public string Notes { get; set; }
-
-        [Required]
-        [Display(Name = "Versioning Style")]
-        public string VersioningStyle { get; set; }
 
         [Display(Name = "Default required hardware identifiers.")]
         public IList<string> SelectedDefaultLockProperties { get; set; }

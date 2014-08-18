@@ -10,8 +10,6 @@ namespace FossLock.Model
     /// </summary>
     public class Product : NamedEntityBase
     {
-        #region Basics
-
         /// <summary>
         ///     The date this product was initially released.
         /// </summary>
@@ -21,10 +19,6 @@ namespace FossLock.Model
         ///     Any additional notes about this product.
         /// </summary>
         public string Notes { get; set; }
-
-        #endregion Basics
-
-        #region License/Security Settings
 
         /// <summary>
         ///     Indicates the type of encryption used when generating license
@@ -59,23 +53,19 @@ namespace FossLock.Model
         ///     Flag enum that indicates the methods in which this license may
         ///     be activated.
         /// </summary>
-        public ActivationType PermittedActivationTypes { get; set; }
+        public ActivationMethodType PermittedActivationTypes { get; set; }
 
         /// <summary>
         ///     Indicates the types of expirations permitted for
         ///     new <see cref="License"/>s
         /// </summary>
-        public ExpirationType PermittedExpirationTypes { get; set; }
+        public LicenseType PermittedExpirationTypes { get; set; }
 
         /// <summary>
         ///     Indicates how strict the system will be when activating.
         ///     <see cref="FossLock.Core.VersionLeewayType"/> has additional details.
         /// </summary>
         public VersionLeewayType VersionLeeway { get; set; }
-
-        #endregion License/Security Settings
-
-        #region Navigation Properties
 
         /// <summary>
         ///     Optional collection of features that may be licensed in
@@ -88,7 +78,5 @@ namespace FossLock.Model
         ///     the objects licensed out to customers.
         /// </summary>
         public virtual ICollection<ProductVersion> Versions { get; set; }
-
-        #endregion Navigation Properties
     }
 }

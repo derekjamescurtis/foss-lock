@@ -43,8 +43,8 @@ namespace FossLock.Test.Web.Converter
                 PublicKey = StringFaker.AlphaNumeric(50),
                 DefaultLockProperties = LockPropertyType.CPU | LockPropertyType.BIOS,
                 FailOnNullHardwareIdentifier = BooleanFaker.Boolean(),
-                PermittedActivationTypes = ActivationType.Manual | ActivationType.Email,
-                PermittedExpirationTypes = ExpirationType.Service,
+                PermittedActivationTypes = ActivationMethodType.Manual | ActivationMethodType.Email,
+                PermittedExpirationTypes = LicenseType.Service,
                 VersionLeeway = VersionLeewayType.Strict,
             };
 
@@ -56,7 +56,7 @@ namespace FossLock.Test.Web.Converter
                 Notes = TextFaker.Sentences(5),
                 SelectedDefaultLockProperties = new List<string> { ((int)LockPropertyType.CPU).ToString(), ((int)LockPropertyType.BIOS).ToString() },
                 FailOnNullHardwareIdentifier = BooleanFaker.Boolean(),
-                PermittedActivationTypes = new List<string> { ((int)ActivationType.Manual).ToString(), ((int)ActivationType.Email).ToString() },
+                PermittedActivationTypes = new List<string> { ((int)ActivationMethodType.Manual).ToString(), ((int)ActivationMethodType.Email).ToString() },
                 // randomly selects a versionleewaytype
                 VersionLeeway = ((int)VersionLeewayType.Strict).ToString()
             };
@@ -84,9 +84,9 @@ namespace FossLock.Test.Web.Converter
 
             Assert.AreEqual(fakeProduct.DefaultLockProperties, actualLockProperties);
 
-            var actualActivationTypes = ActivationType.None;
+            var actualActivationTypes = ActivationMethodType.None;
             foreach (var activation_type in vm.PermittedActivationTypes)
-                actualActivationTypes |= (ActivationType)Enum.Parse(typeof(ActivationType), activation_type);
+                actualActivationTypes |= (ActivationMethodType)Enum.Parse(typeof(ActivationMethodType), activation_type);
 
             Assert.AreEqual(fakeProduct.PermittedActivationTypes, actualActivationTypes);
         }
@@ -103,9 +103,9 @@ namespace FossLock.Test.Web.Converter
             Assert.AreEqual(fakeViewmodel.FailOnNullHardwareIdentifier, fakeProduct.FailOnNullHardwareIdentifier);
             Assert.AreEqual(Enum.Parse(typeof(VersionLeewayType), fakeViewmodel.VersionLeeway), fakeProduct.VersionLeeway);
 
-            var expectedActivationType = ActivationType.None;
+            var expectedActivationType = ActivationMethodType.None;
             foreach (var activation_type in fakeViewmodel.PermittedActivationTypes)
-                expectedActivationType |= (ActivationType)Enum.Parse(typeof(ActivationType), activation_type);
+                expectedActivationType |= (ActivationMethodType)Enum.Parse(typeof(ActivationMethodType), activation_type);
             Assert.AreEqual(expectedActivationType, fakeProduct.PermittedActivationTypes);
 
             var expectedLockProps = LockPropertyType.None;
@@ -127,9 +127,9 @@ namespace FossLock.Test.Web.Converter
             Assert.AreEqual(fakeViewmodel.FailOnNullHardwareIdentifier, fakeProduct.FailOnNullHardwareIdentifier);
             Assert.AreEqual(Enum.Parse(typeof(VersionLeewayType), fakeViewmodel.VersionLeeway), fakeProduct.VersionLeeway);
 
-            var expectedActivationType = ActivationType.None;
+            var expectedActivationType = ActivationMethodType.None;
             foreach (var activation_type in fakeViewmodel.PermittedActivationTypes)
-                expectedActivationType |= (ActivationType)Enum.Parse(typeof(ActivationType), activation_type);
+                expectedActivationType |= (ActivationMethodType)Enum.Parse(typeof(ActivationMethodType), activation_type);
             Assert.AreEqual(expectedActivationType, fakeProduct.PermittedActivationTypes);
 
             var expectedLockProps = LockPropertyType.None;

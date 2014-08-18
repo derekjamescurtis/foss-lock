@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using FossLock.Web.ViewModels;
 
 namespace FossLock.Web.Controllers
 {
@@ -10,18 +11,15 @@ namespace FossLock.Web.Controllers
     [Route("{customerId:int}/License/{licenseId:int}/{action}")]
     public class LicenseController : Controller
     {
-        [Route("~/License")]
-        public ActionResult AllLicensesIndex()
+        [Route("{customerId:int}/License/Create")]
+        public ActionResult Create(int customerId)
         {
-            return View();
+            var vm = new LicenseViewModel { CustomerId = customerId };
+            return View(vm);
         }
 
-        public ActionResult LicensesForCustomer()
-        {
-            throw new NotImplementedException();
-        }
-
-        public ActionResult LicensesForProduct()
+        [Route("{customerId:int}/License/Create"), HttpPost, ValidateAntiForgeryToken]
+        public ActionResult Create(LicenseViewModel vm)
         {
             throw new NotImplementedException();
         }

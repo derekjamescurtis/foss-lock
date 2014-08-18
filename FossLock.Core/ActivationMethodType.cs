@@ -7,7 +7,7 @@ namespace FossLock.Core
     /// This is a flag-type enumeration.
     /// </summary>
     [Flags]
-    public enum ActivationType
+    public enum ActivationMethodType
     {
         //TODO: Some of these 'see crefs' need updated after the Web API is completed.
 

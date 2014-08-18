@@ -23,12 +23,6 @@ namespace FossLock.Model
         public DateTimeOffset? DestroyedDateTime { get; set; }
 
         /// <summary>
-        ///     Determines what types of <see cref="FossLock.Core.ActivationType">
-        ///     Activations</see> are permitted.
-        /// </summary>
-        public ActivationType AllowedActionTypes { get; set; }
-
-        /// <summary>
         ///     Indicates the date/time this product will expire. This is
         ///     preset on types that ExpireOnDate, and will be set by the
         ///     ActivationRequest on licenses that ExpireDaysAfterActivation

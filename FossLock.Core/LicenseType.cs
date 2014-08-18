@@ -8,7 +8,7 @@ namespace FossLock.Core
     ///     types (Licenses, however, cannot).
     /// </summary>
     [Flags]
-    public enum ExpirationType
+    public enum LicenseType
     {
         None = 0x0,
 
