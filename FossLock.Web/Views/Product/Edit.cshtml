@@ -19,7 +19,6 @@
 
         <h4>Basics</h4>
         <ul>
-
             <li>
                 @Html.LabelFor(model => model.Name)
                 @Html.EditorFor(model => model.Name)
@@ -34,6 +33,25 @@
                 @Html.LabelFor(model => model.Notes)
                 @Html.EditorFor(model => model.Notes)
                 @Html.ValidationMessageFor(model => model.Notes)
+            </li>
+        </ul>
+
+        <h4>Encryption Keys</h4>
+        <ul>
+            <li>
+                @Html.LabelFor(model => model.LicenseEncryptionType)
+                @Html.DropDownListFor(model => model.LicenseEncryptionType, Model.AllEncryptionTypes)
+                @Html.ValidationMessageFor(model => model.LicenseEncryptionType)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.PublicKey)
+                @Html.EditorFor(m => m.PublicKey)
+                @Html.ValidationMessageFor(m => m.PublicKey)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.PrivateKey)
+                @Html.EditorFor(m => m.PrivateKey)
+                @Html.ValidationMessageFor(m => m.PrivateKey)
             </li>
         </ul>
 

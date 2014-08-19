@@ -70,6 +70,14 @@ namespace FossLock.Web.ViewModels
                     Value = e.ToString()
                 }), "Value", "Text");
 
+            AllEncryptionTypes = new SelectList(
+                ((IEnumerable<int>)Enum.GetValues(typeof(EncryptionType)))
+                .Select(e => new
+                {
+                    Text = Enum.GetName(typeof(EncryptionType), e),
+                    Value = e.ToString()
+                }), "Value", "Text");
+
             // set our default values for other fields
             Name = string.Empty;
             ReleaseDate = DateTime.Now;
@@ -79,7 +87,7 @@ namespace FossLock.Web.ViewModels
         /// <summary>
         ///     Holds the database primary key.  Shouldn't be directly displayed
         ///     or modified by the user.
-        /// </summary>
+        /// </summary
         public int Id { get; set; }
 
         [Required]
@@ -95,8 +103,10 @@ namespace FossLock.Web.ViewModels
         [Required]
         public EncryptionType LicenseEncryptionType { get; set; }
 
+        [AllowHtml]
         public string PublicKey { get; set; }
 
+        [AllowHtml]
         public string PrivateKey { get; set; }
 
         [DataType(DataType.MultilineText)]
@@ -131,5 +141,7 @@ namespace FossLock.Web.ViewModels
         public SelectList AllActivationTypes { get; private set; }
 
         public SelectList AllLeewayTypes { get; private set; }
+
+        public SelectList AllEncryptionTypes { get; private set; }
     }
 }

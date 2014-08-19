@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using FossLock.BLL.Service;
@@ -53,13 +54,26 @@ namespace FossLock.Web.Controllers
             return base.Create(vm);
         }
 
-        public ActionResult GetVersionsJson(int id)
+        /// <summary>
+        ///     Returns some simple JSON information about the ProductVersion children
+        ///     of a given Product entity.
+        /// </summary>
+        /// <param name="id">The database primary key for a Product entity.</param>
+        /// <returns>Json document with some basic information about a Product and it's Versions</returns>
+        public ActionResult GetJson(int id)
         {
             var p = service.GetById(id);
             if (p == null)
                 return new HttpNotFoundResult();
 
-            return Json(p.Versions);
+            var vm = new
+            {
+                ProductId = p.Id,
+                ProductName = p.Name,
+                Versions = p.Versions.Select(v => new { Id = v.Id, VersionString = v.Version })
+            };
+
+            return Json(vm, JsonRequestBehavior.AllowGet);
         }
     }
 }

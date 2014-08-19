@@ -11,26 +11,38 @@
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(m => m.GenerationDateTime)
+    @Html.HiddenFor(m => m.CustomerId)
 
     <div>
         @Html.ValidationSummary(true);
 
         <ul>
             <li>
-                @Html.LabelFor(model => model.Name)
-                @Html.EditorFor(model => model.Name)
-                @Html.ValidationMessageFor(model => model.Name)
+                @Html.LabelFor(m => m.Notes)
+                @Html.EditorFor(m => m.Notes)
+                @Html.ValidationMessageFor(m => m.Notes)
             </li>
             <li>
-                @Html.LabelFor(model => model.Description)
-                @Html.EditorFor(model => model.Description)
-                @Html.ValidationMessageFor(model => model.Description)
+                @Html.LabelFor(m => m.NetworkLicenseCount)
+                @Html.EditorFor(m => m.NetworkLicenseCount)
+                @Html.ValidationMessageFor(m => m.NetworkLicenseCount)
             </li>
             <li>
-                @Html.LabelFor(model => model.MaxAllowed)
-                @Html.EditorFor(model => model.MaxAllowed)
-                @Html.ValidationMessageFor(model => model.MaxAllowed)
+                @Html.LabelFor(m => m.ProductId)
+                <select name="ProductId" required></select>
+                @Html.ValidationMessageFor(m => m.ProductId)
             </li>
+            <li>
+                @Html.LabelFor(m => m.ProductVersionId)
+                <select name="ProductVersionId" required></select>
+                @Html.ValidationMessageFor(m => m.ProductVersionId)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.RequiredLockProperties)
+                @Html.ListBoxFor(m => m.RequiredLockProperties, Model.AllLockProperties)
+                @Html.ValidationMessageFor(m => m.RequiredLockProperties)
+            </li>
+            <li></li>
         </ul>
     </div>
 
@@ -40,3 +52,49 @@
 <div>
     @Html.ActionLink("Back to Product", "Edit", new { controller = "Product", id = Model.ProductId })
 </div>
+
+@section js {
+    <script>
+
+        $(document).ready(function () {
+
+            function populateProductOptions(jsonData) {
+                var htmlString = "<option value=''>Select a Product</option>";
+                for (var i = 0; i < jsonData.length; i++) {
+                    htmlString += "<option value='" + jsonData[i].Id + "'>"
+                                    + jsonData[i].Name
+                                    + "</option>";
+                }
+                $('select[name="ProductId"]').html(htmlString);
+            }
+
+            function populateVersionOptions(jsonData) {
+                var s = $('select[name="ProductVersionId"]');
+                if (jsonData) {
+                    var htmlString = "<option value=''>Select a Version</option>";
+                    for (var i = 0; i < jsonData.Versions.length; i++) {
+                        htmlString += "<option value='" + jsonData.Versions[i].Id + "'>"
+                                        + jsonData.Versions[i].Version
+                                        + "</option>";
+                    }
+                    s.html(htmlString);
+                }
+                else {
+                    s.html("<option value=''>---</option>");
+                }
+            }
+
+            $.getJSON("/API/Product", populateProductOptions);
+
+            $("select[name='ProductId']").on("change", function () {
+                populateVersionOptions(null);
+
+                var productId = $("select[name=ProductId]").val();
+
+                $.getJSON(
+                    "/API/Product/" + productId,
+                    populateVersionOptions);
+            });
+        });
+    </script>
+}
