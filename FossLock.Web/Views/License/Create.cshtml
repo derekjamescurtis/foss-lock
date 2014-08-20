@@ -14,8 +14,23 @@
     @Html.HiddenFor(m => m.CustomerId)
 
     <div>
-        @Html.ValidationSummary(true);
+        @Html.ValidationSummary(excludePropertyErrors: true)
 
+        <h4>Product Information</h4>
+        <ul>
+            <li>
+                @Html.LabelFor(m => m.ProductId)
+                <select name="ProductId" required></select>
+                @Html.ValidationMessageFor(m => m.ProductId)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.ProductVersionId)
+                <select name="ProductVersionId" required></select>
+                @Html.ValidationMessageFor(m => m.ProductVersionId)
+            </li>
+        </ul>
+
+        <h4>Extra</h4>
         <ul>
             <li>
                 @Html.LabelFor(m => m.Notes)
@@ -28,21 +43,14 @@
                 @Html.ValidationMessageFor(m => m.NetworkLicenseCount)
             </li>
             <li>
-                @Html.LabelFor(m => m.ProductId)
-                <select name="ProductId" required></select>
-                @Html.ValidationMessageFor(m => m.ProductId)
-            </li>
-            <li>
-                @Html.LabelFor(m => m.ProductVersionId)
-                <select name="ProductVersionId" required></select>
-                @Html.ValidationMessageFor(m => m.ProductVersionId)
+                @Html.LabelFor(m => m.OverrideDefaultLockProperties)
+                @Html.EditorFor(m => m.OverrideDefaultLockProperties)
             </li>
             <li>
                 @Html.LabelFor(m => m.RequiredLockProperties)
                 @Html.ListBoxFor(m => m.RequiredLockProperties, Model.AllLockProperties)
                 @Html.ValidationMessageFor(m => m.RequiredLockProperties)
             </li>
-            <li></li>
         </ul>
     </div>
 
@@ -57,6 +65,13 @@
     <script>
 
         $(document).ready(function () {
+
+            var domOverrideLockProps = $("input[name='OverrideDefaultLockProperties']");
+            var domLockProps = $("select[name='RequiredLockProperties']");
+            domOverrideLockProps.on("change", function () {
+                var shouldOverride = domOverrideLockProps.prop("checked");
+                domLockProps.prop("disabled", !shouldOverride);
+            });
 
             function populateProductOptions(jsonData) {
                 var htmlString = "<option value=''>Select a Product</option>";

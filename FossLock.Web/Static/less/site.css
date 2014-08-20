@@ -7279,3 +7279,84 @@ fieldset[disabled] a[href$="Create"].active {
   background-color: #428bca;
   border-color: #357ebd;
 }
+input[type='submit'] {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  color: #ffffff;
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+input[type='submit']:focus {
+  outline: thin dotted #333;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+input[type='submit']:hover,
+input[type='submit']:focus {
+  color: #333333;
+  text-decoration: none;
+}
+input[type='submit']:active,
+input[type='submit'].active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+input[type='submit'].disabled,
+input[type='submit'][disabled],
+fieldset[disabled] input[type='submit'] {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+input[type='submit']:hover,
+input[type='submit']:focus,
+input[type='submit']:active,
+input[type='submit'].active,
+.open .dropdown-toggleinput[type='submit'] {
+  color: #ffffff;
+  background-color: #3276b1;
+  border-color: #285e8e;
+}
+input[type='submit']:active,
+input[type='submit'].active,
+.open .dropdown-toggleinput[type='submit'] {
+  background-image: none;
+}
+input[type='submit'].disabled,
+input[type='submit'][disabled],
+fieldset[disabled] input[type='submit'],
+input[type='submit'].disabled:hover,
+input[type='submit'][disabled]:hover,
+fieldset[disabled] input[type='submit']:hover,
+input[type='submit'].disabled:focus,
+input[type='submit'][disabled]:focus,
+fieldset[disabled] input[type='submit']:focus,
+input[type='submit'].disabled:active,
+input[type='submit'][disabled]:active,
+fieldset[disabled] input[type='submit']:active,
+input[type='submit'].disabled.active,
+input[type='submit'][disabled].active,
+fieldset[disabled] input[type='submit'].active {
+  background-color: #428bca;
+  border-color: #357ebd;
+}

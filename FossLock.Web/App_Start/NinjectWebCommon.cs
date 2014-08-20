@@ -78,6 +78,10 @@ namespace FossLock.Web.App_Start
             kernel.Bind<IRepository<Product>>().To<EFRepository<Product>>();
             kernel.Bind<IFossLockService<Product>>().To<GenericService<Product>>();
             kernel.Bind<IEntityConverter<Product, ProductViewModel>>().To<ProductConverter>();
+
+            kernel.Bind<IRepository<License>>().To<EFRepository<License>>();
+            kernel.Bind<IFossLockService<License>>().To<GenericService<License>>();
+            kernel.Bind<IEntityConverter<License, LicenseViewModel>>().To<LicenseConverter>();
         }
     }
 }

@@ -24,7 +24,7 @@ namespace FossLock.Web.ViewModels
                     }), "Value", "Text"
                 );
 
-            //AllProducts = new List<Product>();
+            OverrideDefaultLockProperties = false;
         }
 
         public int Id { get; set; }
@@ -39,6 +39,8 @@ namespace FossLock.Web.ViewModels
         public string Notes { get; set; }
 
         public int? NetworkLicenseCount { get; set; }
+
+        public bool OverrideDefaultLockProperties { get; set; }
 
         public IList<string> RequiredLockProperties { get; set; }
 
@@ -58,7 +60,5 @@ namespace FossLock.Web.ViewModels
         public ICollection<Activation> Activations { get; set; }
 
         public SelectList AllLockProperties { get; set; }
-
-        public SelectList AllProducts { get; set; }
     }
 }
