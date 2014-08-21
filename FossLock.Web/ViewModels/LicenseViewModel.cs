@@ -52,8 +52,12 @@ namespace FossLock.Web.ViewModels
         [Required]
         public int ProductId { get; set; }
 
+        public string ProductName { get; set; }
+
         [Required]
         public int ProductVersionId { get; set; }
+
+        public string ProductVersionText { get; set; }
 
         public ICollection<ProductFeature> LicensedFeatures { get; set; }
 

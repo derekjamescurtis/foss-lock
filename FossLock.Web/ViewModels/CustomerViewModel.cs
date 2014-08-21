@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using FossLock.Model;
 using FossLock.Model.Component;
 
 namespace FossLock.Web.ViewModels
@@ -18,6 +19,7 @@ namespace FossLock.Web.ViewModels
             StreetAddress = new Address();
             BillingAddress = new Address();
             PrimaryContact = new HumanContact();
+            ProductLicenses = new List<License>();
         }
 
         public int Id { get; set; }
@@ -58,5 +60,7 @@ namespace FossLock.Web.ViewModels
 
         [Display(Name = "Primary Contact")]
         public HumanContact PrimaryContact { get; set; }
+
+        public IEnumerable<License> ProductLicenses { get; set; }
     }
 }

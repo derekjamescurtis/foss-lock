@@ -88,6 +88,19 @@
     <h3>Licenses</h3>
     @Html.ActionLink("New", "Create", new { controller = "License", customerId = Model.Id })
     <ul>
+        @foreach (var license in Model.ProductLicenses)
+        {
+            <li>
+                @Html.ActionLink(
+                        string.Format("{0} ({1})", license.ProductVersion.Product.Name, license.ProductVersion.Version),
+                        "Edit",
+                        new { controller = "License", customerId = license.CustomerId, licenseId = license.Id })
+                @Html.ActionLink(
+                        "Delete",
+                        "Delete",
+                        new { controller = "License", customerId = license.CustomerId, licenseId = license.Id })
+            </li>
+        }
     </ul>
 
     <input type="submit" value="Save" />

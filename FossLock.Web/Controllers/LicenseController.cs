@@ -39,10 +39,28 @@ namespace FossLock.Web.Controllers
         [Route("{customerId:int}/License/Create"), HttpPost, ValidateAntiForgeryToken]
         public ActionResult Create(LicenseViewModel vm)
         {
+            if (ModelState.IsValid)
+            {
+                var license = new License();
+                converter.ViewmodelToEntity(vm, ref license);
+                service.Add(license);
+
+                return RedirectToAction("Edit", "Customer", new { id = vm.CustomerId });
+            }
+            else
+            {
+                return View(vm);
+            }
+        }
+
+        [Route("{customerId:int}/License/{licenseId:int}/Edit")]
+        public ActionResult Edit(int customerId, int licenseId)
+        {
             throw new NotImplementedException();
         }
 
-        public ActionResult Edit(int customerId, int licenseId)
+        [Route("{customerId:int}/License/{licenseId:int}/Delete")]
+        public ActionResult Delete(int customerId, int licenseId)
         {
             throw new NotImplementedException();
         }

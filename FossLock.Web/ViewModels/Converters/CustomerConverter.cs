@@ -25,7 +25,8 @@ namespace FossLock.Web.ViewModels.Converters
                 OfficeFax = entity.OfficeFax,
                 Email = entity.Email,
                 Notes = entity.Notes,
-                PrimaryContact = entity.PrimaryContact
+                PrimaryContact = entity.PrimaryContact,
+                ProductLicenses = entity.ProductLicenses
             };
 
             vm.BillingMatchesStreetAddress = vm.BillingAddress.Equals(vm.StreetAddress);

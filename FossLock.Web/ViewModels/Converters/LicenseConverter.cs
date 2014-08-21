@@ -27,9 +27,11 @@ namespace FossLock.Web.ViewModels.Converters
                 CustomerId = entity.Customer.Id,
                 CustomerName = entity.Customer.Name,
                 ProductId = entity.ProductVersion.Product.Id,
+                ProductName = entity.ProductVersion.Product.Name,
                 ProductVersionId = entity.ProductVersion.Id,
+                ProductVersionText = entity.ProductVersion.Version,
                 LicensedFeatures = entity.LicensedFeatures,
-                Activations = entity.Activations
+                Activations = entity.Activations,
             };
 
             var allLockProperties = Enum.GetValues(typeof(LockPropertyType));
@@ -56,18 +58,13 @@ namespace FossLock.Web.ViewModels.Converters
             else if (vm == null)
                 throw new ArgumentNullException("vm");
 
-            // todo: I think we're going to need to perform some checks here to
-            // make sure that entity and vm's reference properties are set (ex, customer product version)
-            if (entity.Customer == null && entity.CustomerId == 0)
-                throw new ArgumentException("CustomerId or Customer properties must be set prior to calling this method.", "entity");
-            else if (entity.ProductVersion == null & entity.ProductVersionId == 0)
-                throw new ArgumentException("ProductVersion or ProductVersionId must be set prior to calling this method.", "entity");
-
             entity.GenerationDateTime = vm.GenerationDateTime;
             entity.DestroyedDateTime = vm.DestroyedDateTime;
             entity.ExpirationDate = vm.ExpirationDate;
             entity.Notes = vm.Notes;
             entity.NetworkLicenseCount = vm.NetworkLicenseCount;
+            entity.CustomerId = vm.CustomerId;
+            entity.ProductVersionId = vm.ProductVersionId;
 
             foreach (var val in vm.RequiredLockProperties)
             {
