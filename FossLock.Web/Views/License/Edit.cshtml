@@ -1,4 +1,4 @@
-﻿@model FossLock.Web.ViewModels.ProductFeatureViewModel
+﻿@model FossLock.Web.ViewModels.LicenseViewModel
 
 @{
     ViewBag.Title = "Edit";
@@ -10,21 +10,23 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m => m.CustomerId)
+    @Html.HiddenFor(m => m.ProductVersionId)
 
     <div>
         @Html.ValidationSummary(true);
 
         <ul>
             <li>
-                @Html.LabelFor(model => model.Name)
-                @Html.EditorFor(model => model.Name)
-                @Html.ValidationMessageFor(model => model.Name)
+                @Html.LabelFor(m => m.GenerationDateTime)
+                @Html.EditorFor(m => m.GenerationDateTime)
+                @Html.ValidationMessageFor(m => m.GenerationDateTime)
             </li>
             <li>
-                @Html.LabelFor(model => model.Description)
-                @Html.EditorFor(model => model.Description)
-                @Html.ValidationMessageFor(model => model.Description)
+                @Html.LabelFor(m => m.Notes)
+                @Html.EditorFor(m => m.Notes)
+                @Html.ValidationMessageFor(m => m.Notes)
             </li>
             <li>
                 @Html.LabelFor(model => model.MaxAllowed)

@@ -132,10 +132,11 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <None Include="ReadMe.md" />
-    <Content Include="Static\css\mixins.css" />
     <Content Include="Static\css\site.css" />
     <Content Include="Static\fonts\fontawesome-webfont.svg" />
     <Content Include="Static\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Static\js\License\LicenseFormManager.js" />
+    <Content Include="Static\js\ProductAndVersionsSelection.js" />
     <Content Include="Static\less\mixins.css">
       <DependentUpon>mixins.less</DependentUpon>
     </Content>
@@ -213,6 +214,7 @@
     <Content Include="Static\fonts\glyphicons-halflings-regular.woff" />
     <None Include="Static\lib\jquery-1.10.2.intellisense.js" />
     <Content Include="Static\lib\jquery-1.10.2.js" />
+    <Content Include="Static\lib\sprintf.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -221,7 +223,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Static\img\" />
-    <Folder Include="Static\js\" />
   </ItemGroup>
   <!-- compiled (c#) files -->
   <ItemGroup>
@@ -242,6 +243,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Static\js\GetDefaultLockProperties.js" />
     <Compile Include="ViewModels\Converters\LicenseConverter.cs" />
     <Compile Include="ViewModels\Converters\ProductVersionConverter.cs" />
     <Compile Include="ViewModels\Converters\CustomerConverter.cs" />

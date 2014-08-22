@@ -18,7 +18,8 @@ namespace FossLock.Web.App_Start
             var scriptsBundle = new ScriptBundle("~/Static/Scripts");
             scriptsBundle.Include(
                 "~/Static/lib/jquery-1.10.2.js",
-                "~/Static/lib/bootstrap3/js/bootstrap.js");
+                "~/Static/lib/bootstrap3/js/bootstrap.js",
+                "~/Static/lib/sprintf.js");
             bundles.Add(scriptsBundle);
         }
     }

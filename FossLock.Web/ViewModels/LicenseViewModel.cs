@@ -30,14 +30,21 @@ namespace FossLock.Web.ViewModels
         public int Id { get; set; }
 
         [Required]
+        [DataType(DataType.DateTime)]
         public DateTimeOffset GenerationDateTime { get; set; }
 
+        [DataType(DataType.DateTime)]
         public DateTimeOffset? DestroyedDateTime { get; set; }
 
+        [DataType(DataType.DateTime)]
         public DateTimeOffset? ExpirationDate { get; set; }
 
+        [DataType(DataType.MultilineText)]
         public string Notes { get; set; }
 
+        public bool AllowNetworkLicensing { get; set; }
+
+        [Range(1, int.MaxValue)]
         public int? NetworkLicenseCount { get; set; }
 
         public bool OverrideDefaultLockProperties { get; set; }
@@ -52,11 +59,13 @@ namespace FossLock.Web.ViewModels
         [Required]
         public int ProductId { get; set; }
 
+        //readonly
         public string ProductName { get; set; }
 
         [Required]
         public int ProductVersionId { get; set; }
 
+        //readonly
         public string ProductVersionText { get; set; }
 
         public ICollection<ProductFeature> LicensedFeatures { get; set; }

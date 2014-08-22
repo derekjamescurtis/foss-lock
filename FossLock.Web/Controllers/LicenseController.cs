@@ -32,7 +32,12 @@ namespace FossLock.Web.Controllers
         {
             var customer = customerService.GetById(customerId);
 
-            var vm = new LicenseViewModel { CustomerId = customerId, CustomerName = customer.Name };
+            var vm = new LicenseViewModel
+                        {
+                            CustomerId = customerId,
+                            CustomerName = customer.Name
+                        };
+
             return View(vm);
         }
 
@@ -56,11 +61,43 @@ namespace FossLock.Web.Controllers
         [Route("{customerId:int}/License/{licenseId:int}/Edit")]
         public ActionResult Edit(int customerId, int licenseId)
         {
+            var license = service.GetById(licenseId);
+
+            if (license == null || license.Customer.Id != customerId)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                var vm = converter.EntityToViewmodel(license);
+                return View(vm);
+            }
+        }
+
+        [Route("{customerId:int}/License/{licenseId:int}/Edit"), ValidateAntiForgeryToken, HttpPost]
+        public ActionResult Edit(LicenseViewModel vm)
+        {
             throw new NotImplementedException();
         }
 
         [Route("{customerId:int}/License/{licenseId:int}/Delete")]
         public ActionResult Delete(int customerId, int licenseId)
+        {
+            var license = service.GetById(licenseId);
+
+            if (license == null || license.Customer.Id != customerId)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                var vm = converter.EntityToViewmodel(license);
+                return View(vm);
+            }
+        }
+
+        [Route("{customerId:int}/License/{licenseId:int}/Delete"), ValidateAntiForgeryToken, HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int customerId, int licenseId)
         {
             throw new NotImplementedException();
         }

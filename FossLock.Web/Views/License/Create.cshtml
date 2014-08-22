@@ -62,54 +62,26 @@
 </div>
 
 @section js {
+    <script src="~/Static/js/License/LicenseFormManager.js"></script>
     <script>
 
-        $(document).ready(function () {
+        var formManager = null;
 
-            var domOverrideLockProps = $("input[name='OverrideDefaultLockProperties']");
-            var domLockProps = $("select[name='RequiredLockProperties']");
-            domOverrideLockProps.on("change", function () {
-                var shouldOverride = domOverrideLockProps.prop("checked");
-                domLockProps.prop("disabled", !shouldOverride);
+        try {
+            $.getJSON("/API/Product/", function (json) {
+                "use strict";
+
+                formManager = LicenseFormManager('select[name="ProductId"]',
+                                                 'select[name="ProductVersionId"]',
+                                                 'select[name="RequiredLockProperties"]',
+                                                 'input[name="OverrideDefaultLockProperties"]',
+                                                 json);
+
+                formManager.PopulateProducts();
             });
-
-            function populateProductOptions(jsonData) {
-                var htmlString = "<option value=''>Select a Product</option>";
-                for (var i = 0; i < jsonData.length; i++) {
-                    htmlString += "<option value='" + jsonData[i].Id + "'>"
-                                    + jsonData[i].Name
-                                    + "</option>";
-                }
-                $('select[name="ProductId"]').html(htmlString);
-            }
-
-            function populateVersionOptions(jsonData) {
-                var s = $('select[name="ProductVersionId"]');
-                if (jsonData) {
-                    var htmlString = "<option value=''>Select a Version</option>";
-                    for (var i = 0; i < jsonData.Versions.length; i++) {
-                        htmlString += "<option value='" + jsonData.Versions[i].Id + "'>"
-                                        + jsonData.Versions[i].Version
-                                        + "</option>";
-                    }
-                    s.html(htmlString);
-                }
-                else {
-                    s.html("<option value=''>---</option>");
-                }
-            }
-
-            $.getJSON("/API/Product", populateProductOptions);
-
-            $("select[name='ProductId']").on("change", function () {
-                populateVersionOptions(null);
-
-                var productId = $("select[name=ProductId]").val();
-
-                $.getJSON(
-                    "/API/Product/" + productId,
-                    populateVersionOptions);
-            });
-        });
+        }
+        catch (e) {
+            console.log("Error initializing form manager: " + e);
+        }
     </script>
 }
