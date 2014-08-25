@@ -239,9 +239,11 @@
     <Compile Include="ViewModels\Converters\ProductConverter.cs" />
     <Compile Include="ViewModels\Converters\ProductFeatureConverter.cs" />
     <Compile Include="ViewModels\CustomerViewModel.cs" />
-    <Compile Include="ViewModels\Extensions\ComponentExtensions.cs" />
+    <Compile Include="ViewModels\Extensions\ComponentExtensions.Address.cs" />
+    <Compile Include="ViewModels\Extensions\ComponentExtensions.HumanContact.cs" />
     <Compile Include="ViewModels\Extensions\EnumExtensions.cs" />
     <Compile Include="ViewModels\Helpers\LocaleViewModel.cs" />
+    <Compile Include="ViewModels\HumanContactViewModel.cs" />
     <Compile Include="ViewModels\IFossLockViewModel.cs" />
     <Compile Include="ViewModels\LicenseViewModel.cs" />
     <Compile Include="ViewModels\ProductVersionViewModel.cs" />

@@ -22,7 +22,7 @@ namespace FossLock.DAL.EF.Map.ComplexType
                 .HasMaxLength(255);
 
             Property(e => e.State)
-                .HasMaxLength(3);
+                .HasMaxLength(255);
 
             Property(e => e.PostalCode)
                 .HasMaxLength(25);

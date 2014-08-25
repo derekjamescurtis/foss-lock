@@ -18,7 +18,7 @@ namespace FossLock.Web.ViewModels
         {
             StreetAddress = new AddressViewModel();
             BillingAddress = new AddressViewModel();
-            PrimaryContact = new HumanContact();
+            PrimaryContact = new HumanContactViewModel();
             ProductLicenses = new List<License>();
         }
 
@@ -59,7 +59,7 @@ namespace FossLock.Web.ViewModels
         public string Notes { get; set; }
 
         [Display(Name = "Primary Contact")]
-        public HumanContact PrimaryContact { get; set; }
+        public HumanContactViewModel PrimaryContact { get; set; }
 
         public IEnumerable<License> ProductLicenses { get; set; }
     }

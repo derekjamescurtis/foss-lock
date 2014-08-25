@@ -26,7 +26,7 @@ namespace FossLock.Web.ViewModels.Converters
                 OfficeFax = entity.OfficeFax,
                 Email = entity.Email,
                 Notes = entity.Notes,
-                PrimaryContact = entity.PrimaryContact,
+                PrimaryContact = entity.PrimaryContact.ToViewModel(),
                 ProductLicenses = entity.ProductLicenses
             };
 
@@ -68,7 +68,7 @@ namespace FossLock.Web.ViewModels.Converters
             entity.OfficeFax = vm.OfficeFax;
             entity.Email = vm.Email;
             entity.Notes = vm.Notes;
-            entity.PrimaryContact = vm.PrimaryContact;
+            entity.PrimaryContact = vm.PrimaryContact.ToEntity();
         }
     }
 }
