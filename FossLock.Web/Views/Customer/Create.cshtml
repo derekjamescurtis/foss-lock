@@ -1,23 +1,23 @@
 ﻿@model FossLock.Web.ViewModels.CustomerViewModel
+@using FossLock.Web.ViewModels.Helpers
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "New Customer";
 }
 
-<h2>Create</h2>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<h2>Create Customer</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
     <div>
-        <h3>Customer</h3>
-        <hr />
         @Html.ValidationSummary(true)
 
-        <h4>Basics</h4>
         <ul>
-
             <li>
                 @Html.LabelFor(model => model.Name)
                 @Html.EditorFor(model => model.Name)
@@ -50,43 +50,39 @@
             </li>
         </ul>
 
-        <h4>Primary Contact Info</h4>
-        <ul>
-            <li>
-                @Html.LabelFor(model => model.PrimaryContact)
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="active"><a href="#primary-contact" role="tab" data-toggle="tab">Primary Contact</a></li>
+            <li><a href="#street-address" role="tab" data-toggle="tab">Street Address</a></li>
+            <li><a href="#billing-address" role="tab" data-toggle="tab">Billing Address</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane active" id="primary-contact">
                 @Html.EditorFor(model => model.PrimaryContact)
                 @Html.ValidationMessageFor(model => model.PrimaryContact)
-            </li>
-        </ul>
-
-        <h4>Street Address</h4>
-        <ul>
-            <li>
-                @Html.LabelFor(model => model.StreetAddress)
+            </div>
+            <div class="tab-pane" id="street-address">
                 @Html.EditorFor(model => model.StreetAddress)
                 @Html.ValidationMessageFor(model => model.StreetAddress)
-            </li>
-        </ul>
 
-        <h4>Billing Address</h4>
-        <ul>
-            <li>
-                @Html.LabelFor(model => model.BillingMatchesStreetAddress)
-                @Html.EditorFor(model => model.BillingMatchesStreetAddress)
-                @Html.ValidationMessageFor(model => model.BillingMatchesStreetAddress)
-            </li>
-            <li>
-                @Html.LabelFor(model => model.BillingAddress)
-                @Html.EditorFor(model => model.BillingAddress)
-                @Html.ValidationMessageFor(model => model.BillingAddress)
-            </li>
-        </ul>
+                @Html.DropDownListFor(m => m.StreetAddress.Country, LocaleViewModel.CountriesSelectList)
+            </div>
+            <div class="tab-pane" id="billing-address">
+                <ul>
+                    <li>
+                        @Html.EditorFor(model => model.BillingMatchesStreetAddress)
+                        @Html.LabelFor(model => model.BillingMatchesStreetAddress)
+                        @Html.ValidationMessageFor(model => model.BillingMatchesStreetAddress)
+                    </li>
+                    <li>
+                        @Html.EditorFor(model => model.BillingAddress)
+                        @Html.ValidationMessageFor(model => model.BillingAddress)
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 
     <input type="submit" value="Create" />
 
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using FossLock.Model;
 using FossLock.Model.Component;
+using FossLock.Web.ViewModels.Extensions;
 
 namespace FossLock.Web.ViewModels.Converters
 {
@@ -18,8 +19,8 @@ namespace FossLock.Web.ViewModels.Converters
             {
                 Id = entity.Id,
                 Name = entity.Name,
-                StreetAddress = entity.StreetAddress,
-                BillingAddress = entity.BillingAddress,
+                StreetAddress = entity.StreetAddress.ToViewModel(),
+                BillingAddress = entity.BillingAddress.ToViewModel(),
                 OfficePhone1 = entity.OfficePhone1,
                 OfficePhone2 = entity.OfficePhone2,
                 OfficeFax = entity.OfficeFax,
@@ -44,7 +45,7 @@ namespace FossLock.Web.ViewModels.Converters
             entity.Id = vm.Id;
             entity.Name = vm.Name;
 
-            entity.StreetAddress = vm.StreetAddress;
+            entity.StreetAddress = vm.StreetAddress.ToEntity();
             if (vm.BillingMatchesStreetAddress)
             {
                 entity.BillingAddress = new Address
@@ -59,7 +60,7 @@ namespace FossLock.Web.ViewModels.Converters
             }
             else
             {
-                entity.BillingAddress = vm.BillingAddress;
+                entity.BillingAddress = vm.BillingAddress.ToEntity();
             }
 
             entity.OfficePhone1 = vm.OfficePhone1;

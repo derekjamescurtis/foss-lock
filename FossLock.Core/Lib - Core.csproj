@@ -50,6 +50,7 @@
     <Compile Include="Logic\HashingFunctions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LicenseType.cs" />
+    <Compile Include="Util\Locale.cs" />
     <Compile Include="VersionLeewayType.cs" />
   </ItemGroup>
   <ItemGroup>

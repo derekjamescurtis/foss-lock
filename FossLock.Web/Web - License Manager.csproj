@@ -136,19 +136,6 @@
     <Content Include="Static\fonts\fontawesome-webfont.svg" />
     <Content Include="Static\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Static\js\License\LicenseFormManager.js" />
-    <Content Include="Static\js\ProductAndVersionsSelection.js" />
-    <Content Include="Static\less\mixins.css">
-      <DependentUpon>mixins.less</DependentUpon>
-    </Content>
-    <Content Include="Static\less\mixins.min.css">
-      <DependentUpon>mixins.less</DependentUpon>
-    </Content>
-    <Content Include="Static\less\site.css">
-      <DependentUpon>site.less</DependentUpon>
-    </Content>
-    <Content Include="Static\less\site.min.css">
-      <DependentUpon>site.less</DependentUpon>
-    </Content>
     <Content Include="Static\lib\bootstrap3\js\bootstrap.js" />
     <Content Include="Static\lib\bootstrap3\less\alerts.less" />
     <Content Include="Static\lib\bootstrap3\less\badges.less" />
@@ -243,7 +230,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="Static\js\GetDefaultLockProperties.js" />
+    <Compile Include="ViewModels\AddressViewModel.cs" />
     <Compile Include="ViewModels\Converters\LicenseConverter.cs" />
     <Compile Include="ViewModels\Converters\ProductVersionConverter.cs" />
     <Compile Include="ViewModels\Converters\CustomerConverter.cs" />
@@ -251,7 +238,9 @@
     <Compile Include="ViewModels\Converters\ProductConverter.cs" />
     <Compile Include="ViewModels\Converters\ProductFeatureConverter.cs" />
     <Compile Include="ViewModels\CustomerViewModel.cs" />
+    <Compile Include="ViewModels\Extensions\ComponentExtensions.cs" />
     <Compile Include="ViewModels\Extensions\EnumExtensions.cs" />
+    <Compile Include="ViewModels\Helpers\LocaleViewModel.cs" />
     <Compile Include="ViewModels\IFossLockViewModel.cs" />
     <Compile Include="ViewModels\LicenseViewModel.cs" />
     <Compile Include="ViewModels\ProductVersionViewModel.cs" />
@@ -284,6 +273,9 @@
     <Content Include="Views\License\Edit.cshtml" />
     <Content Include="Views\License\Create.cshtml" />
     <Content Include="Views\License\Delete.cshtml" />
+    <Content Include="Views\License\Index.cshtml" />
+    <Content Include="Views\Customer\_ViewStart.cshtml" />
+    <Content Include="Views\Product\_ViewStart.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

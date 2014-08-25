@@ -15,6 +15,10 @@ namespace FossLock.Web.Controllers
     [Route("{customerId:int}/License/{licenseId:int}/{action}")]
     public class LicenseController : Controller
     {
+        private IFossLockService<Customer> customerService;
+        private IFossLockService<License> service;
+        private IEntityConverter<License, LicenseViewModel> converter;
+
         public LicenseController(IFossLockService<License> service, IEntityConverter<License, LicenseViewModel> converter,
             IFossLockService<Customer> customerService)
         {
@@ -23,9 +27,13 @@ namespace FossLock.Web.Controllers
             this.customerService = customerService;
         }
 
-        private IFossLockService<Customer> customerService;
-        private IFossLockService<License> service;
-        private IEntityConverter<License, LicenseViewModel> converter;
+        [Route("~/License")]
+        public ActionResult Index()
+        {
+            var vm = service.GetList().Select(e => converter.EntityToViewmodel(e));
+
+            return View(vm);
+        }
 
         [Route("{customerId:int}/License/Create")]
         public ActionResult Create(int customerId)

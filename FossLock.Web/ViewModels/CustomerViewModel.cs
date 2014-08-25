@@ -16,8 +16,8 @@ namespace FossLock.Web.ViewModels
     {
         public CustomerViewModel()
         {
-            StreetAddress = new Address();
-            BillingAddress = new Address();
+            StreetAddress = new AddressViewModel();
+            BillingAddress = new AddressViewModel();
             PrimaryContact = new HumanContact();
             ProductLicenses = new List<License>();
         }
@@ -32,13 +32,13 @@ namespace FossLock.Web.ViewModels
         public bool CanLicensePreReleaseVersions { get; set; }
 
         [Display(Name = "Street Address")]
-        public Address StreetAddress { get; set; }
+        public AddressViewModel StreetAddress { get; set; }
 
         [Display(Name = "Same as Street Address")]
         public bool BillingMatchesStreetAddress { get; set; }
 
         [Display(Name = "Billing Address")]
-        public Address BillingAddress { get; set; }
+        public AddressViewModel BillingAddress { get; set; }
 
         [Phone]
         [Display(Name = "Office Phone 1")]

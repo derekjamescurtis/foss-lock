@@ -43,6 +43,9 @@ namespace FossLock.Model
         /// <summary>
         ///     The hardware identifiers that must be returned from the
         ///     customer to generate the license.
+        ///     NOTE: If this value is set to LockPropertyType.None, it is assumed
+        ///         that the user wants to inherit the DefaultLockProperties of the
+        ///         Product this license was generated for.
         /// </summary>
         public LockPropertyType RequiredLockProperties { get; set; }
 

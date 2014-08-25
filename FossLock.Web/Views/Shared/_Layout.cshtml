@@ -48,5 +48,17 @@
     @Scripts.Render("~/Static/Scripts");
 
     @RenderSection("js", required: false)
+
+    <script>
+        $(document).ready(function () {
+            var highlightMenu = function (selector) {
+                if (selector !== undefined && selector !== "") {
+                    var e = $(selector);
+                    e.addClass('active');
+                }
+            }
+            highlightMenu("@Html.Raw(this.PageData["ActiveNavSelector"])");
+        });
+    </script>
 </body>
 </html>

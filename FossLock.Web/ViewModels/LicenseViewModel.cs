@@ -25,6 +25,7 @@ namespace FossLock.Web.ViewModels
                 );
 
             OverrideDefaultLockProperties = false;
+            RequiredLockProperties = new List<string>();
         }
 
         public int Id { get; set; }
@@ -73,5 +74,23 @@ namespace FossLock.Web.ViewModels
         public ICollection<Activation> Activations { get; set; }
 
         public SelectList AllLockProperties { get; set; }
+
+        // readonly
+        public bool IsDestroyed
+        {
+            get { return DestroyedDateTime.HasValue; }
+        }
+
+        // readonly
+        public bool IsActive
+        {
+            get { return !(IsDestroyed | IsExpired); }
+        }
+
+        // readonly
+        public bool IsExpired
+        {
+            get { return (ExpirationDate.HasValue) ? (DateTime.Now > ExpirationDate.Value) : false; }
+        }
     }
 }

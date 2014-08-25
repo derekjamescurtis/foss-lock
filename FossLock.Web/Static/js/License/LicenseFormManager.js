@@ -39,7 +39,7 @@ function LicenseFormManager(selectProductSelector, selectVersionSelector, select
         // default locks for the current product
         if (!userSetsLocks) {
             var product = GetProductData(ProductId());
-            SetLocks(product.DefaultLocks);
+            if (product) SetLocks(product.DefaultLocks);
         }
     }
 
@@ -118,6 +118,7 @@ function LicenseFormManager(selectProductSelector, selectVersionSelector, select
             // clear our versions and locks
             PopulateVersions(undefined);
             SetLocks(undefined);
+            OnOverrideLocksChanged();
         }
     };
     this.SelectProductElement.on("change", this.OnProductChanged);
@@ -125,7 +126,7 @@ function LicenseFormManager(selectProductSelector, selectVersionSelector, select
     // event handler
     this.OnOverrideLocksChanged = function () {
         var isChecked = OverrideLocksElement.prop("checked");
-        SelectLocksElement.attr("disabled", !isChecked);
+        UserSetsLocks(isChecked);
     }
     this.OverrideLocksElement.on("change", this.OnOverrideLocksChanged);
 

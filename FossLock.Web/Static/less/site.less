@@ -12,7 +12,7 @@ body {
 a[href$="Create"] {
     .inline-icon(@fa-var-plus);
     .btn;
-    .btn-primary;
+    .btn-success;
 }
 
 a[href$="Delete"] {
@@ -21,7 +21,62 @@ a[href$="Delete"] {
     .btn-danger;
 }
 
+td {
+    a[href$="Delete"] {
+        .inline-icon(@fa-var-times);
+        .btn;
+        .btn-danger;
+        .btn-xs;
+    }
+}
+
 input[type='submit'] {
     .btn;
     .btn-primary;
+}
+
+ul.nav.navbar-nav {
+    a[href="/Customer"] {
+        .inline-icon(@fa-var-users);
+    }
+
+    a[href="/Product"] {
+        .inline-icon(@fa-var-cubes);
+    }
+}
+
+table {
+    .table;
+    vertical-align: middle;
+}
+
+form {
+    ul {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    label {
+        display: block;
+    }
+
+    input[type='text'],
+    input[type='tel'],
+    input[type='email'],
+    input[type='number'],
+    textarea {
+        .form-control;
+    }
+
+    input[type='tel'] {
+        max-width: 200px;
+    }
+
+    input[type='checkbox'] ~ label {
+        display: inline-block;
+    }
+
+    textarea {
+        height: 5em;
+    }
 }
