@@ -9,6 +9,12 @@ body {
     padding-top: 70px;
 }
 
+a.back-button {
+    .btn;
+    .btn-default;
+    .inline-icon(@fa-var-arrow-left);
+}
+
 a[href$="Create"] {
     .inline-icon(@fa-var-plus);
     .btn;
@@ -64,6 +70,7 @@ form {
     input[type='tel'],
     input[type='email'],
     input[type='number'],
+    select,
     textarea {
         .form-control;
     }

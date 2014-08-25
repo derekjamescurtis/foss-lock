@@ -12,7 +12,7 @@ namespace FossLock.Web.ViewModels
         [MaxLength(255)]
         public string Address1 { get; set; }
 
-        [Display(Name = "Address 2")]
+        [Display(Name = "")]
         [MaxLength(255)]
         public string Address2 { get; set; }
 

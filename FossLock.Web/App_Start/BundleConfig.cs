@@ -14,11 +14,11 @@ namespace FossLock.Web.App_Start
             stylesBundle.Include("~/Static/css/site.css");
             bundles.Add(stylesBundle);
 
-            // right now, i just want to use the default js bundler/minifier
             var scriptsBundle = new ScriptBundle("~/Static/Scripts");
             scriptsBundle.Include(
                 "~/Static/lib/jquery-1.10.2.js",
                 "~/Static/lib/bootstrap3/js/bootstrap.js",
+                "~/Static/lib/knockout-3.2.0.js",
                 "~/Static/lib/sprintf.js");
             bundles.Add(scriptsBundle);
         }

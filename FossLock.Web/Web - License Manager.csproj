@@ -201,6 +201,7 @@
     <Content Include="Static\fonts\glyphicons-halflings-regular.woff" />
     <None Include="Static\lib\jquery-1.10.2.intellisense.js" />
     <Content Include="Static\lib\jquery-1.10.2.js" />
+    <Content Include="Static\lib\knockout-3.2.0.js" />
     <Content Include="Static\lib\sprintf.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
